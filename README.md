@@ -36,6 +36,10 @@ export class AppModule { }
 
 See the [battery-level.service.ts](https://github.com/manekinekko/angular-web-bluetooth-starter/blob/master/src/app/battery-level/battery-level.component.ts) file for a real use case.
 
+## Need a starter?
+
+You're welcome: https://github.com/manekinekko/angular-web-bluetooth-starter
+
 # API
 
 These are the most required API calls you will need but there are other helpers you can use (see service here):
