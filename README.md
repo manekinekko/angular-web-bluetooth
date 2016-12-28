@@ -15,7 +15,26 @@
 
 # Use it
 
-See the starter here: https://github.com/manekinekko/angular-web-bluetooth-starter
+## 1) import the `WebBluetoothModule` module
+
+```typescript
+import { NgModule } from '@angular/core';
+import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
+
+@NgModule({
+  imports: [
+    //...,
+    WebBluetoothModule.forRoot()
+  ],
+  //...
+})
+export class AppModule { }
+
+```
+
+## 2) use it in your service
+
+See the [battery-level.service.ts](https://github.com/manekinekko/angular-web-bluetooth-starter/blob/master/src/app/battery-level/battery-level.component.ts) file for a real use case.
 
 # API
 
