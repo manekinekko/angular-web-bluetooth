@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg)](https://circleci.com/gh/manekinekko/angular-web-bluetooth)
 
-# The missing Web Bluetooth module for Angular (v2+).
+# The missing Web Bluetooth module for Angular (v2+) 
 
-![image](https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png)
+<img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="150">
 
  
 # Install it 
