@@ -97,4 +97,4 @@ export var TiTag = {
     }
 };
 export var TI_SENSORAG_SERVICES = Object.keys(TiTag).map(function (key) { return TiTag[key].SERVICE; });
-//# sourceMappingURL=/Users/wassimchegham/Sandbox/oss/angular-web-bluetooth/lib/lang/uuids/ti-sensortag.js.map
+//# sourceMappingURL=/Users/wassimchegham/Sandbox/oss/angular-web-bluetooth/lib/lang/uuids/ti-sensortag2.js.map

@@ -1,1 +1,1 @@
-export * from './ti-sensortag';
+export * from './ti-sensortag2';

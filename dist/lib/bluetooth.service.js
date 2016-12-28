@@ -7,18 +7,19 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/of';
 import { BrowserWebBluetooth } from './platform/browser';
+/**
+ * Number of last emitted values to reply
+ */
 var kBufferSize = 1;
-export var WebBluetooth = (function (_super) {
-    __extends(WebBluetooth, _super);
-    function WebBluetooth(_webBle) {
+export var BluetoothCore = (function (_super) {
+    __extends(BluetoothCore, _super);
+    function BluetoothCore(_webBle) {
         _super.call(this, kBufferSize);
         this._webBle = _webBle;
         this._device$ = new EventEmitter();
@@ -29,22 +30,22 @@ export var WebBluetooth = (function (_super) {
     /**
      * @return {Observable<BluetoothDevice>}
      */
-    WebBluetooth.prototype.getDevice$ = function () {
+    BluetoothCore.prototype.getDevice$ = function () {
         return this._device$;
     };
     /**
      * @return {Observable<BluetoothRemoteGATTServer>}
      */
-    WebBluetooth.prototype.getGATT$ = function () {
+    BluetoothCore.prototype.getGATT$ = function () {
         return this._gatt$;
     };
     /**
      * @return {Observable<DataView>}
      */
-    WebBluetooth.prototype.streamValues$ = function () {
+    BluetoothCore.prototype.streamValues$ = function () {
         return this._characteristicValueChanges$.skip(2);
     };
-    WebBluetooth.prototype.anyDeviceFilter = function () {
+    BluetoothCore.prototype.anyDeviceFilter = function () {
         // This is the closest we can get for now to get all devices.
         // https://github.com/WebBluetoothCG/web-bluetooth/issues/234
         var filters = [];
@@ -60,7 +61,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {RequestDeviceOptions} Options such as filters and optional services
      * @return {Promise<number>} Emites the value of the requested service read from the device
      */
-    WebBluetooth.prototype.discover = function (options) {
+    BluetoothCore.prototype.discover = function (options) {
         var _this = this;
         if (options === void 0) { options = {}; }
         options.filters = options.filters || this.anyDeviceFilter();
@@ -83,7 +84,7 @@ export var WebBluetooth = (function (_super) {
     /**
      * @param  {Event}  event [description]
      */
-    WebBluetooth.prototype.onDeviceDisconnected = function (event) {
+    BluetoothCore.prototype.onDeviceDisconnected = function (event) {
         var disconnectedDevice = event.target;
         console.log('[BLE::Info] disconnected device %o', disconnectedDevice);
         this._device$.emit(null);
@@ -94,10 +95,10 @@ export var WebBluetooth = (function (_super) {
      * @param  {RequestDeviceOptions} Options such as filters and optional services
      * @return {Observable<number>} Emites the value of the requested service read from the device
      */
-    WebBluetooth.prototype.discover$ = function (options) {
+    BluetoothCore.prototype.discover$ = function (options) {
         var _this = this;
         return this.toObservable(this.discover(options))
-            .flatMap(function (device) { return _this.connectDevice$(device); })
+            .mergeMap(function (device) { return _this.connectDevice$(device); })
             .catch(function (e) {
             console.error('[BLE::Error] discover$: %o', e);
             return Observable.create(e);
@@ -108,7 +109,7 @@ export var WebBluetooth = (function (_super) {
      *
      * @return {Promise<any>} Emites the gatt server instance of the requested device
      */
-    WebBluetooth.prototype.connectDevice = function (device) {
+    BluetoothCore.prototype.connectDevice = function (device) {
         var _this = this;
         if (device) {
             console.log('[BLE::Info] Connecting to GATT Server of %o', device);
@@ -130,7 +131,7 @@ export var WebBluetooth = (function (_super) {
      *
      * @return {Observable<any>} Emites the gatt server instance of the requested device
      */
-    WebBluetooth.prototype.connectDevice$ = function (device) {
+    BluetoothCore.prototype.connectDevice$ = function (device) {
         return this.toObservable(this.connectDevice(device));
     };
     /**
@@ -138,7 +139,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {BluetoothServiceUUID}                   service
      * @return {Observable<BluetoothRemoteGATTService>}
      */
-    WebBluetooth.prototype.getPrimaryService$ = function (gatt, service) {
+    BluetoothCore.prototype.getPrimaryService$ = function (gatt, service) {
         console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
         return this.toObservable(gatt.getPrimaryService(service)
             .catch(function (e) { return console.error('[BLE::Error] getPrimaryService$ %o (%s)', e, service); }));
@@ -148,7 +149,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {BluetoothCharacteristicUUID}                   characteristic
      * @return {Observable<BluetoothRemoteGATTCharacteristic>}
      */
-    WebBluetooth.prototype.getCharacteristic$ = function (primaryService, characteristic) {
+    BluetoothCore.prototype.getCharacteristic$ = function (primaryService, characteristic) {
         var _this = this;
         console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
         var characteristicPromise = primaryService.getCharacteristic(characteristic)
@@ -176,11 +177,11 @@ export var WebBluetooth = (function (_super) {
      * @param  {number}                                 state          [description]
      * @return {Observable<BluetoothRemoteGATTService>}                [description]
      */
-    WebBluetooth.prototype.setCharacteristicState = function (service, characteristic, state) {
+    BluetoothCore.prototype.setCharacteristicState = function (service, characteristic, state) {
         var _this = this;
         var primaryService = this.getPrimaryService$(this._gattServer, service);
         primaryService
-            .flatMap(function (primaryService) { return _this.getCharacteristic$(primaryService, characteristic); })
+            .mergeMap(function (primaryService) { return _this.getCharacteristic$(primaryService, characteristic); })
             .subscribe(function (characteristic) { return _this.writeValue$(characteristic, state); });
         return primaryService;
     };
@@ -189,7 +190,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {BluetoothCharacteristicUUID}            characteristic [description]
      * @return {Observable<BluetoothRemoteGATTService>}                [description]
      */
-    WebBluetooth.prototype.enableCharacteristic = function (service, characteristic, state) {
+    BluetoothCore.prototype.enableCharacteristic = function (service, characteristic, state) {
         state = state || new Uint8Array([1]);
         return this.setCharacteristicState(service, characteristic, state);
     };
@@ -198,7 +199,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {BluetoothCharacteristicUUID}            characteristic [description]
      * @return {Observable<BluetoothRemoteGATTService>}                [description]
      */
-    WebBluetooth.prototype.disbaleCharacteristic = function (service, characteristic, state) {
+    BluetoothCore.prototype.disbaleCharacteristic = function (service, characteristic, state) {
         state = state || new Uint8Array([0]);
         return this.setCharacteristicState(service, characteristic, state);
     };
@@ -214,7 +215,7 @@ export var WebBluetooth = (function (_super) {
     /**
      * @param  {Event} event [description]
      */
-    WebBluetooth.prototype.onCharacteristicChanged = function (event) {
+    BluetoothCore.prototype.onCharacteristicChanged = function (event) {
         console.log('[BLE::Info] Dispatching new characteristic value %o', event);
         var value = event.target.value;
         this._characteristicValueChanges$.emit(value);
@@ -223,7 +224,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {BluetoothRemoteGATTCharacteristic} characteristic
      * @return {Observable<DataView>}
      */
-    WebBluetooth.prototype.readValue$ = function (characteristic) {
+    BluetoothCore.prototype.readValue$ = function (characteristic) {
         console.log('[BLE::Info] Reading Characteristic %o', characteristic);
         return this.toObservable(characteristic.readValue()
             .then(function (value) {
@@ -238,7 +239,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {ArrayBuffer}                       value          [description]
      * @return {Observable<DataView>}
      */
-    WebBluetooth.prototype.writeValue$ = function (characteristic, value) {
+    BluetoothCore.prototype.writeValue$ = function (characteristic, value) {
         console.log('[BLE::Info] Writing Characteristic %o', characteristic);
         return this.toObservable(characteristic.writeValue(value));
     };
@@ -248,7 +249,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {Promise<any>}    promise incoming promise
      * @return {Observable<any>}         outgoing observable
      */
-    WebBluetooth.prototype.toObservable = function (promise) {
+    BluetoothCore.prototype.toObservable = function (promise) {
         return Observable.fromPromise(promise);
     };
     /**
@@ -256,7 +257,7 @@ export var WebBluetooth = (function (_super) {
      * @param  {number}   offset [description]
      * @return {number}          [description]
      */
-    WebBluetooth.prototype.littleEndianToUint16 = function (data, offset) {
+    BluetoothCore.prototype.littleEndianToUint16 = function (data, offset) {
         return (this.littleEndianToUint8(data, offset + 1) << 8)
             + this.littleEndianToUint8(data, offset);
     };
@@ -265,14 +266,14 @@ export var WebBluetooth = (function (_super) {
      * @param  {number}   offset [description]
      * @return {number}          [description]
      */
-    WebBluetooth.prototype.littleEndianToUint8 = function (data, offset) {
+    BluetoothCore.prototype.littleEndianToUint8 = function (data, offset) {
         return data.getUint8(offset);
     };
     /**
      * Sends random data (for testing purpose only).
      * @return {Observable<number>}
      */
-    WebBluetooth.prototype.fakeNext = function (fakeValue) {
+    BluetoothCore.prototype.fakeNext = function (fakeValue) {
         if (fakeValue === undefined) {
             fakeValue = function () {
                 var dv = new DataView(new ArrayBuffer(8));
@@ -282,13 +283,13 @@ export var WebBluetooth = (function (_super) {
         }
         this._characteristicValueChanges$.emit(fakeValue());
     };
-    WebBluetooth.decorators = [
+    BluetoothCore.decorators = [
         { type: Injectable },
     ];
     /** @nocollapse */
-    WebBluetooth.ctorParameters = function () { return [
+    BluetoothCore.ctorParameters = function () { return [
         { type: BrowserWebBluetooth, },
     ]; };
-    return WebBluetooth;
+    return BluetoothCore;
 }(ReplaySubject));
 //# sourceMappingURL=/Users/wassimchegham/Sandbox/oss/angular-web-bluetooth/lib/bluetooth.service.js.map

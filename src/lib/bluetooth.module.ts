@@ -1,16 +1,26 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { WebBluetooth }   from './bluetooth.service';
+import { BluetoothCore }   from './bluetooth.service';
+import { BrowserWebBluetooth }   from './platform/browser';
 
 @NgModule({
   imports: [CommonModule]
 })
 export class WebBluetoothModule {
-    static forRoot(): WebBluetoothModule {
+    static forRoot(): ModuleWithProviders {
     return {
       ngModule: WebBluetoothModule,
-      providers: [WebBluetooth]
+      providers: [
+        BluetoothCore,
+        {
+          provide: BrowserWebBluetooth,
+          useFactory: () => {
+            /** @TODO provide a server polyfill */
+            return new BrowserWebBluetooth();
+          }
+        },
+      ]
     };
   }
 }

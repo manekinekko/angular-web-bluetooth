@@ -2,13 +2,11 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/of';
 
 import { BrowserWebBluetooth } from './platform/browser';
 
@@ -30,16 +28,16 @@ const kBufferSize = 1;
 
 
 @Injectable()
-export class WebBluetooth extends ReplaySubject<any /* find a better interface type */> {
+export class BluetoothCore extends ReplaySubject<any /* find a better interface type */> {
 
-  private _device$: EventEmitter<BluetoothDevice>;
-  private _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
-  private _characteristicValueChanges$: EventEmitter<DataView>;
+  public _device$: EventEmitter<BluetoothDevice>;
+  public _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
+  public _characteristicValueChanges$: EventEmitter<DataView>;
 
-  private _gattServer: BluetoothRemoteGATTServer;
+  public _gattServer: BluetoothRemoteGATTServer;
 
   constructor(
-    private _webBle: BrowserWebBluetooth
+    public _webBle: BrowserWebBluetooth
   ) {
     super(kBufferSize);
 
@@ -142,7 +140,7 @@ export class WebBluetooth extends ReplaySubject<any /* find a better interface t
     return this.toObservable(
       this.discover(options)
     )
-    .flatMap( (device: BluetoothDevice) => this.connectDevice$(device))
+    .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device))
     .catch( (e) => {
       console.error('[BLE::Error] discover$: %o', e)
       return Observable.create(e);
@@ -248,7 +246,7 @@ export class WebBluetooth extends ReplaySubject<any /* find a better interface t
     let primaryService = this.getPrimaryService$(this._gattServer, service);
 
     primaryService
-     .flatMap( (primaryService) => this.getCharacteristic$(primaryService, characteristic))
+     .mergeMap( (primaryService) => this.getCharacteristic$(primaryService, characteristic))
      .subscribe( (characteristic: BluetoothRemoteGATTCharacteristic) => this.writeValue$(characteristic, state) );
 
      return primaryService;

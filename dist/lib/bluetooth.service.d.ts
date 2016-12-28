@@ -1,21 +1,20 @@
+import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/of';
 import { BrowserWebBluetooth } from './platform/browser';
 import { RequestDeviceOptions, BluetoothRemoteGATTServer, BluetoothRemoteGATTService, BluetoothRemoteGATTCharacteristic, BluetoothDevice, BluetoothServiceUUID, BluetoothCharacteristicUUID } from './lang/types';
-export declare class WebBluetooth extends ReplaySubject<any> {
-    private _webBle;
-    private _device$;
-    private _gatt$;
-    private _characteristicValueChanges$;
-    private _gattServer;
+export declare class BluetoothCore extends ReplaySubject<any> {
+    _webBle: BrowserWebBluetooth;
+    _device$: EventEmitter<BluetoothDevice>;
+    _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
+    _characteristicValueChanges$: EventEmitter<DataView>;
+    _gattServer: BluetoothRemoteGATTServer;
     constructor(_webBle: BrowserWebBluetooth);
     /**
      * @return {Observable<BluetoothDevice>}
