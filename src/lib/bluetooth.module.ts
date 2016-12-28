@@ -16,7 +16,7 @@ export class WebBluetoothModule {
         {
           provide: BrowserWebBluetooth,
           useFactory: () => {
-            /** @TODO provide a server polyfill */
+            /** @TODO provide a server implementation */
             return new BrowserWebBluetooth();
           }
         },

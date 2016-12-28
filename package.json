@@ -1,6 +1,6 @@
 {
     "name": "@manekinekko/angular-web-bluetooth",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "author": {
         "name": "Wassim Chegham",
@@ -22,7 +22,7 @@
         "clean": "rimraf dist/",
         "build:aot": "ngc -p tsconfig.json",
         "build:jit": "tsc -p tsconfig.json",
-        "build": "npm run clean && npm run build:aot"
+        "start": "npm run clean && npm run build:aot"
     },
     "types": "dist/index.d.ts",
     "private": false,

@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BatteryLevelService } from './battery.service';
-import { WebBluetooth } from '@manekinekko/angular-web-bluetooth';
+import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
 
 @Component({
   selector: 'app-battery',
@@ -12,7 +12,7 @@ import { WebBluetooth } from '@manekinekko/angular-web-bluetooth';
     BatteryLevelService, 
     
     // you can also inject this provider on the module level
-    WebBluetooth 
+    BluetoothCore 
   ]
 })
 export class BatteryLevelComponent implements OnInit {

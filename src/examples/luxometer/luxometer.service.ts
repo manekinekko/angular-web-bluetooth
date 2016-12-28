@@ -14,27 +14,26 @@ import {
 export class LightService {
 
   constructor(
-    private _core: BluetoothCore
-  ) {
-  }
+    public ble: BluetoothCore
+  ) {}
 
   getFakeValue() {
-    this._core.fakeNext();
+    this.ble.fakeNext();
   }
 
   getDevice() {
-    return this._core.getDevice$();
+    return this.ble.getDevice$();
   }
 
   streamValues() {
-    return this._core.streamValues$()
+    return this.ble.streamValues$()
       .map( this.mappedValue.bind(this) );
   }
 
   getValue(): Observable<number|string> {
     console.log('Getting Light Service...');
 
-    return this._core
+    return this.ble
 
        .discover$({
          filters: [{
@@ -50,24 +49,24 @@ export class LightService {
 
        })
        .flatMap( (gatt: BluetoothRemoteGATTServer)  => {
-          return this._core.enableCharacteristic(TiTag.LIGHT.SERVICE, TiTag.LIGHT.CONFIGURATION);
+          return this.ble.enableCharacteristic(TiTag.LIGHT.SERVICE, TiTag.LIGHT.CONFIGURATION);
        })
 
-       .flatMap( (primaryService: BluetoothRemoteGATTService) => this._core.getCharacteristic$(primaryService, TiTag.LIGHT.DATA) )
+       .flatMap( (primaryService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(primaryService, TiTag.LIGHT.DATA) )
 
        // @TODO we should provide those helper methods in core:
        // - readValue_8$(): number
        // - readValue_16$(): number
        // - readValue_32$(): number
        // - readValue_64$(): number
-       .flatMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  this._core.readValue$(characteristic) )
+       .flatMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  this.ble.readValue$(characteristic) )
 
        .map( this.mappedValue.bind(this) )
 
  }
 
  mappedValue(data: DataView): number {
-    let value = this._core.littleEndianToUint16(data, 0);
+    let value = this.ble.littleEndianToUint16(data, 0);
 
     // Extraction of pressure value, based on sfloatExp2ToDouble from
     // BLEUtility.m in Texas Instruments TI BLE SensorTag iOS app

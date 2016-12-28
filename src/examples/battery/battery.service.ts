@@ -15,20 +15,19 @@ export class BatteryLevelService {
   static GATT_PRIMARY_SERVICE = 'battery_service';
 
   constructor(
-    private _core: BluetoothCore
-  ) {
-  }
+    public ble: BluetoothCore
+  ) {}
 
   getFakeValue() {
-    this._core.fakeNext();
+    this.ble.fakeNext();
   }
 
   getDevice() {
-    return this._core.getDevice$();
+    return this.ble.getDevice$();
   }
 
   streamValues() {
-    return this._core.streamValues$()
+    return this.ble.streamValues$()
       .map( (value: DataView) => {
         return value.getUint8(0);
       });
@@ -44,13 +43,13 @@ export class BatteryLevelService {
    getBatteryLevel(): Observable<number> {
     console.log('Getting Battery Service...');
 
-    return this._core
+    return this.ble
         .discover$({
           optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]
         })
-        .flatMap( (gatt: BluetoothRemoteGATTServer)  => this._core.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE) )
-        .flatMap( (primaryService: BluetoothRemoteGATTService) => this._core.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL) )
-        .flatMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  this._core.readValue$(characteristic) )
+        .mergeMap( (gatt: BluetoothRemoteGATTServer)  => this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE) )
+        .mergeMap( (primaryService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL) )
+        .mergeMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  this.ble.readValue$(characteristic) )
         .map( (value: DataView) => value.getUint8(0) );
 
   }

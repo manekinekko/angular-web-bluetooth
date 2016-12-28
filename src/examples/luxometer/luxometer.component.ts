@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LightService } from './luxometer.service';
-import { WebBluetooth } from '@manekinekko/angular-web-bluetooth';
+import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
 
 @Component({
   selector: 'app-luxometer',
@@ -24,7 +24,7 @@ import { WebBluetooth } from '@manekinekko/angular-web-bluetooth';
     LightService, 
     
     // you can also inject this provider on the module level
-    WebBluetooth 
+    BluetoothCore 
   ]
 })
 export class LuxometerComponent implements OnInit {

@@ -13,7 +13,7 @@ export var WebBluetoothModule = (function () {
                 {
                     provide: BrowserWebBluetooth,
                     useFactory: function () {
-                        /** @TODO provide a server polyfill */
+                        /** @TODO provide a server implementation */
                         return new BrowserWebBluetooth();
                     }
                 },
