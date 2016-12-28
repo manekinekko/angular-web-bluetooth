@@ -1,5 +1,9 @@
-![image](https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png)
-The missing Web Bluetooth for Angular (v2+).
+[![CircleCI](https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg)](https://circleci.com/gh/manekinekko/angular-web-bluetooth)
+
+# The missing Web Bluetooth module for Angular (v2+) 
+
+<img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="150">
+
  
 # Install it 
 
@@ -13,7 +17,30 @@ The missing Web Bluetooth for Angular (v2+).
 
 # Use it
 
-See the starter...
+## 1) import the `WebBluetoothModule` module
+
+```typescript
+import { NgModule } from '@angular/core';
+import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
+
+@NgModule({
+  imports: [
+    //...,
+    WebBluetoothModule.forRoot()
+  ],
+  //...
+})
+export class AppModule { }
+
+```
+
+## 2) use it in your service
+
+See the [battery-level.service.ts](https://github.com/manekinekko/angular-web-bluetooth-starter/blob/master/src/app/battery-level/battery-level.component.ts) file for a real use case.
+
+## Need a starter?
+
+You're welcome: https://github.com/manekinekko/angular-web-bluetooth-starter
 
 # API
 
@@ -21,14 +48,29 @@ These are the most required API calls you will need but there are other helpers 
 
 _Note: a cleaner documentation will come soon_
 
-### getDevice$(): Observable<BluetoothDevice>
-### discover$(options?: RequestDeviceOptions): Observable<number>
-### getGATT$(): Observable<BluetoothRemoteGATTServer>
-### getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService>
-### getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID): Observable<BluetoothRemoteGATTCharacteristic>
-### streamValues$(): Observable<DataView>
-### readValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView>
-### fakeNext(fakeValue?: Function): void
+#### getDevice$(): Observable<BluetoothDevice>
+@todo: add description
+
+#### discover$(options?: RequestDeviceOptions): Observable<number>
+@todo: add description
+
+#### getGATT$(): Observable<BluetoothRemoteGATTServer>
+@todo: add description
+
+#### getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService>
+@todo: add description
+
+#### getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID): Observable<BluetoothRemoteGATTCharacteristic>
+@todo: add description
+
+#### streamValues$(): Observable<DataView>
+@todo: add description
+
+#### readValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView>
+@todo: add description
+
+#### fakeNext(fakeValue?: Function): void
+@todo: add description
 
 # Have a PR?
 
