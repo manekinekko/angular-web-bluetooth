@@ -5,6 +5,10 @@
 <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="150">
 
  
+# Blog post
+
+I posted an article about this module on medium: https://medium.com/google-developer-experts/the-web-bluetooth-module-for-angular-9336c9535d04#.f6dp9z163
+ 
 # Install it 
 
 ## Yarn it
