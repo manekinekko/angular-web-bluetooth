@@ -22,7 +22,8 @@
         "clean": "rimraf dist/",
         "build:aot": "ngc -p tsconfig.json",
         "build:jit": "tsc -p tsconfig.json",
-        "build": "npm run clean && npm run build:aot"
+        "build": "npm run clean && npm run build:aot",
+        "doc": "./node_modules/.bin/compodoc -p tsconfig.json -n 'Angular web bluetooth'"
     },
     "types": "dist/index.d.ts",
     "private": false,
@@ -61,6 +62,7 @@
         "@angular/compiler-cli": "^2.4.1",
         "@angular/platform-server": "^2.4.1",
         "@types/jasmine": "2.2.30",
-        "@types/node": "6.0.54"
+        "@types/node": "6.0.54",
+        "compodoc": "^0.0.26"
     }
 }
