@@ -24,7 +24,7 @@
         "build:jit": "tsc -p tsconfig.json",
         "start": "npm run clean && npm run build:aot",
         "build": "npm run clean && npm run build:aot",
-        "doc": "compodoc -p tsconfig.json -n 'Angular Web Bluetooth'"
+        "doc": "compodoc -p tsconfig.json -n 'Angular Web Bluetooth' -b '/angular-web-bluetooth/documentation/' "
     },
     "types": "dist/index.d.ts",
     "private": false,
