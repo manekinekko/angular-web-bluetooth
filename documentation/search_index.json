@@ -28,7 +28,7 @@
           "add",
           "and/or",
           "angular",
-          "angular/cor",
+          "angular/core';import",
           "annot",
           "api",
           "appmodul",
@@ -45,6 +45,8 @@
           "ble",
           "blog",
           "bluetooth",
+          "bluetooth';@injectable()export",
+          "bluetooth';@ngmodul",
           "bluetoothcor",
           "bluetoothremotegattcharacterist",
           "bluetoothremotegattserv",
@@ -159,7 +161,7 @@
           "result",
           "return",
           "right",
-          "rxjs/observ",
+          "rxjs/observable';import",
           "s",
           "see",
           "sell",
@@ -186,7 +188,6 @@
           "tort",
           "tri",
           "trigger",
-          "typescript",
           "us",
           "uuid",
           "valu",
@@ -2287,7 +2288,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.006349206349206349
+              "tf": 0.006514657980456026
             },
             "overview.html": {
               "ref": "overview.html",
@@ -2306,7 +2307,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               },
@@ -2317,7 +2318,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.009523809523809525
+              "tf": 0.009771986970684038
             },
             "overview.html": {
               "ref": "overview.html",
@@ -2329,7 +2330,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.0031746031746031746
+              "tf": 0.003257328990228013
             }
           }
         },
@@ -2337,7 +2338,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.0031746031746031746
+              "tf": 0.003257328990228013
             }
           }
         },
@@ -2353,7 +2354,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.0031746031746031746
+              "tf": 0.003257328990228013
             },
             "overview.html": {
               "ref": "overview.html",
@@ -2372,7 +2373,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -2391,7 +2392,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           },
                           "injectables/BatteryLevelService.html": {
                             "ref": "injectables/BatteryLevelService.html",
@@ -2417,7 +2418,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -2431,7 +2432,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 },
                 "injectables/LightService.html": {
                   "ref": "injectables/LightService.html",
@@ -2452,7 +2453,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -2471,7 +2472,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       },
                       "/": {
@@ -2481,12 +2482,7 @@
                           "o": {
                             "docs": {},
                             "r": {
-                              "docs": {
-                                "index.html": {
-                                  "ref": "index.html",
-                                  "tf": 0.006349206349206349
-                                }
-                              },
+                              "docs": {},
                               "e": {
                                 "docs": {},
                                 "'": {
@@ -2505,6 +2501,10 @@
                                               "docs": {},
                                               "t": {
                                                 "docs": {
+                                                  "index.html": {
+                                                    "ref": "index.html",
+                                                    "tf": 0.006514657980456026
+                                                  },
                                                   "modules/WebBluetoothModule.html": {
                                                     "ref": "modules/WebBluetoothModule.html",
                                                     "tf": 0.0196078431372549
@@ -2663,7 +2663,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -2714,7 +2714,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 }
               }
             },
@@ -2745,7 +2745,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -2763,7 +2763,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -3054,7 +3054,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 }
               }
             },
@@ -3068,7 +3068,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -3088,7 +3088,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -3235,7 +3235,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.006349206349206349
+                          "tf": 0.006514657980456026
                         },
                         "components/BatteryLevelComponent.html": {
                           "ref": "components/BatteryLevelComponent.html",
@@ -3263,7 +3263,7 @@
                                   "docs": {
                                     "index.html": {
                                       "ref": "index.html",
-                                      "tf": 0.0031746031746031746
+                                      "tf": 0.003257328990228013
                                     },
                                     "injectables/BatteryLevelService.html": {
                                       "ref": "injectables/BatteryLevelService.html",
@@ -3289,7 +3289,7 @@
                                     "docs": {
                                       "index.html": {
                                         "ref": "index.html",
-                                        "tf": 0.0031746031746031746
+                                        "tf": 0.003257328990228013
                                       },
                                       "injectables/BatteryLevelService.html": {
                                         "ref": "injectables/BatteryLevelService.html",
@@ -3332,7 +3332,7 @@
                                             "docs": {
                                               "index.html": {
                                                 "ref": "index.html",
-                                                "tf": 0.0031746031746031746
+                                                "tf": 0.003257328990228013
                                               },
                                               "components/BatteryLevelComponent.html": {
                                                 "ref": "components/BatteryLevelComponent.html",
@@ -3415,7 +3415,7 @@
                                                                                                                   "docs": {
                                                                                                                     "index.html": {
                                                                                                                       "ref": "index.html",
-                                                                                                                      "tf": 0.0031746031746031746
+                                                                                                                      "tf": 0.003257328990228013
                                                                                                                     },
                                                                                                                     "injectables/BatteryLevelService.html": {
                                                                                                                       "ref": "injectables/BatteryLevelService.html",
@@ -3480,7 +3480,7 @@
                                                                                       "docs": {
                                                                                         "index.html": {
                                                                                           "ref": "index.html",
-                                                                                          "tf": 0.006349206349206349
+                                                                                          "tf": 0.006514657980456026
                                                                                         },
                                                                                         "injectables/BatteryLevelService.html": {
                                                                                           "ref": "injectables/BatteryLevelService.html",
@@ -3618,7 +3618,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 },
                 "injectables/BatteryLevelService.html": {
                   "ref": "injectables/BatteryLevelService.html",
@@ -3668,7 +3668,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -3689,11 +3689,136 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.01904761904761905
+                              "tf": 0.013029315960912053
                             },
                             "injectables/BrowserWebBluetooth.html": {
                               "ref": "injectables/BrowserWebBluetooth.html",
                               "tf": 0.023255813953488372
+                            }
+                          },
+                          "'": {
+                            "docs": {},
+                            ";": {
+                              "docs": {},
+                              "@": {
+                                "docs": {},
+                                "i": {
+                                  "docs": {},
+                                  "n": {
+                                    "docs": {},
+                                    "j": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "c": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "b": {
+                                                "docs": {},
+                                                "l": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    "(": {
+                                                      "docs": {},
+                                                      ")": {
+                                                        "docs": {},
+                                                        "e": {
+                                                          "docs": {},
+                                                          "x": {
+                                                            "docs": {},
+                                                            "p": {
+                                                              "docs": {},
+                                                              "o": {
+                                                                "docs": {},
+                                                                "r": {
+                                                                  "docs": {},
+                                                                  "t": {
+                                                                    "docs": {
+                                                                      "index.html": {
+                                                                        "ref": "index.html",
+                                                                        "tf": 0.003257328990228013
+                                                                      },
+                                                                      "injectables/BatteryLevelService.html": {
+                                                                        "ref": "injectables/BatteryLevelService.html",
+                                                                        "tf": 0.00684931506849315
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "n": {
+                                  "docs": {},
+                                  "g": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "o": {
+                                        "docs": {},
+                                        "d": {
+                                          "docs": {},
+                                          "u": {
+                                            "docs": {},
+                                            "l": {
+                                              "docs": {
+                                                "index.html": {
+                                                  "ref": "index.html",
+                                                  "tf": 0.003257328990228013
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "c": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "p": {
+                                        "docs": {},
+                                        "o": {
+                                          "docs": {},
+                                          "n": {
+                                            "docs": {
+                                              "components/BatteryLevelComponent.html": {
+                                                "ref": "components/BatteryLevelComponent.html",
+                                                "tf": 0.0078125
+                                              },
+                                              "components/LuxometerComponent.html": {
+                                                "ref": "components/LuxometerComponent.html",
+                                                "tf": 0.008403361344537815
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             }
                           },
                           "c": {
@@ -3704,7 +3829,7 @@
                                 "docs": {
                                   "index.html": {
                                     "ref": "index.html",
-                                    "tf": 0.009523809523809525
+                                    "tf": 0.009771986970684038
                                   },
                                   "modules/WebBluetoothModule.html": {
                                     "ref": "modules/WebBluetoothModule.html",
@@ -3973,7 +4098,7 @@
                                                                       "docs": {
                                                                         "index.html": {
                                                                           "ref": "index.html",
-                                                                          "tf": 0.006349206349206349
+                                                                          "tf": 0.006514657980456026
                                                                         },
                                                                         "injectables/BatteryLevelService.html": {
                                                                           "ref": "injectables/BatteryLevelService.html",
@@ -4066,7 +4191,7 @@
                                                       "docs": {
                                                         "index.html": {
                                                           "ref": "index.html",
-                                                          "tf": 0.006349206349206349
+                                                          "tf": 0.006514657980456026
                                                         },
                                                         "injectables/BatteryLevelService.html": {
                                                           "ref": "injectables/BatteryLevelService.html",
@@ -4143,7 +4268,7 @@
                                                           "docs": {
                                                             "index.html": {
                                                               "ref": "index.html",
-                                                              "tf": 0.006349206349206349
+                                                              "tf": 0.006514657980456026
                                                             },
                                                             "injectables/BatteryLevelService.html": {
                                                               "ref": "injectables/BatteryLevelService.html",
@@ -4352,101 +4477,6 @@
                                                             "modules/WebBluetoothModule.html": {
                                                               "ref": "modules/WebBluetoothModule.html",
                                                               "tf": 0.0196078431372549
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "'": {
-                            "docs": {},
-                            ";": {
-                              "docs": {},
-                              "@": {
-                                "docs": {},
-                                "c": {
-                                  "docs": {},
-                                  "o": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "o": {
-                                          "docs": {},
-                                          "n": {
-                                            "docs": {
-                                              "components/BatteryLevelComponent.html": {
-                                                "ref": "components/BatteryLevelComponent.html",
-                                                "tf": 0.0078125
-                                              },
-                                              "components/LuxometerComponent.html": {
-                                                "ref": "components/LuxometerComponent.html",
-                                                "tf": 0.008403361344537815
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "i": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "j": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "t": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "b": {
-                                                "docs": {},
-                                                "l": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "(": {
-                                                      "docs": {},
-                                                      ")": {
-                                                        "docs": {},
-                                                        "e": {
-                                                          "docs": {},
-                                                          "x": {
-                                                            "docs": {},
-                                                            "p": {
-                                                              "docs": {},
-                                                              "o": {
-                                                                "docs": {},
-                                                                "r": {
-                                                                  "docs": {},
-                                                                  "t": {
-                                                                    "docs": {
-                                                                      "injectables/BatteryLevelService.html": {
-                                                                        "ref": "injectables/BatteryLevelService.html",
-                                                                        "tf": 0.00684931506849315
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
                                                             }
                                                           }
                                                         }
@@ -4977,7 +5007,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         },
                         "overview.html": {
                           "ref": "overview.html",
@@ -5136,7 +5166,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -5570,7 +5600,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.0031746031746031746
+              "tf": 0.003257328990228013
             },
             "injectables/BluetoothCore.html": {
               "ref": "injectables/BluetoothCore.html",
@@ -5585,7 +5615,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.009523809523809525
+                    "tf": 0.009771986970684038
                   }
                 }
               }
@@ -5598,7 +5628,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     },
                     "injectables/BatteryLevelService.html": {
                       "ref": "injectables/BatteryLevelService.html",
@@ -5628,7 +5658,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -5648,7 +5678,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -5685,7 +5715,7 @@
                                 "docs": {
                                   "index.html": {
                                     "ref": "index.html",
-                                    "tf": 0.015873015873015872
+                                    "tf": 0.016286644951140065
                                   },
                                   "injectables/BatteryLevelService.html": {
                                     "ref": "injectables/BatteryLevelService.html",
@@ -5843,7 +5873,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 },
@@ -6098,7 +6128,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -6116,7 +6146,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -6152,7 +6182,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -6163,7 +6193,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     },
                     "modules/WebBluetoothModule.html": {
                       "ref": "modules/WebBluetoothModule.html",
@@ -6236,7 +6266,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -6337,7 +6367,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -6353,7 +6383,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.006349206349206349
+                          "tf": 0.006514657980456026
                         },
                         "components/BatteryLevelComponent.html": {
                           "ref": "components/BatteryLevelComponent.html",
@@ -6532,7 +6562,7 @@
                                             "docs": {
                                               "index.html": {
                                                 "ref": "index.html",
-                                                "tf": 0.0031746031746031746
+                                                "tf": 0.003257328990228013
                                               }
                                             }
                                           }
@@ -6621,7 +6651,7 @@
                                         "docs": {
                                           "index.html": {
                                             "ref": "index.html",
-                                            "tf": 0.0031746031746031746
+                                            "tf": 0.003257328990228013
                                           },
                                           "injectables/BatteryLevelService.html": {
                                             "ref": "injectables/BatteryLevelService.html",
@@ -6737,7 +6767,7 @@
                               "docs": {
                                 "index.html": {
                                   "ref": "index.html",
-                                  "tf": 0.0031746031746031746
+                                  "tf": 0.003257328990228013
                                 },
                                 "components/BatteryLevelComponent.html": {
                                   "ref": "components/BatteryLevelComponent.html",
@@ -6784,7 +6814,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -6800,7 +6830,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.0031746031746031746
+                              "tf": 0.003257328990228013
                             }
                           }
                         }
@@ -6830,7 +6860,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.012698412698412698
+                    "tf": 0.013029315960912053
                   }
                 }
               },
@@ -6848,7 +6878,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.009523809523809525
+                              "tf": 0.009771986970684038
                             }
                           }
                         }
@@ -6942,7 +6972,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -6967,7 +6997,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.015873015873015872
+                            "tf": 0.016286644951140065
                           },
                           "injectables/BatteryLevelService.html": {
                             "ref": "injectables/BatteryLevelService.html",
@@ -7140,7 +7170,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   }
                 }
               }
@@ -7157,7 +7187,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         },
                         "injectables/BatteryLevelService.html": {
                           "ref": "injectables/BatteryLevelService.html",
@@ -7174,7 +7204,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.009523809523809525
+                      "tf": 0.009771986970684038
                     },
                     "components/BatteryLevelComponent.html": {
                       "ref": "components/BatteryLevelComponent.html",
@@ -7590,7 +7620,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       },
                       "injectables/BatteryLevelService.html": {
                         "ref": "injectables/BatteryLevelService.html",
@@ -7613,7 +7643,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.0031746031746031746
+                              "tf": 0.003257328990228013
                             },
                             "injectables/BluetoothCore.html": {
                               "ref": "injectables/BluetoothCore.html",
@@ -7787,7 +7817,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.0031746031746031746
+                              "tf": 0.003257328990228013
                             }
                           }
                         }
@@ -7966,7 +7996,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.009523809523809525
+                            "tf": 0.009771986970684038
                           }
                         }
                       }
@@ -8046,7 +8076,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           },
                           "injectables/BatteryLevelService.html": {
                             "ref": "injectables/BatteryLevelService.html",
@@ -8068,7 +8098,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   },
                   "injectables/BatteryLevelService.html": {
                     "ref": "injectables/BatteryLevelService.html",
@@ -8092,7 +8122,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     },
                     "injectables/BluetoothCore.html": {
                       "ref": "injectables/BluetoothCore.html",
@@ -8240,7 +8270,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -8257,7 +8287,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.003257328990228013
                       },
                       "components/BatteryLevelComponent.html": {
                         "ref": "components/BatteryLevelComponent.html",
@@ -8345,7 +8375,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -8569,7 +8599,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   },
                   "modules/WebBluetoothModule.html": {
                     "ref": "modules/WebBluetoothModule.html",
@@ -8782,7 +8812,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -8792,7 +8822,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 }
               }
             }
@@ -8809,7 +8839,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -8824,7 +8854,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -8867,7 +8897,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   },
                   "injectables/BatteryLevelService.html": {
                     "ref": "injectables/BatteryLevelService.html",
@@ -9094,7 +9124,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -9235,7 +9265,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   },
                   "injectables/BatteryLevelService.html": {
                     "ref": "injectables/BatteryLevelService.html",
@@ -9366,7 +9396,7 @@
                                                                           "docs": {
                                                                             "index.html": {
                                                                               "ref": "index.html",
-                                                                              "tf": 0.0031746031746031746
+                                                                              "tf": 0.003257328990228013
                                                                             },
                                                                             "injectables/BatteryLevelService.html": {
                                                                               "ref": "injectables/BatteryLevelService.html",
@@ -9431,7 +9461,7 @@
                                               "docs": {
                                                 "index.html": {
                                                   "ref": "index.html",
-                                                  "tf": 0.0031746031746031746
+                                                  "tf": 0.003257328990228013
                                                 },
                                                 "injectables/BatteryLevelService.html": {
                                                   "ref": "injectables/BatteryLevelService.html",
@@ -9588,7 +9618,7 @@
                                       "docs": {
                                         "index.html": {
                                           "ref": "index.html",
-                                          "tf": 0.0031746031746031746
+                                          "tf": 0.003257328990228013
                                         },
                                         "components/BatteryLevelComponent.html": {
                                           "ref": "components/BatteryLevelComponent.html",
@@ -9623,7 +9653,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           },
                           "injectables/BatteryLevelService.html": {
                             "ref": "injectables/BatteryLevelService.html",
@@ -9900,7 +9930,7 @@
                               "docs": {
                                 "index.html": {
                                   "ref": "index.html",
-                                  "tf": 0.0031746031746031746
+                                  "tf": 0.003257328990228013
                                 },
                                 "components/BatteryLevelComponent.html": {
                                   "ref": "components/BatteryLevelComponent.html",
@@ -11633,7 +11663,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -11649,7 +11679,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -11667,7 +11697,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   }
                 },
                 "b": {
@@ -11676,7 +11706,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -11717,7 +11747,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -11969,7 +11999,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 },
@@ -12010,7 +12040,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.022222222222222223
+                        "tf": 0.013029315960912053
                       },
                       "modules/WebBluetoothModule.html": {
                         "ref": "modules/WebBluetoothModule.html",
@@ -12062,7 +12092,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.009523809523809525
+                        "tf": 0.009771986970684038
                       }
                     }
                   }
@@ -12167,7 +12197,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.003257328990228013
                       },
                       "overview.html": {
                         "ref": "overview.html",
@@ -12781,7 +12811,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -12826,7 +12856,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     },
                     "components/BatteryLevelComponent.html": {
                       "ref": "components/BatteryLevelComponent.html",
@@ -12857,7 +12887,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -12866,7 +12896,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     }
                   }
                 }
@@ -12882,7 +12912,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       }
                     }
                   }
@@ -12897,7 +12927,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     }
                   }
                 }
@@ -13155,7 +13185,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     },
                     "injectables/BatteryLevelService.html": {
                       "ref": "injectables/BatteryLevelService.html",
@@ -13389,7 +13419,7 @@
                                               "docs": {
                                                 "index.html": {
                                                   "ref": "index.html",
-                                                  "tf": 0.012698412698412698
+                                                  "tf": 0.013029315960912053
                                                 },
                                                 "components/BatteryLevelComponent.html": {
                                                   "ref": "components/BatteryLevelComponent.html",
@@ -13445,7 +13475,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.006349206349206349
+                  "tf": 0.006514657980456026
                 },
                 "injectables/BatteryLevelService.html": {
                   "ref": "injectables/BatteryLevelService.html",
@@ -13525,7 +13555,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     },
                     "overview.html": {
                       "ref": "overview.html",
@@ -13768,7 +13798,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -13789,7 +13819,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -13801,7 +13831,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 },
                 "e": {
@@ -13814,7 +13844,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.009523809523809525
+                            "tf": 0.009771986970684038
                           },
                           "injectables/BatteryLevelService.html": {
                             "ref": "injectables/BatteryLevelService.html",
@@ -13841,7 +13871,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.009523809523809525
+                        "tf": 0.009771986970684038
                       },
                       "components/BatteryLevelComponent.html": {
                         "ref": "components/BatteryLevelComponent.html",
@@ -13925,7 +13955,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -13934,7 +13964,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.006349206349206349
+                  "tf": 0.006514657980456026
                 }
               }
             }
@@ -13951,7 +13981,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -13963,7 +13993,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.009523809523809525
+                      "tf": 0.009771986970684038
                     },
                     "overview.html": {
                       "ref": "overview.html",
@@ -14061,7 +14091,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -14097,7 +14127,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.006349206349206349
+                          "tf": 0.003257328990228013
                         },
                         "modules/WebBluetoothModule.html": {
                           "ref": "modules/WebBluetoothModule.html",
@@ -14174,7 +14204,7 @@
                             "docs": {
                               "index.html": {
                                 "ref": "index.html",
-                                "tf": 0.0031746031746031746
+                                "tf": 0.003257328990228013
                               }
                             }
                           }
@@ -14193,7 +14223,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     }
                   }
                 },
@@ -14286,7 +14316,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.006349206349206349
+                  "tf": 0.006514657980456026
                 }
               }
             }
@@ -14574,7 +14604,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.009523809523809525
+                        "tf": 0.009771986970684038
                       },
                       "injectables/BatteryLevelService.html": {
                         "ref": "injectables/BatteryLevelService.html",
@@ -14753,7 +14783,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -14811,7 +14841,7 @@
                                     "docs": {
                                       "index.html": {
                                         "ref": "index.html",
-                                        "tf": 0.0031746031746031746
+                                        "tf": 0.003257328990228013
                                       },
                                       "injectables/BatteryLevelService.html": {
                                         "ref": "injectables/BatteryLevelService.html",
@@ -14977,7 +15007,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -14993,7 +15023,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 },
                 "overview.html": {
                   "ref": "overview.html",
@@ -15483,7 +15513,7 @@
                             "docs": {
                               "index.html": {
                                 "ref": "index.html",
-                                "tf": 0.0031746031746031746
+                                "tf": 0.003257328990228013
                               }
                             }
                           }
@@ -15520,7 +15550,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.006349206349206349
+                          "tf": 0.006514657980456026
                         }
                       }
                     }
@@ -15529,7 +15559,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -15543,7 +15573,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       }
                     }
                   }
@@ -15565,7 +15595,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -15579,7 +15609,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   }
                 }
               }
@@ -15589,7 +15619,7 @@
             "docs": {
               "index.html": {
                 "ref": "index.html",
-                "tf": 0.0031746031746031746
+                "tf": 0.003257328990228013
               }
             },
             "i": {
@@ -15616,7 +15646,7 @@
                                   "docs": {
                                     "index.html": {
                                       "ref": "index.html",
-                                      "tf": 0.0031746031746031746
+                                      "tf": 0.003257328990228013
                                     },
                                     "injectables/BatteryLevelService.html": {
                                       "ref": "injectables/BatteryLevelService.html",
@@ -15785,7 +15815,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         },
                         "injectables/BluetoothCore.html": {
                           "ref": "injectables/BluetoothCore.html",
@@ -15804,7 +15834,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       },
                       "modules/WebBluetoothModule.html": {
                         "ref": "modules/WebBluetoothModule.html",
@@ -16117,7 +16147,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       },
                       "injectables/BatteryLevelService.html": {
                         "ref": "injectables/BatteryLevelService.html",
@@ -16139,7 +16169,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -16157,7 +16187,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       },
                       "injectables/BluetoothCore.html": {
                         "ref": "injectables/BluetoothCore.html",
@@ -16283,7 +16313,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   },
                   "injectables/BatteryLevelService.html": {
                     "ref": "injectables/BatteryLevelService.html",
@@ -16539,7 +16569,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         },
                         "injectables/BatteryLevelService.html": {
                           "ref": "injectables/BatteryLevelService.html",
@@ -16708,7 +16738,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.0031746031746031746
+                            "tf": 0.003257328990228013
                           }
                         }
                       }
@@ -16724,7 +16754,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       },
                       "overview.html": {
                         "ref": "overview.html",
@@ -16852,7 +16882,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.02857142857142857
+                        "tf": 0.029315960912052116
                       },
                       "modules/WebBluetoothModule.html": {
                         "ref": "modules/WebBluetoothModule.html",
@@ -17051,7 +17081,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     }
                   }
                 }
@@ -17077,12 +17107,7 @@
                           "r": {
                             "docs": {},
                             "v": {
-                              "docs": {
-                                "index.html": {
-                                  "ref": "index.html",
-                                  "tf": 0.0031746031746031746
-                                }
-                              },
+                              "docs": {},
                               "a": {
                                 "docs": {},
                                 "b": {
@@ -17107,6 +17132,10 @@
                                                     "docs": {},
                                                     "t": {
                                                       "docs": {
+                                                        "index.html": {
+                                                          "ref": "index.html",
+                                                          "tf": 0.003257328990228013
+                                                        },
                                                         "injectables/BatteryLevelService.html": {
                                                           "ref": "injectables/BatteryLevelService.html",
                                                           "tf": 0.00684931506849315
@@ -17594,7 +17623,7 @@
           "docs": {
             "index.html": {
               "ref": "index.html",
-              "tf": 0.006349206349206349
+              "tf": 0.006514657980456026
             },
             "injectables/BluetoothCore.html": {
               "ref": "injectables/BluetoothCore.html",
@@ -17607,7 +17636,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 },
                 "injectables/BrowserWebBluetooth.html": {
                   "ref": "injectables/BrowserWebBluetooth.html",
@@ -17625,7 +17654,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               },
@@ -17664,7 +17693,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.025396825396825397
+                        "tf": 0.026058631921824105
                       },
                       "injectables/BatteryLevelService.html": {
                         "ref": "injectables/BatteryLevelService.html",
@@ -17753,7 +17782,7 @@
                                     "docs": {
                                       "index.html": {
                                         "ref": "index.html",
-                                        "tf": 0.0031746031746031746
+                                        "tf": 0.003257328990228013
                                       }
                                     }
                                   }
@@ -18803,7 +18832,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.006349206349206349
+                      "tf": 0.006514657980456026
                     }
                   }
                 }
@@ -18968,7 +18997,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.02857142857142857
+                          "tf": 0.029315960912052116
                         }
                       }
                     }
@@ -19087,7 +19116,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       },
                       "injectables/BatteryLevelService.html": {
                         "ref": "injectables/BatteryLevelService.html",
@@ -19109,7 +19138,7 @@
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 0.0031746031746031746
+                      "tf": 0.003257328990228013
                     },
                     "injectables/BluetoothCore.html": {
                       "ref": "injectables/BluetoothCore.html",
@@ -19122,7 +19151,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.009523809523809525
+                          "tf": 0.009771986970684038
                         }
                       }
                     }
@@ -19209,7 +19238,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.006349206349206349
+                        "tf": 0.006514657980456026
                       },
                       "modules/WebBluetoothModule.html": {
                         "ref": "modules/WebBluetoothModule.html",
@@ -19246,7 +19275,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     },
                     "v": {
@@ -19259,7 +19288,7 @@
                             "docs": {
                               "index.html": {
                                 "ref": "index.html",
-                                "tf": 0.0031746031746031746
+                                "tf": 0.003257328990228013
                               },
                               "components/BatteryLevelComponent.html": {
                                 "ref": "components/BatteryLevelComponent.html",
@@ -19485,7 +19514,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -19506,7 +19535,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.0031746031746031746
+                              "tf": 0.003257328990228013
                             }
                           }
                         }
@@ -19529,7 +19558,7 @@
                           "docs": {
                             "index.html": {
                               "ref": "index.html",
-                              "tf": 0.0031746031746031746
+                              "tf": 0.003257328990228013
                             }
                           }
                         }
@@ -20370,7 +20399,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         },
                         "injectables/BatteryLevelService.html": {
                           "ref": "injectables/BatteryLevelService.html",
@@ -20403,7 +20432,7 @@
                                           "docs": {
                                             "index.html": {
                                               "ref": "index.html",
-                                              "tf": 0.0031746031746031746
+                                              "tf": 0.003257328990228013
                                             },
                                             "injectables/BatteryLevelService.html": {
                                               "ref": "injectables/BatteryLevelService.html",
@@ -20488,7 +20517,7 @@
                                                                                           "docs": {
                                                                                             "index.html": {
                                                                                               "ref": "index.html",
-                                                                                              "tf": 0.0031746031746031746
+                                                                                              "tf": 0.003257328990228013
                                                                                             },
                                                                                             "injectables/BatteryLevelService.html": {
                                                                                               "ref": "injectables/BatteryLevelService.html",
@@ -20540,7 +20569,7 @@
                                           "docs": {
                                             "index.html": {
                                               "ref": "index.html",
-                                              "tf": 0.0031746031746031746
+                                              "tf": 0.003257328990228013
                                             },
                                             "injectables/BatteryLevelService.html": {
                                               "ref": "injectables/BatteryLevelService.html",
@@ -20598,7 +20627,7 @@
                                                                         "docs": {
                                                                           "index.html": {
                                                                             "ref": "index.html",
-                                                                            "tf": 0.0031746031746031746
+                                                                            "tf": 0.003257328990228013
                                                                           },
                                                                           "injectables/BatteryLevelService.html": {
                                                                             "ref": "injectables/BatteryLevelService.html",
@@ -20676,7 +20705,7 @@
                                                                         "docs": {
                                                                           "index.html": {
                                                                             "ref": "index.html",
-                                                                            "tf": 0.0031746031746031746
+                                                                            "tf": 0.003257328990228013
                                                                           },
                                                                           "injectables/BatteryLevelService.html": {
                                                                             "ref": "injectables/BatteryLevelService.html",
@@ -20732,7 +20761,7 @@
                                               "docs": {
                                                 "index.html": {
                                                   "ref": "index.html",
-                                                  "tf": 0.0031746031746031746
+                                                  "tf": 0.003257328990228013
                                                 },
                                                 "injectables/BatteryLevelService.html": {
                                                   "ref": "injectables/BatteryLevelService.html",
@@ -23348,7 +23377,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   }
                 }
               }
@@ -23440,7 +23469,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.0031746031746031746
+                  "tf": 0.003257328990228013
                 }
               },
               "g": {
@@ -23453,7 +23482,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -23478,95 +23507,6 @@
                             "injectables/BluetoothCore.html": {
                               "ref": "injectables/BluetoothCore.html",
                               "tf": 0.0024330900243309003
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "y": {
-            "docs": {},
-            "p": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "components/BatteryLevelComponent.html": {
-                    "ref": "components/BatteryLevelComponent.html",
-                    "tf": 0.0546875
-                  },
-                  "components/LuxometerComponent.html": {
-                    "ref": "components/LuxometerComponent.html",
-                    "tf": 0.05042016806722689
-                  },
-                  "injectables/BatteryLevelService.html": {
-                    "ref": "injectables/BatteryLevelService.html",
-                    "tf": 0.0410958904109589
-                  },
-                  "injectables/BluetoothCore.html": {
-                    "ref": "injectables/BluetoothCore.html",
-                    "tf": 0.030413625304136254
-                  },
-                  "injectables/BrowserWebBluetooth.html": {
-                    "ref": "injectables/BrowserWebBluetooth.html",
-                    "tf": 0.046511627906976744
-                  },
-                  "injectables/LightService.html": {
-                    "ref": "injectables/LightService.html",
-                    "tf": 0.031055900621118012
-                  },
-                  "injectables/ServerWebBluetooth.html": {
-                    "ref": "injectables/ServerWebBluetooth.html",
-                    "tf": 0.038461538461538464
-                  },
-                  "interfaces/BluetoothCharacteristicProperties.html": {
-                    "ref": "interfaces/BluetoothCharacteristicProperties.html",
-                    "tf": 0.03237410071942446
-                  },
-                  "interfaces/BluetoothDevice.html": {
-                    "ref": "interfaces/BluetoothDevice.html",
-                    "tf": 0.018656716417910446
-                  },
-                  "interfaces/BluetoothGATTService.html": {
-                    "ref": "interfaces/BluetoothGATTService.html",
-                    "tf": 0.02456140350877193
-                  },
-                  "interfaces/BluetoothRemoteGATTCharacteristic.html": {
-                    "ref": "interfaces/BluetoothRemoteGATTCharacteristic.html",
-                    "tf": 0.034482758620689655
-                  },
-                  "interfaces/BluetoothRemoteGATTServer.html": {
-                    "ref": "interfaces/BluetoothRemoteGATTServer.html",
-                    "tf": 0.021660649819494584
-                  },
-                  "interfaces/DataView.html": {
-                    "ref": "interfaces/DataView.html",
-                    "tf": 0.04513064133016627
-                  },
-                  "interfaces/RequestDeviceOptions.html": {
-                    "ref": "interfaces/RequestDeviceOptions.html",
-                    "tf": 0.00784313725490196
-                  }
-                },
-                "s": {
-                  "docs": {},
-                  "c": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "t": {
-                            "docs": {
-                              "index.html": {
-                                "ref": "index.html",
-                                "tf": 0.006349206349206349
-                              }
                             }
                           }
                         }
@@ -23633,6 +23573,72 @@
                   "injectables/LightService.html": {
                     "ref": "injectables/LightService.html",
                     "tf": 0.006211180124223602
+                  }
+                }
+              }
+            }
+          },
+          "y": {
+            "docs": {},
+            "p": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "components/BatteryLevelComponent.html": {
+                    "ref": "components/BatteryLevelComponent.html",
+                    "tf": 0.0546875
+                  },
+                  "components/LuxometerComponent.html": {
+                    "ref": "components/LuxometerComponent.html",
+                    "tf": 0.05042016806722689
+                  },
+                  "injectables/BatteryLevelService.html": {
+                    "ref": "injectables/BatteryLevelService.html",
+                    "tf": 0.0410958904109589
+                  },
+                  "injectables/BluetoothCore.html": {
+                    "ref": "injectables/BluetoothCore.html",
+                    "tf": 0.030413625304136254
+                  },
+                  "injectables/BrowserWebBluetooth.html": {
+                    "ref": "injectables/BrowserWebBluetooth.html",
+                    "tf": 0.046511627906976744
+                  },
+                  "injectables/LightService.html": {
+                    "ref": "injectables/LightService.html",
+                    "tf": 0.031055900621118012
+                  },
+                  "injectables/ServerWebBluetooth.html": {
+                    "ref": "injectables/ServerWebBluetooth.html",
+                    "tf": 0.038461538461538464
+                  },
+                  "interfaces/BluetoothCharacteristicProperties.html": {
+                    "ref": "interfaces/BluetoothCharacteristicProperties.html",
+                    "tf": 0.03237410071942446
+                  },
+                  "interfaces/BluetoothDevice.html": {
+                    "ref": "interfaces/BluetoothDevice.html",
+                    "tf": 0.018656716417910446
+                  },
+                  "interfaces/BluetoothGATTService.html": {
+                    "ref": "interfaces/BluetoothGATTService.html",
+                    "tf": 0.02456140350877193
+                  },
+                  "interfaces/BluetoothRemoteGATTCharacteristic.html": {
+                    "ref": "interfaces/BluetoothRemoteGATTCharacteristic.html",
+                    "tf": 0.034482758620689655
+                  },
+                  "interfaces/BluetoothRemoteGATTServer.html": {
+                    "ref": "interfaces/BluetoothRemoteGATTServer.html",
+                    "tf": 0.021660649819494584
+                  },
+                  "interfaces/DataView.html": {
+                    "ref": "interfaces/DataView.html",
+                    "tf": 0.04513064133016627
+                  },
+                  "interfaces/RequestDeviceOptions.html": {
+                    "ref": "interfaces/RequestDeviceOptions.html",
+                    "tf": 0.00784313725490196
                   }
                 }
               }
@@ -23760,7 +23766,7 @@
             "docs": {
               "index.html": {
                 "ref": "index.html",
-                "tf": 0.022222222222222223
+                "tf": 0.02280130293159609
               }
             },
             "e": {
@@ -23809,7 +23815,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.0031746031746031746
+                    "tf": 0.003257328990228013
                   },
                   "interfaces/ArrayBuffer.html": {
                     "ref": "interfaces/ArrayBuffer.html",
@@ -23951,7 +23957,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.025396825396825397
+                    "tf": 0.026058631921824105
                   },
                   "components/BatteryLevelComponent.html": {
                     "ref": "components/BatteryLevelComponent.html",
@@ -24054,7 +24060,7 @@
                                         "docs": {
                                           "index.html": {
                                             "ref": "index.html",
-                                            "tf": 0.006349206349206349
+                                            "tf": 0.006514657980456026
                                           },
                                           "injectables/BatteryLevelService.html": {
                                             "ref": "injectables/BatteryLevelService.html",
@@ -24311,7 +24317,7 @@
                         "docs": {
                           "index.html": {
                             "ref": "index.html",
-                            "tf": 0.006349206349206349
+                            "tf": 0.006514657980456026
                           }
                         }
                       }
@@ -24330,7 +24336,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -24344,7 +24350,7 @@
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 0.01904761904761905
+                  "tf": 0.019543973941368076
                 },
                 "components/BatteryLevelComponent.html": {
                   "ref": "components/BatteryLevelComponent.html",
@@ -24389,7 +24395,7 @@
                                           "docs": {
                                             "index.html": {
                                               "ref": "index.html",
-                                              "tf": 0.006349206349206349
+                                              "tf": 0.006514657980456026
                                             },
                                             "modules.html": {
                                               "ref": "modules.html",
@@ -24420,7 +24426,7 @@
                                                             "docs": {
                                                               "index.html": {
                                                                 "ref": "index.html",
-                                                                "tf": 0.0031746031746031746
+                                                                "tf": 0.003257328990228013
                                                               }
                                                             }
                                                           }
@@ -24457,7 +24463,7 @@
                     "docs": {
                       "index.html": {
                         "ref": "index.html",
-                        "tf": 0.0031746031746031746
+                        "tf": 0.003257328990228013
                       }
                     }
                   }
@@ -24479,7 +24485,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.0031746031746031746
+                          "tf": 0.003257328990228013
                         }
                       }
                     }
@@ -24502,7 +24508,7 @@
                       "docs": {
                         "index.html": {
                           "ref": "index.html",
-                          "tf": 0.009523809523809525
+                          "tf": 0.009771986970684038
                         }
                       }
                     }
@@ -24929,7 +24935,7 @@
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 0.006349206349206349
+                    "tf": 0.006514657980456026
                   }
                 }
               }
@@ -25227,7 +25233,7 @@
           }
         }
       },
-      "length": 2328
+      "length": 2329
     },
     "corpusTokens": [
       "0",
@@ -25259,7 +25265,6 @@
       "and/or",
       "angular",
       "angular/common';import",
-      "angular/cor",
       "angular/core';@injectable()export",
       "angular/core';import",
       "annot",
@@ -25295,6 +25300,7 @@
       "bluetooth",
       "bluetooth';@compon",
       "bluetooth';@injectable()export",
+      "bluetooth';@ngmodul",
       "bluetooth.service';import",
       "bluetooth/issues/234",
       "bluetoothcharacteristicproperti",
@@ -25647,7 +25653,6 @@
       "rxjs/add/operator/map';import",
       "rxjs/add/operator/mergemap';import",
       "rxjs/add/operator/skip';import",
-      "rxjs/observ",
       "rxjs/observable';import",
       "rxjs/replaysubject';import",
       "s",
@@ -25785,7 +25790,6 @@
       "tri",
       "trigger",
       "type",
-      "typescript",
       "uint8array",
       "uint8array([1",
       "undefin",
@@ -25826,7 +25830,7 @@
     "index.html": {
       "url": "index.html",
       "title": "readme - index",
-      "body": "\n                   \n                        \n                          \n                        \n                        The missing Web Bluetooth module for Angular (>=2) \n                        \n                        ### Yarn it\n                        \n                        yarn add @manekinekko/angular-web-bluetooth\n                        \n                        ### NPM it\n                        \n                        npm i -S @manekinekko/angular-web-bluetooth\n                        \n                        ## Use it\n                        \n                        ## 1) import the WebBluetoothModule module\n                        \n                        typescript\n                        import { NgModule } from '@angular/core';\n                        import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';\n                        \n                        @NgModule({\n                          imports: [\n                            //...,\n                            WebBluetoothModule.forRoot()\n                          ],\n                          //...\n                        })\n                        export class AppModule { }\n                        \n                        ## 2) use it in your service/component\n                        \n                        Here is an annotated example using the BluetoothCore service:\n                        \n                        typescript\n                        import { Injectable } from '@angular/core';\n                        import { Observable } from 'rxjs/Observable';\n                        \n                        import {\n                          BluetoothCore,\n                          BluetoothRemoteGATTServer,\n                          BluetoothRemoteGATTService,\n                          BluetoothRemoteGATTCharacteristic,\n                          DataView\n                        } from '@manekinekko/angular-web-bluetooth';\n                        \n                        \n                        @Injectable()\n                        export class BatteryLevelService {\n                        \n                          static GATT_CHARACTERISTIC_BATTERY_LEVEL = 'battery_level';\n                          static GATT_PRIMARY_SERVICE = 'battery_service';\n                        \n                          constructor(\n                            public ble: BluetoothCore\n                          ) {}\n                        \n                          getFakeValue() {\n                            this.ble.fakeNext();\n                          }\n                        \n                          getDevice() {\n                        \n                            // call this method to get the connected device\n                            return this.ble.getDevice$();\n                          }\n                        \n                          streamValues() {\n                        \n                            // call this method to get a stream of values emitted by the device\n                            return this.ble.streamValues$()\n                              .map( (value: DataView) => value.getUint8(0));\n                          }\n                        \n                          /**\n                           * Get Battery Level GATT Characteristic value.\n                           * This logic is specific to this service, this is why we can't abstract it elsewhere.\n                           * The developer is free to provide any service, and characteristics she wants.\n                           *\n                           * @return {Observable} Emites the value of the requested service read from the device\n                           */\n                           getBatteryLevel(): Observable {\n                            console.log('Getting Battery Service...');\n                        \n                            try {\n                                return this.ble\n                        \n                                  // 1) call the discover method will trigger the discovery process (by the browser)\n                                  .discover$({\n                        \n                                    // give it a service UUID\n                                    optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]\n                        \n                                  })\n                                  .mergeMap( (gatt: BluetoothRemoteGATTServer)  => {\n                        \n                                    // 2) get that service\n                                    return this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);\n                                  })\n                                  .mergeMap( (primaryService: BluetoothRemoteGATTService) => {\n                        \n                                    // 3) get a specific characteristic on that service\n                                    return this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL); \n                                  })\n                                  .mergeMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  {\n                        \n                                    // 4) ask for the value of that characteristic (will return a DataView)\n                                    return this.ble.readValue$(characteristic);\n                                  })\n                                  .map( (value: DataView) => {\n                        \n                                    // 5) on that DataView, get the right value\n                                    return value.getUint8(0) \n                                  });\n                            }\n                            catch(e) {\n                              console.error('Oops! can not read value from %s');\n                            }\n                        \n                          }\n                        \n                        }\n                        \n                        See the starter for a complete use case.\n                        \n                        ## Need a starter?\n                        \n                        You can use this starter to start building your first Web Bluetooth module.\n                        \n                        ## Documentation\n                        \n                        The API documentation can be found here.\n                        \n                        ## Blog post\n                        Checkout my post on medium.\n                        \n                        \n                          \n                            \n                          \n                        \n                        \n                        Have a PR?\n                        All contributions are welcome ;)\n                        License\n                        The MIT License (MIT) Copyright (c) 2017 - Wassim CHEGHAM\n                        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n                        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n                        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n                        \n\n\n\n\n\n\n\n\n\n                   \n                   \n                       \n                            results matching \"\"\n                           \n                       \n                       \n                           No results matching \"\"\n                       \n                   \n               "
+      "body": "\n                   \n                        \n                          \n                        \n                        The missing Web Bluetooth module for Angular (>=2) \n                        \n                        Yarn it\n                        yarn add @manekinekko/angular-web-bluetooth\n                        NPM it\n                        npm i -S @manekinekko/angular-web-bluetooth\n                        Use it\n                        1) import the WebBluetoothModule module\n                        import { NgModule } from '@angular/core';import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';@NgModule({  imports: [    //...,    WebBluetoothModule.forRoot()  ],  //...})export class AppModule { }2) use it in your service/component\n                        Here is an annotated example using the BluetoothCore service:\n                        import { Injectable } from '@angular/core';import { Observable } from 'rxjs/Observable';import {  BluetoothCore,  BluetoothRemoteGATTServer,  BluetoothRemoteGATTService,  BluetoothRemoteGATTCharacteristic,  DataView} from '@manekinekko/angular-web-bluetooth';@Injectable()export class BatteryLevelService {  static GATT_CHARACTERISTIC_BATTERY_LEVEL = 'battery_level';  static GATT_PRIMARY_SERVICE = 'battery_service';  constructor(    public ble: BluetoothCore  ) {}  getFakeValue() {    this.ble.fakeNext();  }  getDevice() {    // call this method to get the connected device    return this.ble.getDevice$();  }  streamValues() {    // call this method to get a stream of values emitted by the device    return this.ble.streamValues$()      .map( (value: DataView) => value.getUint8(0));  }  /**   * Get Battery Level GATT Characteristic value.   * This logic is specific to this service, this is why we can't abstract it elsewhere.   * The developer is free to provide any service, and characteristics she wants.   *   * @return {Observable} Emites the value of the requested service read from the device   */   getBatteryLevel(): Observable {    console.log('Getting Battery Service...');    try {        return this.ble          // 1) call the discover method will trigger the discovery process (by the browser)          .discover$({            // give it a service UUID            optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]          })          .mergeMap( (gatt: BluetoothRemoteGATTServer)  => {            // 2) get that service            return this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);          })          .mergeMap( (primaryService: BluetoothRemoteGATTService) => {            // 3) get a specific characteristic on that service            return this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL);           })          .mergeMap( (characteristic: BluetoothRemoteGATTCharacteristic) =>  {            // 4) ask for the value of that characteristic (will return a DataView)            return this.ble.readValue$(characteristic);          })          .map( (value: DataView) => {            // 5) on that DataView, get the right value            return value.getUint8(0)           });    }    catch(e) {      console.error('Oops! can not read value from %s');    }  }}See the starter for a complete use case.\n                        Need a starter?\n                        You can use this starter to start building your first Web Bluetooth module.\n                        Documentation\n                        The API documentation can be found here.\n                        Blog post\n                        Checkout my post on medium.\n                        \n                          \n                            \n                          \n                        \n                        \n                        Have a PR?\n                        All contributions are welcome ;)\n                        License\n                        The MIT License (MIT) Copyright (c) 2017 - Wassim CHEGHAM\n                        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n                        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n                        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n                        \n\n\n\n\n\n\n\n\n\n                   \n                   \n                       \n                            results matching \"\"\n                           \n                       \n                       \n                           No results matching \"\"\n                       \n                   \n               "
     },
     "overview.html": {
       "url": "overview.html",

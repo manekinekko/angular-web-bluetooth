@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250">
-</p>
+<div align="center">
+  <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
+</div>
 <h2 align="center">The missing Web Bluetooth module for Angular (>=2) <img src="https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg"></h2>
 
 ### Yarn it
@@ -34,7 +34,7 @@ export class AppModule { }
 
 Here is an annotated example using the `BluetoothCore` service:
 
-```typescript
+```javascript
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 

@@ -375,142 +375,26 @@
                </div>
                <div class="content readme">
                    <div class="content-data">
-                        <p align="center">
-                          <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250">
-                        </p>
+                        <p><div align="center">
+                          <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
+                        </div></p>
                         <h2 align="center">The missing Web Bluetooth module for Angular (&gt;=2) <img src="https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg"></h2>
                         
-                        ### Yarn it
-                        
-                        <code>yarn add @manekinekko/angular-web-bluetooth</code>
-                        
-                        ### NPM it
-                        
-                        <code>npm i -S @manekinekko/angular-web-bluetooth</code>
-                        
-                        ## Use it
-                        
-                        ## 1) import the <code>WebBluetoothModule</code> module
-                        
-                        <code>typescript
-                        import { NgModule } from &#39;@angular/core&#39;;
-                        import { WebBluetoothModule } from &#39;@manekinekko/angular-web-bluetooth&#39;;
-                        
-                        @NgModule({
-                          imports: [
-                            //...,
-                            WebBluetoothModule.forRoot()
-                          ],
-                          //...
-                        })
-                        export class AppModule { }</code>
-                        
-                        ## 2) use it in your service/component
-                        
-                        Here is an annotated example using the <code>BluetoothCore</code> service:
-                        
-                        <code>typescript
-                        import { Injectable } from &#39;@angular/core&#39;;
-                        import { Observable } from &#39;rxjs/Observable&#39;;
-                        
-                        import {
-                          BluetoothCore,
-                          BluetoothRemoteGATTServer,
-                          BluetoothRemoteGATTService,
-                          BluetoothRemoteGATTCharacteristic,
-                          DataView
-                        } from &#39;@manekinekko/angular-web-bluetooth&#39;;
-                        
-                        
-                        @Injectable()
-                        export class BatteryLevelService {
-                        
-                          static GATT_CHARACTERISTIC_BATTERY_LEVEL = &#39;battery_level&#39;;
-                          static GATT_PRIMARY_SERVICE = &#39;battery_service&#39;;
-                        
-                          constructor(
-                            public ble: BluetoothCore
-                          ) {}
-                        
-                          getFakeValue() {
-                            this.ble.fakeNext();
-                          }
-                        
-                          getDevice() {
-                        
-                            // call this method to get the connected device
-                            return this.ble.getDevice$();
-                          }
-                        
-                          streamValues() {
-                        
-                            // call this method to get a stream of values emitted by the device
-                            return this.ble.streamValues$()
-                              .map( (value: DataView) =&gt; value.getUint8(0));
-                          }
-                        
-                          /**
-                           * Get Battery Level GATT Characteristic value.
-                           * This logic is specific to this service, this is why we can&#39;t abstract it elsewhere.
-                           * The developer is free to provide any service, and characteristics she wants.
-                           *
-                           * @return {Observable&lt;number&gt;} Emites the value of the requested service read from the device
-                           */
-                           getBatteryLevel(): Observable&lt;number&gt; {
-                            console.log(&#39;Getting Battery Service...&#39;);
-                        
-                            try {
-                                return this.ble
-                        
-                                  // 1) call the discover method will trigger the discovery process (by the browser)
-                                  .discover$({
-                        
-                                    // give it a service UUID
-                                    optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]
-                        
-                                  })
-                                  .mergeMap( (gatt: BluetoothRemoteGATTServer)  =&gt; {
-                        
-                                    // 2) get that service
-                                    return this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);
-                                  })
-                                  .mergeMap( (primaryService: BluetoothRemoteGATTService) =&gt; {
-                        
-                                    // 3) get a specific characteristic on that service
-                                    return this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL); 
-                                  })
-                                  .mergeMap( (characteristic: BluetoothRemoteGATTCharacteristic) =&gt;  {
-                        
-                                    // 4) ask for the value of that characteristic (will return a DataView)
-                                    return this.ble.readValue$(characteristic);
-                                  })
-                                  .map( (value: DataView) =&gt; {
-                        
-                                    // 5) on that DataView, get the right value
-                                    return value.getUint8(0) 
-                                  });
-                            }
-                            catch(e) {
-                              console.error(&#39;Oops! can not read value from %s&#39;);
-                            }
-                        
-                          }
-                        
-                        }</code>
-                        
-                        See the <a href="https://github.com/manekinekko/angular-web-bluetooth-starter/tree/master/src/app">starter</a> for a complete use case.
-                        
-                        ## Need a starter?
-                        
-                        You can use <a href="https://github.com/manekinekko/angular-web-bluetooth-starter">this starter</a> to start building your first Web Bluetooth module.
-                        
-                        ## Documentation
-                        
-                        The API documentation can be found <a href="./documentation">here</a>.
-                        
-                        ## Blog post
-                        Checkout my post on medium.
-                        
+                        <h3 id="yarn-it">Yarn it</h3>
+                        <p><code>yarn add @manekinekko/angular-web-bluetooth</code></p>
+                        <h3 id="npm-it">NPM it</h3>
+                        <p><code>npm i -S @manekinekko/angular-web-bluetooth</code></p>
+                        <h2 id="use-it">Use it</h2>
+                        <h2 id="1-import-the-webbluetoothmodule-module">1) import the <code>WebBluetoothModule</code> module</h2>
+                        <pre><code class="hljs typescript"><span class="hljs-keyword">import</span> { NgModule } from <span class="hljs-string">'@angular/core'</span>;<br><span class="hljs-keyword">import</span> { WebBluetoothModule } from <span class="hljs-string">'@manekinekko/angular-web-bluetooth'</span>;<br><br><span class="hljs-meta">@NgModule</span>({<br>  imports: [<br>    <span class="hljs-comment">//...,</span><br>    WebBluetoothModule.forRoot()<br>  ],<br>  <span class="hljs-comment">//...</span><br>})<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule { }</code></pre><h2 id="2-use-it-in-your-service-component">2) use it in your service/component</h2>
+                        <p>Here is an annotated example using the <code>BluetoothCore</code> service:</p>
+                        <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;<br><span class="hljs-keyword">import</span> { Observable } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/Observable'</span>;<br><br><span class="hljs-keyword">import</span> {<br>  BluetoothCore,<br>  BluetoothRemoteGATTServer,<br>  BluetoothRemoteGATTService,<br>  BluetoothRemoteGATTCharacteristic,<br>  <span class="hljs-built_in">DataView</span><br>} <span class="hljs-keyword">from</span> <span class="hljs-string">'@manekinekko/angular-web-bluetooth'</span>;<br><br><br>@Injectable()<br><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BatteryLevelService</span> </span>{<br><br>  <span class="hljs-keyword">static</span> GATT_CHARACTERISTIC_BATTERY_LEVEL = <span class="hljs-string">'battery_level'</span>;<br>  <span class="hljs-keyword">static</span> GATT_PRIMARY_SERVICE = <span class="hljs-string">'battery_service'</span>;<br><br>  <span class="hljs-keyword">constructor</span>(<br>    public ble: BluetoothCore<br>  ) {}<br><br>  getFakeValue() {<br>    <span class="hljs-keyword">this</span>.ble.fakeNext();<br>  }<br><br>  getDevice() {<br><br>    <span class="hljs-comment">// call this method to get the connected device</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble.getDevice$();<br>  }<br><br>  streamValues() {<br><br>    <span class="hljs-comment">// call this method to get a stream of values emitted by the device</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble.streamValues$()<br>      .map( <span class="hljs-function">(<span class="hljs-params">value: <span class="hljs-built_in">DataView</span></span>) =&gt;</span> value.getUint8(<span class="hljs-number">0</span>));<br>  }<br><br>  <span class="hljs-comment">/**<br>   * Get Battery Level GATT Characteristic value.<br>   * This logic is specific to this service, this is why we can't abstract it elsewhere.<br>   * The developer is free to provide any service, and characteristics she wants.<br>   *<br>   * @return {Observable&lt;number&gt;} Emites the value of the requested service read from the device<br>   */</span><br>   getBatteryLevel(): Observable&lt;number&gt; {<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Getting Battery Service...'</span>);<br><br>    <span class="hljs-keyword">try</span> {<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble<br><br>          <span class="hljs-comment">// 1) call the discover method will trigger the discovery process (by the browser)</span><br>          .discover$({<br><br>            <span class="hljs-comment">// give it a service UUID</span><br>            optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]<br><br>          })<br>          .mergeMap( <span class="hljs-function">(<span class="hljs-params">gatt: BluetoothRemoteGATTServer</span>)  =&gt;</span> {<br><br>            <span class="hljs-comment">// 2) get that service</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);<br>          })<br>          .mergeMap( <span class="hljs-function">(<span class="hljs-params">primaryService: BluetoothRemoteGATTService</span>) =&gt;</span> {<br><br>            <span class="hljs-comment">// 3) get a specific characteristic on that service</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL); <br>          })<br>          .mergeMap( <span class="hljs-function">(<span class="hljs-params">characteristic: BluetoothRemoteGATTCharacteristic</span>) =&gt;</span>  {<br><br>            <span class="hljs-comment">// 4) ask for the value of that characteristic (will return a DataView)</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ble.readValue$(characteristic);<br>          })<br>          .map( <span class="hljs-function">(<span class="hljs-params">value: <span class="hljs-built_in">DataView</span></span>) =&gt;</span> {<br><br>            <span class="hljs-comment">// 5) on that DataView, get the right value</span><br>            <span class="hljs-keyword">return</span> value.getUint8(<span class="hljs-number">0</span>) <br>          });<br>    }<br>    <span class="hljs-keyword">catch</span>(e) {<br>      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Oops! can not read value from %s'</span>);<br>    }<br><br>  }<br><br>}</code></pre><p>See the <a href="https://github.com/manekinekko/angular-web-bluetooth-starter/tree/master/src/app">starter</a> for a complete use case.</p>
+                        <h2 id="need-a-starter-">Need a starter?</h2>
+                        <p>You can use <a href="https://github.com/manekinekko/angular-web-bluetooth-starter">this starter</a> to start building your first Web Bluetooth module.</p>
+                        <h2 id="documentation">Documentation</h2>
+                        <p>The API documentation can be found <a href="./documentation">here</a>.</p>
+                        <h2 id="blog-post">Blog post</h2>
+                        <p>Checkout my post on medium.</p>
                         <p align="center">
                           <a href="https://medium.com/google-developer-experts/the-web-bluetooth-module-for-angular-9336c9535d04#.f6dp9z163">
                             <img src="https://cloud.githubusercontent.com/assets/1699357/21696708/7e33cca4-d38f-11e6-8a03-6833b88e82fa.png" >
