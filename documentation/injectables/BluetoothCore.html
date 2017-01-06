@@ -1,0 +1,648 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Angular Web Bluetooth</title>
+        <meta name="description" content="">
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	    <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">Angular Web Bluetooth</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="./">Angular Web Bluetooth</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="./" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="./overview.html" 
+                                         href="./overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="./modules/WebBluetoothModule.html" >WebBluetoothModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="./components/BatteryLevelComponent.html" >BatteryLevelComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./components/LuxometerComponent.html" >LuxometerComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="./injectables/BatteryLevelService.html" >BatteryLevelService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./injectables/BluetoothCore.html"  class="active" >BluetoothCore</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./injectables/BrowserWebBluetooth.html" >BrowserWebBluetooth</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./injectables/LightService.html" >LightService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./injectables/ServerWebBluetooth.html" >ServerWebBluetooth</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-interfaces-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="./interfaces/ArrayBuffer.html" >ArrayBuffer</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothCharacteristicProperties.html" >BluetoothCharacteristicProperties</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothCharacteristicUUID.html" >BluetoothCharacteristicUUID</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothDescriptorUUID.html" >BluetoothDescriptorUUID</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothDescriptorUUID.html" >BluetoothDescriptorUUID</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothDevice.html" >BluetoothDevice</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothGATTCharacteristic.html" >BluetoothGATTCharacteristic</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothGATTService.html" >BluetoothGATTService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothRemoteGATTCharacteristic.html" >BluetoothRemoteGATTCharacteristic</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothRemoteGATTDescriptor.html" >BluetoothRemoteGATTDescriptor</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothRemoteGATTDescriptor.html" >BluetoothRemoteGATTDescriptor</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothRemoteGATTServer.html" >BluetoothRemoteGATTServer</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothRemoteGATTService.html" >BluetoothRemoteGATTService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/BluetoothServiceUUID.html" >BluetoothServiceUUID</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/DataView.html" >DataView</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./interfaces/RequestDeviceOptions.html" >RequestDeviceOptions</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="./images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="./">Angular Web Bluetooth</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="./" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="./overview.html" 
+                                                href="./overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="./modules/WebBluetoothModule.html" >WebBluetoothModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="./components/BatteryLevelComponent.html" >BatteryLevelComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./components/LuxometerComponent.html" >LuxometerComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="./injectables/BatteryLevelService.html" >BatteryLevelService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./injectables/BluetoothCore.html"  class="active" >BluetoothCore</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./injectables/BrowserWebBluetooth.html" >BrowserWebBluetooth</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./injectables/LightService.html" >LightService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./injectables/ServerWebBluetooth.html" >ServerWebBluetooth</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#interfaces-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="./interfaces/ArrayBuffer.html" >ArrayBuffer</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothCharacteristicProperties.html" >BluetoothCharacteristicProperties</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothCharacteristicUUID.html" >BluetoothCharacteristicUUID</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothDescriptorUUID.html" >BluetoothDescriptorUUID</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothDescriptorUUID.html" >BluetoothDescriptorUUID</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothDevice.html" >BluetoothDevice</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothGATTCharacteristic.html" >BluetoothGATTCharacteristic</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothGATTService.html" >BluetoothGATTService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothRemoteGATTCharacteristic.html" >BluetoothRemoteGATTCharacteristic</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothRemoteGATTDescriptor.html" >BluetoothRemoteGATTDescriptor</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothRemoteGATTDescriptor.html" >BluetoothRemoteGATTDescriptor</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothRemoteGATTServer.html" >BluetoothRemoteGATTServer</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothRemoteGATTService.html" >BluetoothRemoteGATTService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/BluetoothServiceUUID.html" >BluetoothServiceUUID</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/DataView.html" >DataView</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./interfaces/RequestDeviceOptions.html" >RequestDeviceOptions</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="./images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+                        <ol class="breadcrumb">
+                          <li>Injectables</li>
+                          <li>BluetoothCore</li>
+                        </ol>
+                        
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active">
+                                <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+                            </li>
+                            <li>
+                                <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="infos">
+                                <p class="comment">
+                                    <h3>File</h3>
+                                </p>
+                                <p class="comment">
+                                    <code>src/lib/bluetooth.service.ts</code>
+                                </p>
+                        
+                        
+                                <section>
+                                    <h3 id="methods">Methods</h3>
+                                    <table class="table table-sm table-hover">
+                                        <tbody>
+                                                <tr>
+                                                    <td class="col-md-3"><code>getDevice$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothDevice&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>getGATT$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTServer&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>streamValues$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Return type: </i><code>Observable&lt;DataView&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>anyDeviceFilter</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>discover</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>discover(options: RequestDeviceOptions)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                            <div class="io-description"><p>Run the discovery process.</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>onDeviceDisconnected</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>onDeviceDisconnected(event: Event)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>discover$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>discover$(options: RequestDeviceOptions)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                            <div class="io-description"><p>Run the discovery process.</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>connectDevice</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>connectDevice(device: BluetoothDevice)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                            <div class="io-description"><p>Connect to current device.</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>connectDevice$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>connectDevice$(device: BluetoothDevice)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                            <div class="io-description"><p>Connect to current device.</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>getPrimaryService$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTService&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>getCharacteristic$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTCharacteristic&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>setCharacteristicState</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>setCharacteristicState(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID, state: ArrayBuffer)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTService&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>enableCharacteristic</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>enableCharacteristic(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID, state: any)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTService&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>disbaleCharacteristic</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>disbaleCharacteristic(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID, state: any)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;BluetoothRemoteGATTService&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>onCharacteristicChanged</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>onCharacteristicChanged(event: any)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>readValue$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>readValue$(characteristic: BluetoothRemoteGATTCharacteristic)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;DataView&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>writeValue$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer | Uint8Array)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;{}&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>toObservable</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>toObservable(promise: any)</code></div>
+                                                            <div><i>Return type: </i><code>Observable&lt;any&gt;</code></div>
+                                                            <div class="io-description"><p>A helper function that transforms any Promise into an Observable</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>littleEndianToUint16</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>littleEndianToUint16(data: any, offset: number)</code></div>
+                                                            <div><i>Return type: </i><code>number</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>littleEndianToUint8</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>littleEndianToUint8(data: any, offset: number)</code></div>
+                                                            <div><i>Return type: </i><code>number</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>fakeNext</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Signature: </i><code>fakeNext(fakeValue: Function)</code></div>
+                                                            <div><i>Return type: </i><code>void</code></div>
+                                                            <div class="io-description"><p>Sends random data (for testing purpose only).</p>
+                        </div>
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                        
+                                <section>
+                                    <h3 id="inputs">Properties</h3>
+                                    <table class="table table-sm table-hover">
+                                        <tbody>
+                                                <tr>
+                                                    <td class="col-md-3"><code>_characteristicValueChanges$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Type: </i><code>EventEmitter&lt;DataView&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>_device$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Type: </i><code>EventEmitter&lt;BluetoothDevice&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>_gatt$</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Type: </i><code>EventEmitter&lt;BluetoothRemoteGATTServer&gt;</code></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><code>_gattServer</code></td>
+                                                    <td class="col-md-9">
+                                                            <div><i>Type: </i><code>BluetoothRemoteGATTServer</code></div>
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                            <div class="tab-pane fade tab-source-code" id="source">
+                                <pre><code class="hljs javascript">import&nbsp;{&nbsp;Injectable,&nbsp;EventEmitter&nbsp;}&nbsp;from&nbsp;&#x27;@angular/core&#x27;;<br>import&nbsp;{&nbsp;Observable&nbsp;}&nbsp;from&nbsp;&#x27;rxjs/Observable&#x27;;<br>import&nbsp;{&nbsp;ReplaySubject&nbsp;}&nbsp;from&nbsp;&#x27;rxjs/ReplaySubject&#x27;;<br>import&nbsp;&#x27;rxjs/add/observable/fromPromise&#x27;;<br>import&nbsp;&#x27;rxjs/add/observable/merge&#x27;;<br>import&nbsp;&#x27;rxjs/add/operator/skip&#x27;;<br>import&nbsp;&#x27;rxjs/add/operator/mergeMap&#x27;;<br>import&nbsp;&#x27;rxjs/add/operator/map&#x27;;<br>import&nbsp;&#x27;rxjs/add/operator/catch&#x27;;<br><br>import&nbsp;{&nbsp;BrowserWebBluetooth&nbsp;}&nbsp;from&nbsp;&#x27;./platform/browser&#x27;;<br><br>import&nbsp;{<br>&nbsp;&nbsp;RequestDeviceOptions,<br>&nbsp;&nbsp;BluetoothRemoteGATTServer,<br>&nbsp;&nbsp;BluetoothRemoteGATTService,<br>&nbsp;&nbsp;BluetoothRemoteGATTCharacteristic,<br>&nbsp;&nbsp;BluetoothGATTCharacteristic,<br>&nbsp;&nbsp;BluetoothDevice,<br>&nbsp;&nbsp;BluetoothServiceUUID,<br>&nbsp;&nbsp;BluetoothCharacteristicUUID<br>}&nbsp;&nbsp;from&nbsp;&#x27;./lang/types&#x27;;<br><br>/**<br>&nbsp;*&nbsp;Number&nbsp;of&nbsp;last&nbsp;emitted&nbsp;values&nbsp;to&nbsp;reply<br>&nbsp;*/<br>const&nbsp;kBufferSize&nbsp;&#x3D;&nbsp;1;&nbsp;<br><br><br>@Injectable()<br>export&nbsp;class&nbsp;BluetoothCore&nbsp;extends&nbsp;ReplaySubject&lt;any&nbsp;/*&nbsp;find&nbsp;a&nbsp;better&nbsp;interface&nbsp;type&nbsp;*/&gt;&nbsp;{<br><br>&nbsp;&nbsp;public&nbsp;_device$:&nbsp;EventEmitter&lt;BluetoothDevice&gt;;<br>&nbsp;&nbsp;public&nbsp;_gatt$:&nbsp;EventEmitter&lt;BluetoothRemoteGATTServer&gt;;<br>&nbsp;&nbsp;public&nbsp;_characteristicValueChanges$:&nbsp;EventEmitter&lt;DataView&gt;;<br><br>&nbsp;&nbsp;public&nbsp;_gattServer:&nbsp;BluetoothRemoteGATTServer;<br><br>&nbsp;&nbsp;constructor(<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;_webBle:&nbsp;BrowserWebBluetooth<br>&nbsp;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;super(kBufferSize);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;this._device$&nbsp;&#x3D;&nbsp;new&nbsp;EventEmitter&lt;BluetoothDevice&gt;();<br>&nbsp;&nbsp;&nbsp;&nbsp;this._gatt$&nbsp;&#x3D;&nbsp;new&nbsp;EventEmitter&lt;BluetoothRemoteGATTServer&gt;();<br>&nbsp;&nbsp;&nbsp;&nbsp;this._characteristicValueChanges$&nbsp;&#x3D;&nbsp;new&nbsp;EventEmitter&lt;DataView&gt;();<br><br>&nbsp;&nbsp;&nbsp;&nbsp;this._gattServer&nbsp;&#x3D;&nbsp;null;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothDevice&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;getDevice$():&nbsp;Observable&lt;BluetoothDevice&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this._device$;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTServer&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;getGATT$():&nbsp;Observable&lt;BluetoothRemoteGATTServer&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this._gatt$;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;DataView&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;streamValues$():&nbsp;Observable&lt;DataView&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this._characteristicValueChanges$.skip(2);<br>&nbsp;&nbsp;}<br><br><br>&nbsp;&nbsp;anyDeviceFilter()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;This&nbsp;is&nbsp;the&nbsp;closest&nbsp;we&nbsp;can&nbsp;get&nbsp;for&nbsp;now&nbsp;to&nbsp;get&nbsp;all&nbsp;devices.<br>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;https://github.com/WebBluetoothCG/web-bluetooth/issues/234<br><br>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;filters:&nbsp;{name?:&nbsp;string;&nbsp;namePrefix?:&nbsp;string}[]&nbsp;&#x3D;&nbsp;[];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;filters&nbsp;&#x3D;&nbsp;Array<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.from(&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.map(c&nbsp;&#x3D;&gt;&nbsp;({namePrefix:&nbsp;c}));<br>&nbsp;&nbsp;&nbsp;&nbsp;filters.push({name:&nbsp;&#x27;&#x27;});<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;filters;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;Run&nbsp;the&nbsp;discovery&nbsp;process.<br>&nbsp;&nbsp;&nbsp;*<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{RequestDeviceOptions}&nbsp;Options&nbsp;such&nbsp;as&nbsp;filters&nbsp;and&nbsp;optional&nbsp;services<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Promise&lt;number&gt;}&nbsp;Emites&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;requested&nbsp;service&nbsp;read&nbsp;from&nbsp;the&nbsp;device<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;discover(options:&nbsp;RequestDeviceOptions&nbsp;&#x3D;&nbsp;&lt;RequestDeviceOptions&gt;{})&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;options.filters&nbsp;&#x3D;&nbsp;options.filters&nbsp;||&nbsp;this.anyDeviceFilter();<br>&nbsp;&nbsp;&nbsp;&nbsp;options.optionalServices&nbsp;&#x3D;&nbsp;options.optionalServices&nbsp;||&nbsp;[&#x27;generic_access&#x27;];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Requesting&nbsp;devices&nbsp;with&nbsp;options&nbsp;%o&#x27;,&nbsp;options);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this._webBle.requestDevice(options)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(&nbsp;(device:&nbsp;BluetoothDevice)&nbsp;&#x3D;&gt;&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(device)&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(device.ongattserverdisconnected)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;any&gt;device).addEventListener(&#x27;gattserverdisconnected&#x27;,&nbsp;this.onDeviceDisconnected.bind(this));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this._device$.emit(device);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;device;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this._device$.emit(null);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;discover:&nbsp;%o&#x27;,&nbsp;e)&nbsp;);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;@TODO&nbsp;handl&nbsp;user&nbsp;cancel&nbsp;*/<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{Event}&nbsp;&nbsp;event&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;onDeviceDisconnected(event:&nbsp;Event)&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;disconnectedDevice:&nbsp;BluetoothDevice&nbsp;&#x3D;&nbsp;&lt;BluetoothDevice&gt;(&lt;any&gt;event).target;<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;disconnected&nbsp;device&nbsp;%o&#x27;,&nbsp;disconnectedDevice);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;this._device$.emit(null);<br><br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;Run&nbsp;the&nbsp;discovery&nbsp;process.<br>&nbsp;&nbsp;&nbsp;*<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{RequestDeviceOptions}&nbsp;Options&nbsp;such&nbsp;as&nbsp;filters&nbsp;and&nbsp;optional&nbsp;services<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;number&gt;}&nbsp;Emites&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;requested&nbsp;service&nbsp;read&nbsp;from&nbsp;the&nbsp;device<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;discover$(options?:&nbsp;RequestDeviceOptions)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.discover(options)<br>&nbsp;&nbsp;&nbsp;&nbsp;)<br>&nbsp;&nbsp;&nbsp;&nbsp;.mergeMap(&nbsp;(device:&nbsp;BluetoothDevice)&nbsp;&#x3D;&gt;&nbsp;this.connectDevice$(device))<br>&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;discover$:&nbsp;%o&#x27;,&nbsp;e)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Observable.create(e);<br>&nbsp;&nbsp;&nbsp;&nbsp;});<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;Connect&nbsp;to&nbsp;current&nbsp;device.<br>&nbsp;&nbsp;&nbsp;*<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Promise&lt;any&gt;}&nbsp;Emites&nbsp;the&nbsp;gatt&nbsp;server&nbsp;instance&nbsp;of&nbsp;the&nbsp;requested&nbsp;device<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;connectDevice(device:&nbsp;BluetoothDevice)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;if(device)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Connecting&nbsp;to&nbsp;GATT&nbsp;Server&nbsp;of&nbsp;%o&#x27;,&nbsp;device);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;device.gatt.connect()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(&nbsp;(gattServer:&nbsp;BluetoothRemoteGATTServer)&nbsp;&#x3D;&gt;&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this._gattServer&nbsp;&#x3D;&nbsp;gattServer;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this._gatt$.emit(gattServer);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;gattServer;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;connectDevice&nbsp;%o&#x27;,&nbsp;e)&nbsp;);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Error]&nbsp;Was&nbsp;not&nbsp;able&nbsp;to&nbsp;connect&nbsp;to&nbsp;GATT&nbsp;Server&#x27;);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this._gatt$.error(null);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;Connect&nbsp;to&nbsp;current&nbsp;device.<br>&nbsp;&nbsp;&nbsp;*<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;any&gt;}&nbsp;Emites&nbsp;the&nbsp;gatt&nbsp;server&nbsp;instance&nbsp;of&nbsp;the&nbsp;requested&nbsp;device<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;connectDevice$(device:&nbsp;BluetoothDevice)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.connectDevice(device)<br>&nbsp;&nbsp;&nbsp;&nbsp;);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothRemoteGATTServer}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gatt<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothServiceUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTService&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;getPrimaryService$(gatt:&nbsp;BluetoothRemoteGATTServer,&nbsp;service:&nbsp;BluetoothServiceUUID):&nbsp;Observable&lt;BluetoothRemoteGATTService&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Getting&nbsp;primary&nbsp;service&nbsp;&quot;%s&quot;&nbsp;of&nbsp;%o&#x27;,&nbsp;service,&nbsp;gatt);<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gatt.getPrimaryService(service)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;getPrimaryService$&nbsp;%o&nbsp;(%s)&#x27;,&nbsp;e,&nbsp;service)&nbsp;)<br>&nbsp;&nbsp;&nbsp;&nbsp;);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothRemoteGATTService}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primaryService<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothCharacteristicUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTCharacteristic&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;getCharacteristic$(primaryService:&nbsp;BluetoothRemoteGATTService,&nbsp;characteristic:&nbsp;BluetoothCharacteristicUUID):&nbsp;Observable&lt;BluetoothRemoteGATTCharacteristic&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Getting&nbsp;Characteristic&nbsp;&quot;%s&quot;&nbsp;of&nbsp;%o&#x27;,&nbsp;characteristic,&nbsp;primaryService);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;characteristicPromise&nbsp;&#x3D;&nbsp;primaryService.getCharacteristic(characteristic)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(&nbsp;(char:&nbsp;BluetoothGATTCharacteristic)&nbsp;&#x3D;&gt;&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;listen&nbsp;for&nbsp;characteristic&nbsp;value&nbsp;changes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(char.properties.notify)&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char.startNotifications().then(&nbsp;_&nbsp;&#x3D;&gt;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Starting&nbsp;notifications&nbsp;of&nbsp;&quot;%s&quot;&#x27;,&nbsp;characteristic);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(&lt;any&gt;char).addEventListener(&#x27;characteristicvaluechanged&#x27;,&nbsp;this.onCharacteristicChanged.bind(this));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;error&nbsp;&#x3D;&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;Cannot&nbsp;start&nbsp;notification&nbsp;of&nbsp;&quot;%s&quot;&nbsp;%o&#x27;,&nbsp;characteristic,&nbsp;error);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;any&gt;char).addEventListener(&#x27;characteristicvaluechanged&#x27;,&nbsp;this.onCharacteristicChanged.bind(this));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;char;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;getCharacteristic$&nbsp;%o&#x27;,&nbsp;e)&nbsp;);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(characteristicPromise);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothServiceUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothCharacteristicUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTService&gt;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;setCharacteristicState(<br>&nbsp;&nbsp;&nbsp;&nbsp;service:&nbsp;BluetoothServiceUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;characteristic:&nbsp;BluetoothCharacteristicUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;ArrayBuffer<br>&nbsp;&nbsp;):&nbsp;Observable&lt;BluetoothRemoteGATTService&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;primaryService&nbsp;&#x3D;&nbsp;this.getPrimaryService$(this._gattServer,&nbsp;service);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;primaryService<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.mergeMap(&nbsp;(primaryService)&nbsp;&#x3D;&gt;&nbsp;this.getCharacteristic$(primaryService,&nbsp;characteristic))<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.subscribe(&nbsp;(characteristic:&nbsp;BluetoothRemoteGATTCharacteristic)&nbsp;&#x3D;&gt;&nbsp;this.writeValue$(characteristic,&nbsp;state)&nbsp;);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;primaryService;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothServiceUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothCharacteristicUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTService&gt;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;enableCharacteristic(<br>&nbsp;&nbsp;&nbsp;&nbsp;service:&nbsp;BluetoothServiceUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;characteristic:&nbsp;BluetoothCharacteristicUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;state?:&nbsp;any<br>&nbsp;&nbsp;):&nbsp;Observable&lt;BluetoothRemoteGATTService&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;state&nbsp;&#x3D;&nbsp;state&nbsp;||&nbsp;new&nbsp;Uint8Array([&nbsp;1&nbsp;]);<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.setCharacteristicState(service,&nbsp;characteristic,&nbsp;state);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothServiceUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothCharacteristicUUID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTService&gt;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;disbaleCharacteristic(<br>&nbsp;&nbsp;&nbsp;&nbsp;service:&nbsp;BluetoothServiceUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;characteristic:&nbsp;BluetoothCharacteristicUUID,<br>&nbsp;&nbsp;&nbsp;&nbsp;state?:&nbsp;any<br>&nbsp;&nbsp;):&nbsp;Observable&lt;BluetoothRemoteGATTService&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;state&nbsp;&#x3D;&nbsp;state&nbsp;||&nbsp;new&nbsp;Uint8Array([&nbsp;0&nbsp;]);<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.setCharacteristicState(service,&nbsp;characteristic,&nbsp;state);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothRemoteGATTService}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primaryService&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothCharacteristicUUID[]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristics&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;BluetoothRemoteGATTCharacteristic&gt;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;//&nbsp;getCharacteristics$(primaryService:&nbsp;BluetoothRemoteGATTService,&nbsp;characteristics:&nbsp;BluetoothCharacteristicUUID[]):&nbsp;Observable&lt;BluetoothRemoteGATTCharacteristic&gt;&nbsp;{<br>&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;characteristics&nbsp;&#x3D;&nbsp;characteristics.map(&nbsp;(char$)&nbsp;&#x3D;&gt;&nbsp;this.getCharacteristic$(primaryService,&nbsp;char$)&nbsp;)<br>&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;return&nbsp;Observable.merge.apply(this,&nbsp;characteristics);<br>&nbsp;&nbsp;//&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{Event}&nbsp;event&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;onCharacteristicChanged(event)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Dispatching&nbsp;new&nbsp;characteristic&nbsp;value&nbsp;%o&#x27;,&nbsp;event);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;value&nbsp;&#x3D;&nbsp;(&lt;any&gt;event).target.value;<br>&nbsp;&nbsp;&nbsp;&nbsp;this._characteristicValueChanges$.emit(value);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothRemoteGATTCharacteristic}&nbsp;characteristic<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;DataView&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;readValue$(characteristic:&nbsp;BluetoothRemoteGATTCharacteristic):&nbsp;Observable&lt;DataView&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Reading&nbsp;Characteristic&nbsp;%o&#x27;,&nbsp;characteristic);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic.readValue()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(value:&nbsp;any)&nbsp;&#x3D;&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;In&nbsp;Chrome&nbsp;50+,&nbsp;a&nbsp;DataView&nbsp;is&nbsp;returned&nbsp;instead&nbsp;of&nbsp;an&nbsp;ArrayBuffer.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;&#x3D;&nbsp;value.buffer&nbsp;?&nbsp;value&nbsp;:&nbsp;new&nbsp;DataView(value);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;value;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(&nbsp;(e)&nbsp;&#x3D;&gt;&nbsp;console.error(&#x27;[BLE::Error]&nbsp;readValue$&nbsp;%o&#x27;,&nbsp;e)&nbsp;)<br>&nbsp;&nbsp;&nbsp;&nbsp;);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{BluetoothRemoteGATTCharacteristic}&nbsp;characteristic&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{ArrayBuffer}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;DataView&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;writeValue$(characteristic:&nbsp;BluetoothRemoteGATTCharacteristic,&nbsp;value:&nbsp;ArrayBuffer|Uint8Array):&nbsp;Observable&lt;{}&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#x27;[BLE::Info]&nbsp;Writing&nbsp;Characteristic&nbsp;%o&#x27;,&nbsp;characteristic);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.toObservable(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characteristic.writeValue(value)<br>&nbsp;&nbsp;&nbsp;&nbsp;);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;A&nbsp;helper&nbsp;function&nbsp;that&nbsp;transforms&nbsp;any&nbsp;Promise&nbsp;into&nbsp;an&nbsp;Observable<br>&nbsp;&nbsp;&nbsp;*<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{Promise&lt;any&gt;}&nbsp;&nbsp;&nbsp;&nbsp;promise&nbsp;incoming&nbsp;promise<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;any&gt;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outgoing&nbsp;observable<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;toObservable(promise:&nbsp;Promise&lt;any&gt;):&nbsp;Observable&lt;any&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Observable.fromPromise(promise)<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{DataView}&nbsp;data&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{number}&nbsp;&nbsp;&nbsp;offset&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;littleEndianToUint16(data:&nbsp;any,&nbsp;offset:&nbsp;number):&nbsp;number&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(this.littleEndianToUint8(data,&nbsp;offset&nbsp;+&nbsp;1)&nbsp;&lt;&lt;&nbsp;8)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;this.littleEndianToUint8(data,&nbsp;offset);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{DataView}&nbsp;data&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;{number}&nbsp;&nbsp;&nbsp;offset&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;littleEndianToUint8(data:&nbsp;any,&nbsp;offset:&nbsp;number):&nbsp;number&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;data.getUint8(offset);<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;*&nbsp;Sends&nbsp;random&nbsp;data&nbsp;(for&nbsp;testing&nbsp;purpose&nbsp;only).<br>&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;{Observable&lt;number&gt;}<br>&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;fakeNext(fakeValue?:&nbsp;Function)&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;if(fakeValue&nbsp;&#x3D;&#x3D;&#x3D;&nbsp;undefined)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fakeValue&nbsp;&#x3D;&nbsp;()&nbsp;&#x3D;&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;dv&nbsp;&#x3D;&nbsp;new&nbsp;DataView(new&nbsp;ArrayBuffer(8));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dv.setUint8(0,&nbsp;(Math.random()*110)|0);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;dv;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;this._characteristicValueChanges$.emit(&nbsp;fakeValue()&nbsp;);<br>&nbsp;&nbsp;}<br><br>}<br></code></pre>
+                            </div>
+                        </div>
+
+
+
+
+
+                   </div>
+                   <div class="search-results">
+                       <div class="has-results">
+                           <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+                           <ul class="search-results-list"></ul>
+                       </div>
+                       <div class="no-results">
+                           <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/search/search.js"></script>
+       <script src="./js/search/lunr.min.js"></script>
+       <script src="./js/search/search-lunr.js"></script>
+
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/highlight.pack.js"></script>
+       <script src="./js/libs/highlightjs-line-numbers.min.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
+
+    </body>
+</html>
