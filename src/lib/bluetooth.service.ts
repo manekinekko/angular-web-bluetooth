@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -66,7 +66,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * @return {Observable<DataView>}
    */
   streamValues$(): Observable<DataView> {
-    return this._characteristicValueChanges$.skip(2);
+    return this._characteristicValueChanges$.filter(value => value && value.byteLength > 0);
   }
 
 
