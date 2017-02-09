@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -43,7 +43,7 @@ export var BluetoothCore = (function (_super) {
      * @return {Observable<DataView>}
      */
     BluetoothCore.prototype.streamValues$ = function () {
-        return this._characteristicValueChanges$.skip(2);
+        return this._characteristicValueChanges$.filter(function (value) { return value && value.byteLength > 0; });
     };
     BluetoothCore.prototype.anyDeviceFilter = function () {
         // This is the closest we can get for now to get all devices.

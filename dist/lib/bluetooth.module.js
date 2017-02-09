@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BluetoothCore } from './bluetooth.service';
 import { BrowserWebBluetooth } from './platform/browser';
+export function browserWebBluetooth() {
+    return new BrowserWebBluetooth();
+}
+;
 export var WebBluetoothModule = (function () {
     function WebBluetoothModule() {
     }
@@ -12,10 +16,7 @@ export var WebBluetoothModule = (function () {
                 BluetoothCore,
                 {
                     provide: BrowserWebBluetooth,
-                    useFactory: function () {
-                        /** @TODO provide a server implementation */
-                        return new BrowserWebBluetooth();
-                    }
+                    useFactory: browserWebBluetooth
                 },
             ]
         };
