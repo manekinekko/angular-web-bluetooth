@@ -1,12 +1,14 @@
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/takeUntil';
 import { BrowserWebBluetooth } from './platform/browser';
 import { RequestDeviceOptions, BluetoothRemoteGATTServer, BluetoothRemoteGATTService, BluetoothRemoteGATTCharacteristic, BluetoothDevice, BluetoothServiceUUID, BluetoothCharacteristicUUID } from './lang/types';
 export declare class BluetoothCore extends ReplaySubject<any> {
@@ -36,9 +38,9 @@ export declare class BluetoothCore extends ReplaySubject<any> {
      * Run the discovery process.
      *
      * @param  {RequestDeviceOptions} Options such as filters and optional services
-     * @return {Promise<number>} Emites the value of the requested service read from the device
+     * @return {Promise<BluetoothRemoteGATTServer>} The GATT server for the chosen device
      */
-    discover(options?: RequestDeviceOptions): Promise<void | BluetoothDevice>;
+    discover(options?: RequestDeviceOptions): Promise<BluetoothRemoteGATTServer>;
     /**
      * @param  {Event}  event [description]
      */
@@ -47,9 +49,9 @@ export declare class BluetoothCore extends ReplaySubject<any> {
      * Run the discovery process.
      *
      * @param  {RequestDeviceOptions} Options such as filters and optional services
-     * @return {Observable<number>} Emites the value of the requested service read from the device
+     * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
      */
-    discover$(options?: RequestDeviceOptions): Observable<{}>;
+    discover$(options?: RequestDeviceOptions): Observable<BluetoothRemoteGATTServer>;
     /**
      * Connect to current device.
      *
@@ -113,6 +115,11 @@ export declare class BluetoothCore extends ReplaySubject<any> {
      * @return {Observable<DataView>}
      */
     writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer | Uint8Array): Observable<{}>;
+    /**
+     * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe
+     * @return {Observable<DataView>}
+     */
+    observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView>;
     /**
      * A helper function that transforms any Promise into an Observable
      *

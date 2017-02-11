@@ -6,12 +6,14 @@ var __extends = (this && this.__extends) || function (d, b) {
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/takeUntil';
 import { BrowserWebBluetooth } from './platform/browser';
 /**
  * Number of last emitted values to reply
@@ -59,7 +61,7 @@ export var BluetoothCore = (function (_super) {
      * Run the discovery process.
      *
      * @param  {RequestDeviceOptions} Options such as filters and optional services
-     * @return {Promise<number>} Emites the value of the requested service read from the device
+     * @return {Promise<BluetoothRemoteGATTServer>} The GATT server for the chosen device
      */
     BluetoothCore.prototype.discover = function (options) {
         var _this = this;
@@ -93,7 +95,7 @@ export var BluetoothCore = (function (_super) {
      * Run the discovery process.
      *
      * @param  {RequestDeviceOptions} Options such as filters and optional services
-     * @return {Observable<number>} Emites the value of the requested service read from the device
+     * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
      */
     BluetoothCore.prototype.discover$ = function (options) {
         var _this = this;
@@ -242,6 +244,17 @@ export var BluetoothCore = (function (_super) {
     BluetoothCore.prototype.writeValue$ = function (characteristic, value) {
         console.log('[BLE::Info] Writing Characteristic %o', characteristic);
         return this.toObservable(characteristic.writeValue(value));
+    };
+    /**
+     * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe
+     * @return {Observable<DataView>}
+     */
+    BluetoothCore.prototype.observeValue$ = function (characteristic) {
+        characteristic.startNotifications();
+        var disconnected = Observable.fromEvent(characteristic.service.device, 'gattserverdisconnected');
+        return Observable.fromEvent(characteristic, 'characteristicvaluechanged')
+            .takeUntil(disconnected)
+            .map(function (event) { return event.target.value; });
     };
     /**
      * A helper function that transforms any Promise into an Observable
