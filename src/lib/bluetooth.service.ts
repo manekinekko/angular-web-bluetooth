@@ -1,12 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/takeUntil';
 
 import { BrowserWebBluetooth } from './platform/browser';
 
@@ -331,6 +333,18 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     return this.toObservable(
       characteristic.writeValue(value)
     );
+  }
+
+  /**
+   * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe
+   * @return {Observable<DataView>}
+   */
+  observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
+    characteristic.startNotifications();
+    const disconnected = Observable.fromEvent(characteristic.service.device as any, 'gattserverdisconnected');
+    return Observable.fromEvent(characteristic as any, 'characteristicvaluechanged')
+      .takeUntil(disconnected)
+      .map(event => (event as any).target.value as DataView);
   }
 
   /**
