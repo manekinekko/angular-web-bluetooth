@@ -88,9 +88,9 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * Run the discovery process.
    *
    * @param  {RequestDeviceOptions} Options such as filters and optional services
-   * @return {Promise<number>} Emites the value of the requested service read from the device
+   * @return {Promise<BluetoothRemoteGATTServer>} The GATT server for the chosen device
    */
-  discover(options: RequestDeviceOptions = <RequestDeviceOptions>{}) {
+  discover(options: RequestDeviceOptions = <RequestDeviceOptions>{}): Promise<BluetoothRemoteGATTServer> {
 
     options.filters = options.filters || this.anyDeviceFilter();
     options.optionalServices = options.optionalServices || ['generic_access'];
@@ -134,9 +134,9 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * Run the discovery process.
    *
    * @param  {RequestDeviceOptions} Options such as filters and optional services
-   * @return {Observable<number>} Emites the value of the requested service read from the device
+   * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
    */
-  discover$(options?: RequestDeviceOptions) {
+  discover$(options?: RequestDeviceOptions): Observable<BluetoothRemoteGATTServer> {
     return this.toObservable(
       this.discover(options)
     )
