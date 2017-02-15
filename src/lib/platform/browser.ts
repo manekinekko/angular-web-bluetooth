@@ -6,13 +6,13 @@ export class BrowserWebBluetooth {
   private _ble;
 
   constructor() {
-    this._ble = (<ExtendedNavigator>navigator).bluetooth;
+    this._ble = navigator.bluetooth;
     if( !this._ble ) {
       throw ('Your browser does not support Smart Bluetooth. See http://caniuse.com/#search=Bluetooth for more details.')
     }
   }
 
-  requestDevice(options:any): Promise<any> {
+  requestDevice(options: RequestDeviceOptions): Promise<BluetoothDevice> {
     return this._ble.requestDevice(options);
   }
 
