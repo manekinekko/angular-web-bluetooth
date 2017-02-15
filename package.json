@@ -9,7 +9,9 @@
   "engines": {
     "node": ">= 5.4.1"
   },
-  "contributors": [],
+  "contributors": [
+    "Uri Shaked (https://github.com/urish)"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
@@ -49,10 +51,11 @@
     "sensortag"
   ],
   "dependencies": {
-    "@angular/common": "^2.4.1",
-    "@angular/compiler": "^2.4.1",
-    "@angular/core": "^2.4.1",
-    "@angular/platform-browser": "^2.4.1",
+    "@angular/common": "^2.4.7",
+    "@angular/compiler": "^2.4.7",
+    "@angular/core": "^2.4.7",
+    "@angular/platform-browser": "^2.4.7",
+    "@types/web-bluetooth": "^0.0.1",
     "core-js": "2.4.1",
     "rimraf": "^2.5.4",
     "rxjs": "^5.0.2",
@@ -60,8 +63,8 @@
     "zone.js": "^0.7.4"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.4.1",
-    "@angular/platform-server": "^2.4.1",
+    "@angular/compiler-cli": "^2.4.7",
+    "@angular/platform-server": "^2.4.7",
     "@types/jasmine": "2.2.30",
     "@types/node": "6.0.54",
     "compodoc": "^0.0.26"

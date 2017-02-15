@@ -12,17 +12,6 @@ import 'rxjs/add/operator/takeUntil';
 
 import { BrowserWebBluetooth } from './platform/browser';
 
-import {
-  RequestDeviceOptions,
-  BluetoothRemoteGATTServer,
-  BluetoothRemoteGATTService,
-  BluetoothRemoteGATTCharacteristic,
-  BluetoothGATTCharacteristic,
-  BluetoothDevice,
-  BluetoothServiceUUID,
-  BluetoothCharacteristicUUID
-}  from './lang/types';
-
 /**
  * Number of last emitted values to reply
  */
@@ -90,34 +79,29 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * Run the discovery process.
    *
    * @param  {RequestDeviceOptions} Options such as filters and optional services
-   * @return {Promise<BluetoothRemoteGATTServer>} The GATT server for the chosen device
+   * @return {Promise<BluetoothDevice>} The GATT server for the chosen device
    */
-  discover(options: RequestDeviceOptions = <RequestDeviceOptions>{}): Promise<BluetoothRemoteGATTServer> {
+  discover(options: RequestDeviceOptions = <RequestDeviceOptions>{}) {
 
     options.filters = options.filters || this.anyDeviceFilter();
-    options.optionalServices = options.optionalServices || ['generic_access'];
+    // TODO: remove typecast below once web-bluetooth typings allow for strings in optionalServices
+    options.optionalServices = (options.optionalServices || ['generic_access']) as number[];
 
     console.log('[BLE::Info] Requesting devices with options %o', options);
 
     return this._webBle.requestDevice(options)
       .then( (device: BluetoothDevice) => {
 
-        if (device) {
-
-          if (device.ongattserverdisconnected) {
-            (<any>device).addEventListener('gattserverdisconnected', this.onDeviceDisconnected.bind(this));
-          }
-
-          this._device$.emit(device);
-
-          return device;
+        if (device.ongattserverdisconnected) {
+          device.addEventListener('gattserverdisconnected', this.onDeviceDisconnected.bind(this));
         }
 
-        this._device$.emit(null);
+        this._device$.emit(device);
 
+        return device;
       })
       .catch( (e) => console.error('[BLE::Error] discover: %o', e) );
-      /** @TODO handl user cancel */
+      /** @TODO handle user cancel */
   }
 
   /**
@@ -125,7 +109,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    */
   onDeviceDisconnected(event: Event) {
 
-    let disconnectedDevice: BluetoothDevice = <BluetoothDevice>(<any>event).target;
+    let disconnectedDevice = event.target as BluetoothDevice;
     console.log('[BLE::Info] disconnected device %o', disconnectedDevice);
 
     this._device$.emit(null);
@@ -139,7 +123,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
    */
   discover$(options?: RequestDeviceOptions): Observable<BluetoothRemoteGATTServer> {
-    return this.toObservable(
+    return Observable.fromPromise(
       this.discover(options)
     )
     .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device))
@@ -152,7 +136,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   /**
    * Connect to current device.
    *
-   * @return {Promise<any>} Emites the gatt server instance of the requested device
+   * @return {Promise<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
    */
   connectDevice(device: BluetoothDevice) {
     if(device) {
@@ -179,10 +163,10 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   /**
    * Connect to current device.
    *
-   * @return {Observable<any>} Emites the gatt server instance of the requested device
+   * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
    */
   connectDevice$(device: BluetoothDevice) {
-    return this.toObservable(
+    return Observable.fromPromise(
       this.connectDevice(device)
     );
   }
@@ -194,7 +178,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    */
   getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
     console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
-    return this.toObservable(
+    return Observable.fromPromise(
       gatt.getPrimaryService(service)
         .catch( (e) => console.error('[BLE::Error] getPrimaryService$ %o (%s)', e, service) )
     );
@@ -209,7 +193,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
 
     let characteristicPromise = primaryService.getCharacteristic(characteristic)
-      .then( (char: BluetoothGATTCharacteristic) => {
+      .then(char => {
 
         // listen for characteristic value changes
         if(char.properties.notify) {
@@ -231,7 +215,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
       })
       .catch( (e) => console.error('[BLE::Error] getCharacteristic$ %o', e) );
 
-    return this.toObservable(characteristicPromise);
+    return Observable.fromPromise(characteristicPromise);
   }
 
   /**
@@ -244,7 +228,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     service: BluetoothServiceUUID,
     characteristic: BluetoothCharacteristicUUID,
     state: ArrayBuffer
-  ): Observable<BluetoothRemoteGATTService> {
+  ) {
     let primaryService = this.getPrimaryService$(this._gattServer, service);
 
     primaryService
@@ -263,7 +247,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     service: BluetoothServiceUUID,
     characteristic: BluetoothCharacteristicUUID,
     state?: any
-  ): Observable<BluetoothRemoteGATTService> {
+  ) {
     state = state || new Uint8Array([ 1 ]);
     return this.setCharacteristicState(service, characteristic, state);
   }
@@ -277,7 +261,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     service: BluetoothServiceUUID,
     characteristic: BluetoothCharacteristicUUID,
     state?: any
-  ): Observable<BluetoothRemoteGATTService> {
+  ) {
     state = state || new Uint8Array([ 0 ]);
     return this.setCharacteristicState(service, characteristic, state);
   }
@@ -295,10 +279,10 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   /**
    * @param  {Event} event [description]
    */
-  onCharacteristicChanged(event) {
+  onCharacteristicChanged(event: Event) {
     console.log('[BLE::Info] Dispatching new characteristic value %o', event);
 
-    let value = (<any>event).target.value;
+    let value = (event.target as BluetoothRemoteGATTCharacteristic).value;
     this._characteristicValueChanges$.emit(value);
   }
 
@@ -309,15 +293,8 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   readValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
     console.log('[BLE::Info] Reading Characteristic %o', characteristic);
 
-    return this.toObservable(
+    return Observable.fromPromise(
       characteristic.readValue()
-      .then(
-        (value: any) => {
-      //     // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
-      //     value = value.buffer ? value : new DataView(value);
-          return value;
-        }
-      )
       .catch( (e) => console.error('[BLE::Error] readValue$ %o', e) )
     );
   }
@@ -327,10 +304,10 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    * @param  {ArrayBuffer}                       value          [description]
    * @return {Observable<DataView>}
    */
-  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer|Uint8Array): Observable<{}> {
+  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer|Uint8Array) {
     console.log('[BLE::Info] Writing Characteristic %o', characteristic);
 
-    return this.toObservable(
+    return Observable.fromPromise(
       characteristic.writeValue(value)
     );
   }
@@ -341,20 +318,10 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
    */
   observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
     characteristic.startNotifications();
-    const disconnected = Observable.fromEvent(characteristic.service.device as any, 'gattserverdisconnected');
+    const disconnected = Observable.fromEvent(characteristic.service.device, 'gattserverdisconnected');
     return Observable.fromEvent(characteristic as any, 'characteristicvaluechanged')
       .takeUntil(disconnected)
-      .map(event => (event as any).target.value as DataView);
-  }
-
-  /**
-   * A helper function that transforms any Promise into an Observable
-   *
-   * @param  {Promise<any>}    promise incoming promise
-   * @return {Observable<any>}         outgoing observable
-   */
-  toObservable(promise: Promise<any>): Observable<any> {
-    return Observable.fromPromise(promise)
+      .map((event: Event) => (event.target as BluetoothRemoteGATTCharacteristic).value as DataView);
   }
 
   /**
