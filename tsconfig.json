@@ -15,7 +15,8 @@
         "skipLibCheck": true,
         "typeRoots": ["./node_modules/@types"],
         "types": [
-            "node"
+            "node",
+            "web-bluetooth"
         ],
         "lib": [
             "dom",
