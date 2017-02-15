@@ -1,7 +1,21 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -19,15 +33,16 @@ import { BrowserWebBluetooth } from './platform/browser';
  * Number of last emitted values to reply
  */
 var kBufferSize = 1;
-export var BluetoothCore = (function (_super) {
+var BluetoothCore = (function (_super) {
     __extends(BluetoothCore, _super);
     function BluetoothCore(_webBle) {
-        _super.call(this, kBufferSize);
-        this._webBle = _webBle;
-        this._device$ = new EventEmitter();
-        this._gatt$ = new EventEmitter();
-        this._characteristicValueChanges$ = new EventEmitter();
-        this._gattServer = null;
+        var _this = _super.call(this, kBufferSize) || this;
+        _this._webBle = _webBle;
+        _this._device$ = new EventEmitter();
+        _this._gatt$ = new EventEmitter();
+        _this._characteristicValueChanges$ = new EventEmitter();
+        _this._gattServer = null;
+        return _this;
     }
     /**
      * @return {Observable<BluetoothDevice>}
@@ -61,27 +76,25 @@ export var BluetoothCore = (function (_super) {
      * Run the discovery process.
      *
      * @param  {RequestDeviceOptions} Options such as filters and optional services
-     * @return {Promise<BluetoothRemoteGATTServer>} The GATT server for the chosen device
+     * @return {Promise<BluetoothDevice>} The GATT server for the chosen device
      */
     BluetoothCore.prototype.discover = function (options) {
         var _this = this;
         if (options === void 0) { options = {}; }
         options.filters = options.filters || this.anyDeviceFilter();
-        options.optionalServices = options.optionalServices || ['generic_access'];
+        // TODO: remove typecast below once web-bluetooth typings allow for strings in optionalServices
+        options.optionalServices = (options.optionalServices || ['generic_access']);
         console.log('[BLE::Info] Requesting devices with options %o', options);
         return this._webBle.requestDevice(options)
             .then(function (device) {
-            if (device) {
-                if (device.ongattserverdisconnected) {
-                    device.addEventListener('gattserverdisconnected', _this.onDeviceDisconnected.bind(_this));
-                }
-                _this._device$.emit(device);
-                return device;
+            if (device.ongattserverdisconnected) {
+                device.addEventListener('gattserverdisconnected', _this.onDeviceDisconnected.bind(_this));
             }
-            _this._device$.emit(null);
+            _this._device$.emit(device);
+            return device;
         })
             .catch(function (e) { return console.error('[BLE::Error] discover: %o', e); });
-        /** @TODO handl user cancel */
+        /** @TODO handle user cancel */
     };
     /**
      * @param  {Event}  event [description]
@@ -99,7 +112,7 @@ export var BluetoothCore = (function (_super) {
      */
     BluetoothCore.prototype.discover$ = function (options) {
         var _this = this;
-        return this.toObservable(this.discover(options))
+        return Observable.fromPromise(this.discover(options))
             .mergeMap(function (device) { return _this.connectDevice$(device); })
             .catch(function (e) {
             console.error('[BLE::Error] discover$: %o', e);
@@ -109,7 +122,7 @@ export var BluetoothCore = (function (_super) {
     /**
      * Connect to current device.
      *
-     * @return {Promise<any>} Emites the gatt server instance of the requested device
+     * @return {Promise<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
     BluetoothCore.prototype.connectDevice = function (device) {
         var _this = this;
@@ -131,10 +144,10 @@ export var BluetoothCore = (function (_super) {
     /**
      * Connect to current device.
      *
-     * @return {Observable<any>} Emites the gatt server instance of the requested device
+     * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
     BluetoothCore.prototype.connectDevice$ = function (device) {
-        return this.toObservable(this.connectDevice(device));
+        return Observable.fromPromise(this.connectDevice(device));
     };
     /**
      * @param  {BluetoothRemoteGATTServer}              gatt
@@ -143,7 +156,7 @@ export var BluetoothCore = (function (_super) {
      */
     BluetoothCore.prototype.getPrimaryService$ = function (gatt, service) {
         console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
-        return this.toObservable(gatt.getPrimaryService(service)
+        return Observable.fromPromise(gatt.getPrimaryService(service)
             .catch(function (e) { return console.error('[BLE::Error] getPrimaryService$ %o (%s)', e, service); }));
     };
     /**
@@ -171,7 +184,7 @@ export var BluetoothCore = (function (_super) {
             return char;
         })
             .catch(function (e) { return console.error('[BLE::Error] getCharacteristic$ %o', e); });
-        return this.toObservable(characteristicPromise);
+        return Observable.fromPromise(characteristicPromise);
     };
     /**
      * @param  {BluetoothServiceUUID}                   service        [description]
@@ -228,12 +241,7 @@ export var BluetoothCore = (function (_super) {
      */
     BluetoothCore.prototype.readValue$ = function (characteristic) {
         console.log('[BLE::Info] Reading Characteristic %o', characteristic);
-        return this.toObservable(characteristic.readValue()
-            .then(function (value) {
-            //     // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
-            //     value = value.buffer ? value : new DataView(value);
-            return value;
-        })
+        return Observable.fromPromise(characteristic.readValue()
             .catch(function (e) { return console.error('[BLE::Error] readValue$ %o', e); }));
     };
     /**
@@ -243,7 +251,7 @@ export var BluetoothCore = (function (_super) {
      */
     BluetoothCore.prototype.writeValue$ = function (characteristic, value) {
         console.log('[BLE::Info] Writing Characteristic %o', characteristic);
-        return this.toObservable(characteristic.writeValue(value));
+        return Observable.fromPromise(characteristic.writeValue(value));
     };
     /**
      * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe
@@ -255,15 +263,6 @@ export var BluetoothCore = (function (_super) {
         return Observable.fromEvent(characteristic, 'characteristicvaluechanged')
             .takeUntil(disconnected)
             .map(function (event) { return event.target.value; });
-    };
-    /**
-     * A helper function that transforms any Promise into an Observable
-     *
-     * @param  {Promise<any>}    promise incoming promise
-     * @return {Observable<any>}         outgoing observable
-     */
-    BluetoothCore.prototype.toObservable = function (promise) {
-        return Observable.fromPromise(promise);
     };
     /**
      * @param  {DataView} data   [description]
@@ -296,13 +295,11 @@ export var BluetoothCore = (function (_super) {
         }
         this._characteristicValueChanges$.emit(fakeValue());
     };
-    BluetoothCore.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    BluetoothCore.ctorParameters = function () { return [
-        { type: BrowserWebBluetooth, },
-    ]; };
     return BluetoothCore;
 }(ReplaySubject));
+BluetoothCore = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [BrowserWebBluetooth])
+], BluetoothCore);
+export { BluetoothCore };
 //# sourceMappingURL=/Users/wassimchegham/Sandbox/oss/angular-web-bluetooth/lib/bluetooth.service.js.map
