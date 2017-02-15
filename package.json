@@ -10,7 +10,7 @@
     "node": ">= 5.4.1"
   },
   "contributors": [
-    "Uri Shaked (https://github.com/urish)"
+    "urish"
   ],
   "repository": {
     "type": "git",
