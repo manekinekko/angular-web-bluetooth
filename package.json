@@ -9,7 +9,9 @@
   "engines": {
     "node": ">= 5.4.1"
   },
-  "contributors": [],
+  "contributors": [
+    "Uri Shaked (https://github.com/urish)"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
