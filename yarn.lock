@@ -46,9 +46,9 @@
   version "6.0.54"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.54.tgz#65859962ba988052cbdd5c48881395acfdd46931"
 
-"@types/web-bluetooth@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.1.tgz#60decc5f599bda4707086c8b90f3625265485c7c"
+"@types/web-bluetooth@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.2.tgz#5cf081c320323543712c49c49ed520bf65eead1a"
 
 abbrev@1:
   version "1.1.0"
