@@ -55,7 +55,7 @@
     "@angular/compiler": "^2.4.7",
     "@angular/core": "^2.4.7",
     "@angular/platform-browser": "^2.4.7",
-    "@types/web-bluetooth": "^0.0.1",
+    "@types/web-bluetooth": "^0.0.2",
     "core-js": "2.4.1",
     "rimraf": "^2.5.4",
     "rxjs": "^5.0.2",

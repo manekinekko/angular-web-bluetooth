@@ -84,8 +84,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   discover(options: RequestDeviceOptions = <RequestDeviceOptions>{}) {
 
     options.filters = options.filters || this.anyDeviceFilter();
-    // TODO: remove typecast below once web-bluetooth typings allow for strings in optionalServices
-    options.optionalServices = (options.optionalServices || ['generic_access']) as number[];
+    options.optionalServices = options.optionalServices || ['generic_access'];
 
     console.log('[BLE::Info] Requesting devices with options %o', options);
 
@@ -200,14 +199,14 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
 
           char.startNotifications().then( _ =>  {
             console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
-            return (<any>char).addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
+            return char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
           }, error => {
             console.error('[BLE::Error] Cannot start notification of "%s" %o', characteristic, error);
           });
 
         }
         else {
-          (<any>char).addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
+          char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
         }
 
         return char;
@@ -319,7 +318,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
   observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
     characteristic.startNotifications();
     const disconnected = Observable.fromEvent(characteristic.service.device, 'gattserverdisconnected');
-    return Observable.fromEvent(characteristic as any, 'characteristicvaluechanged')
+    return Observable.fromEvent(characteristic, 'characteristicvaluechanged')
       .takeUntil(disconnected)
       .map((event: Event) => (event.target as BluetoothRemoteGATTCharacteristic).value as DataView);
   }

@@ -82,7 +82,7 @@ export class BatteryLevelService {
         return this.ble
 
           // 1) call the discover method will trigger the discovery process (by the browser)
-          .discover$({ filters: [], optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE] as any })
+          .discover$({ filters: [], optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE] })
           // 2) get that service
           .mergeMap(gatt => this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE))
           // 3) get a specific characteristic on that service
