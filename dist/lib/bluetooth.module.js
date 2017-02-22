@@ -8,14 +8,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BluetoothCore } from './bluetooth.service';
 import { BrowserWebBluetooth } from './platform/browser';
+import { ConsoleLoggerService, NoLoggerService } from './logger.service';
 export function browserWebBluetooth() {
     return new BrowserWebBluetooth();
 }
 ;
+export function consoleLoggerService(options) {
+    return function () {
+        if (options.enableTracing) {
+            return new ConsoleLoggerService();
+        }
+        else {
+            return new NoLoggerService();
+        }
+    };
+}
 var WebBluetoothModule = WebBluetoothModule_1 = (function () {
     function WebBluetoothModule() {
     }
-    WebBluetoothModule.forRoot = function () {
+    WebBluetoothModule.forRoot = function (options) {
         return {
             ngModule: WebBluetoothModule_1,
             providers: [
@@ -24,6 +35,10 @@ var WebBluetoothModule = WebBluetoothModule_1 = (function () {
                     provide: BrowserWebBluetooth,
                     useFactory: browserWebBluetooth
                 },
+                {
+                    provide: ConsoleLoggerService,
+                    useFactory: consoleLoggerService(options)
+                }
             ]
         };
     };

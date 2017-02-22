@@ -11,13 +11,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/takeUntil';
 import { BrowserWebBluetooth } from './platform/browser';
+import { ConsoleLoggerService } from './logger.service';
 export declare class BluetoothCore extends ReplaySubject<any> {
     _webBle: BrowserWebBluetooth;
+    _console: ConsoleLoggerService;
     _device$: EventEmitter<BluetoothDevice>;
     _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
     _characteristicValueChanges$: EventEmitter<DataView>;
     _gattServer: BluetoothRemoteGATTServer;
-    constructor(_webBle: BrowserWebBluetooth);
+    constructor(_webBle: BrowserWebBluetooth, _console: ConsoleLoggerService);
     /**
      * @return {Observable<BluetoothDevice>}
      */
