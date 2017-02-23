@@ -22,14 +22,14 @@ export function consoleLoggerService(options: Options) {
 }
 
 export interface Options {
-  enableTracing: boolean;
+  enableTracing?: boolean;
 }
 
 @NgModule({
   imports: [CommonModule]
 })
 export class WebBluetoothModule {
-    static forRoot(options: Options): ModuleWithProviders {
+    static forRoot(options: Options = {}): ModuleWithProviders {
     return {
       ngModule: WebBluetoothModule,
       providers: [
