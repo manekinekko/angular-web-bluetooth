@@ -119,10 +119,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     return Observable.fromPromise(
       this.discover(options)
     )
-    .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device))
-    .catch( (e) => {
-      return Observable.throw(new Error('[BLE::Error] discover: %o'));
-    });
+    .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device));
   }
 
   /**
@@ -142,8 +139,12 @@ export class BluetoothCore extends Subject<BluetoothCore> {
          this._gatt$.emit(gattServer);
 
          return gattServer;
-       })
-       .catch( (e) => this._console.error('[BLE::Error] connectDevice %o', e) );
+         
+       }, error => {
+          // probably the user has canceled the discovery
+          return Promise.reject(null);
+      });
+
      }
      else {
        this._console.log('[BLE::Error] Was not able to connect to GATT Server');

@@ -60,13 +60,13 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
      *
      * @return {Promise<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
-    connectDevice(device: BluetoothDevice): Promise<void | BluetoothRemoteGATTServer>;
+    connectDevice(device: BluetoothDevice): Promise<BluetoothRemoteGATTServer>;
     /**
      * Connect to current device.
      *
      * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
-    connectDevice$(device: BluetoothDevice): Observable<void | BluetoothRemoteGATTServer>;
+    connectDevice$(device: BluetoothDevice): Observable<BluetoothRemoteGATTServer>;
     /**
      * @param  {BluetoothRemoteGATTServer}              gatt
      * @param  {BluetoothServiceUUID}                   service

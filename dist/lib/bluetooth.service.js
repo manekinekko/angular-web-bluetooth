@@ -109,10 +109,7 @@ var BluetoothCore = (function (_super) {
     BluetoothCore.prototype.discover$ = function (options) {
         var _this = this;
         return Observable.fromPromise(this.discover(options))
-            .mergeMap(function (device) { return _this.connectDevice$(device); })
-            .catch(function (e) {
-            return Observable.throw(new Error('[BLE::Error] discover: %o'));
-        });
+            .mergeMap(function (device) { return _this.connectDevice$(device); });
     };
     /**
      * Connect to current device.
@@ -128,8 +125,10 @@ var BluetoothCore = (function (_super) {
                 _this._gattServer = gattServer;
                 _this._gatt$.emit(gattServer);
                 return gattServer;
-            })
-                .catch(function (e) { return _this._console.error('[BLE::Error] connectDevice %o', e); });
+            }, function (error) {
+                // probably the user has canceled the discovery
+                return Promise.reject(null);
+            });
         }
         else {
             this._console.log('[BLE::Error] Was not able to connect to GATT Server');
