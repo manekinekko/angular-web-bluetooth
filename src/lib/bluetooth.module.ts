@@ -6,13 +6,13 @@ import { BrowserWebBluetooth }   from './platform/browser';
 
 import { ConsoleLoggerService, NoLoggerService } from './logger.service';
 
-export function browserWebBluetooth() {
-  return new BrowserWebBluetooth()
-};
-
 export interface AWBOptions {
   enableTracing?: boolean;
 }
+
+export function browserWebBluetooth() {
+  return new BrowserWebBluetooth()
+};
 
 export function consoleLoggerServiceConfig(options: AWBOptions) {
   if (options && options.enableTracing) {
