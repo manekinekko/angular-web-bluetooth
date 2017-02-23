@@ -10,17 +10,6 @@ export function browserWebBluetooth() {
   return new BrowserWebBluetooth()
 };
 
-export function consoleLoggerService(options: Options) {
-  return function () {
-    if (options.enableTracing) {
-      return new ConsoleLoggerService();
-    }
-    else {
-      return new NoLoggerService();
-    }
-  }
-}
-
 export interface Options {
   enableTracing?: boolean;
 }
@@ -30,6 +19,16 @@ export interface Options {
 })
 export class WebBluetoothModule {
     static forRoot(options: Options = {}): ModuleWithProviders {
+
+     function consoleLoggerServiceConfig() {
+      if (options.enableTracing) {
+        return new ConsoleLoggerService();
+      }
+      else {
+        return new NoLoggerService();
+      }
+    }
+
     return {
       ngModule: WebBluetoothModule,
       providers: [
@@ -40,7 +39,7 @@ export class WebBluetoothModule {
         },
         {
           provide: ConsoleLoggerService,
-          useFactory: consoleLoggerService(options)
+          useFactory: consoleLoggerServiceConfig
         }
       ]
     };

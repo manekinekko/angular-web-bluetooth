@@ -19,7 +19,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
@@ -28,16 +28,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/observable/throw';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
-/**
- * Number of last emitted values to reply
- */
-var kBufferSize = 1;
 var BluetoothCore = (function (_super) {
     __extends(BluetoothCore, _super);
     function BluetoothCore(_webBle, _console) {
-        var _this = _super.call(this, kBufferSize) || this;
+        var _this = _super.call(this) || this;
         _this._webBle = _webBle;
         _this._console = _console;
         _this._device$ = new EventEmitter();
@@ -93,9 +90,7 @@ var BluetoothCore = (function (_super) {
             }
             _this._device$.emit(device);
             return device;
-        })
-            .catch(function (e) { return _this._console.error('[BLE::Error] discover: %o', e); });
-        /** @TODO handle user cancel */
+        });
     };
     /**
      * @param  {Event}  event [description]
@@ -116,8 +111,7 @@ var BluetoothCore = (function (_super) {
         return Observable.fromPromise(this.discover(options))
             .mergeMap(function (device) { return _this.connectDevice$(device); })
             .catch(function (e) {
-            _this._console.error('[BLE::Error] discover$: %o', e);
-            return Observable.create(e);
+            return Observable.throw(new Error('[BLE::Error] discover: %o'));
         });
     };
     /**
@@ -299,7 +293,7 @@ var BluetoothCore = (function (_super) {
         this._characteristicValueChanges$.emit(fakeValue());
     };
     return BluetoothCore;
-}(ReplaySubject));
+}(Subject));
 BluetoothCore = __decorate([
     Injectable(),
     __metadata("design:paramtypes", [BrowserWebBluetooth,

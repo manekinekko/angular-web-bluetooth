@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
@@ -9,29 +9,24 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/observable/throw';
 
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
-/**
- * Number of last emitted values to reply
- */
-const kBufferSize = 1; 
-
 
 @Injectable()
-export class BluetoothCore extends ReplaySubject<any /* find a better interface type */> {
+export class BluetoothCore extends Subject<BluetoothCore> {
 
   public _device$: EventEmitter<BluetoothDevice>;
   public _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
   public _characteristicValueChanges$: EventEmitter<DataView>;
-
   public _gattServer: BluetoothRemoteGATTServer;
 
   constructor(
     public _webBle: BrowserWebBluetooth,
     public _console: ConsoleLoggerService
   ) {
-    super(kBufferSize);
+    super();
 
     this._device$ = new EventEmitter<BluetoothDevice>();
     this._gatt$ = new EventEmitter<BluetoothRemoteGATTServer>();
@@ -99,9 +94,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
         this._device$.emit(device);
 
         return device;
-      })
-      .catch( (e) => this._console.error('[BLE::Error] discover: %o', e) );
-      /** @TODO handle user cancel */
+      });
   }
 
   /**
@@ -128,8 +121,7 @@ export class BluetoothCore extends ReplaySubject<any /* find a better interface 
     )
     .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device))
     .catch( (e) => {
-      this._console.error('[BLE::Error] discover$: %o', e)
-      return Observable.create(e);
+      return Observable.throw(new Error('[BLE::Error] discover: %o'));
     });
   }
 

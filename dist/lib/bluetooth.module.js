@@ -13,20 +13,19 @@ export function browserWebBluetooth() {
     return new BrowserWebBluetooth();
 }
 ;
-export function consoleLoggerService(options) {
-    return function () {
-        if (options.enableTracing) {
-            return new ConsoleLoggerService();
-        }
-        else {
-            return new NoLoggerService();
-        }
-    };
-}
 var WebBluetoothModule = WebBluetoothModule_1 = (function () {
     function WebBluetoothModule() {
     }
     WebBluetoothModule.forRoot = function (options) {
+        if (options === void 0) { options = {}; }
+        function consoleLoggerServiceConfig() {
+            if (options.enableTracing) {
+                return new ConsoleLoggerService();
+            }
+            else {
+                return new NoLoggerService();
+            }
+        }
         return {
             ngModule: WebBluetoothModule_1,
             providers: [
@@ -37,7 +36,7 @@ var WebBluetoothModule = WebBluetoothModule_1 = (function () {
                 },
                 {
                     provide: ConsoleLoggerService,
-                    useFactory: consoleLoggerService(options)
+                    useFactory: consoleLoggerServiceConfig
                 }
             ]
         };

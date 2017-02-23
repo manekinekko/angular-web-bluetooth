@@ -1,7 +1,7 @@
 /// <reference types="web-bluetooth" />
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/merge';
@@ -10,9 +10,10 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/observable/throw';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
-export declare class BluetoothCore extends ReplaySubject<any> {
+export declare class BluetoothCore extends Subject<BluetoothCore> {
     _webBle: BrowserWebBluetooth;
     _console: ConsoleLoggerService;
     _device$: EventEmitter<BluetoothDevice>;
@@ -42,7 +43,7 @@ export declare class BluetoothCore extends ReplaySubject<any> {
      * @param  {RequestDeviceOptions} Options such as filters and optional services
      * @return {Promise<BluetoothDevice>} The GATT server for the chosen device
      */
-    discover(options?: RequestDeviceOptions): Promise<void | BluetoothDevice>;
+    discover(options?: RequestDeviceOptions): Promise<BluetoothDevice>;
     /**
      * @param  {Event}  event [description]
      */
