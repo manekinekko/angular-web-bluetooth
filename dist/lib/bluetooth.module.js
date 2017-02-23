@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { NgModule } from '@angular/core';
+import { NgModule, OpaqueToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BluetoothCore } from './bluetooth.service';
 import { BrowserWebBluetooth } from './platform/browser';
@@ -13,19 +13,22 @@ export function browserWebBluetooth() {
     return new BrowserWebBluetooth();
 }
 ;
+export function consoleLoggerServiceConfig(options) {
+    if (options && options.enableTracing) {
+        return new ConsoleLoggerService();
+    }
+    else {
+        return new NoLoggerService();
+    }
+}
+export function makeMeTokenInjector() {
+    return new OpaqueToken('AWBOptions');
+}
 var WebBluetoothModule = WebBluetoothModule_1 = (function () {
     function WebBluetoothModule() {
     }
     WebBluetoothModule.forRoot = function (options) {
         if (options === void 0) { options = {}; }
-        function consoleLoggerServiceConfig() {
-            if (options.enableTracing) {
-                return new ConsoleLoggerService();
-            }
-            else {
-                return new NoLoggerService();
-            }
-        }
         return {
             ngModule: WebBluetoothModule_1,
             providers: [
@@ -35,8 +38,14 @@ var WebBluetoothModule = WebBluetoothModule_1 = (function () {
                     useFactory: browserWebBluetooth
                 },
                 {
+                    provide: makeMeTokenInjector, useValue: options
+                },
+                {
                     provide: ConsoleLoggerService,
-                    useFactory: consoleLoggerServiceConfig
+                    useFactory: consoleLoggerServiceConfig,
+                    deps: [
+                        makeMeTokenInjector
+                    ]
                 }
             ]
         };

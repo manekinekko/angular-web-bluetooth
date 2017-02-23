@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, OpaqueToken, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BluetoothCore }   from './bluetooth.service';
@@ -10,25 +10,27 @@ export function browserWebBluetooth() {
   return new BrowserWebBluetooth()
 };
 
-export interface Options {
+export interface AWBOptions {
   enableTracing?: boolean;
+}
+
+export function consoleLoggerServiceConfig(options: AWBOptions) {
+  if (options && options.enableTracing) {
+    return new ConsoleLoggerService();
+  }
+  else {
+    return new NoLoggerService();
+  }
+}
+export function makeMeTokenInjector() {
+  return new OpaqueToken('AWBOptions');
 }
 
 @NgModule({
   imports: [CommonModule]
 })
 export class WebBluetoothModule {
-    static forRoot(options: Options = {}): ModuleWithProviders {
-
-     function consoleLoggerServiceConfig() {
-      if (options.enableTracing) {
-        return new ConsoleLoggerService();
-      }
-      else {
-        return new NoLoggerService();
-      }
-    }
-
+    static forRoot(options: AWBOptions = {}): ModuleWithProviders {
     return {
       ngModule: WebBluetoothModule,
       providers: [
@@ -38,8 +40,14 @@ export class WebBluetoothModule {
           useFactory: browserWebBluetooth
         },
         {
+          provide: makeMeTokenInjector, useValue: options
+        },
+        {
           provide: ConsoleLoggerService,
-          useFactory: consoleLoggerServiceConfig
+          useFactory: consoleLoggerServiceConfig,
+          deps: [
+            makeMeTokenInjector
+          ]
         }
       ]
     };
