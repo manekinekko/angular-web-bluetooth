@@ -56,21 +56,6 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     return this._characteristicValueChanges$.filter(value => value && value.byteLength > 0);
   }
 
-
-  anyDeviceFilter() {
-    // This is the closest we can get for now to get all devices.
-    // https://github.com/WebBluetoothCG/web-bluetooth/issues/234
-
-    let filters: {name?: string; namePrefix?: string}[] = [];
-
-    filters = Array
-      .from('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-      .map(c => ({namePrefix: c}));
-    filters.push({name: ''});
-
-    return filters;
-  }
-
   /**
    * Run the discovery process.
    *
@@ -79,7 +64,6 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    */
   discover(options: RequestDeviceOptions = {} as RequestDeviceOptions) {
 
-    options.filters = options.filters || this.anyDeviceFilter();
     options.optionalServices = options.optionalServices || ['generic_access'];
 
     this._console.log('[BLE::Info] Requesting devices with options %o', options);
@@ -140,14 +124,14 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
          return gattServer;
          
-       }, error => {
+       }, (error: DOMException) => {
           // probably the user has canceled the discovery
-          return Promise.reject(null);
+          Promise.reject(`${error.message}`);
       });
 
      }
      else {
-       this._console.log('[BLE::Error] Was not able to connect to GATT Server');
+       this._console.error('[BLE::Error] Was not able to connect to GATT Server');
        this._gatt$.error(null);
      }
 
@@ -171,9 +155,12 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    */
   getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
     this._console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
+
     return Observable.fromPromise(
       gatt.getPrimaryService(service)
-        .catch( (e) => this._console.error('[BLE::Error] getPrimaryService$ %o (%s)', e, service) )
+        .then( 
+          remoteService => Promise.resolve(remoteService), 
+          (error:DOMException) => Promise.reject(`${error.message} (${service})`))
     );
   }
 
@@ -194,8 +181,8 @@ export class BluetoothCore extends Subject<BluetoothCore> {
           char.startNotifications().then( _ =>  {
             this._console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
             return char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
-          }, error => {
-            this._console.error('[BLE::Error] Cannot start notification of "%s" %o', characteristic, error);
+          }, (error: DOMException) => {
+            Promise.reject(`${error.message} (${characteristic})`);
           });
 
         }
@@ -205,8 +192,9 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
         return char;
 
-      })
-      .catch( (e) => this._console.error('[BLE::Error] getCharacteristic$ %o', e) );
+      }, (error: DOMException) => {
+        Promise.reject(`${error.message} (${characteristic})`);
+      });
 
     return Observable.fromPromise(characteristicPromise);
   }
@@ -214,7 +202,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   /**
    * @param  {BluetoothServiceUUID}                   service        [description]
    * @param  {BluetoothCharacteristicUUID}            characteristic [description]
-   * @param  {number}                                 state          [description]
+   * @param  {ArrayBuffer}                            state          [description]
    * @return {Observable<BluetoothRemoteGATTService>}                [description]
    */
   setCharacteristicState(
@@ -288,7 +276,9 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
     return Observable.fromPromise(
       characteristic.readValue()
-      .catch( (e) => this._console.error('[BLE::Error] readValue$ %o', e) )
+      .then( 
+        (data: DataView) => Promise.resolve(data),
+        (error: DOMException) => Promise.reject(`${error.message}`) )
     );
   }
 
@@ -302,6 +292,9 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
     return Observable.fromPromise(
       characteristic.writeValue(value)
+      .then( 
+        _ => Promise.resolve(),
+        (error: DOMException) => Promise.reject(`${error.message}`) )
     );
   }
 

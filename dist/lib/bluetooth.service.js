@@ -47,16 +47,6 @@ var BluetoothCore = (function (_super) {
     BluetoothCore.prototype.streamValues$ = function () {
         return this._characteristicValueChanges$.filter(function (value) { return value && value.byteLength > 0; });
     };
-    BluetoothCore.prototype.anyDeviceFilter = function () {
-        // This is the closest we can get for now to get all devices.
-        // https://github.com/WebBluetoothCG/web-bluetooth/issues/234
-        var filters = [];
-        filters = Array
-            .from('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-            .map(function (c) { return ({ namePrefix: c }); });
-        filters.push({ name: '' });
-        return filters;
-    };
     /**
      * Run the discovery process.
      *
@@ -66,7 +56,6 @@ var BluetoothCore = (function (_super) {
     BluetoothCore.prototype.discover = function (options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        options.filters = options.filters || this.anyDeviceFilter();
         options.optionalServices = options.optionalServices || ['generic_access'];
         this._console.log('[BLE::Info] Requesting devices with options %o', options);
         return this._webBle.requestDevice(options)
@@ -113,11 +102,11 @@ var BluetoothCore = (function (_super) {
                 return gattServer;
             }, function (error) {
                 // probably the user has canceled the discovery
-                return Promise.reject(null);
+                Promise.reject("" + error.message);
             });
         }
         else {
-            this._console.log('[BLE::Error] Was not able to connect to GATT Server');
+            this._console.error('[BLE::Error] Was not able to connect to GATT Server');
             this._gatt$.error(null);
         }
     };
@@ -135,10 +124,9 @@ var BluetoothCore = (function (_super) {
      * @return {Observable<BluetoothRemoteGATTService>}
      */
     BluetoothCore.prototype.getPrimaryService$ = function (gatt, service) {
-        var _this = this;
         this._console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
         return Observable.fromPromise(gatt.getPrimaryService(service)
-            .catch(function (e) { return _this._console.error('[BLE::Error] getPrimaryService$ %o (%s)', e, service); }));
+            .then(function (remoteService) { return Promise.resolve(remoteService); }, function (error) { return Promise.reject(error.message + " (" + service + ")"); }));
     };
     /**
      * @param  {BluetoothRemoteGATTService}                    primaryService
@@ -156,21 +144,22 @@ var BluetoothCore = (function (_super) {
                     _this._console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
                     return char.addEventListener('characteristicvaluechanged', _this.onCharacteristicChanged.bind(_this));
                 }, function (error) {
-                    _this._console.error('[BLE::Error] Cannot start notification of "%s" %o', characteristic, error);
+                    Promise.reject(error.message + " (" + characteristic + ")");
                 });
             }
             else {
                 char.addEventListener('characteristicvaluechanged', _this.onCharacteristicChanged.bind(_this));
             }
             return char;
-        })
-            .catch(function (e) { return _this._console.error('[BLE::Error] getCharacteristic$ %o', e); });
+        }, function (error) {
+            Promise.reject(error.message + " (" + characteristic + ")");
+        });
         return Observable.fromPromise(characteristicPromise);
     };
     /**
      * @param  {BluetoothServiceUUID}                   service        [description]
      * @param  {BluetoothCharacteristicUUID}            characteristic [description]
-     * @param  {number}                                 state          [description]
+     * @param  {ArrayBuffer}                            state          [description]
      * @return {Observable<BluetoothRemoteGATTService>}                [description]
      */
     BluetoothCore.prototype.setCharacteristicState = function (service, characteristic, state) {
@@ -221,10 +210,9 @@ var BluetoothCore = (function (_super) {
      * @return {Observable<DataView>}
      */
     BluetoothCore.prototype.readValue$ = function (characteristic) {
-        var _this = this;
         this._console.log('[BLE::Info] Reading Characteristic %o', characteristic);
         return Observable.fromPromise(characteristic.readValue()
-            .catch(function (e) { return _this._console.error('[BLE::Error] readValue$ %o', e); }));
+            .then(function (data) { return Promise.resolve(data); }, function (error) { return Promise.reject("" + error.message); }));
     };
     /**
      * @param  {BluetoothRemoteGATTCharacteristic} characteristic [description]
@@ -233,7 +221,8 @@ var BluetoothCore = (function (_super) {
      */
     BluetoothCore.prototype.writeValue$ = function (characteristic, value) {
         this._console.log('[BLE::Info] Writing Characteristic %o', characteristic);
-        return Observable.fromPromise(characteristic.writeValue(value));
+        return Observable.fromPromise(characteristic.writeValue(value)
+            .then(function (_) { return Promise.resolve(); }, function (error) { return Promise.reject("" + error.message); }));
     };
     /**
      * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe

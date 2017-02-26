@@ -33,10 +33,6 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
      * @return {Observable<DataView>}
      */
     streamValues$(): Observable<DataView>;
-    anyDeviceFilter(): {
-        name?: string;
-        namePrefix?: string;
-    }[];
     /**
      * Run the discovery process.
      *
@@ -60,13 +56,13 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
      *
      * @return {Promise<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
-    connectDevice(device: BluetoothDevice): Promise<BluetoothRemoteGATTServer>;
+    connectDevice(device: BluetoothDevice): Promise<void | BluetoothRemoteGATTServer>;
     /**
      * Connect to current device.
      *
      * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
      */
-    connectDevice$(device: BluetoothDevice): Observable<BluetoothRemoteGATTServer>;
+    connectDevice$(device: BluetoothDevice): Observable<void | BluetoothRemoteGATTServer>;
     /**
      * @param  {BluetoothRemoteGATTServer}              gatt
      * @param  {BluetoothServiceUUID}                   service
@@ -82,7 +78,7 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
     /**
      * @param  {BluetoothServiceUUID}                   service        [description]
      * @param  {BluetoothCharacteristicUUID}            characteristic [description]
-     * @param  {number}                                 state          [description]
+     * @param  {ArrayBuffer}                            state          [description]
      * @return {Observable<BluetoothRemoteGATTService>}                [description]
      */
     setCharacteristicState(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID, state: ArrayBuffer): Observable<BluetoothRemoteGATTService>;

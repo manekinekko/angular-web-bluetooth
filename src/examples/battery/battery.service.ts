@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {
-  BluetoothCore,
-  BluetoothRemoteGATTServer,
-  BluetoothRemoteGATTService,
-  BluetoothRemoteGATTCharacteristic,
-  DataView
+  BluetoothCore
 } from '@manekinekko/angular-web-bluetooth';
 
 @Injectable()
@@ -45,6 +41,7 @@ export class BatteryLevelService {
 
     return this.ble
         .discover$({
+          acceptAllDevices: true,
           optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]
         })
         .mergeMap( (gatt: BluetoothRemoteGATTServer)  => this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE) )

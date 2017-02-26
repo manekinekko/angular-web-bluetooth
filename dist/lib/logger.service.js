@@ -16,6 +16,13 @@ var ConsoleLoggerService = (function () {
         }
         console.error.apply(console, args);
     };
+    ConsoleLoggerService.prototype.warn = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.warn.apply(console, args);
+    };
     return ConsoleLoggerService;
 }());
 export { ConsoleLoggerService };
@@ -34,6 +41,12 @@ var NoLoggerService = (function () {
         }
     };
     NoLoggerService.prototype.error = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+    };
+    NoLoggerService.prototype.warn = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
