@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, OpaqueToken, Optional } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BluetoothCore }   from './bluetooth.service';
@@ -23,7 +23,7 @@ export function consoleLoggerServiceConfig(options: AWBOptions) {
   }
 }
 export function makeMeTokenInjector() {
-  return new OpaqueToken('AWBOptions');
+  return new InjectionToken('AWBOptions');
 }
 
 @NgModule({
