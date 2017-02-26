@@ -22,7 +22,9 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 @NgModule({
   imports: [
     //...,
-    WebBluetoothModule.forRoot()
+    WebBluetoothModule.forRoot({
+      enableTracing: true/false // enable logs
+    })
   ],
   //...
 })
