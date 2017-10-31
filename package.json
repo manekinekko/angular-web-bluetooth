@@ -25,7 +25,9 @@
     "build:aot": "ngc -p tsconfig.json",
     "build:jit": "tsc -p tsconfig.json",
     "start": "npm run clean && npm run build:aot",
-    "build": "npm run clean && npm run build:aot"
+    "build": "npm run clean && npm run build:aot",
+    "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json -n 'Angular Web Bluetooth Documentation' --hideGenerator -s -o",
+    "compodoc-prod": "./node_modules/.bin/compodoc -p tsconfig.json -d dist/documentation/ --hideGenerator"
   },
   "types": "dist/index.d.ts",
   "private": false,
@@ -64,6 +66,7 @@
   "devDependencies": {
     "@angular/compiler-cli": ">=4.0.0-beta <5.0.0",
     "@angular/platform-server": ">=4.0.0-beta <5.0.0",
+    "@compodoc/compodoc": "^1.0.3",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60"
   }

@@ -1,22 +1,21 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/observable/throw';
+import { Injectable, EventEmitter } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import "rxjs/add/observable/fromEvent";
+import "rxjs/add/observable/fromPromise";
+import "rxjs/add/observable/merge";
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/takeUntil";
+import "rxjs/add/observable/throw";
 
-import { BrowserWebBluetooth } from './platform/browser';
-import { ConsoleLoggerService } from './logger.service';
+import { BrowserWebBluetooth } from "./platform/browser";
+import { ConsoleLoggerService } from "./logger.service";
 
 @Injectable()
 export class BluetoothCore extends Subject<BluetoothCore> {
-
   public _device$: EventEmitter<BluetoothDevice>;
   public _gatt$: EventEmitter<BluetoothRemoteGATTServer>;
   public _characteristicValueChanges$: EventEmitter<DataView>;
@@ -53,7 +52,9 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Observable<DataView>}
    */
   streamValues$(): Observable<DataView> {
-    return this._characteristicValueChanges$.filter(value => value && value.byteLength > 0);
+    return this._characteristicValueChanges$.filter(
+      value => value && value.byteLength > 0
+    );
   }
 
   /**
@@ -63,16 +64,21 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Promise<BluetoothDevice>} The GATT server for the chosen device
    */
   discover(options: RequestDeviceOptions = {} as RequestDeviceOptions) {
+    options.optionalServices = options.optionalServices || ["generic_access"];
 
-    options.optionalServices = options.optionalServices || ['generic_access'];
+    this._console.log(
+      "[BLE::Info] Requesting devices with options %o",
+      options
+    );
 
-    this._console.log('[BLE::Info] Requesting devices with options %o', options);
-
-    return this._webBle.requestDevice(options)
-      .then( (device: BluetoothDevice) => {
-
+    return this._webBle
+      .requestDevice(options)
+      .then((device: BluetoothDevice) => {
         if (device.ongattserverdisconnected) {
-          device.addEventListener('gattserverdisconnected', this.onDeviceDisconnected.bind(this));
+          device.addEventListener(
+            "gattserverdisconnected",
+            this.onDeviceDisconnected.bind(this)
+          );
         }
 
         this._device$.emit(device);
@@ -85,12 +91,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {Event}  event [description]
    */
   onDeviceDisconnected(event: Event) {
-
     let disconnectedDevice = event.target as BluetoothDevice;
-    this._console.log('[BLE::Info] disconnected device %o', disconnectedDevice);
+    this._console.log("[BLE::Info] disconnected device %o", disconnectedDevice);
 
     this._device$.emit(null);
-
   }
 
   /**
@@ -99,11 +103,12 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {RequestDeviceOptions} Options such as filters and optional services
    * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
    */
-  discover$(options?: RequestDeviceOptions): Observable<BluetoothRemoteGATTServer> {
+  discover$(
+    options?: RequestDeviceOptions
+  ): Observable<BluetoothRemoteGATTServer> {
     return Observable.fromPromise(
       this.discover(options)
-    )
-    .mergeMap( (device: BluetoothDevice) => this.connectDevice$(device));
+    ).mergeMap((device: BluetoothDevice) => this.connectDevice$(device));
   }
 
   /**
@@ -112,29 +117,28 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Promise<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
    */
   connectDevice(device: BluetoothDevice) {
-    if(device) {
-      this._console.log('[BLE::Info] Connecting to GATT Server of %o', device);
+    if (device) {
+      this._console.log("[BLE::Info] Connecting to GATT Server of %o", device);
 
-      return device.gatt.connect()
-       .then( (gattServer: BluetoothRemoteGATTServer) => {
+      return device.gatt.connect().then(
+        (gattServer: BluetoothRemoteGATTServer) => {
+          this._gattServer = gattServer;
 
-         this._gattServer = gattServer;
+          this._gatt$.emit(gattServer);
 
-         this._gatt$.emit(gattServer);
-
-         return gattServer;
-         
-       }, (error: DOMException) => {
+          return gattServer;
+        },
+        (error: DOMException) => {
           // probably the user has canceled the discovery
           Promise.reject(`${error.message}`);
-      });
-
-     }
-     else {
-       this._console.error('[BLE::Error] Was not able to connect to GATT Server');
-       this._gatt$.error(null);
-     }
-
+        }
+      );
+    } else {
+      this._console.error(
+        "[BLE::Error] Was not able to connect to GATT Server"
+      );
+      this._gatt$.error(null);
+    }
   }
 
   /**
@@ -143,9 +147,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
    */
   connectDevice$(device: BluetoothDevice) {
-    return Observable.fromPromise(
-      this.connectDevice(device)
-    );
+    return Observable.fromPromise(this.connectDevice(device));
   }
 
   /**
@@ -153,14 +155,24 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {BluetoothServiceUUID}                   service
    * @return {Observable<BluetoothRemoteGATTService>}
    */
-  getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
-    this._console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
+  getPrimaryService$(
+    gatt: BluetoothRemoteGATTServer,
+    service: BluetoothServiceUUID
+  ): Observable<BluetoothRemoteGATTService> {
+    this._console.log(
+      '[BLE::Info] Getting primary service "%s" of %o',
+      service,
+      gatt
+    );
 
     return Observable.fromPromise(
-      gatt.getPrimaryService(service)
-        .then( 
-          remoteService => Promise.resolve(remoteService), 
-          (error:DOMException) => Promise.reject(`${error.message} (${service})`))
+      gatt
+        .getPrimaryService(service)
+        .then(
+          remoteService => Promise.resolve(remoteService),
+          (error: DOMException) =>
+            Promise.reject(`${error.message} (${service})`)
+        )
     );
   }
 
@@ -169,32 +181,50 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {BluetoothCharacteristicUUID}                   characteristic
    * @return {Observable<BluetoothRemoteGATTCharacteristic>}
    */
-  getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID): Observable<BluetoothRemoteGATTCharacteristic> {
-    this._console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
+  getCharacteristic$(
+    primaryService: BluetoothRemoteGATTService,
+    characteristic: BluetoothCharacteristicUUID
+  ): Observable<BluetoothRemoteGATTCharacteristic> {
+    this._console.log(
+      '[BLE::Info] Getting Characteristic "%s" of %o',
+      characteristic,
+      primaryService
+    );
 
-    let characteristicPromise = primaryService.getCharacteristic(characteristic)
-      .then(char => {
+    let characteristicPromise = primaryService
+      .getCharacteristic(characteristic)
+      .then(
+        char => {
+          // listen for characteristic value changes
+          if (char.properties.notify) {
+            char.startNotifications().then(
+              _ => {
+                this._console.log(
+                  '[BLE::Info] Starting notifications of "%s"',
+                  characteristic
+                );
+                return char.addEventListener(
+                  "characteristicvaluechanged",
+                  this.onCharacteristicChanged.bind(this)
+                );
+              },
+              (error: DOMException) => {
+                Promise.reject(`${error.message} (${characteristic})`);
+              }
+            );
+          } else {
+            char.addEventListener(
+              "characteristicvaluechanged",
+              this.onCharacteristicChanged.bind(this)
+            );
+          }
 
-        // listen for characteristic value changes
-        if(char.properties.notify) {
-
-          char.startNotifications().then( _ =>  {
-            this._console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
-            return char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
-          }, (error: DOMException) => {
-            Promise.reject(`${error.message} (${characteristic})`);
-          });
-
+          return char;
+        },
+        (error: DOMException) => {
+          Promise.reject(`${error.message} (${characteristic})`);
         }
-        else {
-          char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
-        }
-
-        return char;
-
-      }, (error: DOMException) => {
-        Promise.reject(`${error.message} (${characteristic})`);
-      });
+      );
 
     return Observable.fromPromise(characteristicPromise);
   }
@@ -213,10 +243,14 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     let primaryService = this.getPrimaryService$(this._gattServer, service);
 
     primaryService
-     .mergeMap( (primaryService) => this.getCharacteristic$(primaryService, characteristic))
-     .subscribe( (characteristic: BluetoothRemoteGATTCharacteristic) => this.writeValue$(characteristic, state) );
+      .mergeMap(primaryService =>
+        this.getCharacteristic$(primaryService, characteristic)
+      )
+      .subscribe((characteristic: BluetoothRemoteGATTCharacteristic) =>
+        this.writeValue$(characteristic, state)
+      );
 
-     return primaryService;
+    return primaryService;
   }
 
   /**
@@ -229,7 +263,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     characteristic: BluetoothCharacteristicUUID,
     state?: any
   ) {
-    state = state || new Uint8Array([ 1 ]);
+    state = state || new Uint8Array([1]);
     return this.setCharacteristicState(service, characteristic, state);
   }
 
@@ -243,7 +277,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     characteristic: BluetoothCharacteristicUUID,
     state?: any
   ) {
-    state = state || new Uint8Array([ 0 ]);
+    state = state || new Uint8Array([0]);
     return this.setCharacteristicState(service, characteristic, state);
   }
 
@@ -261,7 +295,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {Event} event [description]
    */
   onCharacteristicChanged(event: Event) {
-    this._console.log('[BLE::Info] Dispatching new characteristic value %o', event);
+    this._console.log(
+      "[BLE::Info] Dispatching new characteristic value %o",
+      event
+    );
 
     let value = (event.target as BluetoothRemoteGATTCharacteristic).value;
     this._characteristicValueChanges$.emit(value);
@@ -271,14 +308,18 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {BluetoothRemoteGATTCharacteristic} characteristic
    * @return {Observable<DataView>}
    */
-  readValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
-    this._console.log('[BLE::Info] Reading Characteristic %o', characteristic);
+  readValue$(
+    characteristic: BluetoothRemoteGATTCharacteristic
+  ): Observable<DataView> {
+    this._console.log("[BLE::Info] Reading Characteristic %o", characteristic);
 
     return Observable.fromPromise(
-      characteristic.readValue()
-      .then( 
-        (data: DataView) => Promise.resolve(data),
-        (error: DOMException) => Promise.reject(`${error.message}`) )
+      characteristic
+        .readValue()
+        .then(
+          (data: DataView) => Promise.resolve(data),
+          (error: DOMException) => Promise.reject(`${error.message}`)
+        )
     );
   }
 
@@ -287,14 +328,19 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {ArrayBuffer}                       value          [description]
    * @return {Observable<DataView>}
    */
-  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer|Uint8Array) {
-    this._console.log('[BLE::Info] Writing Characteristic %o', characteristic);
+  writeValue$(
+    characteristic: BluetoothRemoteGATTCharacteristic,
+    value: ArrayBuffer | Uint8Array
+  ) {
+    this._console.log("[BLE::Info] Writing Characteristic %o", characteristic);
 
     return Observable.fromPromise(
-      characteristic.writeValue(value)
-      .then( 
-        _ => Promise.resolve(),
-        (error: DOMException) => Promise.reject(`${error.message}`) )
+      characteristic
+        .writeValue(value)
+        .then(
+          _ => Promise.resolve(),
+          (error: DOMException) => Promise.reject(`${error.message}`)
+        )
     );
   }
 
@@ -302,12 +348,20 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @param  {BluetoothRemoteGATTCharacteristic} characteristic The characteristic whose value you want to observe
    * @return {Observable<DataView>}
    */
-  observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
+  observeValue$(
+    characteristic: BluetoothRemoteGATTCharacteristic
+  ): Observable<DataView> {
     characteristic.startNotifications();
-    const disconnected = Observable.fromEvent(characteristic.service.device, 'gattserverdisconnected');
-    return Observable.fromEvent(characteristic, 'characteristicvaluechanged')
+    const disconnected = Observable.fromEvent(
+      characteristic.service.device,
+      "gattserverdisconnected"
+    );
+    return Observable.fromEvent(characteristic, "characteristicvaluechanged")
       .takeUntil(disconnected)
-      .map((event: Event) => (event.target as BluetoothRemoteGATTCharacteristic).value as DataView);
+      .map(
+        (event: Event) =>
+          (event.target as BluetoothRemoteGATTCharacteristic).value as DataView
+      );
   }
 
   /**
@@ -316,8 +370,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {number}          [description]
    */
   littleEndianToUint16(data: any, offset: number): number {
-    return (this.littleEndianToUint8(data, offset + 1) << 8)
-            + this.littleEndianToUint8(data, offset);
+    return (
+      (this.littleEndianToUint8(data, offset + 1) << 8) +
+      this.littleEndianToUint8(data, offset)
+    );
   }
 
   /**
@@ -334,16 +390,14 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Observable<number>}
    */
   fakeNext(fakeValue?: Function) {
-
-    if(fakeValue === undefined) {
+    if (fakeValue === undefined) {
       fakeValue = () => {
         let dv = new DataView(new ArrayBuffer(8));
-        dv.setUint8(0, (Math.random()*110)|0);
+        dv.setUint8(0, (Math.random() * 110) | 0);
         return dv;
-      }
+      };
     }
 
-    this._characteristicValueChanges$.emit( fakeValue() );
+    this._characteristicValueChanges$.emit(fakeValue());
   }
-
 }
