@@ -1,4 +1,4 @@
-import { NgModule, OpaqueToken } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BluetoothCore } from './bluetooth.service';
 import { BrowserWebBluetooth } from './platform/browser';
@@ -16,7 +16,7 @@ export function consoleLoggerServiceConfig(options) {
     }
 }
 export function makeMeTokenInjector() {
-    return new OpaqueToken('AWBOptions');
+    return new InjectionToken('AWBOptions');
 }
 var WebBluetoothModule = (function () {
     function WebBluetoothModule() {
@@ -44,13 +44,13 @@ var WebBluetoothModule = (function () {
             ]
         };
     };
+    WebBluetoothModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [CommonModule]
+                },] },
+    ];
+    /** @nocollapse */
+    WebBluetoothModule.ctorParameters = function () { return []; };
     return WebBluetoothModule;
 }());
 export { WebBluetoothModule };
-WebBluetoothModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [CommonModule]
-            },] },
-];
-/** @nocollapse */
-WebBluetoothModule.ctorParameters = function () { return []; };

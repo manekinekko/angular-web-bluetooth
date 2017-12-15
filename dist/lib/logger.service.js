@@ -23,14 +23,14 @@ var ConsoleLoggerService = (function () {
         }
         console.warn.apply(console, args);
     };
+    ConsoleLoggerService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    ConsoleLoggerService.ctorParameters = function () { return []; };
     return ConsoleLoggerService;
 }());
 export { ConsoleLoggerService };
-ConsoleLoggerService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-ConsoleLoggerService.ctorParameters = function () { return []; };
 var NoLoggerService = (function () {
     function NoLoggerService() {
     }
@@ -52,11 +52,11 @@ var NoLoggerService = (function () {
             args[_i] = arguments[_i];
         }
     };
+    NoLoggerService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    NoLoggerService.ctorParameters = function () { return []; };
     return NoLoggerService;
 }());
 export { NoLoggerService };
-NoLoggerService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-NoLoggerService.ctorParameters = function () { return []; };

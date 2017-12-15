@@ -1,5 +1,4 @@
 // http://processors.wiki.ti.com/images/a/a8/BLE_SensorTag_GATT_Server.pdf
-// http://processors.wiki.ti.com/images/a/a8/BLE_SensorTag_GATT_Server.pdf
 export var TiTag = {
     DEVICE_INFORMATION: {
         SERVICE: 'f000180a-0451-4000-b000-000000000000',

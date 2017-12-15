@@ -6,11 +6,11 @@ var ServerWebBluetooth = (function () {
         // mocked object for now
         return {};
     };
+    ServerWebBluetooth.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    ServerWebBluetooth.ctorParameters = function () { return []; };
     return ServerWebBluetooth;
 }());
 export { ServerWebBluetooth };
-ServerWebBluetooth.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-ServerWebBluetooth.ctorParameters = function () { return []; };

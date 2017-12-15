@@ -9,11 +9,11 @@ var BrowserWebBluetooth = (function () {
     BrowserWebBluetooth.prototype.requestDevice = function (options) {
         return this._ble.requestDevice(options);
     };
+    BrowserWebBluetooth.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    BrowserWebBluetooth.ctorParameters = function () { return []; };
     return BrowserWebBluetooth;
 }());
 export { BrowserWebBluetooth };
-BrowserWebBluetooth.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-BrowserWebBluetooth.ctorParameters = function () { return []; };

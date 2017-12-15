@@ -9,6 +9,7 @@
         "sourceMap": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "noStrictGenericChecks": true,
         "outDir": "./dist",
         "rootDir": "./src",
         "skipLibCheck": true,

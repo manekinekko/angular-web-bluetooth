@@ -8,9 +8,8 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/takeUntil';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
 export declare class BluetoothCore extends Subject<BluetoothCore> {
@@ -50,7 +49,7 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
      * @param  {RequestDeviceOptions} Options such as filters and optional services
      * @return {Observable<BluetoothRemoteGATTServer>} Emites the value of the requested service read from the device
      */
-    discover$(options?: RequestDeviceOptions): Observable<BluetoothRemoteGATTServer>;
+    discover$(options?: RequestDeviceOptions): Observable<void | BluetoothRemoteGATTServer>;
     /**
      * Connect to current device.
      *
@@ -74,7 +73,7 @@ export declare class BluetoothCore extends Subject<BluetoothCore> {
      * @param  {BluetoothCharacteristicUUID}                   characteristic
      * @return {Observable<BluetoothRemoteGATTCharacteristic>}
      */
-    getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID): Observable<BluetoothRemoteGATTCharacteristic>;
+    getCharacteristic$(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID): Observable<void | BluetoothRemoteGATTCharacteristic>;
     /**
      * @param  {BluetoothServiceUUID}                   service        [description]
      * @param  {BluetoothCharacteristicUUID}            characteristic [description]
