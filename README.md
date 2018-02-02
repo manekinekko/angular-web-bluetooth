@@ -7,7 +7,7 @@
 
 `yarn add @manekinekko/angular-web-bluetooth`
 
-### NPM it
+### or NPM it
 
 `npm i -S @manekinekko/angular-web-bluetooth`
 
@@ -85,13 +85,17 @@ export class BatteryLevelService {
 
           // 1) call the discover method will trigger the discovery process (by the browser)
           .discover$({ filters: [], optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE] })
+
           // 2) get that service
           .mergeMap(gatt => this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE))
+          
           // 3) get a specific characteristic on that service
           .mergeMap(primaryService => this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL))
+          
           // 4) ask for the value of that characteristic (will return a DataView)
           .mergeMap(characteristic => this.ble.readValue$(characteristic))
-            // 5) on that DataView, get the right value
+          
+          // 5) on that DataView, get the right value
           .map(value => value.getUint8(0));
     }
     catch(e) {
@@ -109,10 +113,6 @@ See the [starter](https://github.com/manekinekko/angular-web-bluetooth-starter/t
 
 You can use [this starter](https://github.com/manekinekko/angular-web-bluetooth-starter) to start building your first Web Bluetooth module.
 
-## Documentation
-
-The API documentation can be found [here](./documentation).
- 
 ## Blog post
 Checkout my post on medium.
 
@@ -125,13 +125,3 @@ Checkout my post on medium.
 ## Have a PR?
 
 All contributions are welcome ;)
-
-## License
-
-The MIT License (MIT) Copyright (c) 2017 - Wassim CHEGHAM
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
