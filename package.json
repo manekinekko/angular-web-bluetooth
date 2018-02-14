@@ -1,72 +1,70 @@
 {
-    "name": "@manekinekko/angular-web-bluetooth",
-    "version": "2.1.0",
-    "license": "MIT",
-    "author": {
-        "name": "Wassim Chegham",
-        "email": "github@wassimchegham.com"
-    },
-    "engines": {
-        "node": ">= 5.4.1"
-    },
-    "contributors": [
-        "urish"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
-    },
-    "homepage": "https://github.com/manekinekko/angular-web-bluetooth",
-    "bugs": "https://github.com/manekinekko/angular-web-bluetooth/issues",
-    "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
-    "main": "dist/index.js",
-    "scripts": {
-        "clean": "rimraf dist/",
-        "build:aot": "ngc -p tsconfig.json",
-        "build:jit": "tsc -p tsconfig.json",
-        "start": "npm run clean && npm run build:aot",
-        "build": "npm run clean && npm run build:aot"
-    },
-    "types": "dist/index.d.ts",
-    "private": false,
-    "keywords": [
-        "angular",
-        "angular2",
-        "bluetooth",
-        "low",
-        "energy",
-        "web",
-        "ble",
-        "iot",
-        "sensor",
-        "accelerometer",
-        "luxometer",
-        "transmitter",
-        "magnetometer",
-        "ir",
-        "nfc",
-        "thermometer",
-        "puckjs",
-        "sensortag"
-    ],
-    "dependencies": {
-        "@angular/animations": "5.2.4",
-        "@angular/common": "5.2.4",
-        "@angular/compiler": "5.2.4",
-        "@angular/core": "5.2.4",
-        "@angular/platform-browser": "5.2.4",
-        "@angular/platform-browser-dynamic": "5.2.4",
-        "@types/web-bluetooth": "^0.0.4",
-        "core-js": "^2.5.3",
-        "rxjs": "^5.5.5",
-        "zone.js": "^0.8.4"
-    },
-    "devDependencies": {
-        "rimraf": "2.6.2",
-        "typescript": "2.4.2",
-        "@angular/compiler-cli": "5.2.4",
-        "@angular/platform-server": "5.2.4",
-        "@types/jasmine": "2.8.6",
-        "@types/node": "8.9.4"
-    }
+  "name": "@manekinekko/angular-web-bluetooth",
+  "version": "2.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Wassim Chegham",
+    "email": "github@wassimchegham.com"
+  },
+  "engines": {
+    "node": ">= 5.4.1"
+  },
+  "contributors": ["urish"],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
+  },
+  "homepage": "https://github.com/manekinekko/angular-web-bluetooth",
+  "bugs": "https://github.com/manekinekko/angular-web-bluetooth/issues",
+  "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "build:aot": "ngc -p tsconfig.json",
+    "build:jit": "tsc -p tsconfig.json",
+    "start": "npm run clean && npm run build:aot",
+    "build": "npm run clean && npm run build:aot"
+  },
+  "types": "dist/index.d.ts",
+  "private": false,
+  "keywords": [
+    "angular",
+    "angular2",
+    "bluetooth",
+    "low",
+    "energy",
+    "web",
+    "ble",
+    "iot",
+    "sensor",
+    "accelerometer",
+    "luxometer",
+    "transmitter",
+    "magnetometer",
+    "ir",
+    "nfc",
+    "thermometer",
+    "puckjs",
+    "sensortag"
+  ],
+  "dependencies": {
+    "@angular/animations": "5.2.4",
+    "@angular/common": "5.2.4",
+    "@angular/compiler": "5.2.4",
+    "@angular/core": "5.2.4",
+    "@angular/platform-browser": "5.2.4",
+    "@angular/platform-browser-dynamic": "5.2.4",
+    "@types/web-bluetooth": "^0.0.4",
+    "core-js": "^2.5.3",
+    "rxjs": "^5.5.5",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "rimraf": "2.6.2",
+    "typescript": "2.4.2",
+    "@angular/compiler-cli": "5.2.4",
+    "@angular/platform-server": "5.2.4",
+    "@types/jasmine": "2.8.6",
+    "@types/node": "8.9.4"
+  }
 }

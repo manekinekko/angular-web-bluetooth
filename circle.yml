@@ -1,7 +1,31 @@
+version: 2
 machine:
   node:
-    version: 7.2.0
+    version: 8.9.4
 
 test:
   override:
     - echo 'no tests yet'
+
+jobs:
+  build:
+    working_directory: ~/angular-web-bluetooth
+    docker:
+      - image: circleci/node:8.9.4-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: yarn build
+      - store_artifacts:
+          path: ~/angular-web-bluetooth/dist
