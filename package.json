@@ -50,12 +50,12 @@
         "sensortag"
     ],
     "dependencies": {
-        "@angular/animations": "5.2.4",
-        "@angular/common": "5.2.4",
-        "@angular/compiler": "5.2.4",
-        "@angular/core": "5.2.4",
-        "@angular/platform-browser": "5.2.4",
-        "@angular/platform-browser-dynamic": "5.2.4",
+        "@angular/animations": "5.2.5",
+        "@angular/common": "5.2.5",
+        "@angular/compiler": "5.2.5",
+        "@angular/core": "5.2.5",
+        "@angular/platform-browser": "5.2.5",
+        "@angular/platform-browser-dynamic": "5.2.5",
         "@types/web-bluetooth": "^0.0.4",
         "core-js": "^2.5.3",
         "rxjs": "^5.5.5",
@@ -64,8 +64,8 @@
     "devDependencies": {
         "rimraf": "2.6.2",
         "typescript": "2.4.2",
-        "@angular/compiler-cli": "5.2.4",
-        "@angular/platform-server": "5.2.4",
+        "@angular/compiler-cli": "5.2.5",
+        "@angular/platform-server": "5.2.5",
         "@types/jasmine": "2.8.6",
         "@types/node": "8.9.4"
     }
