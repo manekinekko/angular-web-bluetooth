@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>
-<h2 align="center">The missing Web Bluetooth module for Angular (>=2) <img src="https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg"></h2>
+<h2 align="center">The missing Web Bluetooth module for Angular <a href="https://circleci.com/gh/manekinekko/angular-web-bluetooth/tree/master"><img src="https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg"></a></h2>
 
 ### Yarn it
 
