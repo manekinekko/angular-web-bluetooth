@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "rimraf": "2.6.2",
-    "typescript": "2.4.2",
+    "typescript": "2.7.2",
     "@angular/compiler-cli": "5.2.4",
     "@angular/platform-server": "5.2.4",
     "@types/jasmine": "2.8.6",
