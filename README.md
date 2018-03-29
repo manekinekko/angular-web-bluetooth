@@ -109,6 +109,10 @@ export class BatteryLevelService {
 
 See the [starter](https://github.com/manekinekko/angular-web-bluetooth-starter/tree/master/src/app) for a complete use case.
 
+## API documentation
+
+Here 👉https://manekinekko.github.io/angular-web-bluetooth/
+
 ## Need a starter?
 
 You can use [this starter](https://github.com/manekinekko/angular-web-bluetooth-starter) to start building your first Web Bluetooth module.
