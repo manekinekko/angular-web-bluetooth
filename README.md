@@ -1,3 +1,13 @@
+# Modification from original repo
+
+```
+yarn global add rxjs-tslint
+yarn add @angular/compiler-cli
+rxjs-5-to-6-migrate -p tsconfig.json
+```
+
+# Original
+
 <div align="center">
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>
