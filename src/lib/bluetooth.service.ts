@@ -1,14 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/takeUntil';
+import { Observable, Subject, fromEvent } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
@@ -312,7 +304,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   ): Observable<DataView> {
     this._console.log('[BLE::Info] Reading Characteristic %o', characteristic);
 
-    return Observable.fromPromise(
+    return fromPromise(
       characteristic
         .readValue()
         .then(
