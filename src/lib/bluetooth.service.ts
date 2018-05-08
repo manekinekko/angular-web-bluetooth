@@ -1,14 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/takeUntil';
+import { Observable, Subject, fromEvent, from } from 'rxjs';
+import { filter, mergeMap } from 'rxjs/operators';
 
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
@@ -51,9 +43,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Observable<DataView>}
    */
   streamValues$(): Observable<DataView> {
-    return this._characteristicValueChanges$.filter(
-      value => value && value.byteLength > 0
-    );
+    return this._characteristicValueChanges$.pipe(filter(data => data && data.byteLength > 0));
+     //.filter(
+    //   value => value && value.byteLength > 0
+    // );
   }
 
   /**
@@ -105,8 +98,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   discover$(
     options?: RequestDeviceOptions
   ): Observable<void | BluetoothRemoteGATTServer> {
-    return Observable.fromPromise(this.discover(options)).mergeMap(
-      (device: BluetoothDevice) => this.connectDevice$(device)
+    return from(this.discover(options)).pipe(
+      mergeMap(
+        (device: BluetoothDevice) => this.connectDevice$(device)
+      )
     );
   }
 
@@ -146,7 +141,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
    */
   connectDevice$(device: BluetoothDevice) {
-    return Observable.fromPromise(this.connectDevice(device));
+    return from(this.connectDevice(device));
   }
 
   /**
@@ -164,7 +159,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
       gatt
     );
 
-    return Observable.fromPromise(
+    return from(
       gatt
         .getPrimaryService(service)
         .then(
@@ -225,7 +220,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
         }
       );
 
-    return Observable.fromPromise(characteristicPromise);
+    return from(characteristicPromise);
   }
 
   /**
@@ -242,8 +237,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     let primaryService = this.getPrimaryService$(this._gattServer, service);
 
     primaryService
-      .mergeMap(primaryService =>
-        this.getCharacteristic$(primaryService, characteristic)
+      .pipe(
+        mergeMap(primaryService =>
+          this.getCharacteristic$(primaryService, characteristic)
+        )
       )
       .subscribe((characteristic: BluetoothRemoteGATTCharacteristic) =>
         this.writeValue$(characteristic, state)
@@ -312,7 +309,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   ): Observable<DataView> {
     this._console.log('[BLE::Info] Reading Characteristic %o', characteristic);
 
-    return Observable.fromPromise(
+    return from(
       characteristic
         .readValue()
         .then(
@@ -333,7 +330,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   ) {
     this._console.log('[BLE::Info] Writing Characteristic %o', characteristic);
 
-    return Observable.fromPromise(
+    return from(
       characteristic
         .writeValue(value)
         .then(

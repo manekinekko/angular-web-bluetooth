@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-var ConsoleLoggerService = (function () {
+var ConsoleLoggerService = /** @class */ (function () {
     function ConsoleLoggerService() {
     }
     ConsoleLoggerService.prototype.log = function () {
@@ -26,12 +26,10 @@ var ConsoleLoggerService = (function () {
     ConsoleLoggerService.decorators = [
         { type: Injectable },
     ];
-    /** @nocollapse */
-    ConsoleLoggerService.ctorParameters = function () { return []; };
     return ConsoleLoggerService;
 }());
 export { ConsoleLoggerService };
-var NoLoggerService = (function () {
+var NoLoggerService = /** @class */ (function () {
     function NoLoggerService() {
     }
     NoLoggerService.prototype.log = function () {
@@ -55,8 +53,6 @@ var NoLoggerService = (function () {
     NoLoggerService.decorators = [
         { type: Injectable },
     ];
-    /** @nocollapse */
-    NoLoggerService.ctorParameters = function () { return []; };
     return NoLoggerService;
 }());
 export { NoLoggerService };

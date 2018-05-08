@@ -9,19 +9,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/takeUntil';
+import { Observable, Subject, from } from 'rxjs';
+import { filter, mergeMap } from 'rxjs/operators';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
-var BluetoothCore = (function (_super) {
+var BluetoothCore = /** @class */ (function (_super) {
     __extends(BluetoothCore, _super);
     function BluetoothCore(_webBle, _console) {
         var _this = _super.call(this) || this;
@@ -67,7 +59,10 @@ var BluetoothCore = (function (_super) {
        * @return {Observable<DataView>}
        */
     function () {
-        return this._characteristicValueChanges$.filter(function (value) { return value && value.byteLength > 0; });
+        return this._characteristicValueChanges$.pipe(filter(function (data) { return data && data.byteLength > 0; }));
+        //.filter(
+        //   value => value && value.byteLength > 0
+        // );
     };
     /**
      * Run the discovery process.
@@ -136,7 +131,7 @@ var BluetoothCore = (function (_super) {
        */
     function (options) {
         var _this = this;
-        return Observable.fromPromise(this.discover(options)).mergeMap(function (device) { return _this.connectDevice$(device); });
+        return from(this.discover(options)).pipe(mergeMap(function (device) { return _this.connectDevice$(device); }));
     };
     /**
      * Connect to current device.
@@ -187,7 +182,7 @@ var BluetoothCore = (function (_super) {
        * @return {Observable<BluetoothRemoteGATTServer>} Emites the gatt server instance of the requested device
        */
     function (device) {
-        return Observable.fromPromise(this.connectDevice(device));
+        return from(this.connectDevice(device));
     };
     /**
      * @param  {BluetoothRemoteGATTServer}              gatt
@@ -206,7 +201,7 @@ var BluetoothCore = (function (_super) {
        */
     function (gatt, service) {
         this._console.log('[BLE::Info] Getting primary service "%s" of %o', service, gatt);
-        return Observable.fromPromise(gatt
+        return from(gatt
             .getPrimaryService(service)
             .then(function (remoteService) { return Promise.resolve(remoteService); }, function (error) {
             return Promise.reject(error.message + " (" + service + ")");
@@ -249,7 +244,7 @@ var BluetoothCore = (function (_super) {
         }, function (error) {
             Promise.reject(error.message + " (" + characteristic + ")");
         });
-        return Observable.fromPromise(characteristicPromise);
+        return from(characteristicPromise);
     };
     /**
      * @param  {BluetoothServiceUUID}                   service        [description]
@@ -273,9 +268,9 @@ var BluetoothCore = (function (_super) {
         var _this = this;
         var primaryService = this.getPrimaryService$(this._gattServer, service);
         primaryService
-            .mergeMap(function (primaryService) {
+            .pipe(mergeMap(function (primaryService) {
             return _this.getCharacteristic$(primaryService, characteristic);
-        })
+        }))
             .subscribe(function (characteristic) {
             return _this.writeValue$(characteristic, state);
         });
@@ -374,7 +369,7 @@ var BluetoothCore = (function (_super) {
        */
     function (characteristic) {
         this._console.log('[BLE::Info] Reading Characteristic %o', characteristic);
-        return Observable.fromPromise(characteristic
+        return from(characteristic
             .readValue()
             .then(function (data) { return Promise.resolve(data); }, function (error) { return Promise.reject("" + error.message); }));
     };
@@ -395,7 +390,7 @@ var BluetoothCore = (function (_super) {
        */
     function (characteristic, value) {
         this._console.log('[BLE::Info] Writing Characteristic %o', characteristic);
-        return Observable.fromPromise(characteristic
+        return from(characteristic
             .writeValue(value)
             .then(function (_) { return Promise.resolve(); }, function (error) { return Promise.reject("" + error.message); }));
     };

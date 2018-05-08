@@ -1,3 +1,17 @@
+# Modification from original repo
+
+Modified library to work with Angular 6.0.0 and RxJS 6.1.0. Build passed.
+
+Steps
+```
+yarn global add rxjs-tslint
+yarn add @angular/compiler-cli
+rxjs-5-to-6-migrate -p tsconfig.json
+```
+Fixed `Observable.fromPromise` => `from`, used several .pipe() functions on observables.
+
+# Original
+
 <div align="center">
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>

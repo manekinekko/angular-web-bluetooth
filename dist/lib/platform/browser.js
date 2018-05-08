@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-var BrowserWebBluetooth = (function () {
+var BrowserWebBluetooth = /** @class */ (function () {
     function BrowserWebBluetooth() {
         this._ble = navigator.bluetooth;
         if (!this._ble) {

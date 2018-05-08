@@ -18,7 +18,7 @@ export function consoleLoggerServiceConfig(options) {
 export function makeMeTokenInjector() {
     return new InjectionToken('AWBOptions');
 }
-var WebBluetoothModule = (function () {
+var WebBluetoothModule = /** @class */ (function () {
     function WebBluetoothModule() {
     }
     WebBluetoothModule.forRoot = function (options) {
@@ -49,8 +49,6 @@ var WebBluetoothModule = (function () {
                     imports: [CommonModule]
                 },] },
     ];
-    /** @nocollapse */
-    WebBluetoothModule.ctorParameters = function () { return []; };
     return WebBluetoothModule;
 }());
 export { WebBluetoothModule };

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-var ServerWebBluetooth = (function () {
+var ServerWebBluetooth = /** @class */ (function () {
     function ServerWebBluetooth() {
     }
     ServerWebBluetooth.instance = function () {
@@ -9,8 +9,6 @@ var ServerWebBluetooth = (function () {
     ServerWebBluetooth.decorators = [
         { type: Injectable },
     ];
-    /** @nocollapse */
-    ServerWebBluetooth.ctorParameters = function () { return []; };
     return ServerWebBluetooth;
 }());
 export { ServerWebBluetooth };
