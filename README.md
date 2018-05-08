@@ -1,6 +1,6 @@
 # Modification from original repo
 
-Modified library to work with Angular 6.0.0 and RxJS 6.1.0. Build passed successfully.
+Modified library to work with Angular 6.0.0 and RxJS 6.1.0. Build passed.
 
 Steps
 ```
