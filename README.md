@@ -115,6 +115,8 @@ Here 👉 https://manekinekko.github.io/angular-web-bluetooth/
 
 ## Need a starter?
 
+<img src="https://cloud.githubusercontent.com/assets/1699357/21523148/b843ceb0-cd0b-11e6-974a-50294a797b27.png"/>
+
 This project serves also as a starter. Run the following command:
 
 `npm start`
