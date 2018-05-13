@@ -1,6 +1,6 @@
 {
   "name": "@manekinekko/angular-web-bluetooth",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
@@ -9,7 +9,9 @@
   "engines": {
     "node": ">= 5.4.1"
   },
-  "contributors": ["urish"],
+  "contributors": [
+    "urish"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
