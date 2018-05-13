@@ -1,0 +1,47 @@
+{
+  "name": "@manekinekko/angular-web-bluetooth",
+  "version": "2.1.1",
+  "license": "MIT",
+  "author": {
+    "name": "Wassim Chegham",
+    "email": "github@wassimchegham.com"
+  },
+  "engines": {
+    "node": ">= 5.4.1"
+  },
+  "contributors": ["urish"],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:manekinekko/angular-web-bluetooth.git"
+  },
+  "homepage": "https://github.com/manekinekko/angular-web-bluetooth",
+  "bugs": "https://github.com/manekinekko/angular-web-bluetooth/issues",
+  "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "keywords": [
+    "angular",
+    "angular2",
+    "bluetooth",
+    "low",
+    "energy",
+    "web",
+    "ble",
+    "iot",
+    "sensor",
+    "accelerometer",
+    "luxometer",
+    "transmitter",
+    "magnetometer",
+    "ir",
+    "nfc",
+    "thermometer",
+    "puckjs",
+    "sensortag"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0"
+  }
+}

@@ -1,39 +1,18 @@
 {
-    "compilerOptions": {
-        "baseUrl": "",
-        "target": "es5",
-        "module": "es2015",
-        "moduleResolution": "node",
-        "declaration": true,
-        "noImplicitAny": false,
-        "sourceMap": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "noStrictGenericChecks": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "skipLibCheck": true,
-        "typeRoots": ["./node_modules/@types"],
-        "types": [
-            "node",
-            "web-bluetooth"
-        ],
-        "lib": [
-            "dom",
-            "es2015"
-        ]
-    },
-    "compileOnSave": false,
-    "buildOnSave": false,
-    "exclude": [
-        "node_modules",
-        "dist",
-        "**/*.ngfactory.ts",
-        "**/*.shim.ts",
-        "src/examples/**/*.ts"
-    ],
-    "angularCompilerOptions": {
-        "genDir": "dist",
-        "entryModule": "src/lib/bluetooth.module#WebBluetoothModule"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "paths": {
+      "@manekinekko/angular-web-bluetooth": ["dist/angular-web-bluetooth"]
     }
+  }
 }
