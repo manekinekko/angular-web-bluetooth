@@ -23,13 +23,12 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
   imports: [
     //...,
     WebBluetoothModule.forRoot({
-      enableTracing: true/false // enable logs
+      enableTracing: true / false // enable logs
     })
-  ],
+  ]
   //...
 })
-export class AppModule { }
-
+export class AppModule {}
 ```
 
 ## 2) use it in your service/component
@@ -88,13 +87,13 @@ export class BatteryLevelService {
 
           // 2) get that service
           .mergeMap(gatt => this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE))
-          
+
           // 3) get a specific characteristic on that service
           .mergeMap(primaryService => this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL))
-          
+
           // 4) ask for the value of that characteristic (will return a DataView)
           .mergeMap(characteristic => this.ble.readValue$(characteristic))
-          
+
           // 5) on that DataView, get the right value
           .map(value => value.getUint8(0));
     }
@@ -111,13 +110,16 @@ See the [starter](https://github.com/manekinekko/angular-web-bluetooth-starter/t
 
 ## API documentation
 
-Here 👉https://manekinekko.github.io/angular-web-bluetooth/
+Here 👉 https://manekinekko.github.io/angular-web-bluetooth/
 
 ## Need a starter?
 
-You can use [this starter](https://github.com/manekinekko/angular-web-bluetooth-starter) to start building your first Web Bluetooth module.
+This project serves also as a starter. Run the following command:
+
+`npm start`
 
 ## Blog post
+
 Checkout my post on medium.
 
 <p align="center">
@@ -125,7 +127,17 @@ Checkout my post on medium.
     <img src="https://cloud.githubusercontent.com/assets/1699357/21696708/7e33cca4-d38f-11e6-8a03-6833b88e82fa.png" >
   </a>
 </p>
- 
+
 ## Have a PR?
 
 All contributions are welcome ;)
+
+# License
+
+The MIT License (MIT) Copyright (c) 2017 - Wassim CHEGHAM
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
