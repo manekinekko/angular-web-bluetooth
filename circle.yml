@@ -5,7 +5,7 @@ machine:
 
 test:
   override:
-    - echo 'no tests yet'
+    - echo 'skipping test'
 
 jobs:
   build:
@@ -15,17 +15,17 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: install-dependencies
-          command: yarn install
+          command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.cache/npm
             - ./node_modules
       - run:
           name: angular-build
-          command: yarn build
+          command: npm run build
       - store_artifacts:
           path: ~/angular-web-bluetooth/dist
