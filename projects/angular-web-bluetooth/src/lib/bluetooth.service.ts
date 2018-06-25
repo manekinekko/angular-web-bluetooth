@@ -136,10 +136,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     this._console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
 
     const characteristicPromise = primaryService.getCharacteristic(characteristic).then(
-      char => {
+     async char => {
         // listen for characteristic value changes
         if (char.properties.notify) {
-          char.startNotifications().then(
+         await char.startNotifications().then(
             _ => {
               this._console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
               return char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
