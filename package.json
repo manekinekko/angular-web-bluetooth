@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prestart": "npm run build",
     "build": "ng build angular-web-bluetooth --prod",
     "test": "echo 'skipping test'",
     "lint": "ng lint",
