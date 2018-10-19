@@ -6,11 +6,13 @@
 
 ### Yarn it
 
-`yarn add @manekinekko/angular-web-bluetooth`
+`yarn add @manekinekko/angular-web-bluetooth @types/web-bluetooth`
 
 ### or NPM it
 
-`npm i -S @manekinekko/angular-web-bluetooth`
+`npm i -S @manekinekko/angular-web-bluetooth @types/web-bluetooth`
+
+Note: Make also sure the `@types/web-bluetooth` is installed OK.
 
 ## Use it
 
