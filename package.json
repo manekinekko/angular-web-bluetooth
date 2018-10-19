@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "prestart": "npm run build",
-    "build": "ng build angular-web-bluetooth --prod",
+    "prebuild": "ng build angular-web-bluetooth --prod",
+    "build": "ng build angular-web-bluetooth-starter --prod",
     "test": "echo 'skipping test'",
     "lint": "ng lint",
     "e2e": "echo 'skipping test'"
