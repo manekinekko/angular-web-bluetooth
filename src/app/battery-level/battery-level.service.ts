@@ -15,6 +15,9 @@ export class BatteryLevelService {
     this.ble.fakeNext();
   }
 
+  disconnect(){
+    
+  }
   getDevice() {
     // call this method to get the connected device
     return this.ble.getDevice$();
