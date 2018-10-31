@@ -22,73 +22,57 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_AppModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="10,-70 10,-268 486,-268 486,-70 10,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="93,-70 93,-268 403,-268 403,-70 93,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_AppModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="184,-78 184,-130 478,-130 478,-78 184,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="#000000" points="18,-78 18,-130 176,-130 176,-78 18,-78"/>
+<polygon fill="none" stroke="#000000" points="101,-78 101,-130 395,-130 395,-78 101,-78"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_AppModule_bootstrap</title>
-<polygon fill="none" stroke="#000000" points="207,-208 207,-260 331,-260 331,-208 207,-208"/>
+<polygon fill="none" stroke="#000000" points="197,-208 197,-260 321,-260 321,-208 197,-208"/>
 </g>
 <!-- AppComponent -->
 <g id="node1" class="node">
 <title>AppComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="469.9399,-122 364.0601,-122 364.0601,-86 469.9399,-86 469.9399,-122"/>
-<text text-anchor="middle" x="417" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="386.9399,-122 281.0601,-122 281.0601,-86 386.9399,-86 386.9399,-122"/>
+<text text-anchor="middle" x="334" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent</text>
 </g>
 <!-- AppModule -->
 <g id="node3" class="node">
 <title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="310.6571,-187 307.6571,-191 286.6571,-191 283.6571,-187 227.3429,-187 227.3429,-151 310.6571,-151 310.6571,-187"/>
-<text text-anchor="middle" x="269" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="300.6571,-187 297.6571,-191 276.6571,-191 273.6571,-187 217.3429,-187 217.3429,-151 300.6571,-151 300.6571,-187"/>
+<text text-anchor="middle" x="259" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppModule</text>
 </g>
 <!-- AppComponent&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>AppComponent&#45;&gt;AppModule</title>
-<path fill="none" stroke="#000000" d="M417,-122.1061C417,-141.3391 417,-169 417,-169 417,-169 321.015,-169 321.015,-169"/>
-<polygon fill="#000000" stroke="#000000" points="321.015,-165.5001 311.015,-169 321.0149,-172.5001 321.015,-165.5001"/>
+<path fill="none" stroke="#000000" d="M291.0544,-122.1061C291.0544,-122.1061 291.0544,-140.991 291.0544,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="287.5544,-140.9909 291.0544,-150.991 294.5544,-140.991 287.5544,-140.9909"/>
 </g>
 <!-- BatteryLevelComponent -->
 <g id="node2" class="node">
 <title>BatteryLevelComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="346.413,-122 191.587,-122 191.587,-86 346.413,-86 346.413,-122"/>
-<text text-anchor="middle" x="269" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">BatteryLevelComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="263.413,-122 108.587,-122 108.587,-86 263.413,-86 263.413,-122"/>
+<text text-anchor="middle" x="186" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">BatteryLevelComponent</text>
 </g>
 <!-- BatteryLevelComponent&#45;&gt;AppModule -->
 <g id="edge2" class="edge">
 <title>BatteryLevelComponent&#45;&gt;AppModule</title>
-<path fill="none" stroke="#000000" d="M269,-122.1061C269,-122.1061 269,-140.991 269,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="265.5001,-140.9909 269,-150.991 272.5001,-140.991 265.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M240.189,-122.1061C240.189,-122.1061 240.189,-140.991 240.189,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="236.6891,-140.9909 240.189,-150.991 243.6891,-140.991 236.6891,-140.9909"/>
 </g>
 <!-- AppComponent  -->
-<g id="node5" class="node">
+<g id="node4" class="node">
 <title>AppComponent </title>
-<polygon fill="#80b1d3" stroke="#000000" points="323.439,-252 214.561,-252 214.561,-216 323.439,-216 323.439,-252"/>
-<text text-anchor="middle" x="269" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent </text>
+<polygon fill="#80b1d3" stroke="#000000" points="313.439,-252 204.561,-252 204.561,-216 313.439,-216 313.439,-252"/>
+<text text-anchor="middle" x="259" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent </text>
 </g>
 <!-- AppModule&#45;&gt;AppComponent  -->
-<g id="edge4" class="edge">
-<title>AppModule&#45;&gt;AppComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M269,-187.1061C269,-187.1061 269,-205.991 269,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="265.5001,-205.9909 269,-215.991 272.5001,-205.991 265.5001,-205.9909"/>
-</g>
-<!-- WebBluetoothModule -->
-<g id="node4" class="node">
-<title>WebBluetoothModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="167.7021,-122 164.7021,-126 143.7021,-126 140.7021,-122 26.2979,-122 26.2979,-86 167.7021,-86 167.7021,-122"/>
-<text text-anchor="middle" x="97" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">WebBluetoothModule</text>
-</g>
-<!-- WebBluetoothModule&#45;&gt;AppModule -->
 <g id="edge3" class="edge">
-<title>WebBluetoothModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="#000000" d="M97,-122.1061C97,-141.3391 97,-169 97,-169 97,-169 216.9241,-169 216.9241,-169"/>
-<polygon fill="#000000" stroke="#000000" points="216.9241,-172.5001 226.9241,-169 216.924,-165.5001 216.9241,-172.5001"/>
+<title>AppModule&#45;&gt;AppComponent </title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M259,-187.1061C259,-187.1061 259,-205.991 259,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="255.5001,-205.9909 259,-215.991 262.5001,-205.991 255.5001,-205.9909"/>
 </g>
 </g>
 </svg>
