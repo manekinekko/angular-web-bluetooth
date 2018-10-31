@@ -1,9 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable, from, of } from 'rxjs';
-import { filter, mergeMap, catchError } from 'rxjs/operators';
+import { Subject, Observable, from, fromEvent } from 'rxjs';
+import { filter, mergeMap, takeUntil, map } from 'rxjs/operators';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
-import { create } from 'domain';
 
 @Injectable({
   providedIn: 'root'
@@ -250,10 +249,12 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    */
   observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
     characteristic.startNotifications();
-    const disconnected = Observable.create(characteristic.service.device, 'gattserverdisconnected');
-    return Observable.create(characteristic, 'characteristicvaluechanged')
-      .takeUntil(disconnected)
-      .map((event: Event) => (event.target as BluetoothRemoteGATTCharacteristic).value as DataView);
+    const disconnected = fromEvent(characteristic.service.device, 'gattserverdisconnected');
+    return fromEvent(characteristic, 'characteristicvaluechanged')
+    .pipe(
+      map((event: Event) => (event.target as BluetoothRemoteGATTCharacteristic).value as DataView),
+      takeUntil(disconnected)
+      );
   }
 
   /**
