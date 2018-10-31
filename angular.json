@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "ble",
+      "prefix": "app",
       "schematics": {},
       "architect": {
         "build": {
@@ -18,8 +18,13 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -38,7 +43,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -66,16 +78,26 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -83,54 +105,62 @@
     "angular-web-bluetooth-starter-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
             "devServerTarget": "angular-web-bluetooth-starter:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-web-bluetooth-starter:serve:production"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     },
-    "angular-web-bluetooth": {
-      "root": "projects/angular-web-bluetooth",
-      "sourceRoot": "projects/angular-web-bluetooth/src",
+    "@manekinekko/angular-web-bluetooth": {
+      "root": "projects/manekinekko/angular-web-bluetooth",
+      "sourceRoot": "projects/manekinekko/angular-web-bluetooth/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/angular-web-bluetooth/tsconfig.lib.json",
-            "project": "projects/angular-web-bluetooth/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/angular-web-bluetooth/ng-package.prod.json"
-            }
+            "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.json",
+            "project": "projects/manekinekko/angular-web-bluetooth/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/angular-web-bluetooth/src/test.ts",
-            "tsConfig": "projects/angular-web-bluetooth/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-web-bluetooth/karma.conf.js"
+            "main": "projects/manekinekko/angular-web-bluetooth/src/test.ts",
+            "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.spec.json",
+            "karmaConfig": "projects/manekinekko/angular-web-bluetooth/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/angular-web-bluetooth/tsconfig.lib.json", "projects/angular-web-bluetooth/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.json",
+              "projects/manekinekko/angular-web-bluetooth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
