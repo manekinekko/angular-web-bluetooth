@@ -1,15 +1,16 @@
 {
   "name": "angular-web-bluetooth-starter",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "prestart": "npm run build",
-    "prebuild": "ng build angular-web-bluetooth --prod",
+    "prebuild": "ng build @manekinekko/angular-web-bluetooth",
     "build": "ng build angular-web-bluetooth-starter --prod",
     "test": "echo 'skipping test'",
     "lint": "ng lint",
-    "e2e": "echo 'skipping test'"
+    "e2e": "echo 'skipping test'",
+    "docs": "compodoc -p src/tsconfig.app.json --theme material -d docs"
   },
   "private": true,
   "dependencies": {
@@ -22,25 +23,21 @@
     "@angular/platform-browser": "^7.0.1",
     "@angular/platform-browser-dynamic": "^7.0.1",
     "@angular/router": "^7.0.1",
-    "@manekinekko/angular-web-bluetooth": "file:dist/lib",
     "core-js": "^2.5.7",
     "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^7.0.1",
-    "@angular-devkit/build-ng-packagr": "~0.10.3",
     "@angular-devkit/build-angular": "~0.10.3",
-    "ng-packagr": "^4.4.0",
-    "tsickle": "^0.33.1",
-    "tslib": "^1.9.3",
-    "typescript": "~3.1.3",
+    "@angular-devkit/build-ng-packagr": "~0.10.3",
     "@angular/cli": "~7.0.3",
+    "@angular/compiler-cli": "^7.0.1",
     "@angular/language-service": "^7.0.1",
+    "@compodoc/compodoc": "^1.1.6",
     "@types/jasmine": "~2.8.9",
     "@types/jasminewd2": "~2.0.5",
     "@types/node": "~10.12.1",
-    "@types/web-bluetooth": "^0.0.4",
+    "@types/web-bluetooth": "0.0.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -49,8 +46,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.4",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-packagr": "^4.4.0",
     "protractor": "~5.4.1",
     "ts-node": "~7.0.1",
-    "tslint": "~5.11.0"
+    "tsickle": "^0.33.1",
+    "tslib": "^1.9.3",
+    "tslint": "~5.11.0",
+    "typescript": "~3.1.3"
   }
 }
