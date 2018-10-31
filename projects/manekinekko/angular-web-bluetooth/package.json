@@ -19,7 +19,7 @@
   "homepage": "https://github.com/manekinekko/angular-web-bluetooth",
   "bugs": "https://github.com/manekinekko/angular-web-bluetooth/issues",
   "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
-  "types": "./dist/angular-web-bluetooth/public_api.d.ts",
+  "types": "./dist/manekinekko/angular-web-bluetooth/public_api.d.ts",
   "private": false,
   "keywords": [
     "angular",
