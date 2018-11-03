@@ -65,4 +65,9 @@ export class BatteryLevelService {
       console.error('Oops! can not read value from %s');
     }
   }
+
+  disconnectDevice() {
+    // call this method to disconnect device
+    this.ble.disconnectDevice();
+  }
 }
