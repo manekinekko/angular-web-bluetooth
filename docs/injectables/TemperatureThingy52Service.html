@@ -39,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>BatteryLevelService</li>
+  <li>TemperatureThingy52Service</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,7 +57,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/demo/battery-level/battery-level.service.ts</code>
+            <code>src/app/demo/temperature/temperature-thingy52.service.ts</code>
         </p>
 
 
@@ -102,10 +102,10 @@
                                 <a href="#disconnectDevice">disconnectDevice</a>
                             </li>
                             <li>
-                                <a href="#getBatteryLevel">getBatteryLevel</a>
+                                <a href="#getDevice">getDevice</a>
                             </li>
                             <li>
-                                <a href="#getDevice">getDevice</a>
+                                <a href="#getTemperature">getTemperature</a>
                             </li>
                         </ul>
                     </td>
@@ -130,7 +130,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -207,54 +207,6 @@
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getBatteryLevel"></a>
-                        <span class="name">
-                            <b>
-                            getBatteryLevel
-                            </b>
-                            <a href="#getBatteryLevel"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getBatteryLevel()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:26</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Get Battery Level GATT Characteristic value.
-This logic is specific to this service, this is why we can&#39;t abstract it elsewhere.
-The developer is free to provide any service, and characteristics she wants.</p>
-</div>
-
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    <p>Emites the value of the requested service read from the device</p>
-
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -281,7 +233,7 @@ The developer is free to provide any service, and characteristics she wants.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -293,6 +245,52 @@ The developer is free to provide any service, and characteristics she wants.</p>
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getTemperature"></a>
+                        <span class="name">
+                            <b>
+                            getTemperature
+                            </b>
+                            <a href="#getTemperature"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getTemperature()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Get temperature value.</p>
+</div>
+
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    <p>Emites the value of the requested service read from the device</p>
+
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -332,7 +330,7 @@ The developer is free to provide any service, and characteristics she wants.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -367,12 +365,12 @@ The developer is free to provide any service, and characteristics she wants.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;battery_level&#x27;</code>
+                            <i>Default value : </i><code>&#x27;ef680201-9b35-4933-9b10-52ffa9740042&#x27;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -407,12 +405,12 @@ The developer is free to provide any service, and characteristics she wants.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;battery_service&#x27;</code>
+                            <i>Default value : </i><code>&#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/demo/battery-level/battery-level.service.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/demo/temperature/temperature-thingy52.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -432,9 +430,9 @@ import { BluetoothCore } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
-export class BatteryLevelService {
-  static GATT_CHARACTERISTIC &#x3D; &#x27;battery_level&#x27;;
-  static GATT_PRIMARY_SERVICE &#x3D; &#x27;battery_service&#x27;;
+export class TemperatureThingy52Service {
+  static GATT_CHARACTERISTIC &#x3D; &#x27;ef680201-9b35-4933-9b10-52ffa9740042&#x27;;
+  static GATT_PRIMARY_SERVICE &#x3D; &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;;
 
   constructor(public ble: BluetoothCore) {}
 
@@ -444,26 +442,28 @@ export class BatteryLevelService {
   }
 
   /**
-   * Get Battery Level GATT Characteristic value.
-   * This logic is specific to this service, this is why we can&#x27;t abstract it elsewhere.
-   * The developer is free to provide any service, and characteristics she wants.
+   * Get temperature value.
    *
    * @return Emites the value of the requested service read from the device
    */
-  getBatteryLevel() {
-    console.log(&#x27;Getting Battery Service...&#x27;);
+  getTemperature() {
+    console.log(&#x27;Getting Temperature Service...&#x27;);
 
     try {
       return (
         this.ble
           .read$({
             acceptAllDevices: true,
-            optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE],
-            service: BatteryLevelService.GATT_PRIMARY_SERVICE,
-            characteristic: BatteryLevelService.GATT_CHARACTERISTIC
+            optionalServices: [TemperatureThingy52Service.GATT_PRIMARY_SERVICE],
+            service: TemperatureThingy52Service.GATT_PRIMARY_SERVICE,
+            characteristic: TemperatureThingy52Service.GATT_CHARACTERISTIC
           })
           .pipe(
-            map((value: DataView) &#x3D;&gt; value.getUint8(0))
+            map((value: DataView) &#x3D;&gt; {
+              const integer &#x3D; value.getInt8(0);
+              const decimal &#x3D; value.getUint8(1);
+              return integer + decimal / 100;
+            })
           )
       );
     } catch (e) {
@@ -508,7 +508,7 @@ export class BatteryLevelService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'BatteryLevelService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TemperatureThingy52Service.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

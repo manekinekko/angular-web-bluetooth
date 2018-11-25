@@ -36,7 +36,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>BatteryLevelComponent</li>
+  <li>HumidityComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -45,6 +45,9 @@
         </li>
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
         </li>
         <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
@@ -56,7 +59,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/demo/battery-level/battery-level.component.ts</code>
+    <code>src/app/demo/humidity/humidity.component.ts</code>
 </p>
 
 
@@ -92,16 +95,26 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ble-battery-level</code></td>
+                <td class="col-md-9"><code>ble-humidity</code></td>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+  canvas {
+    width: 800px;
+    height: 100px;
+    margin-left: -20px;
+  }</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getBatteryLevel()&quot;&gt;Get Battery Level ({{batteryLevel || &#x27;N/A&#x27;}}%)&lt;/button&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getValue()&quot;&gt;Connect ({{value || &#x27;N/A&#x27;}}%)&lt;/button&gt;
 &lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt;
 &lt;span mat-error&gt;{{error}}&lt;/span&gt;
+&lt;canvas  #chart width&#x3D;&quot;700&quot; height&#x3D;&quot;100&quot;&gt;&lt;/canvas&gt;
 </code></pre></td>
             </tr>
 
@@ -130,11 +143,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#batteryLevel">batteryLevel</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#batteryLevelService">batteryLevelService</a>
+                                <a href="#chartRef">chartRef</a>
                             </li>
                             <li>
                                 <a href="#device">device</a>
@@ -143,8 +152,18 @@
                                 <a href="#error">error</a>
                             </li>
                             <li>
+                                <a href="#series">series</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#service">service</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#snackBar">snackBar</a>
+                            </li>
+                            <li>
+                                <a href="#value">value</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -166,19 +185,25 @@
                                 <a href="#disconnectDevice">disconnectDevice</a>
                             </li>
                             <li>
-                                <a href="#getBatteryLevel">getBatteryLevel</a>
+                                <a href="#getDeviceStatus">getDeviceStatus</a>
                             </li>
                             <li>
-                                <a href="#getDeviceStatus">getDeviceStatus</a>
+                                <a href="#getValue">getValue</a>
                             </li>
                             <li>
                                 <a href="#hasError">hasError</a>
                             </li>
                             <li>
+                                <a href="#initChart">initChart</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#showBatteryLevel">showBatteryLevel</a>
+                                <a href="#streamValues">streamValues</a>
+                            </li>
+                            <li>
+                                <a href="#updateValue">updateValue</a>
                             </li>
                         </ul>
                     </td>
@@ -212,12 +237,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, batteryLevelService: <a href="../injectables/BatteryLevelService.html">BatteryLevelService</a>, snackBar: MatSnackBar)</code>
+<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, service: <a href="../injectables/HumidityThingy52Service.html">HumidityThingy52Service</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -247,10 +272,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>batteryLevelService</td>
+                                                        <td>service</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
+                                                                    <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -310,7 +335,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -320,44 +345,6 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getBatteryLevel"></a>
-                        <span class="name">
-                            <b>
-                            getBatteryLevel
-                            </b>
-                            <a href="#getBatteryLevel"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getBatteryLevel()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:60</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                     </td>
@@ -386,7 +373,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -396,6 +383,44 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValue"></a>
+                        <span class="name">
+                            <b>
+                            getValue
+                            </b>
+                            <a href="#getValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getValue()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:89</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                     </td>
@@ -424,7 +449,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -475,25 +500,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="ngOnInit"></a>
+                        <a name="initChart"></a>
                         <span class="name">
                             <b>
-                            ngOnInit
+                            initChart
                             </b>
-                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <a href="#initChart"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>initChart()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -513,25 +538,101 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="showBatteryLevel"></a>
+                        <a name="ngOnInit"></a>
                         <span class="name">
                             <b>
-                            showBatteryLevel
+                            ngOnInit
                             </b>
-                            <a href="#showBatteryLevel"><span class="icon ion-ios-link"></span></a>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>showBatteryLevel(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>ngOnInit()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="streamValues"></a>
+                        <span class="name">
+                            <b>
+                            streamValues
+                            </b>
+                            <a href="#streamValues"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>streamValues()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:81</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateValue"></a>
+                        <span class="name">
+                            <b>
+                            updateValue
+                            </b>
+                            <a href="#updateValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -589,70 +690,39 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="batteryLevel"></a>
+                        <a name="chartRef"></a>
                         <span class="name">
                             <b>
-                            batteryLevel
+                            chartRef
                             </b>
-                            <a href="#batteryLevel"><span class="icon ion-ios-link"></span></a>
+                            <a href="#chartRef"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>batteryLevel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>chartRef:     <code>ElementRef&lt;HTMLCanvasElement&gt;</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>    <code>ElementRef&lt;HTMLCanvasElement&gt;</code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;--&#x27;</code>
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;chart&#x27;)<br />
+                            </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:28</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="batteryLevelService"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            batteryLevelService
-                            </b>
-                            <a href="#batteryLevelService"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>batteryLevelService:     <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -691,7 +761,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -730,7 +800,81 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="series"></a>
+                        <span class="name">
+                            <b>
+                            series
+                            </b>
+                            <a href="#series"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>series:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="service"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            service
+                            </b>
+                            <a href="#service"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>service:     <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -765,7 +909,46 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name">
+                            <b>
+                            value
+                            </b>
+                            <a href="#value"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>value:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;--&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -800,7 +983,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -829,7 +1012,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:43</a></div>
                                 </td>
                             </tr>
 
@@ -840,8 +1023,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone } from &#x27;@angular/core&#x27;;
-import { BatteryLevelService } from &#x27;./battery-level.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone, ElementRef, ViewChild } from &#x27;@angular/core&#x27;;
+import { HumidityThingy52Service } from &#x27;./humidity-thingy52.service&#x27;;
 import { tap } from &#x27;rxjs/operators&#x27;;
 import { MatSnackBar } from &#x27;@angular/material&#x27;;
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
@@ -852,71 +1035,101 @@ const PROVIDERS &#x3D; [{
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: BatteryLevelService,
-  useFactory: (b) &#x3D;&gt; new BatteryLevelService(b),
+  provide: HumidityThingy52Service,
+  useFactory: (b) &#x3D;&gt; new HumidityThingy52Service(b),
   deps: [BluetoothCore]
 }];
 
 @Component({
-  selector: &#x27;ble-battery-level&#x27;,
+  selector: &#x27;ble-humidity&#x27;,
   template: &#x60;
-    &lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getBatteryLevel()&quot;&gt;Get Battery Level ({{batteryLevel || &#x27;N/A&#x27;}}%)&lt;/button&gt;
+    &lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getValue()&quot;&gt;Connect ({{value || &#x27;N/A&#x27;}}%)&lt;/button&gt;
     &lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt; 
     &lt;span mat-error&gt;{{error}}&lt;/span&gt;
+    &lt;canvas  #chart width&#x3D;&quot;700&quot; height&#x3D;&quot;100&quot;&gt;&lt;/canvas&gt;
   &#x60;,
+  styles: [&#x60;
+  canvas {
+    width: 800px;
+    height: 100px;
+    margin-left: -20px;
+  }&#x60;],
   providers: [PROVIDERS]
 })
-export class BatteryLevelComponent implements OnInit {
-  batteryLevel &#x3D; &#x27;--&#x27;;
+export class HumidityComponent implements OnInit {
+  value &#x3D; &#x27;--&#x27;;
   error &#x3D; &#x27;&#x27;;
   device: any &#x3D; {};
+  series: any &#x3D; {};
+
+  @ViewChild(&#x27;chart&#x27;)
+  chartRef: ElementRef&lt;HTMLCanvasElement&gt;;
 
   get isDeviceValid() {
     return this.device &amp;&amp; Object.keys(this.device).length &gt; 0;
   }
 
   constructor(
-    public zone: NgZone, 
-    public batteryLevelService: BatteryLevelService,
-    public snackBar: MatSnackBar) {}
+    public zone: NgZone,
+    public service: HumidityThingy52Service,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getDeviceStatus();
+    this.streamValues();
+    this.initChart();
+  }
+
+  initChart() {
+    this.series &#x3D; new window[&#x27;TimeSeries&#x27;]();
+    const canvas &#x3D; this.chartRef.nativeElement;
+    const chart &#x3D; new window[&#x27;SmoothieChart&#x27;]({ interpolation: &#x27;step&#x27;, grid: { fillStyle: &#x27;#ffffff&#x27;, strokeStyle: &#x27;rgba(119,119,119,0.18)&#x27;, borderVisible: false }, labels: { fillStyle: &#x27;#000000&#x27;, fontSize: 17 }, tooltip: true });
+    chart.addTimeSeries(this.series, { maxValue: 100, minValue: -100, lineWidth: 1, strokeStyle: &#x27;#ff0000&#x27;, fillStyle: &#x27;rgba(255,161,161,0.30)&#x27; });
+    chart.streamTo(canvas);
   }
 
   getDeviceStatus() {
-    this.batteryLevelService.getDevice()
-    .pipe(
-      tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-    ).subscribe(device &#x3D;&gt; {
-      if (device) {
-        this.device &#x3D; device;
-      } else {
-        // device not connected or disconnected
-        this.device &#x3D; null;
-        this.batteryLevel &#x3D; &#x27;--&#x27;;
-      }
-    }, this.hasError.bind(this));
+    this.service.getDevice()
+      .pipe(
+        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
+      ).subscribe(device &#x3D;&gt; {
+        if (device) {
+          this.device &#x3D; device;
+        } else {
+          // device not connected or disconnected
+          this.device &#x3D; null;
+          this.value &#x3D; &#x27;--&#x27;;
+        }
+      }, this.hasError.bind(this));
   }
 
-  getBatteryLevel() {
-    return this.batteryLevelService.getBatteryLevel()
+  streamValues() {
+    this.service.streamValues()
       .pipe(
         tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
       )
-      .subscribe(this.showBatteryLevel.bind(this), this.hasError.bind(this));
+      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
   }
 
-  showBatteryLevel(value: number) {
+  getValue() {
+    return this.service.getHumidity()
+      .pipe(
+        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
+      )
+      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+  }
+
+  updateValue(value: number) {
     // force change detection
     this.zone.run(() &#x3D;&gt; {
-      console.log(&#x27;Reading battery level %d&#x27;, value);
-      this.batteryLevel &#x3D; &#x27;&#x27; + value;
+      console.log(&#x27;Reading humidity %d&#x27;, value);
+      this.value &#x3D; &#x27;&#x27; + value;
+      this.series.append(Date.now(), value);
     });
   }
 
   disconnectDevice() {
-    this.batteryLevelService.disconnectDevice();
+    this.service.disconnectDevice();
   }
 
   hasError(error: string) {
@@ -929,6 +1142,15 @@ export class BatteryLevelComponent implements OnInit {
     </div>
 
 
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+  canvas {
+    width: 800px;
+    height: 100px;
+    margin-left: -20px;
+  }
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>
@@ -955,10 +1177,10 @@ export class BatteryLevelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button mat-button color="primary" href="#" (click)="getBatteryLevel()">Get Battery Level ({{batteryLevel || \'N/A\'}}%)</button><button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button><span mat-error>{{error}}</span></div>'
+        var COMPONENT_TEMPLATE = '<div><button mat-button color="primary" href="#" (click)="getValue()">Connect ({{value || \'N/A\'}}%)</button><button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button><span mat-error>{{error}}</span><canvas  #chart width="700" height="100"></canvas></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DemoComponent', 'selector': 'ble-demo'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'BatteryLevelComponent'};
+    var ACTUAL_COMPONENT = {'name': 'HumidityComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -992,7 +1214,7 @@ export class BatteryLevelComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'BatteryLevelComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'HumidityComponent.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
