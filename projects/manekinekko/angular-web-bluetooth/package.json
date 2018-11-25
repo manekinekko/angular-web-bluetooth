@@ -42,7 +42,7 @@
     "sensortag"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.0.1",
-    "@angular/core": "^7.0.1"
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
   }
 }
