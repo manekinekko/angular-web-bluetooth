@@ -6,6 +6,7 @@ import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
   selector: 'ble-battery-level',
   template: `
     <a href="#" (click)="getBatteryLevel()">Get Battery Level ({{batteryLevel || 'N/A'}}%)</a>
+    <a href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</a>
   `,
   styles: [
     `
@@ -77,5 +78,13 @@ export class BatteryLevelComponent implements OnInit {
       console.log('Reading battery level %d', value);
       this.batteryLevel = '' + value;
     });
+  }
+
+  disconnectDevice() {
+    this._batteryLevelService.disconnectDevice();
+  }
+
+  get isDeviceValid() {
+    return this.device && Object.keys(this.device).length > 0;
   }
 }

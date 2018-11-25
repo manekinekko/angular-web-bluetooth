@@ -46,12 +46,15 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
     this._console.log('[BLE::Info] Requesting devices with options %o', options);
 
-    const device = await this._webBle.requestDevice(options);
-    if (device.ongattserverdisconnected) {
+    let device = null;
+    try {
+      device = await this._webBle.requestDevice(options);
       device.addEventListener('gattserverdisconnected', this.onDeviceDisconnected.bind(this));
+      this._device$.emit(device);
+    } catch (error) {
+      this._console.error(error);
     }
 
-    this._device$.emit(device);
     return device;
   }
 
@@ -106,6 +109,22 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    */
   connectDevice$(device: BluetoothDevice) {
     return from(this.connectDevice(device));
+  }
+
+  /**
+   * Disconnect the current connected device
+   */
+  disconnectDevice() {
+    if (!this._gattServer) {
+      return;
+    }
+    this._console.log('[BLE::Info] Disconnecting from Bluetooth Device...');
+
+    if (this._gattServer.connected) {
+      this._gattServer.disconnect();
+    } else {
+      this._console.log('[BLE::Info] Bluetooth device is already disconnected');
+    }
   }
 
   /**
