@@ -5,6 +5,7 @@
 
 <section>
 
+  <!-- battery level -->
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -13,14 +14,52 @@
           Battery Level
         </mat-panel-title>
         <mat-panel-description class="fix-line-height">
-          Show the battery level of a compatible BLE device 
+          Show the battery level of a compatible BLE device
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <ble-battery-level></ble-battery-level>
-    
+
     </mat-expansion-panel>
 
   </mat-accordion>
+
+  <!-- temperature -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="fix-line-height">
+          <mat-icon>wb_sunny</mat-icon>
+          Temperature
+        </mat-panel-title>
+        <mat-panel-description class="fix-line-height">
+          Get the temperature value from the Thingy52 device
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ble-temperature></ble-temperature>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+  <!-- humidity -->
+  <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fix-line-height">
+            <mat-icon>cloud</mat-icon>
+            Humidity
+          </mat-panel-title>
+          <mat-panel-description class="fix-line-height">
+            Get the humidity value from the Thingy52 device
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <ble-humidity></ble-humidity>
+  
+      </mat-expansion-panel>
+  
+    </mat-accordion>
 
 </section>

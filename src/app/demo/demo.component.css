@@ -1,5 +1,7 @@
 section {
   padding: 40px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .mat-toolbar.mat-primary {
@@ -15,4 +17,12 @@ section {
 img {
   width: 32px;
   margin: 0 10px;
+}
+
+.mat-accordion {
+  padding: 5px;
+}
+
+.mat-icon {
+  margin: 0 10px 0 0;
 }

@@ -2,6 +2,18 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { BatteryLevelService } from './battery-level.service';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
+
+// make sure we get a singleton instance of each service
+const PROVIDERS = [{
+  provide: BluetoothCore,
+  useFactory: (b, l) => new BluetoothCore(b, l),
+  deps: [BrowserWebBluetooth, ConsoleLoggerService]
+}, {
+  provide: BatteryLevelService,
+  useFactory: (b) => new BatteryLevelService(b),
+  deps: [BluetoothCore]
+}];
 
 @Component({
   selector: 'ble-battery-level',
@@ -10,12 +22,7 @@ import { MatSnackBar } from '@angular/material';
     <button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button> 
     <span mat-error>{{error}}</span>
   `,
-  styles: [
-    `
-
-  `
-  ],
-  providers: [BatteryLevelService]
+  providers: [PROVIDERS]
 })
 export class BatteryLevelComponent implements OnInit {
   batteryLevel = '--';
@@ -33,15 +40,6 @@ export class BatteryLevelComponent implements OnInit {
 
   ngOnInit() {
     this.getDeviceStatus();
-    this.streamValues();
-  }
-
-  streamValues() {
-    this.batteryLevelService.streamValues()
-      .pipe(
-        tap(e => this.error = '')
-      )
-      .subscribe(this.showBatteryLevel.bind(this), this.hasError.bind(this));
   }
 
   getDeviceStatus() {
@@ -57,10 +55,6 @@ export class BatteryLevelComponent implements OnInit {
         this.batteryLevel = '--';
       }
     }, this.hasError.bind(this));
-  }
-
-  getFakeValue() {
-    this.batteryLevelService.getFakeValue();
   }
 
   getBatteryLevel() {
