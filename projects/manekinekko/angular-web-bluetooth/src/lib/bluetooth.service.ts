@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable, from, fromEvent } from 'rxjs';
+import { Subject, Observable, from, fromEvent, throwError } from 'rxjs';
 import { filter, mergeMap, takeUntil, map } from 'rxjs/operators';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
@@ -50,7 +50,14 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     try {
       device = await this._webBle.requestDevice(options);
       device.addEventListener('gattserverdisconnected', this.onDeviceDisconnected.bind(this));
-      this._device$.emit(device);
+
+      if (device) {
+        this._device$.emit(device);
+      }
+      else {
+        this._device$.error(`[BLE::Info] Can not get the Bluetooth Remote GATT Server. Abort.`);
+      }
+
     } catch (error) {
       this._console.error(error);
     }
@@ -85,7 +92,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    */
   async connectDevice(device: BluetoothDevice) {
     if (device) {
-      this._console.log('[BLE::Info] Connecting to GATT Server of %o', device);
+      this._console.log('[BLE::Info] Connecting to Bluetooth Remote GATT Server of %o', device);
 
       try {
         const gattServer = await device.gatt.connect();
@@ -95,9 +102,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
       } catch (error) {
         // probably the user has canceled the discovery
         Promise.reject(`${error.message}`);
+        this._gatt$.error(`${error.message}`);
       }
     } else {
-      this._console.error('[BLE::Error] Was not able to connect to GATT Server');
+      this._console.error('[BLE::Error] Was not able to connect to Bluetooth Remote GATT Server');
       this._gatt$.error(null);
     }
   }
@@ -118,7 +126,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     if (!this._gattServer) {
       return;
     }
-    this._console.log('[BLE::Info] Disconnecting from Bluetooth Device...');
+    this._console.log('[BLE::Info] Disconnecting from Bluetooth Device %o', this._gattServer);
 
     if (this._gattServer.connected) {
       this._gattServer.disconnect();
@@ -135,11 +143,17 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
     this._console.log('[BLE::Info] Getting primary service "%s" (if available) of %o', service, gatt);
 
-    return from(
-      gatt
-        .getPrimaryService(service)
-        .then(remoteService => Promise.resolve(remoteService), (error: DOMException) => Promise.reject(`${error.message} (${service})`))
-    );
+
+    if (gatt) {
+      return from(
+        gatt
+          .getPrimaryService(service)
+          .then(remoteService => Promise.resolve(remoteService), (error: DOMException) => Promise.reject(`${error.message} (${service})`))
+      );
+    }
+    else {
+      return throwError(new Error('[BLE::Error] Was not able to connect to the Bluetooth Remote GATT Server'));
+    }
   }
 
   /**

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ble-root',
   template: `
-   <ble-battery-level></ble-battery-level>
+   <ble-demo></ble-demo>
   `
 })
 export class AppComponent {}

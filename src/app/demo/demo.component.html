@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <img src="assets/angular-web-ble.png" />
+  <span>Angular Web BLE Demo</span>
+</mat-toolbar>
+
+<section>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="fix-line-height">
+          <mat-icon>battery_std</mat-icon>
+          Battery Level
+        </mat-panel-title>
+        <mat-panel-description class="fix-line-height">
+          Show the battery level of a compatible BLE device 
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ble-battery-level></ble-battery-level>
+    
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</section>
