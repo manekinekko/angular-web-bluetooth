@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
-import { HumidityThingy52Service } from './humidity-thingy52.service';
+import { TemperatureThingy52Service } from './temperature-thingy52.service';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
@@ -10,17 +10,16 @@ const PROVIDERS = [{
   useFactory: (b, l) => new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: HumidityThingy52Service,
-  useFactory: (b) => new HumidityThingy52Service(b),
+  provide: TemperatureThingy52Service,
+  useFactory: (b) => new TemperatureThingy52Service(b),
   deps: [BluetoothCore]
 }];
 
 @Component({
-  selector: 'ble-humidity',
+  selector: 'ble-temperature',
   template: `
-    <button mat-button color="primary" href="#" (click)="getValue()">Connect ({{value || 'N/A'}}%)</button>
-    <button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button> 
-    <span mat-error>{{error}}</span>
+    <button mat-button color="primary" href="#" (click)="requestValue()">Get temperature ({{value || 'N/A'}}°C)</button>
+    <button mat-button color="warn" href="#" (click)="disconnect()" *ngIf="isDeviceValid">Disconnect</button> 
     <canvas  #chart width="700" height="100"></canvas>
   `,
   styles: [`
@@ -31,9 +30,8 @@ const PROVIDERS = [{
   }`],
   providers: [PROVIDERS]
 })
-export class HumidityComponent implements OnInit {
+export class TemperatureComponent implements OnInit {
   value = '--';
-  error = '';
   device: any = {};
   series: any = {};
 
@@ -46,12 +44,11 @@ export class HumidityComponent implements OnInit {
 
   constructor(
     public zone: NgZone,
-    public service: HumidityThingy52Service,
+    public service: TemperatureThingy52Service,
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getDeviceStatus();
-    this.streamValues();
     this.initChart();
   }
 
@@ -65,9 +62,7 @@ export class HumidityComponent implements OnInit {
 
   getDeviceStatus() {
     this.service.getDevice()
-      .pipe(
-        tap(e => this.error = '')
-      ).subscribe(device => {
+      .subscribe(device => {
         if (device) {
           this.device = device;
         } else {
@@ -78,32 +73,21 @@ export class HumidityComponent implements OnInit {
       }, this.hasError.bind(this));
   }
 
-  streamValues() {
-    this.service.streamValues()
-      .pipe(
-        tap(e => this.error = '')
-      )
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
-  }
-
-  getValue() {
-    return this.service.getHumidity()
-      .pipe(
-        tap(e => this.error = '')
-      )
+  requestValue() {
+    return this.service.getTemperature()
       .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
   }
 
   updateValue(value: number) {
     // force change detection
     this.zone.run(() => {
-      console.log('Reading humidity %d', value);
+      console.log('Reading temperature %d', value);
       this.value = '' + value;
       this.series.append(Date.now(), value);
     });
   }
 
-  disconnectDevice() {
+  disconnect() {
     this.service.disconnectDevice();
   }
 

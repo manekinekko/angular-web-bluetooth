@@ -18,19 +18,49 @@ const PROVIDERS = [{
 @Component({
   selector: 'ble-battery-level',
   template: `
-    <button mat-button color="primary" href="#" (click)="getBatteryLevel()">Get Battery Level ({{batteryLevel || 'N/A'}}%)</button>
-    <button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button> 
-    <span mat-error>{{error}}</span>
+    <span>{{ value || "000" }}<sup>%</sup></span>
+    <mat-progress-spinner
+        [color]="color"
+        [mode]="mode"
+        diameter="200"
+        strokeWidth="5"
+        [value]="value || 100">
+    </mat-progress-spinner>
+    <mat-icon>battery_charging_full</mat-icon>
   `,
+  styles: [`
+  span {
+    font-size: 5em;
+    position: absolute;
+    top: 112px;
+    left: 207px;
+    width: 120px;
+    display: block;
+    text-align: center;
+  }
+  sup {
+    font-size: 24px;
+  }
+  mat-progress-spinner {
+    margin-top: 20px;
+    margin-left: 150px;
+  }
+  mat-icon {
+    position: absolute;
+    bottom: 95px;
+    left: 248px;
+    font-size: 38px;
+  }
+  `],
   providers: [PROVIDERS]
 })
 export class BatteryLevelComponent implements OnInit {
-  batteryLevel = '--';
-  error = '';
-  device: any = {};
+  value = null;
+  mode = "determinate";
+  color = "primary";
 
-  get isDeviceValid() {
-    return this.device && Object.keys(this.device).length > 0;
+  get device() {
+    return this.batteryLevelService.getDevice();
   }
 
   constructor(
@@ -44,24 +74,22 @@ export class BatteryLevelComponent implements OnInit {
 
   getDeviceStatus() {
     this.batteryLevelService.getDevice()
-    .pipe(
-      tap(e => this.error = '')
-    ).subscribe(device => {
+    .subscribe(device => {
       if (device) {
-        this.device = device;
+        this.color = "warn";
+        this.mode = "indeterminate";
+        this.value = null;
       } else {
         // device not connected or disconnected
-        this.device = null;
-        this.batteryLevel = '--';
+        this.value = null;
+        this.mode = "determinate";
+        this.color = "primary";
       }
     }, this.hasError.bind(this));
   }
 
-  getBatteryLevel() {
+  requestValue() {
     return this.batteryLevelService.getBatteryLevel()
-      .pipe(
-        tap(e => this.error = '')
-      )
       .subscribe(this.showBatteryLevel.bind(this), this.hasError.bind(this));
   }
 
@@ -69,11 +97,12 @@ export class BatteryLevelComponent implements OnInit {
     // force change detection
     this.zone.run(() => {
       console.log('Reading battery level %d', value);
-      this.batteryLevel = '' + value;
+      this.value = value;
+      this.mode = "determinate";
     });
   }
 
-  disconnectDevice() {
+  disconnect() {
     this.batteryLevelService.disconnectDevice();
   }
 

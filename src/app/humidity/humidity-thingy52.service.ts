@@ -16,11 +16,6 @@ export class HumidityThingy52Service {
     return this.ble.getDevice$();
   }
 
-  streamValues() {
-    // call this method to get a stream of values emitted by the device
-    return this.ble.streamValues$().pipe(map((value: DataView) => value.getUint8(0)));
-  }
-
   /**
    * Get temperature value.
    *

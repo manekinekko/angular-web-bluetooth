@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <img src="assets/angular-web-ble.png" />
+  <span>Angular Web BLE Demo</span>
+</mat-toolbar>
+  
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Battery Level <span *ngIf="(battery.device | async) as device" >({{ device.name }})</span>
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item (click)="battery.requestValue()">Connect</button>
+              <button mat-menu-item [disabled]="!(battery.device | async)" (click)="battery.disconnect()">Disconnect</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-battery-level #battery></ble-battery-level>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
