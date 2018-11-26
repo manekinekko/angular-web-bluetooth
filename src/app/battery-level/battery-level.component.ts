@@ -94,12 +94,9 @@ export class BatteryLevelComponent implements OnInit {
   }
 
   showBatteryLevel(value: number) {
-    // force change detection
-    this.zone.run(() => {
-      console.log('Reading battery level %d', value);
-      this.value = value;
-      this.mode = "determinate";
-    });
+    console.log('Reading battery level %d', value);
+    this.value = value;
+    this.mode = "determinate";
   }
 
   disconnect() {

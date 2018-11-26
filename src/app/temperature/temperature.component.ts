@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { TemperatureThingy52Service } from './temperature-thingy52.service';
-import { tap } from 'rxjs/operators';
+import { tap, mergeMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 
@@ -18,28 +18,25 @@ const PROVIDERS = [{
 @Component({
   selector: 'ble-temperature',
   template: `
-    <button mat-button color="primary" href="#" (click)="requestValue()">Get temperature ({{value || 'N/A'}}°C)</button>
-    <button mat-button color="warn" href="#" (click)="disconnect()" *ngIf="isDeviceValid">Disconnect</button> 
-    <canvas  #chart width="700" height="100"></canvas>
+    <canvas #chart width="549" height="200"></canvas>
   `,
   styles: [`
+  :host {
+    display: block;
+  }
   canvas {
-    width: 800px;
-    height: 100px;
-    margin-left: -20px;
+    margin-left: -16px;
   }`],
   providers: [PROVIDERS]
 })
 export class TemperatureComponent implements OnInit {
-  value = '--';
-  device: any = {};
   series: any = {};
 
   @ViewChild('chart')
   chartRef: ElementRef<HTMLCanvasElement>;
 
-  get isDeviceValid() {
-    return this.device && Object.keys(this.device).length > 0;
+  get device() {
+    return this.service.getDevice();
   }
 
   constructor(
@@ -48,8 +45,10 @@ export class TemperatureComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getDeviceStatus();
     this.initChart();
+    // this.service.stream().subscribe(
+    //   this.updateValue.bind(this), this.hasError.bind(this)
+    // )
   }
 
   initChart() {
@@ -60,35 +59,19 @@ export class TemperatureComponent implements OnInit {
     chart.streamTo(canvas);
   }
 
-  getDeviceStatus() {
-    this.service.getDevice()
-      .subscribe(device => {
-        if (device) {
-          this.device = device;
-        } else {
-          // device not connected or disconnected
-          this.device = null;
-          this.value = '--';
-        }
-      }, this.hasError.bind(this));
-  }
-
   requestValue() {
-    return this.service.getTemperature()
+    return this.service.temperature()
       .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
   }
 
   updateValue(value: number) {
-    // force change detection
-    this.zone.run(() => {
-      console.log('Reading temperature %d', value);
-      this.value = '' + value;
-      this.series.append(Date.now(), value);
-    });
+    console.log('Reading temperature %d', value);
+    this.series.append(Date.now(), value);
   }
 
   disconnect() {
     this.service.disconnectDevice();
+    this.series.clear();
   }
 
   hasError(error: string) {

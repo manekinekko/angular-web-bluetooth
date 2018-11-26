@@ -27,7 +27,7 @@ export class HumidityThingy52Service {
     try {
       return (
         this.ble
-          .read$({
+          .value$({
             acceptAllDevices: true,
             optionalServices: [HumidityThingy52Service.GATT_PRIMARY_SERVICE],
             service: HumidityThingy52Service.GATT_PRIMARY_SERVICE,

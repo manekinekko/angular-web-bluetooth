@@ -9,7 +9,7 @@ export class BatteryLevelService {
   static GATT_CHARACTERISTIC = 'battery_level';
   static GATT_PRIMARY_SERVICE = 'battery_service';
 
-  constructor(public ble: BluetoothCore) {}
+  constructor(public ble: BluetoothCore) { }
 
   getDevice() {
     // call this method to get the connected device
@@ -26,22 +26,16 @@ export class BatteryLevelService {
   getBatteryLevel() {
     console.log('Getting Battery Service...');
 
-    try {
-      return (
-        this.ble
-          .read$({
-            acceptAllDevices: true,
-            optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE],
-            service: BatteryLevelService.GATT_PRIMARY_SERVICE,
-            characteristic: BatteryLevelService.GATT_CHARACTERISTIC
-          })
-          .pipe(
-            map((value: DataView) => value.getUint8(0))
-          )
-      );
-    } catch (e) {
-      console.error('Oops! can not read value from %s');
-    }
+    return this.ble
+      .value$({
+        acceptAllDevices: true,
+        optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE],
+        service: BatteryLevelService.GATT_PRIMARY_SERVICE,
+        characteristic: BatteryLevelService.GATT_CHARACTERISTIC
+      })
+      .pipe(
+        map((value: DataView) => value.getUint8(0))
+      )
   }
 
   disconnectDevice() {

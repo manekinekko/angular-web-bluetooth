@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject, Observable, from, fromEvent, throwError } from 'rxjs';
-import { filter, mergeMap, takeUntil, map } from 'rxjs/operators';
+import { filter, mergeMap, takeUntil, map, switchMap } from 'rxjs/operators';
 import { BrowserWebBluetooth } from './platform/browser';
 import { ConsoleLoggerService } from './logger.service';
 
@@ -46,7 +46,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
    * 
    * @param ReadOptions 
    */
-  async read(options: ReadOptions) {
+  async value(options: ReadOptions) {
     this._console.log('[BLE::Info] Reading value with options %o', options);
 
     try {
@@ -75,8 +75,8 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     }
   }
 
-  read$(options: ReadOptions) {
-    return from(this.read(options));
+  value$(options: ReadOptions) {
+    return from(this.value(options));
   }
 
   /**
@@ -222,7 +222,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
           char.startNotifications().then(
             _ => {
               this._console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
-              return char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
+              char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
             },
             (error: DOMException) => {
               Promise.reject(`${error.message} (${characteristic})`);
