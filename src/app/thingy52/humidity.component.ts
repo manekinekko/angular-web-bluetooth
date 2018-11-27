@@ -47,12 +47,12 @@ export class HumidityComponent implements OnInit {
     public service: BleService,
     public snackBar: MatSnackBar) {
 
-      service.config({
-        decoder: (value: DataView) => value.getInt8(0),
-        service: "ef680200-9b35-4933-9b10-52ffa9740042",
-        characteristic: "ef680203-9b35-4933-9b10-52ffa9740042"
-      })
-    }
+    service.config({
+      decoder: (value: DataView) => value.getInt8(0),
+      service: "ef680200-9b35-4933-9b10-52ffa9740042",
+      characteristic: "ef680203-9b35-4933-9b10-52ffa9740042"
+    })
+  }
 
   ngOnInit() {
     this.initChart();

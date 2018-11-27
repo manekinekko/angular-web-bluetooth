@@ -8,18 +8,6 @@ type ServiceOptions = {
     decoder(value: DataView): number | {[key: string]: number}
 };
 
-export function makeSingleton() {
-  return [{
-    provide: BluetoothCore,
-    useFactory: (b, l) => new BluetoothCore(b, l),
-    deps: [BrowserWebBluetooth, ConsoleLoggerService]
-  }, {
-    provide: BleService,
-    useFactory: (b) => new BleService(b),
-    deps: [BluetoothCore]
-  }];
-}
-
 @Injectable({
   providedIn: 'root'
 })

@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
-import { SmoothieChart, TimeSeries } from 'smoothie';
 import { BleService } from '../ble.service';
 
 // make sure we get a singleton instance of each service
@@ -54,20 +53,20 @@ export class StepCounterComponent implements OnInit, OnDestroy {
 
   constructor(
     public service: BleService,
-    public snackBar: MatSnackBar) { 
+    public snackBar: MatSnackBar) {
 
-      service.config({
-        decoder: (value: DataView) => {
-          const count = value.getUint32(0, true);
-          const time = value.getUint32(4, true);
-          return {
-            count, time
-          }
-        },
-        service: "ef680400-9b35-4933-9b10-52ffa9740042",
-        characteristic: "ef680405-9b35-4933-9b10-52ffa9740042"
-      })
-    }
+    service.config({
+      decoder: (value: DataView) => {
+        const count = value.getUint32(0, true);
+        const time = value.getUint32(4, true);
+        return {
+          count, time
+        }
+      },
+      service: "ef680400-9b35-4933-9b10-52ffa9740042",
+      characteristic: "ef680405-9b35-4933-9b10-52ffa9740042"
+    })
+  }
 
   ngOnInit() {
     this.streamSubscription = this.service.stream()
@@ -79,7 +78,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
       .subscribe(null, this.hasError.bind(this));
   }
 
-  updateValue(value: {time: number, count: number}) {
+  updateValue(value: { time: number, count: number }) {
     console.log('Reading step counter %d', value);
     this.value = value.count;
   }

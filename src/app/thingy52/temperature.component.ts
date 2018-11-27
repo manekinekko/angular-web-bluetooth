@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
-import { BleService, makeSingleton } from '../ble.service';
-import { ConsoleLoggerService, BluetoothCore, BrowserWebBluetooth } from '@manekinekko/angular-web-bluetooth';
+import { BleService } from '../ble.service';
 
 // make sure we get a singleton instance of each service
 const PROVIDERS = [{
