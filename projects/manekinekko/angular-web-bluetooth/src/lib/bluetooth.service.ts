@@ -1,13 +1,14 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable, from, fromEvent, throwError } from 'rxjs';
-import { filter, mergeMap, takeUntil, map, switchMap } from 'rxjs/operators';
-import { BrowserWebBluetooth } from './platform/browser';
+import { EventEmitter, Injectable } from '@angular/core';
+import { from, fromEvent, Observable, Subject, throwError } from 'rxjs';
+import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
 import { ConsoleLoggerService } from './logger.service';
+import { BrowserWebBluetooth } from './platform/browser';
 
-type ReadOptions = RequestDeviceOptions & {
+type ReadValueOptions = {
+  acceptAllDevices?: boolean;
+  optionalServices?: BluetoothServiceUUID[];
   characteristic: BluetoothCharacteristicUUID,
   service: BluetoothServiceUUID,
-  acceptAllDevices?: boolean
 };
 
 @Injectable({
@@ -44,15 +45,28 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   /**
    * Run the discovery process and read the value form the provided service and characteristic
    * 
-   * @param ReadOptions 
+   * @param ReadValueOptions 
    */
-  async value(options: ReadOptions) {
+  async value(options: ReadValueOptions) {
+    this._console.log('[BLE::Info] Reading value with options %o', options);
+
+    if (typeof options.acceptAllDevices === "undefined") {
+      options.acceptAllDevices = true;
+    }
+
+    if (typeof options.optionalServices === "undefined") {
+      options.optionalServices = [options.service];
+    }
+    else {
+      options.optionalServices = [...options.optionalServices];
+    }
+
     this._console.log('[BLE::Info] Reading value with options %o', options);
 
     try {
       const device = await this.discover({
         acceptAllDevices: options.acceptAllDevices,
-        optionalServices: [...options.optionalServices]
+        optionalServices: options.optionalServices
       }) as BluetoothDevice;
       this._console.log('[BLE::Info] Device info %o', device);
 
@@ -75,7 +89,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     }
   }
 
-  value$(options: ReadOptions) {
+  value$(options: ReadValueOptions) {
     return from(this.value(options));
   }
 
