@@ -12,7 +12,7 @@
 
 `npm i -S @manekinekko/angular-web-bluetooth @types/web-bluetooth`
 
-Note: Make also sure the `@types/web-bluetooth` is installed OK.
+_Note: Make also sure the `@types/web-bluetooth` is installed correctly in your `node_modules`. _
 
 ## Use it
 
@@ -26,7 +26,7 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
   imports: [
     //...,
     WebBluetoothModule.forRoot({
-      enableTracing: true / false // enable logs
+      enableTracing: true // or false, this will enable logs in the browser's console
     })
   ]
   //...
@@ -34,7 +34,53 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 export class AppModule {}
 ```
 
-## 2) use it in your service/component
+## 2.a) use it in your service/component (the easiest way)
+
+Here is an annotated example using the `BluetoothCore` service:
+
+```javascript
+import { Injectable } from '@angular/core';
+import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BatteryLevelService {
+
+  constructor(public readonly ble: BluetoothCore) {}
+
+  getDevice() {
+    // call this method to get the connected device
+    return this.ble.getDevice$();
+  }
+
+  stream() {
+    // call this method to get a stream of values emitted by the device for a given characteristic
+    return this.ble.streamValues$().pipe(
+      map((value: DataView) => value.getInt8(0))
+    );
+  }
+
+  disconnectDevice() {
+    // call this method to disconnect from the device. This method will also stop clear all subscribed notifications
+    this.ble.disconnectDevice();
+  }
+
+  value() {
+    console.log('Getting Battery level...');
+
+    return this.ble
+      .value$({
+        service: 'battery_service',
+        characteristic: 'battery_level'
+      });
+  }
+
+}
+```
+
+
+## 2.b) use it in your service/component (the advanced way)
 
 Here is an annotated example using the `BluetoothCore` service:
 
@@ -52,68 +98,64 @@ export class BatteryLevelService {
 
   constructor(public ble: BluetoothCore) {}
 
-  getFakeValue() {
-    this.ble.fakeNext();
-  }
-
   getDevice() {
     // call this method to get the connected device
     return this.ble.getDevice$();
   }
 
-  streamValues() {
+  stream() {
     // call this method to get a stream of values emitted by the device
     return this.ble.streamValues$().pipe(map((value: DataView) => value.getUint8(0)));
+  }
+
+  disconnectDevice() {
+    this.ble.disconnectDevice();
   }
 
   /**
    * Get Battery Level GATT Characteristic value.
    * This logic is specific to this service, this is why we can't abstract it elsewhere.
-   * The developer is free to provide any service, and characteristics she wants.
+   * The developer is free to provide any service, and characteristics they want.
    *
    * @return Emites the value of the requested service read from the device
    */
-  getBatteryLevel() {
-    console.log('Getting Battery Service...');
+  value() {
+    console.log('Getting Battery level...');
 
-    try {
-      return (
-        this.ble
+    return this.ble
 
-          // 1) call the discover method will trigger the discovery process (by the browser)
-          .discover$({
-            acceptAllDevices: true,
-            optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]
-          })
-          .pipe(
-            // 2) get that service
-            mergeMap((gatt: BluetoothRemoteGATTServer) => {
-              return this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);
-            }),
-            // 3) get a specific characteristic on that service
-            mergeMap((primaryService: BluetoothRemoteGATTService) => {
-              return this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL);
-            }),
-            // 4) ask for the value of that characteristic (will return a DataView)
-            mergeMap((characteristic: BluetoothRemoteGATTCharacteristic) => {
-              return this.ble.readValue$(characteristic);
-            }),
-            // 5) on that DataView, get the right value
-            map((value: DataView) => value.getUint8(0))
-          )
-      );
-    } catch (e) {
-      console.error('Oops! can not read value from %s');
-    }
+        // 1) call the discover method will trigger the discovery process (by the browser)
+        .discover$({
+          acceptAllDevices: true,
+          optionalServices: [BatteryLevelService.GATT_PRIMARY_SERVICE]
+        })
+        .pipe(
+
+          // 2) get that service
+          mergeMap((gatt: BluetoothRemoteGATTServer) => {
+            return this.ble.getPrimaryService$(gatt, BatteryLevelService.GATT_PRIMARY_SERVICE);
+          }),
+
+          // 3) get a specific characteristic on that service
+          mergeMap((primaryService: BluetoothRemoteGATTService) => {
+            return this.ble.getCharacteristic$(primaryService, BatteryLevelService.GATT_CHARACTERISTIC_BATTERY_LEVEL);
+          }),
+
+          // 4) ask for the value of that characteristic (will return a DataView)
+          mergeMap((characteristic: BluetoothRemoteGATTCharacteristic) => {
+            return this.ble.readValue$(characteristic);
+          }),
+
+          // 5) on that DataView, get the right value
+          map((value: DataView) => value.getUint8(0))
+        )
   }
 }
 ```
 
-See the [starter](https://github.com/manekinekko/angular-web-bluetooth-starter/tree/master/src/app) for a complete use case.
-
 ## API documentation
 
-Here 👉 https://manekinekko.github.io/angular-web-bluetooth/
+Here 👉  https://manekinekko.github.io/angular-web-bluetooth/
 
 ## Need a starter?
 
