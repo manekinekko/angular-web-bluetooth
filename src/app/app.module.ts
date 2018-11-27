@@ -1,22 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
-
-import { AppComponent } from './app.component';
-import { BatteryLevelComponent } from './battery-level/battery-level.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatExpansionModule, MatSnackBarModule, MatGridListModule, MatCardModule, MatMenuModule, MatProgressSpinnerModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import { MatButtonModule, MatCardModule, MatExpansionModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TemperatureComponent } from './temperature/temperature.component';
-import { HumidityComponent } from './humidity/humidity.component';
+import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
+import { AppComponent } from './app.component';
+import { BatteryLevelComponent } from './thingy52/battery-level.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HumidityComponent } from './thingy52/humidity.component';
+import { StepCounterComponent } from './thingy52/stepcounter.component';
+import { TemperatureComponent } from './thingy52/temperature.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    BatteryLevelComponent, 
+    AppComponent,
+    BatteryLevelComponent,
     TemperatureComponent,
     HumidityComponent,
+    StepCounterComponent,
     DashboardComponent
   ],
   imports: [
@@ -39,4 +41,4 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

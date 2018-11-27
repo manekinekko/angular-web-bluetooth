@@ -4,20 +4,27 @@
 </mat-toolbar>
 
 <div class="grid-container">
-  <mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-list cols="3" rows="2" rowHeight="300px">
 
     <!-- battery -->
-    <!-- <mat-grid-tile colspan="1" rowspan="1">
+
+    <mat-grid-tile colspan="1" rowspan="2">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
             Battery Level <span *ngIf="(battery.device | async) as device">({{ device.name }})</span>
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuBattery" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item (click)="battery.requestValue()">Connect</button>
-              <button mat-menu-item [disabled]="!(battery.device | async)" (click)="battery.disconnect()">Disconnect</button>
+            <mat-menu #menuBattery="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="!(battery.device | async)" (click)="battery.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(battery.device | async)" (click)="battery.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
@@ -25,41 +32,55 @@
           <ble-battery-level #battery></ble-battery-level>
         </mat-card-content>
       </mat-card>
-    </mat-grid-tile> -->
+    </mat-grid-tile>
 
-    <!-- step counter -->
-    <mat-grid-tile colspan="1" rowspan="1">
+    <!-- humidity -->
+
+    <mat-grid-tile colspan="2" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            <!-- Step Counter <span *ngIf="(temperature.device | async) as device">({{ device.name }})</span>
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            Humidity Level <span *ngIf="(humidity.device | async) as device">({{ device.name }})</span>
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuHumidity" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item (click)="temperature.requestValue()">Connect</button>
-              <button mat-menu-item [disabled]="!(temperature.device | async)" (click)="temperature.disconnect()">Disconnect</button>
-            </mat-menu> -->
+            <mat-menu #menuHumidity="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="!(humidity.device | async)" (click)="humidity.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(humidity.device | async)" (click)="humidity.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
+            </mat-menu>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <!-- <ble-temperature #temperature></ble-temperature> -->
+          <ble-humidity #humidity></ble-humidity>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
 
     <!-- temperature -->
-    <mat-grid-tile colspan="1" rowspan="1">
+
+    <mat-grid-tile colspan="2" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
             Temperature <span *ngIf="(temperature.device | async) as device">({{ device.name }})</span>
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuTemperature" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item (click)="temperature.requestValue()">Connect</button>
-              <button mat-menu-item [disabled]="!(temperature.device | async)" (click)="temperature.disconnect()">Disconnect</button>
+            <mat-menu #menuTemperature="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="!(temperature.device | async)" (click)="temperature.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(temperature.device | async)" (click)="temperature.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
