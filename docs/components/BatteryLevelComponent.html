@@ -47,6 +47,9 @@
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
         <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -56,7 +59,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/demo/battery-level/battery-level.component.ts</code>
+    <code>src/app/thingy52/battery-level.component.ts</code>
 </p>
 
 
@@ -96,12 +99,48 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+  :host {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+  }
+  span {
+    font-size: 5em;
+    position: absolute;
+    top: 222px;
+    width: 120px;
+    display: block;
+    text-align: center;
+  }
+  sup {
+    font-size: 24px;
+  }
+  mat-progress-spinner {
+    top: 120px;
+  }
+  mat-icon {
+    position: absolute;
+    bottom: 255px;
+    font-size: 38px;
+  }
+  </code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getBatteryLevel()&quot;&gt;Get Battery Level ({{batteryLevel || &#x27;N/A&#x27;}}%)&lt;/button&gt;
-&lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt;
-&lt;span mat-error&gt;{{error}}&lt;/span&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+&lt;mat-progress-spinner
+    [color]&#x3D;&quot;color&quot;
+    [mode]&#x3D;&quot;mode&quot;
+    diameter&#x3D;&quot;190&quot;
+    strokeWidth&#x3D;&quot;2&quot;
+    [value]&#x3D;&quot;value || 100&quot;&gt;
+&lt;/mat-progress-spinner&gt;
+&lt;mat-icon&gt;battery_charging_full&lt;/mat-icon&gt;
 </code></pre></td>
             </tr>
 
@@ -130,25 +169,30 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#batteryLevel">batteryLevel</a>
+                                <a href="#color">color</a>
+                            </li>
+                            <li>
+                                <a href="#deviceSubscription">deviceSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#mode">mode</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#batteryLevelService">batteryLevelService</a>
-                            </li>
-                            <li>
-                                <a href="#device">device</a>
-                            </li>
-                            <li>
-                                <a href="#error">error</a>
+                                <a href="#service">service</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#snackBar">snackBar</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#zone">zone</a>
+                                <a href="#streamSubscription">streamSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#value">value</a>
+                            </li>
+                            <li>
+                                <a href="#valuesSubscription">valuesSubscription</a>
                             </li>
                         </ul>
                     </td>
@@ -163,10 +207,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#disconnectDevice">disconnectDevice</a>
-                            </li>
-                            <li>
-                                <a href="#getBatteryLevel">getBatteryLevel</a>
+                                <a href="#disconnect">disconnect</a>
                             </li>
                             <li>
                                 <a href="#getDeviceStatus">getDeviceStatus</a>
@@ -175,10 +216,16 @@
                                 <a href="#hasError">hasError</a>
                             </li>
                             <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#showBatteryLevel">showBatteryLevel</a>
+                                <a href="#requestValue">requestValue</a>
+                            </li>
+                            <li>
+                                <a href="#updateValue">updateValue</a>
                             </li>
                         </ul>
                     </td>
@@ -197,7 +244,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#isDeviceValid">isDeviceValid</a>
+                                    <a href="#device">device</a>
                                 </li>
                             </ul>
                         </td>
@@ -212,12 +259,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, batteryLevelService: <a href="../injectables/BatteryLevelService.html">BatteryLevelService</a>, snackBar: MatSnackBar)</code>
+<code>constructor(service: <a href="../injectables/BleService.html">BleService</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/thingy52/battery-level.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -235,22 +282,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>zone</td>
+                                                        <td>service</td>
                                                   
                                                         <td>
-                                                                    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>batteryLevelService</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
+                                                                    <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -292,25 +327,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="disconnectDevice"></a>
+                        <a name="disconnect"></a>
                         <span class="name">
                             <b>
-                            disconnectDevice
+                            disconnect
                             </b>
-                            <a href="#disconnectDevice"><span class="icon ion-ios-link"></span></a>
+                            <a href="#disconnect"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>disconnectDevice()</code>
+<code>disconnect()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/thingy52/battery-level.component.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -320,44 +355,6 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getBatteryLevel"></a>
-                        <span class="name">
-                            <b>
-                            getBatteryLevel
-                            </b>
-                            <a href="#getBatteryLevel"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getBatteryLevel()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:60</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                     </td>
@@ -386,7 +383,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/thingy52/battery-level.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -424,7 +421,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/thingy52/battery-level.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -475,25 +472,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="ngOnInit"></a>
+                        <a name="ngOnDestroy"></a>
                         <span class="name">
                             <b>
-                            ngOnInit
+                            ngOnDestroy
                             </b>
-                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>ngOnDestroy()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/thingy52/battery-level.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -513,25 +510,101 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="showBatteryLevel"></a>
+                        <a name="ngOnInit"></a>
                         <span class="name">
                             <b>
-                            showBatteryLevel
+                            ngOnInit
                             </b>
-                            <a href="#showBatteryLevel"><span class="icon ion-ios-link"></span></a>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>showBatteryLevel(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>ngOnInit()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/thingy52/battery-level.component.ts:83</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requestValue"></a>
+                        <span class="name">
+                            <b>
+                            requestValue
+                            </b>
+                            <a href="#requestValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>requestValue()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/thingy52/battery-level.component.ts:107</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateValue"></a>
+                        <span class="name">
+                            <b>
+                            updateValue
+                            </b>
+                            <a href="#updateValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/thingy52/battery-level.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -589,18 +662,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="batteryLevel"></a>
+                        <a name="color"></a>
                         <span class="name">
                             <b>
-                            batteryLevel
+                            color
                             </b>
-                            <a href="#batteryLevel"><span class="icon ion-ios-link"></span></a>
+                            <a href="#color"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>batteryLevel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>color:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -612,12 +685,12 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;--&#x27;</code>
+                            <i>Default value : </i><code>&quot;primary&quot;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/thingy52/battery-level.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -628,109 +701,104 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="batteryLevelService"></a>
+                        <a name="deviceSubscription"></a>
+                        <span class="name">
+                            <b>
+                            deviceSubscription
+                            </b>
+                            <a href="#deviceSubscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>deviceSubscription:     <code>Subscription</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/thingy52/battery-level.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mode"></a>
+                        <span class="name">
+                            <b>
+                            mode
+                            </b>
+                            <a href="#mode"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mode:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;determinate&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/thingy52/battery-level.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="service"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Public</span>
-                            batteryLevelService
+                            service
                             </b>
-                            <a href="#batteryLevelService"><span class="icon ion-ios-link"></span></a>
+                            <a href="#service"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>batteryLevelService:     <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>service:     <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../injectables/BatteryLevelService.html" target="_self" >BatteryLevelService</a></code>
+                            <i>Type : </i>    <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:38</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="device"></a>
-                        <span class="name">
-                            <b>
-                            device
-                            </b>
-                            <a href="#device"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>device:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{}</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:30</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="error"></a>
-                        <span class="name">
-                            <b>
-                            error
-                            </b>
-                            <a href="#error"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>error:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/thingy52/battery-level.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -765,7 +833,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/thingy52/battery-level.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -776,31 +844,103 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="zone"></a>
+                        <a name="streamSubscription"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Public</span>
-                            zone
+                            streamSubscription
                             </b>
-                            <a href="#zone"><span class="icon ion-ios-link"></span></a>
+                            <a href="#streamSubscription"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>zone:     <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                        <code>streamSubscription:     <code>Subscription</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                            <i>Type : </i>    <code>Subscription</code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/thingy52/battery-level.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name">
+                            <b>
+                            value
+                            </b>
+                            <a href="#value"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>value:     <code>null</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/thingy52/battery-level.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="valuesSubscription"></a>
+                        <span class="name">
+                            <b>
+                            valuesSubscription
+                            </b>
+                            <a href="#valuesSubscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>valuesSubscription:     <code>Subscription</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/thingy52/battery-level.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -817,19 +957,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isDeviceValid"></a>
-                        <span class="name"><b>isDeviceValid</b><a href="#isDeviceValid"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="device"></a>
+                        <span class="name"><b>device</b><a href="#device"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isDeviceValid()</code></span>
+                        <span class="accessor"><b>get</b><code>device()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/demo/battery-level/battery-level.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/thingy52/battery-level.component.ts:68</a></div>
                                 </td>
                             </tr>
 
@@ -840,10 +980,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone } from &#x27;@angular/core&#x27;;
-import { BatteryLevelService } from &#x27;./battery-level.service&#x27;;
-import { tap } from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { MatSnackBar } from &#x27;@angular/material&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { BleService } from &#x27;../ble.service&#x27;;
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 
 // make sure we get a singleton instance of each service
@@ -852,75 +992,125 @@ const PROVIDERS &#x3D; [{
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: BatteryLevelService,
-  useFactory: (b) &#x3D;&gt; new BatteryLevelService(b),
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
   deps: [BluetoothCore]
 }];
 
 @Component({
   selector: &#x27;ble-battery-level&#x27;,
   template: &#x60;
-    &lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getBatteryLevel()&quot;&gt;Get Battery Level ({{batteryLevel || &#x27;N/A&#x27;}}%)&lt;/button&gt;
-    &lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt; 
-    &lt;span mat-error&gt;{{error}}&lt;/span&gt;
+    &lt;span&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+    &lt;mat-progress-spinner
+        [color]&#x3D;&quot;color&quot;
+        [mode]&#x3D;&quot;mode&quot;
+        diameter&#x3D;&quot;190&quot;
+        strokeWidth&#x3D;&quot;2&quot;
+        [value]&#x3D;&quot;value || 100&quot;&gt;
+    &lt;/mat-progress-spinner&gt;
+    &lt;mat-icon&gt;battery_charging_full&lt;/mat-icon&gt;
   &#x60;,
-  providers: [PROVIDERS]
+  styles: [&#x60;
+  :host {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+  }
+  span {
+    font-size: 5em;
+    position: absolute;
+    top: 222px;
+    width: 120px;
+    display: block;
+    text-align: center;
+  }
+  sup {
+    font-size: 24px;
+  }
+  mat-progress-spinner {
+    top: 120px;
+  }
+  mat-icon {
+    position: absolute;
+    bottom: 255px;
+    font-size: 38px;
+  }
+  &#x60;],
+  providers: PROVIDERS
 })
 export class BatteryLevelComponent implements OnInit {
-  batteryLevel &#x3D; &#x27;--&#x27;;
-  error &#x3D; &#x27;&#x27;;
-  device: any &#x3D; {};
+  value &#x3D; null;
+  mode &#x3D; &quot;determinate&quot;;
+  color &#x3D; &quot;primary&quot;;
+  valuesSubscription: Subscription;
+  streamSubscription: Subscription;
+  deviceSubscription: Subscription;
 
-  get isDeviceValid() {
-    return this.device &amp;&amp; Object.keys(this.device).length &gt; 0;
+  get device() {
+    return this.service.getDevice();
   }
 
   constructor(
-    public zone: NgZone, 
-    public batteryLevelService: BatteryLevelService,
-    public snackBar: MatSnackBar) {}
+    public service: BleService,
+    public snackBar: MatSnackBar) {
+
+    service.config({
+      decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+      service: &quot;battery_service&quot;,
+      characteristic: &quot;battery_level&quot;
+    })
+  }
 
   ngOnInit() {
     this.getDeviceStatus();
+
+    this.streamSubscription &#x3D; this.service.stream()
+      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+
   }
 
   getDeviceStatus() {
-    this.batteryLevelService.getDevice()
-    .pipe(
-      tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-    ).subscribe(device &#x3D;&gt; {
-      if (device) {
-        this.device &#x3D; device;
-      } else {
-        // device not connected or disconnected
-        this.device &#x3D; null;
-        this.batteryLevel &#x3D; &#x27;--&#x27;;
-      }
-    }, this.hasError.bind(this));
+    this.deviceSubscription &#x3D; this.service.getDevice()
+      .subscribe(device &#x3D;&gt; {
+        if (device) {
+          this.color &#x3D; &quot;warn&quot;;
+          this.mode &#x3D; &quot;indeterminate&quot;;
+          this.value &#x3D; null;
+        } else {
+          // device not connected or disconnected
+          this.value &#x3D; null;
+          this.mode &#x3D; &quot;determinate&quot;;
+          this.color &#x3D; &quot;primary&quot;;
+        }
+      }, this.hasError.bind(this));
   }
 
-  getBatteryLevel() {
-    return this.batteryLevelService.getBatteryLevel()
-      .pipe(
-        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-      )
-      .subscribe(this.showBatteryLevel.bind(this), this.hasError.bind(this));
+  requestValue() {
+    this.valuesSubscription &#x3D; this.service.value()
+      .subscribe(null, this.hasError.bind(this));
   }
 
-  showBatteryLevel(value: number) {
-    // force change detection
-    this.zone.run(() &#x3D;&gt; {
-      console.log(&#x27;Reading battery level %d&#x27;, value);
-      this.batteryLevel &#x3D; &#x27;&#x27; + value;
-    });
+  updateValue(value: number) {
+    console.log(&#x27;Reading battery level %d&#x27;, value);
+    this.value &#x3D; value;
+    this.mode &#x3D; &quot;determinate&quot;;
   }
 
-  disconnectDevice() {
-    this.batteryLevelService.disconnectDevice();
+  disconnect() {
+    this.service.disconnectDevice();
+    this.deviceSubscription.unsubscribe();
+    this.valuesSubscription.unsubscribe();
   }
 
   hasError(error: string) {
     this.snackBar.open(error, &#x27;Close&#x27;);
+  }
+
+  ngOnDestroy() {
+    this.valuesSubscription.unsubscribe();
+    this.deviceSubscription.unsubscribe();
+    this.streamSubscription.unsubscribe();
   }
 }
 
@@ -929,6 +1119,36 @@ export class BatteryLevelComponent implements OnInit {
     </div>
 
 
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+  :host {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+  }
+  span {
+    font-size: 5em;
+    position: absolute;
+    top: 222px;
+    width: 120px;
+    display: block;
+    text-align: center;
+  }
+  sup {
+    font-size: 24px;
+  }
+  mat-progress-spinner {
+    top: 120px;
+  }
+  mat-icon {
+    position: absolute;
+    bottom: 255px;
+    font-size: 38px;
+  }
+  
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>
@@ -955,8 +1175,8 @@ export class BatteryLevelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button mat-button color="primary" href="#" (click)="getBatteryLevel()">Get Battery Level ({{batteryLevel || \'N/A\'}}%)</button><button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button><span mat-error>{{error}}</span></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DemoComponent', 'selector': 'ble-demo'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
+        var COMPONENT_TEMPLATE = '<div><span>{{ value || "000" }}<sup>%</sup></span><mat-progress-spinner    [color]="color"    [mode]="mode"    diameter="190"    strokeWidth="2"    [value]="value || 100"></mat-progress-spinner><mat-icon>battery_charging_full</mat-icon></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BatteryLevelComponent'};
 </script>

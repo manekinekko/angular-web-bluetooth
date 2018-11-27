@@ -64,13 +64,16 @@
                             <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
-                            <a href="#PROVIDERS" title="src/app/demo/battery-level/battery-level.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../battery-level.component.ts)</a>
+                            <a href="#PROVIDERS" title="src/app/thingy52/battery-level.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../battery-level.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#PROVIDERS" title="src/app/demo/humidity/humidity.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../humidity.component.ts)</a>
+                            <a href="#PROVIDERS" title="src/app/thingy52/humidity.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../humidity.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#PROVIDERS" title="src/app/demo/temperature/temperature.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../temperature.component.ts)</a>
+                            <a href="#PROVIDERS" title="src/app/thingy52/stepcounter.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../stepcounter.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROVIDERS" title="src/app/thingy52/temperature.component.ts"><b>PROVIDERS</b>&nbsp;&nbsp;&nbsp;(src/.../temperature.component.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -157,7 +160,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/demo/battery-level/battery-level.component.ts</h3>
+    <h3>src/app/thingy52/battery-level.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -191,8 +194,8 @@
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: BatteryLevelService,
-  useFactory: (b) &#x3D;&gt; new BatteryLevelService(b),
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
   deps: [BluetoothCore]
 }]</code>
                         </td>
@@ -202,7 +205,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/demo/humidity/humidity.component.ts</h3>
+    <h3>src/app/thingy52/humidity.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -236,8 +239,8 @@
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: HumidityThingy52Service,
-  useFactory: (b) &#x3D;&gt; new HumidityThingy52Service(b),
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
   deps: [BluetoothCore]
 }]</code>
                         </td>
@@ -247,7 +250,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/demo/temperature/temperature.component.ts</h3>
+    <h3>src/app/thingy52/stepcounter.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -281,8 +284,53 @@
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: TemperatureThingy52Service,
-  useFactory: (b) &#x3D;&gt; new TemperatureThingy52Service(b),
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
+  deps: [BluetoothCore]
+}]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/thingy52/temperature.component.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PROVIDERS"></a>
+                        <span class="name">
+                            <b>
+                            PROVIDERS
+                            </b>
+                            <a href="#PROVIDERS"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>PROVIDERS:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[{
+  provide: BluetoothCore,
+  useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
+  deps: [BrowserWebBluetooth, ConsoleLoggerService]
+}, {
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
   deps: [BluetoothCore]
 }]</code>
                         </td>

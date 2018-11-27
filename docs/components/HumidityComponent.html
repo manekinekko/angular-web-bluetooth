@@ -59,7 +59,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/demo/humidity/humidity.component.ts</code>
+    <code>src/app/thingy52/humidity.component.ts</code>
 </p>
 
 
@@ -102,19 +102,17 @@
             <tr>
                 <td class="col-md-3">styles</td>
                 <td class="col-md-9"><code>
+  :host {
+    display: block;
+  }
   canvas {
-    width: 800px;
-    height: 100px;
-    margin-left: -20px;
+    margin-left: -16px;
   }</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getValue()&quot;&gt;Connect ({{value || &#x27;N/A&#x27;}}%)&lt;/button&gt;
-&lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt;
-&lt;span mat-error&gt;{{error}}&lt;/span&gt;
-&lt;canvas  #chart width&#x3D;&quot;700&quot; height&#x3D;&quot;100&quot;&gt;&lt;/canvas&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;canvas #chart width&#x3D;&quot;549&quot; height&#x3D;&quot;200&quot;&gt;&lt;/canvas&gt;
 </code></pre></td>
             </tr>
 
@@ -143,13 +141,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#chart">chart</a>
+                            </li>
+                            <li>
                                 <a href="#chartRef">chartRef</a>
-                            </li>
-                            <li>
-                                <a href="#device">device</a>
-                            </li>
-                            <li>
-                                <a href="#error">error</a>
                             </li>
                             <li>
                                 <a href="#series">series</a>
@@ -163,11 +158,10 @@
                                 <a href="#snackBar">snackBar</a>
                             </li>
                             <li>
-                                <a href="#value">value</a>
+                                <a href="#streamSubscription">streamSubscription</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#zone">zone</a>
+                                <a href="#valuesSubscription">valuesSubscription</a>
                             </li>
                         </ul>
                     </td>
@@ -182,13 +176,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#disconnectDevice">disconnectDevice</a>
-                            </li>
-                            <li>
-                                <a href="#getDeviceStatus">getDeviceStatus</a>
-                            </li>
-                            <li>
-                                <a href="#getValue">getValue</a>
+                                <a href="#disconnect">disconnect</a>
                             </li>
                             <li>
                                 <a href="#hasError">hasError</a>
@@ -197,10 +185,13 @@
                                 <a href="#initChart">initChart</a>
                             </li>
                             <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#streamValues">streamValues</a>
+                                <a href="#requestValue">requestValue</a>
                             </li>
                             <li>
                                 <a href="#updateValue">updateValue</a>
@@ -222,7 +213,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#isDeviceValid">isDeviceValid</a>
+                                    <a href="#device">device</a>
                                 </li>
                             </ul>
                         </td>
@@ -237,12 +228,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, service: <a href="../injectables/HumidityThingy52Service.html">HumidityThingy52Service</a>, snackBar: MatSnackBar)</code>
+<code>constructor(service: <a href="../injectables/BleService.html">BleService</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/thingy52/humidity.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -260,22 +251,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>zone</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
                                                         <td>service</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
+                                                                    <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -317,25 +296,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="disconnectDevice"></a>
+                        <a name="disconnect"></a>
                         <span class="name">
                             <b>
-                            disconnectDevice
+                            disconnect
                             </b>
-                            <a href="#disconnectDevice"><span class="icon ion-ios-link"></span></a>
+                            <a href="#disconnect"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>disconnectDevice()</code>
+<code>disconnect()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/thingy52/humidity.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -345,82 +324,6 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getDeviceStatus"></a>
-                        <span class="name">
-                            <b>
-                            getDeviceStatus
-                            </b>
-                            <a href="#getDeviceStatus"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getDeviceStatus()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:66</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getValue"></a>
-                        <span class="name">
-                            <b>
-                            getValue
-                            </b>
-                            <a href="#getValue"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getValue()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:89</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                     </td>
@@ -449,7 +352,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/thingy52/humidity.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -518,7 +421,45 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/thingy52/humidity.component.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/thingy52/humidity.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -556,7 +497,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/thingy52/humidity.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -576,25 +517,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="streamValues"></a>
+                        <a name="requestValue"></a>
                         <span class="name">
                             <b>
-                            streamValues
+                            requestValue
                             </b>
-                            <a href="#streamValues"><span class="icon ion-ios-link"></span></a>
+                            <a href="#requestValue"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>streamValues()</code>
+<code>requestValue()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/thingy52/humidity.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -632,7 +573,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/thingy52/humidity.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -690,6 +631,40 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="chart"></a>
+                        <span class="name">
+                            <b>
+                            chart
+                            </b>
+                            <a href="#chart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>chart:     <code>SmoothieChart</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>SmoothieChart</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/thingy52/humidity.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="chartRef"></a>
                         <span class="name">
                             <b>
@@ -722,85 +697,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:41</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="device"></a>
-                        <span class="name">
-                            <b>
-                            device
-                            </b>
-                            <a href="#device"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>device:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{}</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:37</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="error"></a>
-                        <span class="name">
-                            <b>
-                            error
-                            </b>
-                            <a href="#error"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>error:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/thingy52/humidity.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -822,24 +719,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>series:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <code>series:     <code>TimeSeries</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <i>Type : </i>    <code>TimeSeries</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{}</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/thingy52/humidity.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -862,19 +754,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>service:     <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>service:     <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../injectables/HumidityThingy52Service.html" target="_self" >HumidityThingy52Service</a></code>
+                            <i>Type : </i>    <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/thingy52/humidity.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -909,7 +801,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/thingy52/humidity.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -920,35 +812,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="value"></a>
+                        <a name="streamSubscription"></a>
                         <span class="name">
                             <b>
-                            value
+                            streamSubscription
                             </b>
-                            <a href="#value"><span class="icon ion-ios-link"></span></a>
+                            <a href="#streamSubscription"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>value:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>streamSubscription:     <code>Subscription</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>    <code>Subscription</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;--&#x27;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/thingy52/humidity.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -959,31 +846,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="zone"></a>
+                        <a name="valuesSubscription"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Public</span>
-                            zone
+                            valuesSubscription
                             </b>
-                            <a href="#zone"><span class="icon ion-ios-link"></span></a>
+                            <a href="#valuesSubscription"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>zone:     <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                        <code>valuesSubscription:     <code>Subscription</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                            <i>Type : </i>    <code>Subscription</code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/thingy52/humidity.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -1000,19 +886,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isDeviceValid"></a>
-                        <span class="name"><b>isDeviceValid</b><a href="#isDeviceValid"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="device"></a>
+                        <span class="name"><b>device</b><a href="#device"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isDeviceValid()</code></span>
+                        <span class="accessor"><b>get</b><code>device()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/demo/humidity/humidity.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/thingy52/humidity.component.ts:42</a></div>
                                 </td>
                             </tr>
 
@@ -1023,11 +909,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone, ElementRef, ViewChild } from &#x27;@angular/core&#x27;;
-import { HumidityThingy52Service } from &#x27;./humidity-thingy52.service&#x27;;
-import { tap } from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { MatSnackBar } from &#x27;@angular/material&#x27;;
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { SmoothieChart, TimeSeries } from &#x27;smoothie&#x27;;
+import { BleService } from &#x27;../ble.service&#x27;;
 
 // make sure we get a singleton instance of each service
 const PROVIDERS &#x3D; [{
@@ -1035,105 +922,92 @@ const PROVIDERS &#x3D; [{
   useFactory: (b, l) &#x3D;&gt; new BluetoothCore(b, l),
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
-  provide: HumidityThingy52Service,
-  useFactory: (b) &#x3D;&gt; new HumidityThingy52Service(b),
+  provide: BleService,
+  useFactory: (b) &#x3D;&gt; new BleService(b),
   deps: [BluetoothCore]
 }];
 
 @Component({
   selector: &#x27;ble-humidity&#x27;,
   template: &#x60;
-    &lt;button mat-button color&#x3D;&quot;primary&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;getValue()&quot;&gt;Connect ({{value || &#x27;N/A&#x27;}}%)&lt;/button&gt;
-    &lt;button mat-button color&#x3D;&quot;warn&quot; href&#x3D;&quot;#&quot; (click)&#x3D;&quot;disconnectDevice()&quot; *ngIf&#x3D;&quot;isDeviceValid&quot;&gt;Disconnect&lt;/button&gt; 
-    &lt;span mat-error&gt;{{error}}&lt;/span&gt;
-    &lt;canvas  #chart width&#x3D;&quot;700&quot; height&#x3D;&quot;100&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas #chart width&#x3D;&quot;549&quot; height&#x3D;&quot;200&quot;&gt;&lt;/canvas&gt;
   &#x60;,
   styles: [&#x60;
+  :host {
+    display: block;
+  }
   canvas {
-    width: 800px;
-    height: 100px;
-    margin-left: -20px;
+    margin-left: -16px;
   }&#x60;],
-  providers: [PROVIDERS]
+  providers: PROVIDERS
 })
 export class HumidityComponent implements OnInit {
-  value &#x3D; &#x27;--&#x27;;
-  error &#x3D; &#x27;&#x27;;
-  device: any &#x3D; {};
-  series: any &#x3D; {};
+  series: TimeSeries;
+  chart: SmoothieChart;
+  valuesSubscription: Subscription;
+  streamSubscription: Subscription;
 
   @ViewChild(&#x27;chart&#x27;)
   chartRef: ElementRef&lt;HTMLCanvasElement&gt;;
 
-  get isDeviceValid() {
-    return this.device &amp;&amp; Object.keys(this.device).length &gt; 0;
+  get device() {
+    return this.service.getDevice();
   }
 
   constructor(
-    public zone: NgZone,
-    public service: HumidityThingy52Service,
-    public snackBar: MatSnackBar) { }
+    public service: BleService,
+    public snackBar: MatSnackBar) {
+
+      service.config({
+        decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+        service: &quot;ef680200-9b35-4933-9b10-52ffa9740042&quot;,
+        characteristic: &quot;ef680203-9b35-4933-9b10-52ffa9740042&quot;
+      })
+    }
 
   ngOnInit() {
-    this.getDeviceStatus();
-    this.streamValues();
     this.initChart();
+
+    this.streamSubscription &#x3D; this.service.stream()
+      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
   }
 
   initChart() {
-    this.series &#x3D; new window[&#x27;TimeSeries&#x27;]();
+    this.series &#x3D; new window[&#x27;TimeSeries&#x27;]() as TimeSeries;
     const canvas &#x3D; this.chartRef.nativeElement;
-    const chart &#x3D; new window[&#x27;SmoothieChart&#x27;]({ interpolation: &#x27;step&#x27;, grid: { fillStyle: &#x27;#ffffff&#x27;, strokeStyle: &#x27;rgba(119,119,119,0.18)&#x27;, borderVisible: false }, labels: { fillStyle: &#x27;#000000&#x27;, fontSize: 17 }, tooltip: true });
-    chart.addTimeSeries(this.series, { maxValue: 100, minValue: -100, lineWidth: 1, strokeStyle: &#x27;#ff0000&#x27;, fillStyle: &#x27;rgba(255,161,161,0.30)&#x27; });
-    chart.streamTo(canvas);
+    this.chart &#x3D; new window[&#x27;SmoothieChart&#x27;]({ interpolation: &#x27;step&#x27;, grid: { fillStyle: &#x27;#ffffff&#x27;, strokeStyle: &#x27;rgba(119,119,119,0.18)&#x27;, borderVisible: false }, labels: { fillStyle: &#x27;#000000&#x27;, fontSize: 17 }, tooltip: true });
+    this.chart.addTimeSeries(this.series, { lineWidth: 1, strokeStyle: &#x27;#ff0000&#x27;, fillStyle: &#x27;rgba(255,161,161,0.30)&#x27; });
+    this.chart.streamTo(canvas);
+    this.chart.stop();
   }
 
-  getDeviceStatus() {
-    this.service.getDevice()
-      .pipe(
-        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-      ).subscribe(device &#x3D;&gt; {
-        if (device) {
-          this.device &#x3D; device;
-        } else {
-          // device not connected or disconnected
-          this.device &#x3D; null;
-          this.value &#x3D; &#x27;--&#x27;;
-        }
-      }, this.hasError.bind(this));
+  requestValue() {
+    this.valuesSubscription &#x3D; this.service.value()
+      .subscribe(null, this.hasError.bind(this));
   }
 
-  streamValues() {
-    this.service.streamValues()
-      .pipe(
-        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-      )
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
-  }
-
-  getValue() {
-    return this.service.getHumidity()
-      .pipe(
-        tap(e &#x3D;&gt; this.error &#x3D; &#x27;&#x27;)
-      )
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
-  }
 
   updateValue(value: number) {
-    // force change detection
-    this.zone.run(() &#x3D;&gt; {
-      console.log(&#x27;Reading humidity %d&#x27;, value);
-      this.value &#x3D; &#x27;&#x27; + value;
-      this.series.append(Date.now(), value);
-    });
+    console.log(&#x27;Reading humidity %d&#x27;, value);
+    this.series.append(Date.now(), value);
+    this.chart.start();
   }
 
-  disconnectDevice() {
+
+  disconnect() {
     this.service.disconnectDevice();
+    this.series.clear();
+    this.chart.stop();
+    this.valuesSubscription.unsubscribe();
   }
 
   hasError(error: string) {
     this.snackBar.open(error, &#x27;Close&#x27;);
+  }
+
+  ngOnDestroy() {
+    this.valuesSubscription.unsubscribe();
+    this.streamSubscription.unsubscribe();
   }
 }
 
@@ -1144,10 +1018,11 @@ export class HumidityComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-styleData">
             <pre class="line-numbers"><code class="language-scss">
+  :host {
+    display: block;
+  }
   canvas {
-    width: 800px;
-    height: 100px;
-    margin-left: -20px;
+    margin-left: -16px;
   }
 </code></pre>
     </div>
@@ -1177,8 +1052,8 @@ export class HumidityComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button mat-button color="primary" href="#" (click)="getValue()">Connect ({{value || \'N/A\'}}%)</button><button mat-button color="warn" href="#" (click)="disconnectDevice()" *ngIf="isDeviceValid">Disconnect</button><span mat-error>{{error}}</span><canvas  #chart width="700" height="100"></canvas></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DemoComponent', 'selector': 'ble-demo'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
+        var COMPONENT_TEMPLATE = '<div><canvas #chart width="549" height="200"></canvas></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HumidityComponent'};
 </script>

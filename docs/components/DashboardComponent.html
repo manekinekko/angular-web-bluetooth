@@ -1,0 +1,398 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-web-bluetooth-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>DashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/dashboard/dashboard.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ble-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/dashboard/dashboard.component.ts:8</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;ble-dashboard&#x27;,
+  templateUrl: &#x27;./dashboard.component.html&#x27;,
+  styleUrls: [&#x27;./dashboard.component.css&#x27;],
+})
+export class DashboardComponent {
+  
+  constructor() {}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-toolbar color&#x3D;&quot;primary&quot;&gt;
+  &lt;img src&#x3D;&quot;assets/angular-web-ble.png&quot; /&gt;
+  &lt;span&gt;Angular Web BLE Demo&lt;/span&gt;
+&lt;/mat-toolbar&gt;
+
+&lt;div class&#x3D;&quot;grid-container&quot;&gt;
+  &lt;mat-grid-list cols&#x3D;&quot;3&quot; rows&#x3D;&quot;2&quot; rowHeight&#x3D;&quot;300px&quot;&gt;
+
+    &lt;!-- battery --&gt;
+
+    &lt;mat-grid-tile colspan&#x3D;&quot;1&quot; rowspan&#x3D;&quot;2&quot;&gt;
+      &lt;mat-card class&#x3D;&quot;dashboard-card&quot;&gt;
+        &lt;mat-card-header&gt;
+          &lt;mat-card-title&gt;
+            Battery Level &lt;span *ngIf&#x3D;&quot;(battery.device | async) as device&quot;&gt;({{ device.name }})&lt;/span&gt;
+            &lt;button mat-icon-button class&#x3D;&quot;more-button&quot; [matMenuTriggerFor]&#x3D;&quot;menuBattery&quot; aria-label&#x3D;&quot;Toggle menu&quot;&gt;
+              &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+            &lt;/button&gt;
+            &lt;mat-menu #menuBattery&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(battery.device | async)&quot; (click)&#x3D;&quot;battery.requestValue()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
+                Connect
+              &lt;/button&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(battery.device | async)&quot; (click)&#x3D;&quot;battery.disconnect()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_disabled&lt;/mat-icon&gt;
+                Disconnect
+              &lt;/button&gt;
+            &lt;/mat-menu&gt;
+          &lt;/mat-card-title&gt;
+        &lt;/mat-card-header&gt;
+        &lt;mat-card-content class&#x3D;&quot;dashboard-card-content&quot;&gt;
+          &lt;ble-battery-level #battery&gt;&lt;/ble-battery-level&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+    &lt;/mat-grid-tile&gt;
+
+    &lt;!-- humidity --&gt;
+
+    &lt;mat-grid-tile colspan&#x3D;&quot;2&quot; rowspan&#x3D;&quot;1&quot;&gt;
+      &lt;mat-card class&#x3D;&quot;dashboard-card&quot;&gt;
+        &lt;mat-card-header&gt;
+          &lt;mat-card-title&gt;
+            Humidity Level &lt;span *ngIf&#x3D;&quot;(humidity.device | async) as device&quot;&gt;({{ device.name }})&lt;/span&gt;
+            &lt;button mat-icon-button class&#x3D;&quot;more-button&quot; [matMenuTriggerFor]&#x3D;&quot;menuHumidity&quot; aria-label&#x3D;&quot;Toggle menu&quot;&gt;
+              &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+            &lt;/button&gt;
+            &lt;mat-menu #menuHumidity&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(humidity.device | async)&quot; (click)&#x3D;&quot;humidity.requestValue()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
+                Connect
+              &lt;/button&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(humidity.device | async)&quot; (click)&#x3D;&quot;humidity.disconnect()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_disabled&lt;/mat-icon&gt;
+                Disconnect
+              &lt;/button&gt;
+            &lt;/mat-menu&gt;
+          &lt;/mat-card-title&gt;
+        &lt;/mat-card-header&gt;
+        &lt;mat-card-content class&#x3D;&quot;dashboard-card-content&quot;&gt;
+          &lt;ble-humidity #humidity&gt;&lt;/ble-humidity&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+    &lt;/mat-grid-tile&gt;
+
+    &lt;!-- temperature --&gt;
+
+    &lt;mat-grid-tile colspan&#x3D;&quot;2&quot; rowspan&#x3D;&quot;1&quot;&gt;
+      &lt;mat-card class&#x3D;&quot;dashboard-card&quot;&gt;
+        &lt;mat-card-header&gt;
+          &lt;mat-card-title&gt;
+            Temperature &lt;span *ngIf&#x3D;&quot;(temperature.device | async) as device&quot;&gt;({{ device.name }})&lt;/span&gt;
+            &lt;button mat-icon-button class&#x3D;&quot;more-button&quot; [matMenuTriggerFor]&#x3D;&quot;menuTemperature&quot; aria-label&#x3D;&quot;Toggle menu&quot;&gt;
+              &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+            &lt;/button&gt;
+            &lt;mat-menu #menuTemperature&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(temperature.device | async)&quot; (click)&#x3D;&quot;temperature.requestValue()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
+                Connect
+              &lt;/button&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(temperature.device | async)&quot; (click)&#x3D;&quot;temperature.disconnect()&quot;&gt;
+                &lt;mat-icon&gt;bluetooth_disabled&lt;/mat-icon&gt;
+                Disconnect
+              &lt;/button&gt;
+            &lt;/mat-menu&gt;
+          &lt;/mat-card-title&gt;
+        &lt;/mat-card-header&gt;
+        &lt;mat-card-content class&#x3D;&quot;dashboard-card-content&quot;&gt;
+          &lt;ble-temperature #temperature&gt;&lt;/ble-temperature&gt;
+        &lt;/mat-card-content&gt;
+      &lt;/mat-card&gt;
+    &lt;/mat-grid-tile&gt;
+
+  &lt;/mat-grid-list&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./dashboard.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">section {
+  padding: 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+
+img {
+  width: 32px;
+  margin: 0 10px;
+}
+
+.mat-icon {
+  margin: 0 10px 0 0;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">  <img src="assets/angular-web-ble.png" />  <span>Angular Web BLE Demo</span></mat-toolbar><div class="grid-container">  <mat-grid-list cols="3" rows="2" rowHeight="300px">    <!-- battery -->    <mat-grid-tile colspan="1" rowspan="2">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Battery Level <span *ngIf="(battery.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuBattery" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuBattery="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(battery.device | async)" (click)="battery.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(battery.device | async)" (click)="battery.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-battery-level #battery></ble-battery-level>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- humidity -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Humidity Level <span *ngIf="(humidity.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuHumidity" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuHumidity="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(humidity.device | async)" (click)="humidity.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(humidity.device | async)" (click)="humidity.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-humidity #humidity></ble-humidity>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- temperature -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Temperature <span *ngIf="(temperature.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuTemperature" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuTemperature="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(temperature.device | async)" (click)="temperature.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(temperature.device | async)" (click)="temperature.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-temperature #temperature></ble-temperature>        </mat-card-content>      </mat-card>    </mat-grid-tile>  </mat-grid-list></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
