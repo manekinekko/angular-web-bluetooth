@@ -170,7 +170,7 @@ This project serves also as a starter. Run the following command:
 Checkout my post on medium.
 
 <p align="center">
-  <a href="https://medium.com/google-developer-experts/the-web-bluetooth-module-for-angular-9336c9535d04#.f6dp9z163">
+  <a href="https://dev.to/angular/the-web-bluetooth-module-for-angular-314b">
     <img src="https://cloud.githubusercontent.com/assets/1699357/21696708/7e33cca4-d38f-11e6-8a03-6833b88e82fa.png" >
   </a>
 </p>
