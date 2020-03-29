@@ -27,7 +27,7 @@ const PROVIDERS = [{
     <mat-progress-spinner
         [color]="color"
         [mode]="mode"
-        diameter="250"
+        diameter="100"
         strokeWidth="2"
         [value]="value || 100">
     </mat-progress-spinner>
@@ -41,19 +41,15 @@ const PROVIDERS = [{
     text-align: center;
   }
   span {
-    font-size: 5em;
+    font-size: 3em;
     position: absolute;
-    top: 222px;
-    width: 120px;
+    top: 111px;
+    width: 100px;
     display: block;
     text-align: center;
   }
   sup {
     font-size: 24px;
-  }
-  mat-progress-spinner {
-    top: 90px;
-    left: 5px;
   }
   mat-icon {
     position: absolute;
@@ -91,9 +87,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.getDeviceStatus();
 
     this.streamSubscription = this.service.stream()
-      .subscribe((value: number) => {
-        this.updateValue(value);
-      }, error => this.hasError(error));
+      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
 
   }
 
@@ -115,7 +109,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
+      .subscribe(() => null, error => this.hasError.bind(this));
   }
 
   updateValue(value: number) {
@@ -140,4 +134,5 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.streamSubscription?.unsubscribe();
   }
 }
+
 
