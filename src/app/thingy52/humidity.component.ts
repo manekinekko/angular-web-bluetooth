@@ -63,8 +63,8 @@ export class HumidityComponent implements OnInit, OnDestroy {
 
     this.streamSubscription = this.service.stream()
     .subscribe(
-      () => this.updateValue.bind(this),
-      () => of(this.hasError.bind(this)),
+      (value: number) => this.updateValue(value),
+      (error) => of(this.hasError(error)),
       );
   }
 
@@ -82,7 +82,7 @@ export class HumidityComponent implements OnInit, OnDestroy {
     this.valuesSubscription = this.service.value()
     .subscribe(
       () => null,
-      () => of(this.hasError.bind(this)),
+      (error) => of(this.hasError(error)),
     );
   }
 

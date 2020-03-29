@@ -1,14 +1,27 @@
 <mat-toolbar color="primary">
   <img src="assets/angular-web-ble.png" />
   <span>Angular Web BLE Demo</span>
+  <button mat-icon-button class="more-button" [matMenuTriggerFor]="globalMenu" aria-label="Toggle menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #globalMenu="matMenu" xPosition="before">
+    <button mat-menu-item *ngIf="(device | async) === null" (click)="requestValue()">
+      <mat-icon>bluetooth_searching</mat-icon>
+      Connect
+    </button>
+    <button mat-menu-item *ngIf="(device | async)" (click)="disconnect()">
+      <mat-icon>bluetooth_disabled</mat-icon>
+      Disconnect
+    </button>
+  </mat-menu>
 </mat-toolbar>
 
 <div class="grid-container">
-  <mat-grid-list cols="3" rows="2" rowHeight="300px">
+  <mat-grid-list cols="2" rows="4" rowHeight="200px">
 
     <!-- battery -->
 
-    <mat-grid-tile colspan="1" rowspan="2">
+    <mat-grid-tile colspan="1" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -33,6 +46,37 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <ble-battery-level #battery></ble-battery-level>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- step counter -->
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Step Counter
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuStepCounter" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuStepCounter="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="(stepCounter.device | async) === null" (click)="stepCounter.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(stepCounter.device | async)" (click)="stepCounter.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
+            </mat-menu>
+          </mat-card-title>
+          <mat-card-subtitle *ngIf="(stepCounter.device | async) as device">
+            {{ device.name }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-stepcounter #stepCounter></ble-stepcounter>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
