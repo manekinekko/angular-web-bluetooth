@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { from, fromEvent, Observable, Subject, throwError } from 'rxjs';
+import { from, fromEvent, Observable, throwError } from 'rxjs';
 import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
 import { ConsoleLoggerService } from './logger.service';
 import { BrowserWebBluetooth } from './platform/browser';
@@ -14,14 +14,13 @@ type ReadValueOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class BluetoothCore extends Subject<BluetoothCore> {
+export class BluetoothCore {
   private device$: EventEmitter<BluetoothDevice>;
   private gatt$: EventEmitter<BluetoothRemoteGATTServer>;
   private characteristicValueChanges$: EventEmitter<DataView>;
   private gattServer: BluetoothRemoteGATTServer;
 
   constructor(private readonly webBle: BrowserWebBluetooth, private readonly console: ConsoleLoggerService) {
-    super();
 
     this.device$ = new EventEmitter<BluetoothDevice>();
     this.gatt$ = new EventEmitter<BluetoothRemoteGATTServer>();
