@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
-import { Subscription, of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
 import { BleService } from '../ble.service';
 
@@ -62,9 +62,9 @@ export class HumidityComponent implements OnInit, OnDestroy {
     this.initChart();
 
     this.streamSubscription = this.service.stream()
-      .subscribe(
-        () => this.updateValue.bind(this),
-        () => of(this.hasError.bind(this)),
+    .subscribe(
+      () => this.updateValue.bind(this),
+      () => of(this.hasError.bind(this)),
       );
   }
 

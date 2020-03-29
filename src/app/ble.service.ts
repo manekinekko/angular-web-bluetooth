@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
 import { map } from 'rxjs/operators';
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 
 type ServiceOptions = {
     characteristic: string;
