@@ -150,7 +150,7 @@
   styleUrls: [&#x27;./dashboard.component.css&#x27;],
 })
 export class DashboardComponent {
-  
+
   constructor() {}
 }
 </code></pre>
@@ -176,7 +176,7 @@ export class DashboardComponent {
               &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
             &lt;/button&gt;
             &lt;mat-menu #menuBattery&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
-              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(battery.device | async)&quot; (click)&#x3D;&quot;battery.requestValue()&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(battery.device | async) &#x3D;&#x3D;&#x3D; undefined&quot; (click)&#x3D;&quot;battery.requestValue()&quot;&gt;
                 &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
                 Connect
               &lt;/button&gt;
@@ -204,7 +204,7 @@ export class DashboardComponent {
               &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
             &lt;/button&gt;
             &lt;mat-menu #menuHumidity&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
-              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(humidity.device | async)&quot; (click)&#x3D;&quot;humidity.requestValue()&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(humidity.device | async) &#x3D;&#x3D;&#x3D; undefined&quot; (click)&#x3D;&quot;humidity.requestValue()&quot;&gt;
                 &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
                 Connect
               &lt;/button&gt;
@@ -232,7 +232,7 @@ export class DashboardComponent {
               &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
             &lt;/button&gt;
             &lt;mat-menu #menuTemperature&#x3D;&quot;matMenu&quot; xPosition&#x3D;&quot;before&quot;&gt;
-              &lt;button mat-menu-item *ngIf&#x3D;&quot;!(temperature.device | async)&quot; (click)&#x3D;&quot;temperature.requestValue()&quot;&gt;
+              &lt;button mat-menu-item *ngIf&#x3D;&quot;(temperature.device | async) &#x3D;&#x3D;&#x3D; undefined&quot; (click)&#x3D;&quot;temperature.requestValue()&quot;&gt;
                 &lt;mat-icon&gt;bluetooth_searching&lt;/mat-icon&gt;
                 Connect
               &lt;/button&gt;
@@ -250,7 +250,8 @@ export class DashboardComponent {
     &lt;/mat-grid-tile&gt;
 
   &lt;/mat-grid-list&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -327,7 +328,7 @@ img {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">  <img src="assets/angular-web-ble.png" />  <span>Angular Web BLE Demo</span></mat-toolbar><div class="grid-container">  <mat-grid-list cols="3" rows="2" rowHeight="300px">    <!-- battery -->    <mat-grid-tile colspan="1" rowspan="2">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Battery Level <span *ngIf="(battery.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuBattery" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuBattery="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(battery.device | async)" (click)="battery.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(battery.device | async)" (click)="battery.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-battery-level #battery></ble-battery-level>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- humidity -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Humidity Level <span *ngIf="(humidity.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuHumidity" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuHumidity="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(humidity.device | async)" (click)="humidity.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(humidity.device | async)" (click)="humidity.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-humidity #humidity></ble-humidity>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- temperature -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Temperature <span *ngIf="(temperature.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuTemperature" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuTemperature="matMenu" xPosition="before">              <button mat-menu-item *ngIf="!(temperature.device | async)" (click)="temperature.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(temperature.device | async)" (click)="temperature.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-temperature #temperature></ble-temperature>        </mat-card-content>      </mat-card>    </mat-grid-tile>  </mat-grid-list></div></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">  <img src="assets/angular-web-ble.png" />  <span>Angular Web BLE Demo</span></mat-toolbar><div class="grid-container">  <mat-grid-list cols="3" rows="2" rowHeight="300px">    <!-- battery -->    <mat-grid-tile colspan="1" rowspan="2">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Battery Level <span *ngIf="(battery.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuBattery" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuBattery="matMenu" xPosition="before">              <button mat-menu-item *ngIf="(battery.device | async) === undefined" (click)="battery.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(battery.device | async)" (click)="battery.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-battery-level #battery></ble-battery-level>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- humidity -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Humidity Level <span *ngIf="(humidity.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuHumidity" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuHumidity="matMenu" xPosition="before">              <button mat-menu-item *ngIf="(humidity.device | async) === undefined" (click)="humidity.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(humidity.device | async)" (click)="humidity.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-humidity #humidity></ble-humidity>        </mat-card-content>      </mat-card>    </mat-grid-tile>    <!-- temperature -->    <mat-grid-tile colspan="2" rowspan="1">      <mat-card class="dashboard-card">        <mat-card-header>          <mat-card-title>            Temperature <span *ngIf="(temperature.device | async) as device">({{ device.name }})</span>            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuTemperature" aria-label="Toggle menu">              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #menuTemperature="matMenu" xPosition="before">              <button mat-menu-item *ngIf="(temperature.device | async) === undefined" (click)="temperature.requestValue()">                <mat-icon>bluetooth_searching</mat-icon>                Connect              </button>              <button mat-menu-item *ngIf="(temperature.device | async)" (click)="temperature.disconnect()">                <mat-icon>bluetooth_disabled</mat-icon>                Disconnect              </button>            </mat-menu>          </mat-card-title>        </mat-card-header>        <mat-card-content class="dashboard-card-content">          <ble-temperature #temperature></ble-temperature>        </mat-card-content>      </mat-card>    </mat-grid-tile>  </mat-grid-list></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
@@ -343,6 +344,7 @@ img {
 
 
 
+                   
 
 
 
@@ -365,6 +367,7 @@ img {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
