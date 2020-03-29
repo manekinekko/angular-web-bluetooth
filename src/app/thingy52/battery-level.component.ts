@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
@@ -62,7 +62,7 @@ const PROVIDERS = [{
   `],
   providers: PROVIDERS
 })
-export class BatteryLevelComponent implements OnInit {
+export class BatteryLevelComponent implements OnInit, OnDestroy {
   value = null;
   mode = 'determinate';
   color = 'primary';
@@ -89,7 +89,7 @@ export class BatteryLevelComponent implements OnInit {
     this.getDeviceStatus();
 
     this.streamSubscription = this.service.stream()
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+      .subscribe(() => this.updateValue.bind(this), error => this.hasError.bind(this));
 
   }
 
@@ -111,7 +111,7 @@ export class BatteryLevelComponent implements OnInit {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(null, this.hasError.bind(this));
+      .subscribe(() => null, error => this.hasError.bind(this));
   }
 
   updateValue(value: number) {

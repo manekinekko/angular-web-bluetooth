@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BrowserWebBluetooth {
-  private _ble;
+  private ble;
 
   constructor() {
-    this._ble = navigator.bluetooth;
-    if (!this._ble) {
+    this.ble = navigator.bluetooth;
+    if (!this.ble) {
       throw new Error('Your browser does not support Smart Bluetooth. See http://caniuse.com/#search=Bluetooth for more details.');
     }
   }
 
   requestDevice(options: RequestDeviceOptions): Promise<BluetoothDevice> {
-    return this._ble.requestDevice(options);
+    return this.ble.requestDevice(options);
   }
 }

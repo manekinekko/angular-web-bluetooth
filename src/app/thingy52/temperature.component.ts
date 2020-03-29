@@ -67,13 +67,25 @@ export class TemperatureComponent implements OnInit, OnDestroy {
     this.initChart();
 
     this.streamSubscription = this.service.stream()
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+      .subscribe( () => this.updateValue.bind(this), error => this.hasError.bind(this));
   }
 
   initChart() {
     this.series = new window.TimeSeries() as TimeSeries;
     const canvas = this.chartRef.nativeElement;
-    this.chart = new window.SmoothieChart({ interpolation: 'step', grid: { fillStyle: '#ffffff', strokeStyle: 'rgba(119,119,119,0.18)', borderVisible: false }, labels: { fillStyle: '#000000', fontSize: 17 }, tooltip: true });
+    this.chart = new window.SmoothieChart({
+      interpolation: 'step',
+      grid: {
+        fillStyle: '#ffffff',
+        strokeStyle: 'rgba(119,119,119,0.18)',
+        borderVisible: false
+      },
+      labels: {
+        fillStyle: '#000000',
+        fontSize: 17
+      },
+      tooltip: true
+    });
     this.chart.addTimeSeries(this.series, { lineWidth: 1, strokeStyle: '#ff0000', fillStyle: 'rgba(255,161,161,0.30)' });
     this.chart.streamTo(canvas);
     this.chart.stop();
@@ -81,7 +93,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(null, this.hasError.bind(this));
+      .subscribe( () => null, error => this.hasError.bind(this));
   }
 
   updateValue(value: number) {

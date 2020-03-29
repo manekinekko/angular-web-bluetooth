@@ -17,15 +17,15 @@
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "directive-selector": [
-      true,
+      false,
       "attribute",
-      "ble",
+      ["ble", "app"],
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
-      "ble",
+      ["ble", "app"],
       "kebab-case"
     ],
     "eofline": true,

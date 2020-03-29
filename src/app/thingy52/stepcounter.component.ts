@@ -74,12 +74,12 @@ export class StepCounterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.streamSubscription = this.service.stream()
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+      .subscribe(() => this.updateValue.bind(this), error => this.hasError.bind(this));
   }
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(null, this.hasError.bind(this));
+      .subscribe(() => null, error => this.hasError.bind(this));
   }
 
   updateValue(value: { time: number, count: number }) {

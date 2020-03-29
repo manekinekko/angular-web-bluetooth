@@ -17,7 +17,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menuBattery="matMenu" xPosition="before">
-              <button mat-menu-item *ngIf="!(battery.device | async)" (click)="battery.requestValue()">
+              <button mat-menu-item *ngIf="(battery.device | async) === undefined" (click)="battery.requestValue()">
                 <mat-icon>bluetooth_searching</mat-icon>
                 Connect
               </button>
@@ -45,7 +45,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menuHumidity="matMenu" xPosition="before">
-              <button mat-menu-item *ngIf="!(humidity.device | async)" (click)="humidity.requestValue()">
+              <button mat-menu-item *ngIf="(humidity.device | async) === undefined" (click)="humidity.requestValue()">
                 <mat-icon>bluetooth_searching</mat-icon>
                 Connect
               </button>
@@ -73,7 +73,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menuTemperature="matMenu" xPosition="before">
-              <button mat-menu-item *ngIf="!(temperature.device | async)" (click)="temperature.requestValue()">
+              <button mat-menu-item *ngIf="(temperature.device | async) === undefined" (click)="temperature.requestValue()">
                 <mat-icon>bluetooth_searching</mat-icon>
                 Connect
               </button>
