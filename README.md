@@ -2,7 +2,7 @@
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>
 <h2 align="center">The missing Web Bluetooth module for Angular</h2>
-<h2 align="center"><a href="https://circleci.com/gh/manekinekko/angular-web-bluetooth/tree/master"><img src="https://circleci.com/gh/manekinekko/angular-web-bluetooth.svg?style=svg"> <img src="https://app.buddy.works/manekinekko-1/angular-web-bluetooth/pipelines/pipeline/136661/badge.svg?token=cee6a291d42aeeb701176104f8623d429614bf77cb0c7d7b68bc5a342e49ffe9"/></a></h2>
+<h2 align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Node.js%20CI/badge.svg"/></h2>
 
 ### Yarn it
 
