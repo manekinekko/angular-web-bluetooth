@@ -1,18 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
 import { BleService } from '../ble.service';
+
+export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
+export const bleService = (b: BluetoothCore) => new BleService(b);
+
 
 // make sure we get a singleton instance of each service
 const PROVIDERS = [{
   provide: BluetoothCore,
-  useFactory: (b, l) => new BluetoothCore(b, l),
+  useFactory: bleCore,
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
   provide: BleService,
-  useFactory: (b) => new BleService(b),
+  useFactory: bleService,
   deps: [BluetoothCore]
 }];
 
@@ -30,13 +34,13 @@ const PROVIDERS = [{
   }`],
   providers: PROVIDERS
 })
-export class HumidityComponent implements OnInit {
+export class HumidityComponent implements OnInit, OnDestroy {
   series: TimeSeries;
   chart: SmoothieChart;
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
 
-  @ViewChild('chart')
+  @ViewChild('chart', {static: true})
   chartRef: ElementRef<HTMLCanvasElement>;
 
   get device() {
@@ -49,22 +53,26 @@ export class HumidityComponent implements OnInit {
 
     service.config({
       decoder: (value: DataView) => value.getInt8(0),
-      service: "ef680200-9b35-4933-9b10-52ffa9740042",
-      characteristic: "ef680203-9b35-4933-9b10-52ffa9740042"
-    })
+      service: 'ef680200-9b35-4933-9b10-52ffa9740042',
+      characteristic: 'ef680203-9b35-4933-9b10-52ffa9740042'
+    });
   }
 
   ngOnInit() {
     this.initChart();
 
     this.streamSubscription = this.service.stream()
-      .subscribe(this.updateValue.bind(this), this.hasError.bind(this));
+      .subscribe(
+        () => this.updateValue.bind(this),
+        () => of(this.hasError.bind(this)),
+      );
   }
 
   initChart() {
-    this.series = new window['TimeSeries']() as TimeSeries;
+    this.series = new window.TimeSeries() as TimeSeries;
     const canvas = this.chartRef.nativeElement;
-    this.chart = new window['SmoothieChart']({ interpolation: 'step', grid: { fillStyle: '#ffffff', strokeStyle: 'rgba(119,119,119,0.18)', borderVisible: false }, labels: { fillStyle: '#000000', fontSize: 17 }, tooltip: true });
+    // tslint:disable-next-line: max-line-length
+    this.chart = new window.SmoothieChart({ interpolation: 'step', grid: { fillStyle: '#ffffff', strokeStyle: 'rgba(119,119,119,0.18)', borderVisible: false }, labels: { fillStyle: '#000000', fontSize: 17 }, tooltip: true });
     this.chart.addTimeSeries(this.series, { lineWidth: 1, strokeStyle: '#ff0000', fillStyle: 'rgba(255,161,161,0.30)' });
     this.chart.streamTo(canvas);
     this.chart.stop();
@@ -72,7 +80,10 @@ export class HumidityComponent implements OnInit {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(null, this.hasError.bind(this));
+    .subscribe(
+      () => null,
+      () => of(this.hasError.bind(this)),
+    );
   }
 
 
@@ -99,5 +110,3 @@ export class HumidityComponent implements OnInit {
     this.streamSubscription.unsubscribe();
   }
 }
-
-

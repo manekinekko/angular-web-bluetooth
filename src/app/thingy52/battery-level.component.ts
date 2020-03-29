@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
 import { BleService } from '../ble.service';
 
+export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
+export const bleService = (b: BluetoothCore) => new BleService(b);
+
+
 // make sure we get a singleton instance of each service
 const PROVIDERS = [{
   provide: BluetoothCore,
-  useFactory: (b, l) => new BluetoothCore(b, l),
+  useFactory: bleCore,
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
   provide: BleService,
-  useFactory: (b) => new BleService(b),
+  useFactory: bleService,
   deps: [BluetoothCore]
 }];
+
 
 @Component({
   selector: 'ble-battery-level',
@@ -59,8 +64,8 @@ const PROVIDERS = [{
 })
 export class BatteryLevelComponent implements OnInit {
   value = null;
-  mode = "determinate";
-  color = "primary";
+  mode = 'determinate';
+  color = 'primary';
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
   deviceSubscription: Subscription;
@@ -75,9 +80,9 @@ export class BatteryLevelComponent implements OnInit {
 
     service.config({
       decoder: (value: DataView) => value.getInt8(0),
-      service: "battery_service",
-      characteristic: "battery_level"
-    })
+      service: 'battery_service',
+      characteristic: 'battery_level'
+    });
   }
 
   ngOnInit() {
@@ -92,14 +97,14 @@ export class BatteryLevelComponent implements OnInit {
     this.deviceSubscription = this.service.getDevice()
       .subscribe(device => {
         if (device) {
-          this.color = "warn";
-          this.mode = "indeterminate";
+          this.color = 'warn';
+          this.mode = 'indeterminate';
           this.value = null;
         } else {
           // device not connected or disconnected
           this.value = null;
-          this.mode = "determinate";
-          this.color = "primary";
+          this.mode = 'determinate';
+          this.color = 'primary';
         }
       }, this.hasError.bind(this));
   }
@@ -112,7 +117,7 @@ export class BatteryLevelComponent implements OnInit {
   updateValue(value: number) {
     console.log('Reading battery level %d', value);
     this.value = value;
-    this.mode = "determinate";
+    this.mode = 'determinate';
   }
 
   disconnect() {

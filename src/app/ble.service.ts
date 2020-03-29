@@ -13,6 +13,7 @@ type ServiceOptions = {
 })
 export class BleService {
 
+    // tslint:disable-next-line: variable-name
     private _config: ServiceOptions;
 
   constructor(public ble: BluetoothCore) { }

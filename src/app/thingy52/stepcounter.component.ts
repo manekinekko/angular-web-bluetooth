@@ -1,17 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
 import { BleService } from '../ble.service';
 
+export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
+export const bleService = (b: BluetoothCore) => new BleService(b);
+
+
 // make sure we get a singleton instance of each service
 const PROVIDERS = [{
   provide: BluetoothCore,
-  useFactory: (b, l) => new BluetoothCore(b, l),
+  useFactory: bleCore,
   deps: [BrowserWebBluetooth, ConsoleLoggerService]
 }, {
   provide: BleService,
-  useFactory: (b) => new BleService(b),
+  useFactory: bleService,
   deps: [BluetoothCore]
 }];
 
@@ -61,11 +65,11 @@ export class StepCounterComponent implements OnInit, OnDestroy {
         const time = value.getUint32(4, true);
         return {
           count, time
-        }
+        };
       },
-      service: "ef680400-9b35-4933-9b10-52ffa9740042",
-      characteristic: "ef680405-9b35-4933-9b10-52ffa9740042"
-    })
+      service: 'ef680400-9b35-4933-9b10-52ffa9740042',
+      characteristic: 'ef680405-9b35-4933-9b10-52ffa9740042'
+    });
   }
 
   ngOnInit() {

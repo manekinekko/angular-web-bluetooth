@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
-    "email": "github@wassim.app"
+    "email": "github@wassim.dev"
   },
   "engines": {
     "node": ">= 5.4.1"
@@ -42,7 +42,8 @@
     "sensortag"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0"
+    "@angular/common": "^9.1.0",
+    "@angular/core": "^9.1.0",
+    "tslib": "^1.10.0"
   }
 }

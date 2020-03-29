@@ -4,11 +4,11 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-web-bluetooth-starter": {
+      "projectType": "application",
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "ble",
-      "schematics": {},
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -43,7 +44,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -52,6 +52,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -79,38 +84,32 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "angular-web-bluetooth-starter-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -122,22 +121,13 @@
               "devServerTarget": "angular-web-bluetooth-starter:serve:production"
             }
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
     "@manekinekko/angular-web-bluetooth": {
+      "projectType": "library",
       "root": "projects/manekinekko/angular-web-bluetooth",
       "sourceRoot": "projects/manekinekko/angular-web-bluetooth/src",
-      "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -145,6 +135,11 @@
           "options": {
             "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.json",
             "project": "projects/manekinekko/angular-web-bluetooth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -170,5 +165,8 @@
       }
     }
   },
-  "defaultProject": "angular-web-bluetooth-starter"
+  "defaultProject": "angular-web-bluetooth-starter",
+  "cli": {
+    "analytics": "6c503e91-213a-464d-801c-5af37e13087c"
+  }
 }
