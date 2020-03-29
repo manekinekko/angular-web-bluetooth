@@ -10,7 +10,7 @@
     "test": "echo 'skipping test'",
     "lint": "ng lint",
     "e2e": "echo 'skipping test'",
-    "docs": "compodoc -p src/tsconfig.app.json --theme material -d docs",
+    "docs": "compodoc -p tsconfig.json --theme material -d docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "private": true,
