@@ -41,6 +41,7 @@ Here is an annotated example using the `BluetoothCore` service:
 ```javascript
 import { Injectable } from '@angular/core';
 import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
