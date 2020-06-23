@@ -5,14 +5,15 @@
     "ng": "ng",
     "start": "ng serve",
     "prestart": "npm run build",
-    "prebuild": "ng build @manekinekko/angular-web-bluetooth",
+    "prebuild": "ng build @manekinekko/angular-web-bluetooth --prod",
     "build": "ng build angular-web-bluetooth-starter --prod",
     "test": "echo 'skipping test'",
     "lint": "ng lint",
     "e2e": "echo 'skipping test'",
     "docs": "compodoc -p tsconfig.json --theme material -d docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "release": "cd projects/manekinekko/angular-web-bluetooth && release-it --no-git.requireUpstream"
+    "prerelease": "npm run prebuild",
+    "release": "cd dist/manekinekko/angular-web-bluetooth && release-it --no-git.requireUpstream"
   },
   "private": true,
   "dependencies": {
