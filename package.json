@@ -57,6 +57,7 @@
     "protractor": "^7.0.0",
     "release-it": "^13.6.3",
     "ts-node": "~8.10.2",
+    "tsickle": "^0.38.1",
     "tslint": "~6.1.2",
     "typescript": "~3.8.3"
   }
