@@ -51,6 +51,9 @@ const PROVIDERS = [{
   sup {
     font-size: 24px;
   }
+  mat-progress-spinner {
+    top: 120px;
+  }
   mat-icon {
     position: absolute;
     bottom: 255px;
