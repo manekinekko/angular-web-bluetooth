@@ -7,6 +7,7 @@
     "prestart": "npm run build",
     "prebuild": "ng build @manekinekko/angular-web-bluetooth --prod",
     "build": "ng build angular-web-bluetooth-starter --prod",
+    "postbuild": "npm run docs",
     "test": "echo 'skipping test'",
     "lint": "ng lint",
     "e2e": "echo 'skipping test'",
