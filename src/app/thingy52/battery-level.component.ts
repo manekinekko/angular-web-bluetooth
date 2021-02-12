@@ -27,7 +27,7 @@ const PROVIDERS = [{
     <mat-progress-spinner
         [color]="color"
         [mode]="mode"
-        diameter="190"
+        diameter="250"
         strokeWidth="2"
         [value]="value || 100">
     </mat-progress-spinner>
@@ -52,7 +52,8 @@ const PROVIDERS = [{
     font-size: 24px;
   }
   mat-progress-spinner {
-    top: 120px;
+    top: 90px;
+    left: 5px;
   }
   mat-icon {
     position: absolute;
