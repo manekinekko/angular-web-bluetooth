@@ -14,7 +14,7 @@
     "docs": "compodoc -p tsconfig.json --theme material -d docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "prerelease": "npm run prebuild",
-    "release": "cd dist/manekinekko/angular-web-bluetooth && release-it --no-git.requireUpstream"
+    "release": "cd projects/manekinekko/angular-web-bluetooth && release-it --no-git.requireUpstream"
   },
   "private": true,
   "dependencies": {
