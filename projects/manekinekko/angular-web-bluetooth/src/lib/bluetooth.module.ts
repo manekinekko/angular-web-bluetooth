@@ -29,7 +29,7 @@ export function makeMeTokenInjector() {
   imports: [CommonModule]
 })
 export class WebBluetoothModule {
-  static forRoot(options: AWBOptions = {}): ModuleWithProviders {
+  static forRoot(options: AWBOptions = {}): ModuleWithProviders<WebBluetoothModule> {
     return {
       ngModule: WebBluetoothModule,
       providers: [

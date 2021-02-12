@@ -21,6 +21,9 @@
   "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
   "types": "./dist/manekinekko/angular-web-bluetooth/public_api.d.ts",
   "private": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "keywords": [
     "angular",
     "angular2",
@@ -43,7 +46,6 @@
   ],
   "peerDependencies": {
     "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "tslib": "^1.10.0"
+    "@angular/core": "^9.1.0"
   }
 }
