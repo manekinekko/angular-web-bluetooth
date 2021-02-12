@@ -1,6 +1,6 @@
 {
   "name": "@manekinekko/angular-web-bluetooth",
-  "version": "9.1.0",
+  "version": "11.2.0",
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
@@ -45,7 +45,7 @@
     "sensortag"
   ],
   "peerDependencies": {
-    "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0"
+    "@angular/common": "^11.0.0",
+    "@angular/core": "^11.0.0"
   }
 }
