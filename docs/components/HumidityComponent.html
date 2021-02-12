@@ -867,10 +867,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
 import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
-import { Subscription, of } from &#x27;rxjs&#x27;;
+import { of, Subscription } from &#x27;rxjs&#x27;;
 import { SmoothieChart, TimeSeries } from &#x27;smoothie&#x27;;
 import { BleService } from &#x27;../ble.service&#x27;;
 
@@ -931,9 +931,9 @@ export class HumidityComponent implements OnInit, OnDestroy {
     this.initChart();
 
     this.streamSubscription &#x3D; this.service.stream()
-      .subscribe(
-        () &#x3D;&gt; this.updateValue.bind(this),
-        () &#x3D;&gt; of(this.hasError.bind(this)),
+    .subscribe(
+      () &#x3D;&gt; this.updateValue.bind(this),
+      () &#x3D;&gt; of(this.hasError.bind(this)),
       );
   }
 
