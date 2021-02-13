@@ -1,11 +1,11 @@
 {
   "name": "angular-web-bluetooth-starter",
-  "version": "11.2.0",
+  "version": "11.2.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "prestart": "npm run build",
-    "prebuild": "ng build @manekinekko/angular-web-bluetooth --prod",
+    "prebuild": "ng build @manekinekko/angular-web-bluetooth --prod && cp README.md dist/manekinekko/angular-web-bluetooth/",
     "build": "ng build angular-web-bluetooth-starter --prod",
     "postbuild": "npm run docs",
     "test": "echo 'skipping test'",
