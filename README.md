@@ -2,19 +2,17 @@
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>
 <h2 align="center">The missing Web Bluetooth module for Angular</h2>
-<h2 align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Node.js%20CI/badge.svg"/></h2>
+<p align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Node.js%20CI/badge.svg"/></p>
 
-### Yarn it
+## Install
 
-`yarn add @manekinekko/angular-web-bluetooth @types/web-bluetooth`
+```
+npm install -S @manekinekko/angular-web-bluetooth @types/web-bluetooth
+```
 
-### or NPM it
+> Note: Make also sure the `@types/web-bluetooth` is installed correctly in your `node_modules`.
 
-`npm i -S @manekinekko/angular-web-bluetooth @types/web-bluetooth`
-
-_Note: Make also sure the `@types/web-bluetooth` is installed correctly in your `node_modules`. _
-
-## Use it
+## Getting started
 
 ## 1) import the `WebBluetoothModule` module
 
@@ -156,29 +154,25 @@ export class BatteryLevelService {
 
 ## API documentation
 
-Here 👉  https://manekinekko.github.io/angular-web-bluetooth/
+The API documentation can be found here:  https://manekinekko.github.io/angular-web-bluetooth/
 
 ## Need a starter?
 
-<img src="https://cloud.githubusercontent.com/assets/1699357/21523148/b843ceb0-cd0b-11e6-974a-50294a797b27.png"/>
+<img src="src/assets/screenshot.png"/>
 
 This project serves also as a starter. Run the following command:
 
-`npm start`
+```bash
+npm start
+```
 
 ## Blog post
 
-Checkout my post on medium.
-
-<p align="center">
-  <a href="https://dev.to/angular/the-web-bluetooth-module-for-angular-314b">
-    <img src="https://cloud.githubusercontent.com/assets/1699357/21696708/7e33cca4-d38f-11e6-8a03-6833b88e82fa.png" >
-  </a>
-</p>
+Checkout my full [blog post on dev.to](https://dev.to/angular/the-web-bluetooth-module-for-angular-314b) about how to use this package in your app.
 
 ## Have a PR?
 
-All contributions are welcome ;)
+All contributions are welcome. Here are few [open issues](https://github.com/manekinekko/angular-web-bluetooth/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) that I need help with ;)
 
 # License
 
