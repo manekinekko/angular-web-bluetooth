@@ -268,8 +268,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/ble.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/ble.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -509,7 +509,10 @@ export class BleService {
       .value$({
         service: this._config.service,
         characteristic: this._config.characteristic
-      });
+      })
+      .pipe(
+        map(this._config.decoder)
+      );
   }
 
   disconnectDevice() {

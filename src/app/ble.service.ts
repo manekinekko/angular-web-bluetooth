@@ -37,7 +37,10 @@ export class BleService {
       .value$({
         service: this._config.service,
         characteristic: this._config.characteristic
-      });
+      })
+      .pipe(
+        map(this._config.decoder)
+      );
   }
 
   disconnectDevice() {
