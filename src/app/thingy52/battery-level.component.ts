@@ -23,7 +23,7 @@ const PROVIDERS = [{
 @Component({
   selector: 'ble-battery-level',
   template: `
-    <span>{{ value || "000" }}<sup>%</sup></span>
+    <span data-testid="value">{{ value || "000" }}<sup>%</sup></span>
     <mat-progress-spinner
         [color]="color"
         [mode]="mode"
@@ -77,7 +77,8 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   constructor(
     public service: BleService,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    public console: ConsoleLoggerService) {
 
     service.config({
       decoder: (value: DataView) => value.getInt8(0),
@@ -90,7 +91,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.getDeviceStatus();
 
     this.streamSubscription = this.service.stream()
-      .subscribe(() => this.updateValue.bind(this), error => this.hasError.bind(this));
+      .subscribe((value: number) => {
+        this.updateValue(value);
+      }, error => this.hasError(error));
 
   }
 
@@ -112,11 +115,11 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(() => null, error => this.hasError.bind(this));
+      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
   }
 
   updateValue(value: number) {
-    console.log('Reading battery level %d', value);
+    this.console.log('Reading battery level %d', value);
     this.value = value;
     this.mode = 'determinate';
   }
@@ -132,9 +135,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.deviceSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    if (this.valuesSubscription) { this.valuesSubscription.unsubscribe(); }
+    if (this.deviceSubscription) { this.deviceSubscription.unsubscribe(); }
+    if (this.streamSubscription) { this.streamSubscription.unsubscribe(); }
   }
 }
 

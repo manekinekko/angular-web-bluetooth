@@ -4,20 +4,20 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project angular-web-bluetooth` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-web-bluetooth`.
-> Note: Don't forget to add `--project angular-web-bluetooth` or else it will be added to the default project in your `angular.json` file. 
+Run `ng generate component component-name --project @manekinekko/angular-web-bluetooth` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @manekinekko/angular-web-bluetooth`.
+> Note: Don't forget to add `--project @manekinekko/angular-web-bluetooth` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build angular-web-bluetooth` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build @manekinekko/angular-web-bluetooth` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Publishing
 
-After building your library with `ng build angular-web-bluetooth`, go to the dist folder `cd dist/angular-web-bluetooth` and run `npm publish`.
+After building your library with `ng build @manekinekko/angular-web-bluetooth`, go to the dist folder `cd dist/manekinekko/angular-web-bluetooth` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test angular-web-bluetooth` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test @manekinekko/angular-web-bluetooth` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Further help
 

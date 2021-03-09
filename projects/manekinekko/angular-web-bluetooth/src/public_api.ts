@@ -8,3 +8,4 @@ export * from './lib/bluetooth.service';
 export * from './lib/logger.service';
 export * from './lib/bluetooth.module';
 export * from './lib/lang/uuids';
+export * from './lib/test.utils';
