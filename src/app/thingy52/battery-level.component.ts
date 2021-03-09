@@ -135,10 +135,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.valuesSubscription) { this.valuesSubscription.unsubscribe(); }
-    if (this.deviceSubscription) { this.deviceSubscription.unsubscribe(); }
-    if (this.streamSubscription) { this.streamSubscription.unsubscribe(); }
+    this.valuesSubscription?.unsubscribe();
+    this.deviceSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }
-
 
