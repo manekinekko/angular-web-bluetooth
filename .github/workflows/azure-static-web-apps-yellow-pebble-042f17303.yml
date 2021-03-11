@@ -15,12 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - name: Install environment
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Tests coverage
-        run: npm test
       - uses: actions/checkout@v2
         with:
           submodules: true
