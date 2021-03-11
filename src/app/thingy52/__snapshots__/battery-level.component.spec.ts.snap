@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BatteryLevelComponent should create 1`] = `
+<ble-battery-level
+  __ngContext__={[Function LRootView]}
+  color={[Function String]}
+  console={[Function NoLoggerService]}
+  mode={[Function String]}
+  service={[Function BleService]}
+  snackBar={[Function MatSnackBar]}
+  value="null"
+>
+  <span
+    data-testid="value"
+  >
+    
+    <sup>
+      %
+    </sup>
+  </span><mat-progress-spinner
+    class="mat-progress-spinner mat-primary"
+    diameter="250"
+    role="progressbar"
+    strokewidth="2"
+  >
+    <svg
+      focusable="false"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      
+      
+    </svg>
+  </mat-progress-spinner><mat-icon
+    aria-hidden="true"
+    class="mat-icon notranslate"
+    role="img"
+  >
+    battery_charging_full
+  </mat-icon>
+</ble-battery-level>
+`;
+
+exports[`BatteryLevelComponent should display device connected state 1`] = `
+<ble-battery-level
+  __ngContext__={[Function LRootView]}
+  color={[Function String]}
+  console={[Function NoLoggerService]}
+  deviceSubscription={[Function Subscriber]}
+  mode={[Function String]}
+  service={[Function BleService]}
+  snackBar={[Function MatSnackBar]}
+  streamSubscription={[Function Subscriber]}
+  value="null"
+  valuesSubscription={[Function Subscriber]}
+>
+  <span
+    data-testid="value"
+  >
+    000
+    <sup>
+      %
+    </sup>
+  </span><mat-progress-spinner
+    class="mat-progress-spinner mat-warn mat-progress-spinner-indeterminate-animation _mat-animation-noopable"
+    diameter="250"
+    mode="indeterminate"
+    role="progressbar"
+    strokewidth="2"
+    style="width: 250px; height: 250px;"
+  >
+    <svg
+      focusable="false"
+      preserveAspectRatio="xMidYMid meet"
+      style="width: 250px; height: 250px;"
+      viewBox="0 0 242 242"
+    >
+      <circle
+        cx="50%"
+        cy="50%"
+        r="120"
+        style="animation-name: mat-progress-spinner-stroke-rotate-250; stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%;"
+      />
+      
+      
+    </svg>
+  </mat-progress-spinner><mat-icon
+    aria-hidden="true"
+    class="mat-icon notranslate material-icons mat-icon-no-color"
+    data-mat-icon-type="font"
+    role="img"
+  >
+    battery_charging_full
+  </mat-icon>
+</ble-battery-level>
+`;

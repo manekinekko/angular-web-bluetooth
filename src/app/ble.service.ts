@@ -16,7 +16,7 @@ export class BleService {
     // tslint:disable-next-line: variable-name
     private _config: ServiceOptions;
 
-  constructor(public ble: BluetoothCore) { }
+  constructor(public ble: BluetoothCore) {}
 
   config(options: ServiceOptions) {
     this._config = options;
@@ -37,7 +37,10 @@ export class BleService {
       .value$({
         service: this._config.service,
         characteristic: this._config.characteristic
-      });
+      })
+      .pipe(
+        map(this._config.decoder)
+      );
   }
 
   disconnectDevice() {
