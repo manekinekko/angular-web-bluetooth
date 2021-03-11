@@ -82,7 +82,8 @@
           "builder": "@angular-builders/jest:run",
           "options": {
             "jestConfig": "jest.config.js",
-            "setupFilesAfterEnv": "<rootDir>/test-setup.ts"
+            "setupFilesAfterEnv": "<rootDir>/test-setup.ts",
+            "detect-open-handles": true
           }
         },
         "lint": {
