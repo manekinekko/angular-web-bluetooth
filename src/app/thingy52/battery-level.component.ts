@@ -23,11 +23,11 @@ const PROVIDERS = [{
 @Component({
   selector: 'ble-battery-level',
   template: `
-    <span>{{ value || "000" }}<sup>%</sup></span>
+    <span data-testid="value">{{ value || "000" }}<sup>%</sup></span>
     <mat-progress-spinner
         [color]="color"
         [mode]="mode"
-        diameter="100"
+        diameter="250"
         strokeWidth="2"
         [value]="value || 100">
     </mat-progress-spinner>
@@ -41,10 +41,10 @@ const PROVIDERS = [{
     text-align: center;
   }
   span {
-    font-size: 3em;
+    font-size: 5em;
     position: absolute;
-    top: 111px;
-    width: 100px;
+    top: 222px;
+    width: 120px;
     display: block;
     text-align: center;
   }
@@ -52,7 +52,8 @@ const PROVIDERS = [{
     font-size: 24px;
   }
   mat-progress-spinner {
-    top: 120px;
+    top: 90px;
+    left: 5px;
   }
   mat-icon {
     position: absolute;
@@ -76,7 +77,8 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   constructor(
     public service: BleService,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    public console: ConsoleLoggerService) {
 
     service.config({
       decoder: (value: DataView) => value.getInt8(0),
@@ -89,7 +91,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.getDeviceStatus();
 
     this.streamSubscription = this.service.stream()
-      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
+      .subscribe((value: number) => {
+        this.updateValue(value);
+      }, error => this.hasError(error));
 
   }
 
@@ -111,11 +115,11 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe(() => null, error => this.hasError(error));
+      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
   }
 
   updateValue(value: number) {
-    console.log('Reading battery level %d', value);
+    this.console.log('Reading battery level %d', value);
     this.value = value;
     this.mode = 'determinate';
   }
@@ -131,10 +135,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.deviceSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.deviceSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }
-
 

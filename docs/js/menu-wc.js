@@ -110,6 +110,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="classes/AppPage.html" data-type="entity-link">AppPage</a>
                             </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothDevice.html" data-type="entity-link">FakeBluetoothDevice</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTCharacteristic.html" data-type="entity-link">FakeBluetoothRemoteGATTCharacteristic</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTServer.html" data-type="entity-link">FakeBluetoothRemoteGATTServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTService.html" data-type="entity-link">FakeBluetoothRemoteGATTService</a>
+                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
