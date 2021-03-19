@@ -17,7 +17,7 @@
 </mat-toolbar>
 
 <div class="grid-container">
-  <mat-grid-list cols="2" rows="4" rowHeight="300px">
+  <mat-grid-list cols="2" rows="4" rowHeight="320px">
 
     <!-- battery -->
 
@@ -71,8 +71,8 @@
               </button>
             </mat-menu>
           </mat-card-title>
-          <mat-card-subtitle *ngIf="(stepCounter.device | async) as connectedDevice">
-            {{ connectedDevice.name }}
+          <mat-card-subtitle>
+            <span *ngIf="(stepCounter.device | async) as connectedDevice">{{ connectedDevice.name }}</span>
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -102,8 +102,8 @@
               </button>
             </mat-menu>
           </mat-card-title>
-          <mat-card-subtitle *ngIf="(humidity.device | async) as connectedDevice">
-            {{ connectedDevice.name }}
+          <mat-card-subtitle>
+            <span *ngIf="(humidity.device | async) as connectedDevice">{{ connectedDevice.name }}</span>
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -133,8 +133,8 @@
               </button>
             </mat-menu>
           </mat-card-title>
-          <mat-card-subtitle *ngIf="(device | async) as connectedDevice">
-            {{ connectedDevice.name }}
+          <mat-card-subtitle>
+            <span *ngIf="(device | async) as connectedDevice">{{ connectedDevice.name }}</span>
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">

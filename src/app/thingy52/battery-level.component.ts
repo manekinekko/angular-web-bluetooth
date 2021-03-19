@@ -38,7 +38,7 @@ import { DashboardService } from '../dashboard/dashboard.service';
   }
   mat-icon {
     position: absolute;
-    bottom: 255px;
+    bottom: 80px;
     font-size: 38px;
   }
   `],

@@ -12,21 +12,22 @@ import { DashboardService } from '../dashboard/dashboard.service';
   `,
   styles: [`
   :host {
-    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
   }
   span {
     font-size: 5em;
     position: absolute;
-    top: 112px;
-    left: 214px;
-    width: 120px;
+    top: 111px;
+    width: 100px;
     display: block;
     text-align: center;
   }
   mat-icon {
     position: absolute;
-    bottom: 55px;
-    left: 258px;
+    bottom: 80px;
     font-size: 38px;
   }`],
 })
