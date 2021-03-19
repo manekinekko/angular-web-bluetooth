@@ -6,8 +6,9 @@
 export class FakeBluetoothDevice {
   gatt: BluetoothRemoteGATTServer;
   private listeners: {
-    [key in 'gattserverdisconnected']: EventListener[]
+    [key in 'gattserverconnected' | 'gattserverdisconnected']: EventListener[]
   } = {
+    gattserverconnected: [],
     gattserverdisconnected: []
   };
 
@@ -21,6 +22,11 @@ export class FakeBluetoothDevice {
     ];
   }
 
+  connect() {
+    const mockedEvent = {target: this} as unknown;
+    this.listeners.gattserverconnected.forEach(listener => listener(mockedEvent as Event));
+  }
+
   disconnect() {
     const mockedEvent = {target: this} as unknown;
     this.listeners.gattserverdisconnected.forEach(listener => listener(mockedEvent as Event));
@@ -30,6 +36,7 @@ export class FakeBluetoothDevice {
     this.id = undefined;
     this.name = undefined;
     this.listeners = {
+      gattserverconnected: [],
       gattserverdisconnected: []
     };
   }
@@ -38,49 +45,81 @@ export class FakeBluetoothDevice {
 export class FakeBluetoothRemoteGATTServer {
   connected = false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device, public services: { [uuid: string]: FakeBluetoothRemoteGATTService } = {}) {
     device.gatt = this;
   }
 
   connect() {
     this.connected = true;
+    this.device.connect();
     return Promise.resolve(this);
   }
 
-  getPrimaryService(service: BluetoothServiceUUID) {
-    return Promise.resolve(this.services[service].service);
+  getPrimaryService(uuid: BluetoothServiceUUID) {
+    return Promise.resolve(this.services[uuid]);
   }
 
-  disconnect() {
+  getPrimaryServices(uuids: BluetoothServiceUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.services)
+        .filter(uuid => uuids.includes(uuid))
+        .map(uuid => this.services[uuid])
+    );
+  }
+
+  disconnect(callbackFn?: () => void) {
     this.device.disconnect();
     this.connected = false;
+    if (callbackFn) {
+      callbackFn();
+    }
   }
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
-    this.characteristics.service = this;
+  constructor(
+    public uuid,
+    public device,
+    public characteristics: {[uuid: string]: FakeBluetoothRemoteGATTCharacteristic}) {
+    Object.keys(characteristics).forEach(characteristicUuid => this.characteristics[characteristicUuid].service = this);
   }
 
-  getCharacteristic(characteristic: BluetoothCharacteristicUUID) {
-    return Promise.resolve(this.characteristics[characteristic]);
+  getCharacteristic(uuid: BluetoothCharacteristicUUID) {
+    return Promise.resolve(this.characteristics[uuid]);
+  }
+
+  getCharacteristics(uuids: BluetoothCharacteristicUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.characteristics)
+        .filter(uuid => uuids.includes(uuid))
+        .map(uuid => this.characteristics[uuid])
+    );
   }
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
+  uuid: BluetoothCharacteristicUUID;
+  service: FakeBluetoothRemoteGATTService;
   value: DataView;
   properties: BluetoothCharacteristicProperties;
   private readonly initialValue: DataView;
+  readonly randomValueFn: () => DataView;
   private listeners: {
     [key in 'characteristicvaluechanged']: EventListener[]
   } = {
     characteristicvaluechanged: []
   };
 
-  constructor(properties: BluetoothCharacteristicProperties, initialValue?: DataView) {
+  constructor(
+    uuid: BluetoothCharacteristicUUID,
+    properties: BluetoothCharacteristicProperties,
+    initialValue?: DataView,
+    randomValueFn?: () => DataView) {
+    this.uuid = uuid;
     this.properties = properties;
     this.value = initialValue;
     this.initialValue = initialValue;
+    this.randomValueFn = randomValueFn;
   }
 
   readValue() {
@@ -97,7 +136,9 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value = value;
     const mockedEvent = {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener => listener(mockedEvent as Event));
+    this.listeners.characteristicvaluechanged.forEach(listener => {
+      listener(mockedEvent as Event);
+    });
   }
 
   clear() {

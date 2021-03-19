@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
-import { map, flatMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { merge, of } from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs/operators';
+import { BluetoothCore, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 
 type ServiceOptions = {
   characteristic: string;
@@ -16,7 +16,7 @@ export class DashboardService {
   // tslint:disable-next-line: variable-name
   private config: ServiceOptions[];
 
-  constructor(public ble: BluetoothCore) {
+  constructor(public ble: BluetoothCore, public console: ConsoleLoggerService) {
     this.config = [
       // temperature
       {
@@ -41,47 +41,74 @@ export class DashboardService {
         service: 'ef680400-9b35-4933-9b10-52ffa9740042',
         characteristic: 'ef680405-9b35-4933-9b10-52ffa9740042'
       },
-
       // humidity
       {
         decoder: (value: DataView) => value.getInt8(0),
         service: 'ef680200-9b35-4933-9b10-52ffa9740042',
         characteristic: 'ef680203-9b35-4933-9b10-52ffa9740042'
       },
-
       // battery level
       {
         decoder: (value: DataView) => value.getInt8(0),
-        service: 'battery_service',
-        characteristic: 'battery_level'
+        service: '0000180f-0000-1000-8000-00805f9b34fb', // battery_service
+        characteristic: '00002a19-0000-1000-8000-00805f9b34fb' // battery_level
       }
     ];
   }
 
-  getDevice() {
+  device() {
     return this.ble.getDevice$();
   }
 
-  stream() {
-    return of(this.config.map(c => {
-      return this.ble.streamValues$().pipe(map(c.decoder));
-    }));
+  streamsBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.ble.streamDetailedValues$()
+        .pipe(
+            filter(this.getServicePredicate(service, characteristic)),
+            map(({value}) => this.getDecoder(service, characteristic)(value)),
+        );
   }
 
-  value() {
-    const services = this.config.map(c => c.service);
-    const characteristics = this.config.map(c => c.characteristic);
+  values() {
+    this.ble.discover$({
+      acceptAllDevices: true,
+      optionalServices: this.config.map(c => c.service)
+    }).subscribe(() => {
+      this.console.log('[DashboardService::Values] Discovery process launched');
+    });
 
-    return of(1).pipe(
-      flatMap(() => {
-        return this.config.map(c => {
-          return this.ble.value$({
-            service: c.service,
-            characteristic: c.characteristic,
-          });
-        });
-      })
-    );
+    const values = this.config.map(c => {
+      return of({
+        service: c.service,
+        characteristic: c.characteristic,
+        value: this.ble.getGATT$()
+          .pipe(
+            mergeMap((gatt: BluetoothRemoteGATTServer) => this.ble.getPrimaryService$(gatt, c.service)),
+            mergeMap((gattService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(gattService, c.characteristic)),
+            mergeMap((gattCharacteristic: BluetoothRemoteGATTCharacteristic) => this.ble.readValue$(gattCharacteristic)),
+            map((dataView: DataView) => c.decoder(dataView)),
+          )
+      });
+    });
+
+    return merge(...values);
+  }
+
+  valuesBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.values()
+      .pipe(
+        filter(this.getServicePredicate(service, characteristic)),
+        mergeMap(conf => conf.value),
+      );
+  }
+
+  getDecoder(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.config.find(conf => conf.service === service && conf.characteristic === characteristic)?.decoder;
+  }
+
+  getServicePredicate(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return (conf) => {
+      return conf.service === service && conf.characteristic === characteristic;
+    };
   }
 
   disconnectDevice() {

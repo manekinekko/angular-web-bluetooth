@@ -114,6 +114,9 @@
                                 <a href="#clear">clear</a>
                             </li>
                             <li>
+                                <a href="#connect">connect</a>
+                            </li>
+                            <li>
                                 <a href="#disconnect">disconnect</a>
                             </li>
                         </ul>
@@ -139,7 +142,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -242,7 +245,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -265,6 +268,7 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
+    gattserverconnected: [],
     gattserverdisconnected: []
   }</code>
                         </td>
@@ -299,7 +303,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -335,8 +339,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:18</a></div>
                 </td>
             </tr>
 
@@ -417,8 +421,47 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connect"></a>
+                    <span class="name">
+                        <b>
+                            connect
+                        </b>
+                        <a href="#connect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>connect()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:25</a></div>
                 </td>
             </tr>
 
@@ -456,8 +499,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:30</a></div>
                 </td>
             </tr>
 
@@ -486,8 +529,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class FakeBluetoothDevice {
   gatt: BluetoothRemoteGATTServer;
   private listeners: {
-    [key in &#x27;gattserverdisconnected&#x27;]: EventListener[]
+    [key in &#x27;gattserverconnected&#x27; | &#x27;gattserverdisconnected&#x27;]: EventListener[]
   } &#x3D; {
+    gattserverconnected: [],
     gattserverdisconnected: []
   };
 
@@ -501,6 +545,11 @@
     ];
   }
 
+  connect() {
+    const mockedEvent &#x3D; {target: this} as unknown;
+    this.listeners.gattserverconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+  }
+
   disconnect() {
     const mockedEvent &#x3D; {target: this} as unknown;
     this.listeners.gattserverdisconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
@@ -510,6 +559,7 @@
     this.id &#x3D; undefined;
     this.name &#x3D; undefined;
     this.listeners &#x3D; {
+      gattserverconnected: [],
       gattserverdisconnected: []
     };
   }
@@ -518,49 +568,81 @@
 export class FakeBluetoothRemoteGATTServer {
   connected &#x3D; false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device, public services: { [uuid: string]: FakeBluetoothRemoteGATTService } &#x3D; {}) {
     device.gatt &#x3D; this;
   }
 
   connect() {
     this.connected &#x3D; true;
+    this.device.connect();
     return Promise.resolve(this);
   }
 
-  getPrimaryService(service: BluetoothServiceUUID) {
-    return Promise.resolve(this.services[service].service);
+  getPrimaryService(uuid: BluetoothServiceUUID) {
+    return Promise.resolve(this.services[uuid]);
   }
 
-  disconnect() {
+  getPrimaryServices(uuids: BluetoothServiceUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.services)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.services[uuid])
+    );
+  }
+
+  disconnect(callbackFn?: () &#x3D;&gt; void) {
     this.device.disconnect();
     this.connected &#x3D; false;
+    if (callbackFn) {
+      callbackFn();
+    }
   }
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
-    this.characteristics.service &#x3D; this;
+  constructor(
+    public uuid,
+    public device,
+    public characteristics: {[uuid: string]: FakeBluetoothRemoteGATTCharacteristic}) {
+    Object.keys(characteristics).forEach(characteristicUuid &#x3D;&gt; this.characteristics[characteristicUuid].service &#x3D; this);
   }
 
-  getCharacteristic(characteristic: BluetoothCharacteristicUUID) {
-    return Promise.resolve(this.characteristics[characteristic]);
+  getCharacteristic(uuid: BluetoothCharacteristicUUID) {
+    return Promise.resolve(this.characteristics[uuid]);
+  }
+
+  getCharacteristics(uuids: BluetoothCharacteristicUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.characteristics)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.characteristics[uuid])
+    );
   }
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
+  uuid: BluetoothCharacteristicUUID;
+  service: FakeBluetoothRemoteGATTService;
   value: DataView;
   properties: BluetoothCharacteristicProperties;
   private readonly initialValue: DataView;
+  readonly randomValueFn: () &#x3D;&gt; DataView;
   private listeners: {
     [key in &#x27;characteristicvaluechanged&#x27;]: EventListener[]
   } &#x3D; {
     characteristicvaluechanged: []
   };
 
-  constructor(properties: BluetoothCharacteristicProperties, initialValue?: DataView) {
+  constructor(
+    uuid: BluetoothCharacteristicUUID,
+    properties: BluetoothCharacteristicProperties,
+    initialValue?: DataView,
+    randomValueFn?: () &#x3D;&gt; DataView) {
+    this.uuid &#x3D; uuid;
     this.properties &#x3D; properties;
     this.value &#x3D; initialValue;
     this.initialValue &#x3D; initialValue;
+    this.randomValueFn &#x3D; randomValueFn;
   }
 
   readValue() {
@@ -577,7 +659,9 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value &#x3D; value;
     const mockedEvent &#x3D; {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; {
+      listener(mockedEvent as Event);
+    });
   }
 
   clear() {

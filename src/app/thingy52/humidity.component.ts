@@ -1,24 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
-import { of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
-import { BleService } from '../ble.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
-export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
-export const bleService = (b: BluetoothCore) => new BleService(b);
-
-
-// make sure we get a singleton instance of each service
-const PROVIDERS = [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
 
 @Component({
   selector: 'ble-humidity',
@@ -32,9 +17,11 @@ const PROVIDERS = [{
   canvas {
     margin-left: -16px;
   }`],
-  providers: PROVIDERS
 })
 export class HumidityComponent implements OnInit, OnDestroy {
+  static serviceUUID: BluetoothServiceUUID = 'ef680200-9b35-4933-9b10-52ffa9740042';
+  static characteristicUUID: BluetoothCharacteristicUUID = 'ef680203-9b35-4933-9b10-52ffa9740042';
+
   series: TimeSeries;
   chart: SmoothieChart;
   valuesSubscription: Subscription;
@@ -44,28 +31,22 @@ export class HumidityComponent implements OnInit, OnDestroy {
   chartRef: ElementRef<HTMLCanvasElement>;
 
   get device() {
-    return this.service.getDevice();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public service: BleService,
-    public snackBar: MatSnackBar) {
-
-    service.config({
-      decoder: (value: DataView) => value.getInt8(0),
-      service: 'ef680200-9b35-4933-9b10-52ffa9740042',
-      characteristic: 'ef680203-9b35-4933-9b10-52ffa9740042'
-    });
-  }
+    public dashboardService: DashboardService,
+    public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initChart();
 
-    this.streamSubscription = this.service.stream()
-    .subscribe(
-      (value: number) => this.updateValue(value),
-      (error) => of(this.hasError(error)),
-      );
+    this.streamSubscription = this.dashboardService.streamsBy(
+      HumidityComponent.serviceUUID,
+      HumidityComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   initChart() {
@@ -79,13 +60,13 @@ export class HumidityComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.service.value()
-    .subscribe(
-      () => null,
-      (error) => of(this.hasError(error)),
-    );
+    this.valuesSubscription = this.dashboardService.valuesBy(
+      HumidityComponent.serviceUUID,
+      HumidityComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
-
 
   updateValue(value: number) {
     console.log('Reading humidity %d', value);
@@ -93,12 +74,11 @@ export class HumidityComponent implements OnInit, OnDestroy {
     this.chart.start();
   }
 
-
   disconnect() {
-    this.service.disconnectDevice();
     this.series.clear();
     this.chart.stop();
-    this.valuesSubscription.unsubscribe();
+    this.dashboardService?.disconnectDevice();
+    this.valuesSubscription?.unsubscribe();
   }
 
   hasError(error: string) {
@@ -106,7 +86,7 @@ export class HumidityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }

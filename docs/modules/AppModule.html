@@ -281,15 +281,41 @@ import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { MatProgressSpinnerModule } from &#x27;@angular/material/progress-spinner&#x27;;
 import { MatSnackBarModule } from &#x27;@angular/material/snack-bar&#x27;;
 import { MatToolbarModule } from &#x27;@angular/material/toolbar&#x27;;
-
-import { WebBluetoothModule } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
+import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
+import {
+  BluetoothCore,
+  BrowserWebBluetooth,
+  ConsoleLoggerService,
+  WebBluetoothModule
+} from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 import { AppComponent } from &#x27;./app.component&#x27;;
+import { DashboardService } from &#x27;./dashboard/dashboard.service&#x27;;
 import { BatteryLevelComponent } from &#x27;./thingy52/battery-level.component&#x27;;
 import { DashboardComponent } from &#x27;./dashboard/dashboard.component&#x27;;
 import { HumidityComponent } from &#x27;./thingy52/humidity.component&#x27;;
 import { StepCounterComponent } from &#x27;./thingy52/stepcounter.component&#x27;;
 import { TemperatureComponent } from &#x27;./thingy52/temperature.component&#x27;;
-import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
+import { fakeBrowserWebBluetooth, start } from &#x27;./fake.utils&#x27;;
+
+const bleCore &#x3D; (b: BrowserWebBluetooth, l: ConsoleLoggerService) &#x3D;&gt; new BluetoothCore(b, l);
+const fakeBleCore &#x3D; (b: BrowserWebBluetooth, l: ConsoleLoggerService) &#x3D;&gt; {
+  start().then();
+  return new BluetoothCore(fakeBrowserWebBluetooth as BrowserWebBluetooth, l);
+};
+
+const PROVIDERS &#x3D; [
+  {
+    provide: BluetoothCore,
+    useFactory: fakeBleCore, // bleCore or fakeBleCore
+    deps: [BrowserWebBluetooth, ConsoleLoggerService]
+  }, {
+    provide: DashboardService,
+    useFactory: (b: BluetoothCore, l: ConsoleLoggerService) &#x3D;&gt; {
+      return new DashboardService(b, l);
+    },
+    deps: [BluetoothCore, ConsoleLoggerService]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -318,6 +344,7 @@ import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
     MatCardModule,
     MatMenuModule
   ],
+  providers: PROVIDERS,
   bootstrap: [AppComponent]
 })
 export class AppModule {}

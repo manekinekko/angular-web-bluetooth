@@ -1,23 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
-import { BleService } from '../ble.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
-export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
-export const bleService = (b: BluetoothCore) => new BleService(b);
-
-
-// make sure we get a singleton instance of each service
-const PROVIDERS = [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
 
 @Component({
   selector: 'ble-stepcounter',
@@ -44,52 +29,49 @@ const PROVIDERS = [{
     left: 258px;
     font-size: 38px;
   }`],
-  providers: PROVIDERS
 })
 export class StepCounterComponent implements OnInit, OnDestroy {
+  static serviceUUID: BluetoothServiceUUID = 'ef680400-9b35-4933-9b10-52ffa9740042';
+  static characteristicUUID: BluetoothCharacteristicUUID = 'ef680405-9b35-4933-9b10-52ffa9740042';
+
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
   value = 0;
 
   get device() {
-    return this.service.getDevice();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public service: BleService,
-    public snackBar: MatSnackBar) {
-
-    service.config({
-      decoder: (value: DataView) => {
-        const count = value.getUint32(0, true);
-        const time = value.getUint32(4, true);
-        return {
-          count, time
-        };
-      },
-      service: 'ef680400-9b35-4933-9b10-52ffa9740042',
-      characteristic: 'ef680405-9b35-4933-9b10-52ffa9740042'
-    });
-  }
+    public dashboardService: DashboardService,
+    public snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.streamSubscription = this.service.stream()
-      .subscribe((value: any) => this.updateValue(value), error => this.hasError(error));
+    this.streamSubscription = this.dashboardService.streamsBy(
+      StepCounterComponent.serviceUUID,
+      StepCounterComponent.characteristicUUID)
+        .subscribe((value: { time: number, count: number }) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   requestValue() {
-    this.valuesSubscription = this.service.value()
-      .subscribe(() => null, error => this.hasError(error));
+    this.valuesSubscription = this.dashboardService.valuesBy(
+      StepCounterComponent.serviceUUID,
+      StepCounterComponent.characteristicUUID)
+        .subscribe((value: { time: number, count: number }) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   updateValue(value: { time: number, count: number }) {
-    console.log('Reading step counter %d', value);
+    console.log('Reading step counter %d', value.count);
     this.value = value.count;
   }
 
   disconnect() {
-    this.service.disconnectDevice();
-    this.valuesSubscription.unsubscribe();
+    this.dashboardService?.disconnectDevice();
+    this.valuesSubscription?.unsubscribe();
   }
 
   hasError(error: string) {
@@ -97,8 +79,8 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }
 

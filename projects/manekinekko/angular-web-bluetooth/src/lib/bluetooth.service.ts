@@ -11,6 +11,12 @@ type ReadValueOptions = {
   service: BluetoothServiceUUID,
 };
 
+export type DetailedValue = {
+  service: BluetoothServiceUUID,
+  characteristic: BluetoothCharacteristicUUID,
+  value: DataView
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +24,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
   private device$: EventEmitter<BluetoothDevice>;
   private gatt$: EventEmitter<BluetoothRemoteGATTServer>;
   private characteristicValueChanges$: EventEmitter<DataView>;
+  private characteristicDetailedValueChanges$: EventEmitter<DetailedValue>;
   private gattServer: BluetoothRemoteGATTServer;
 
   constructor(private readonly webBle: BrowserWebBluetooth, private readonly console: ConsoleLoggerService) {
@@ -26,6 +33,7 @@ export class BluetoothCore extends Subject<BluetoothCore> {
     this.device$ = new EventEmitter<BluetoothDevice>();
     this.gatt$ = new EventEmitter<BluetoothRemoteGATTServer>();
     this.characteristicValueChanges$ = new EventEmitter<DataView>();
+    this.characteristicDetailedValueChanges$ = new EventEmitter<DetailedValue>();
 
     this.gattServer = null;
   }
@@ -40,6 +48,10 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
   streamValues$(): Observable<DataView> {
     return this.characteristicValueChanges$.pipe(filter(value => value && value.byteLength > 0));
+  }
+
+  streamDetailedValues$(): Observable<DetailedValue> {
+    return this.characteristicDetailedValueChanges$.pipe(filter(conf => conf.value && conf.value.byteLength > 0));
   }
 
   /**
@@ -252,12 +264,20 @@ export class BluetoothCore extends Subject<BluetoothCore> {
         char.startNotifications().then(_ => {
           this.console.log('[BLE::Info] Starting notifications of "%s"', characteristic);
           char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
+          char.addEventListener(
+            'characteristicvaluechanged',
+            this.onDetailedCharacteristicChanged.bind(this, primaryService.uuid, char.uuid)
+          );
         }, (error: DOMException) => {
           Promise.reject(`${error.message} (${characteristic})`);
         });
       }
       else {
         char.addEventListener('characteristicvaluechanged', this.onCharacteristicChanged.bind(this));
+        char.addEventListener(
+          'characteristicvaluechanged',
+          this.onDetailedCharacteristicChanged.bind(this, primaryService.uuid, char.uuid)
+        );
       }
       return char;
     }
@@ -336,6 +356,18 @@ export class BluetoothCore extends Subject<BluetoothCore> {
 
     const value = (event.target as BluetoothRemoteGATTCharacteristic).value;
     this.characteristicValueChanges$.emit(value);
+  }
+
+  /**
+   * Dispatches new values emitted by a characteristic.
+   *
+   * @param event the distpatched event.
+   */
+  onDetailedCharacteristicChanged(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID, event: Event) {
+    this.console.log('[BLE::Info] Dispatching new characteristic value %o', event);
+
+    const value = (event.target as BluetoothRemoteGATTCharacteristic).value;
+    this.characteristicDetailedValueChanges$.emit({service, characteristic, value});
   }
 
   /**

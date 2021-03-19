@@ -88,6 +88,10 @@
                                     <span class="modifier">Public</span>
                                 <a href="#device">device</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#uuid">uuid</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -102,6 +106,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#getCharacteristic">getCharacteristic</a>
+                            </li>
+                            <li>
+                                <a href="#getCharacteristics">getCharacteristics</a>
                             </li>
                         </ul>
                     </td>
@@ -121,12 +128,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(device, characteristics)</code>
+<code>constructor(uuid, device, characteristics: literal type)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -138,13 +145,27 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
+                                                        <td>uuid</td>
+                                                  
+                                                        <td>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>device</td>
                                                   
+                                                        <td>
+                                                        </td>
                                                   
                                                     <td>
                                                             No
@@ -154,6 +175,9 @@
                                                 <tr>
                                                         <td>characteristics</td>
                                                   
+                                                        <td>
+                                                                    <code>literal type</code>
+                                                        </td>
                                                   
                                                     <td>
                                                             No
@@ -187,9 +211,15 @@
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>literal type</code>
+
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -211,7 +241,29 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:82</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uuid"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            uuid</b>
+                            <a href="#uuid"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -240,15 +292,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getCharacteristic(characteristic: BluetoothCharacteristicUUID)</code>
+<code>getCharacteristic(uuid: BluetoothCharacteristicUUID)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:87</a></div>
                 </td>
             </tr>
 
@@ -268,9 +320,79 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>characteristic</td>
+                                    <td>uuid</td>
                                     <td>
                                             <code>BluetoothCharacteristicUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCharacteristics"></a>
+                    <span class="name">
+                        <b>
+                            getCharacteristics
+                        </b>
+                        <a href="#getCharacteristics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCharacteristics(uuids: BluetoothCharacteristicUUID[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>uuids</td>
+                                    <td>
+                                            <code>BluetoothCharacteristicUUID[]</code>
                                     </td>
 
                                     <td>
@@ -308,8 +430,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class FakeBluetoothDevice {
   gatt: BluetoothRemoteGATTServer;
   private listeners: {
-    [key in &#x27;gattserverdisconnected&#x27;]: EventListener[]
+    [key in &#x27;gattserverconnected&#x27; | &#x27;gattserverdisconnected&#x27;]: EventListener[]
   } &#x3D; {
+    gattserverconnected: [],
     gattserverdisconnected: []
   };
 
@@ -323,6 +446,11 @@
     ];
   }
 
+  connect() {
+    const mockedEvent &#x3D; {target: this} as unknown;
+    this.listeners.gattserverconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+  }
+
   disconnect() {
     const mockedEvent &#x3D; {target: this} as unknown;
     this.listeners.gattserverdisconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
@@ -332,6 +460,7 @@
     this.id &#x3D; undefined;
     this.name &#x3D; undefined;
     this.listeners &#x3D; {
+      gattserverconnected: [],
       gattserverdisconnected: []
     };
   }
@@ -340,49 +469,81 @@
 export class FakeBluetoothRemoteGATTServer {
   connected &#x3D; false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device, public services: { [uuid: string]: FakeBluetoothRemoteGATTService } &#x3D; {}) {
     device.gatt &#x3D; this;
   }
 
   connect() {
     this.connected &#x3D; true;
+    this.device.connect();
     return Promise.resolve(this);
   }
 
-  getPrimaryService(service: BluetoothServiceUUID) {
-    return Promise.resolve(this.services[service].service);
+  getPrimaryService(uuid: BluetoothServiceUUID) {
+    return Promise.resolve(this.services[uuid]);
   }
 
-  disconnect() {
+  getPrimaryServices(uuids: BluetoothServiceUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.services)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.services[uuid])
+    );
+  }
+
+  disconnect(callbackFn?: () &#x3D;&gt; void) {
     this.device.disconnect();
     this.connected &#x3D; false;
+    if (callbackFn) {
+      callbackFn();
+    }
   }
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
-    this.characteristics.service &#x3D; this;
+  constructor(
+    public uuid,
+    public device,
+    public characteristics: {[uuid: string]: FakeBluetoothRemoteGATTCharacteristic}) {
+    Object.keys(characteristics).forEach(characteristicUuid &#x3D;&gt; this.characteristics[characteristicUuid].service &#x3D; this);
   }
 
-  getCharacteristic(characteristic: BluetoothCharacteristicUUID) {
-    return Promise.resolve(this.characteristics[characteristic]);
+  getCharacteristic(uuid: BluetoothCharacteristicUUID) {
+    return Promise.resolve(this.characteristics[uuid]);
+  }
+
+  getCharacteristics(uuids: BluetoothCharacteristicUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.characteristics)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.characteristics[uuid])
+    );
   }
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
+  uuid: BluetoothCharacteristicUUID;
+  service: FakeBluetoothRemoteGATTService;
   value: DataView;
   properties: BluetoothCharacteristicProperties;
   private readonly initialValue: DataView;
+  readonly randomValueFn: () &#x3D;&gt; DataView;
   private listeners: {
     [key in &#x27;characteristicvaluechanged&#x27;]: EventListener[]
   } &#x3D; {
     characteristicvaluechanged: []
   };
 
-  constructor(properties: BluetoothCharacteristicProperties, initialValue?: DataView) {
+  constructor(
+    uuid: BluetoothCharacteristicUUID,
+    properties: BluetoothCharacteristicProperties,
+    initialValue?: DataView,
+    randomValueFn?: () &#x3D;&gt; DataView) {
+    this.uuid &#x3D; uuid;
     this.properties &#x3D; properties;
     this.value &#x3D; initialValue;
     this.initialValue &#x3D; initialValue;
+    this.randomValueFn &#x3D; randomValueFn;
   }
 
   readValue() {
@@ -399,7 +560,9 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value &#x3D; value;
     const mockedEvent &#x3D; {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; {
+      listener(mockedEvent as Event);
+    });
   }
 
   clear() {

@@ -17,15 +17,19 @@ describe('BluetoothCore', () => {
   const fakeDevice = new FakeBluetoothDevice('1', 'device 1');
   const fakeDataView = new DataView(new ArrayBuffer(8));
   fakeDataView.setInt8(0, 99);
-  const fakeCharacteristic = new FakeBluetoothRemoteGATTCharacteristic({notify: false} as BluetoothCharacteristicProperties, fakeDataView);
-  const fakeService = new FakeBluetoothRemoteGATTService(fakeDevice, {
-    battery_level: fakeCharacteristic
-  });
+  const fakeCharacteristic = new FakeBluetoothRemoteGATTCharacteristic(
+    'battery_level',
+    {notify: false} as BluetoothCharacteristicProperties,
+    fakeDataView
+  );
+  const fakeService = new FakeBluetoothRemoteGATTService(
+    'battery_service',
+    fakeDevice,
+    {
+      battery_level: fakeCharacteristic
+    });
   const fakeGATTServer = new FakeBluetoothRemoteGATTServer(fakeDevice, {
-    battery_service: {
-      service: fakeService,
-      primary: true
-    }
+    battery_service: fakeService
   });
 
   // Set navigator fake bluetooth test double
@@ -147,6 +151,30 @@ describe('BluetoothCore', () => {
 
     fakeCharacteristic.changeValue(newDataView1);
     fakeCharacteristic.changeValue(newDataView2);
+  });
+
+  it('should emit detailed characteristic value changes', async (done) => {
+    // given
+    const newDataView1 = new DataView(new ArrayBuffer(8));
+    newDataView1.setInt8(0, 33);
+
+    // async then
+    serviceUnderTest.streamDetailedValues$()
+      .pipe(take(1))
+      .subscribe(({service, characteristic, value }) => {
+        expect(service).toBe('battery_service');
+        expect(characteristic).toBe('battery_level');
+        expect(value.getUint8(0)).toBe(33);
+        done();
+      }, error => done(error));
+
+    // when
+    await serviceUnderTest.value({
+      service: 'battery_service',
+      characteristic: 'battery_level'
+    });
+
+    fakeCharacteristic.changeValue(newDataView1);
   });
 
 });

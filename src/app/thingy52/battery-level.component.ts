@@ -1,23 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
+import { ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
-import { BleService } from '../ble.service';
-
-export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
-export const bleService = (b: BluetoothCore) => new BleService(b);
-
-
-// make sure we get a singleton instance of each service
-const PROVIDERS = [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
+import { DashboardService } from '../dashboard/dashboard.service';
 
 
 @Component({
@@ -57,9 +42,11 @@ const PROVIDERS = [{
     font-size: 38px;
   }
   `],
-  providers: PROVIDERS
 })
 export class BatteryLevelComponent implements OnInit, OnDestroy {
+  static serviceUUID: BluetoothServiceUUID = '0000180f-0000-1000-8000-00805f9b34fb';
+  static characteristicUUID: BluetoothCharacteristicUUID = '00002a19-0000-1000-8000-00805f9b34fb';
+
   value = null;
   mode = 'determinate';
   color = 'primary';
@@ -67,32 +54,29 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   streamSubscription: Subscription;
   deviceSubscription: Subscription;
 
+
   get device() {
-    return this.service.getDevice();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public service: BleService,
+    public dashboardService: DashboardService,
     public snackBar: MatSnackBar,
-    public console: ConsoleLoggerService) {
-
-    service.config({
-      decoder: (value: DataView) => value.getInt8(0),
-      service: 'battery_service',
-      characteristic: 'battery_level'
-    });
-  }
+    public console: ConsoleLoggerService) {}
 
   ngOnInit() {
     this.getDeviceStatus();
 
-    this.streamSubscription = this.service.stream()
-      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
-
+    this.streamSubscription = this.dashboardService.streamsBy(
+      BatteryLevelComponent.serviceUUID,
+      BatteryLevelComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   getDeviceStatus() {
-    this.deviceSubscription = this.service.getDevice()
+    this.deviceSubscription = this.device
       .subscribe(device => {
         if (device) {
           this.color = 'warn';
@@ -108,8 +92,12 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.service.value()
-      .subscribe(() => null, error => this.hasError.bind(this));
+    this.valuesSubscription = this.dashboardService.valuesBy(
+      BatteryLevelComponent.serviceUUID,
+      BatteryLevelComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   updateValue(value: number) {
@@ -119,9 +107,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   disconnect() {
-    this.service.disconnectDevice();
-    this.deviceSubscription.unsubscribe();
-    this.valuesSubscription.unsubscribe();
+    this.dashboardService?.disconnectDevice();
+    this.deviceSubscription?.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
   }
 
   hasError(error: string) {

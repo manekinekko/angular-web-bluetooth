@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' : 'data-target="#xs-components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' }>
+                                            'data-target="#components-links-module-AppModule-748db698d0588766085c881bb0684f86"' : 'data-target="#xs-components-links-module-AppModule-748db698d0588766085c881bb0684f86"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' :
-                                            'id="xs-components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-748db698d0588766085c881bb0684f86"' :
+                                            'id="xs-components-links-module-AppModule-748db698d0588766085c881bb0684f86"' }>
                                             <li class="link">
                                                 <a href="components/AppComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -143,6 +143,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ConsoleLoggerService.html" data-type="entity-link">ConsoleLoggerService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DashboardService.html" data-type="entity-link">DashboardService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/NoLoggerService.html" data-type="entity-link">NoLoggerService</a>

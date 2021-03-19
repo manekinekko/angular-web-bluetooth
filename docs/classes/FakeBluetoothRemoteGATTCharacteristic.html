@@ -93,6 +93,16 @@
                                 <a href="#properties">properties</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#randomValueFn">randomValueFn</a>
+                            </li>
+                            <li>
+                                <a href="#service">service</a>
+                            </li>
+                            <li>
+                                <a href="#uuid">uuid</a>
+                            </li>
+                            <li>
                                 <a href="#value">value</a>
                             </li>
                         </ul>
@@ -137,12 +147,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(properties: BluetoothCharacteristicProperties, initialValue?: DataView)</code>
+<code>constructor(uuid: BluetoothCharacteristicUUID, properties: BluetoothCharacteristicProperties, initialValue?: DataView, randomValueFn?: () => void)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -160,6 +170,18 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
+                                                        <td>uuid</td>
+                                                  
+                                                        <td>
+                                                                    <code>BluetoothCharacteristicUUID</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>properties</td>
                                                   
                                                         <td>
@@ -176,6 +198,18 @@
                                                   
                                                         <td>
                                                                     <code>DataView</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>randomValueFn</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -219,7 +253,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -248,7 +282,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -275,7 +309,89 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:104</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="randomValueFn"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            randomValueFn</b>
+                            <a href="#randomValueFn"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:106</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="service"></a>
+                        <span class="name">
+                            <b>
+                            service</b>
+                            <a href="#service"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/FakeBluetoothRemoteGATTService.html" target="_self" >FakeBluetoothRemoteGATTService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:102</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uuid"></a>
+                        <span class="name">
+                            <b>
+                            uuid</b>
+                            <a href="#uuid"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BluetoothCharacteristicUUID</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -302,7 +418,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -338,8 +454,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:129</a></div>
                 </td>
             </tr>
 
@@ -420,8 +536,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:136</a></div>
                 </td>
             </tr>
 
@@ -490,8 +606,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:144</a></div>
                 </td>
             </tr>
 
@@ -529,8 +645,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/test.utils.ts:125</a></div>
                 </td>
             </tr>
 
@@ -559,8 +675,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class FakeBluetoothDevice {
   gatt: BluetoothRemoteGATTServer;
   private listeners: {
-    [key in &#x27;gattserverdisconnected&#x27;]: EventListener[]
+    [key in &#x27;gattserverconnected&#x27; | &#x27;gattserverdisconnected&#x27;]: EventListener[]
   } &#x3D; {
+    gattserverconnected: [],
     gattserverdisconnected: []
   };
 
@@ -574,6 +691,11 @@
     ];
   }
 
+  connect() {
+    const mockedEvent &#x3D; {target: this} as unknown;
+    this.listeners.gattserverconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+  }
+
   disconnect() {
     const mockedEvent &#x3D; {target: this} as unknown;
     this.listeners.gattserverdisconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
@@ -583,6 +705,7 @@
     this.id &#x3D; undefined;
     this.name &#x3D; undefined;
     this.listeners &#x3D; {
+      gattserverconnected: [],
       gattserverdisconnected: []
     };
   }
@@ -591,49 +714,81 @@
 export class FakeBluetoothRemoteGATTServer {
   connected &#x3D; false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device, public services: { [uuid: string]: FakeBluetoothRemoteGATTService } &#x3D; {}) {
     device.gatt &#x3D; this;
   }
 
   connect() {
     this.connected &#x3D; true;
+    this.device.connect();
     return Promise.resolve(this);
   }
 
-  getPrimaryService(service: BluetoothServiceUUID) {
-    return Promise.resolve(this.services[service].service);
+  getPrimaryService(uuid: BluetoothServiceUUID) {
+    return Promise.resolve(this.services[uuid]);
   }
 
-  disconnect() {
+  getPrimaryServices(uuids: BluetoothServiceUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.services)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.services[uuid])
+    );
+  }
+
+  disconnect(callbackFn?: () &#x3D;&gt; void) {
     this.device.disconnect();
     this.connected &#x3D; false;
+    if (callbackFn) {
+      callbackFn();
+    }
   }
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
-    this.characteristics.service &#x3D; this;
+  constructor(
+    public uuid,
+    public device,
+    public characteristics: {[uuid: string]: FakeBluetoothRemoteGATTCharacteristic}) {
+    Object.keys(characteristics).forEach(characteristicUuid &#x3D;&gt; this.characteristics[characteristicUuid].service &#x3D; this);
   }
 
-  getCharacteristic(characteristic: BluetoothCharacteristicUUID) {
-    return Promise.resolve(this.characteristics[characteristic]);
+  getCharacteristic(uuid: BluetoothCharacteristicUUID) {
+    return Promise.resolve(this.characteristics[uuid]);
+  }
+
+  getCharacteristics(uuids: BluetoothCharacteristicUUID[]) {
+    return Promise.resolve(
+      Object.keys(this.characteristics)
+        .filter(uuid &#x3D;&gt; uuids.includes(uuid))
+        .map(uuid &#x3D;&gt; this.characteristics[uuid])
+    );
   }
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
+  uuid: BluetoothCharacteristicUUID;
+  service: FakeBluetoothRemoteGATTService;
   value: DataView;
   properties: BluetoothCharacteristicProperties;
   private readonly initialValue: DataView;
+  readonly randomValueFn: () &#x3D;&gt; DataView;
   private listeners: {
     [key in &#x27;characteristicvaluechanged&#x27;]: EventListener[]
   } &#x3D; {
     characteristicvaluechanged: []
   };
 
-  constructor(properties: BluetoothCharacteristicProperties, initialValue?: DataView) {
+  constructor(
+    uuid: BluetoothCharacteristicUUID,
+    properties: BluetoothCharacteristicProperties,
+    initialValue?: DataView,
+    randomValueFn?: () &#x3D;&gt; DataView) {
+    this.uuid &#x3D; uuid;
     this.properties &#x3D; properties;
     this.value &#x3D; initialValue;
     this.initialValue &#x3D; initialValue;
+    this.randomValueFn &#x3D; randomValueFn;
   }
 
   readValue() {
@@ -650,7 +805,9 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value &#x3D; value;
     const mockedEvent &#x3D; {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; {
+      listener(mockedEvent as Event);
+    });
   }
 
   clear() {

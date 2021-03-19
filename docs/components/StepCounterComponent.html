@@ -86,12 +86,6 @@
 
 
 
-            <tr>
-                <td class="col-md-3">providers</td>
-                <td class="col-md-9">
-                                <code><a href="../miscellaneous/variables.html#PROVIDERS" target="_self" >PROVIDERS</a></code>
-                </td>
-            </tr>
 
 
             <tr>
@@ -155,8 +149,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#characteristicUUID">characteristicUUID</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
-                                <a href="#service">service</a>
+                                <a href="#dashboardService">dashboardService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#serviceUUID">serviceUUID</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -233,12 +235,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/BleService.html">BleService</a>, snackBar: MatSnackBar)</code>
+<code>constructor(dashboardService: <a href="../injectables/DashboardService.html">DashboardService</a>, snackBar: MatSnackBar)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -256,10 +258,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>service</td>
+                                                        <td>dashboardService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
+                                                                        <code><a href="../injectables/DashboardService.html" target="_self" >DashboardService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -319,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -358,8 +360,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:95</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:77</a></div>
                 </td>
             </tr>
 
@@ -428,8 +430,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -467,8 +469,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:49</a></div>
                 </td>
             </tr>
 
@@ -506,8 +508,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -545,8 +547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/thingy52/stepcounter.component.ts:67</a></div>
                 </td>
             </tr>
 
@@ -603,24 +605,90 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="service"></a>
+                        <a name="characteristicUUID"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Public</span>
-                            service</b>
-                            <a href="#service"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Static</span>
+                            characteristicUUID</b>
+                            <a href="#characteristicUUID"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../injectables/BleService.html" target="_self" >BleService</a></code>
+                            <i>Type : </i>    <code>BluetoothCharacteristicUUID</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dashboardService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dashboardService</b>
+                            <a href="#dashboardService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/DashboardService.html" target="_self" >DashboardService</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serviceUUID"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            serviceUUID</b>
+                            <a href="#serviceUUID"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BluetoothServiceUUID</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -648,7 +716,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -675,7 +743,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -707,7 +775,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -734,7 +802,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -763,7 +831,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/thingy52/stepcounter.component.ts:41</a></div>
                                 </td>
                             </tr>
 
@@ -776,24 +844,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
-import { BleService } from &#x27;../ble.service&#x27;;
+import { DashboardService } from &#x27;../dashboard/dashboard.service&#x27;;
 
-export const bleCore &#x3D; (b: BrowserWebBluetooth, l: ConsoleLoggerService) &#x3D;&gt; new BluetoothCore(b, l);
-export const bleService &#x3D; (b: BluetoothCore) &#x3D;&gt; new BleService(b);
-
-
-// make sure we get a singleton instance of each service
-const PROVIDERS &#x3D; [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
 
 @Component({
   selector: &#x27;ble-stepcounter&#x27;,
@@ -820,52 +873,49 @@ const PROVIDERS &#x3D; [{
     left: 258px;
     font-size: 38px;
   }&#x60;],
-  providers: PROVIDERS
 })
 export class StepCounterComponent implements OnInit, OnDestroy {
+  static serviceUUID: BluetoothServiceUUID &#x3D; &#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;;
+  static characteristicUUID: BluetoothCharacteristicUUID &#x3D; &#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;;
+
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
   value &#x3D; 0;
 
   get device() {
-    return this.service.getDevice();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public service: BleService,
-    public snackBar: MatSnackBar) {
-
-    service.config({
-      decoder: (value: DataView) &#x3D;&gt; {
-        const count &#x3D; value.getUint32(0, true);
-        const time &#x3D; value.getUint32(4, true);
-        return {
-          count, time
-        };
-      },
-      service: &#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;,
-      characteristic: &#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;
-    });
-  }
+    public dashboardService: DashboardService,
+    public snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.streamSubscription &#x3D; this.service.stream()
-      .subscribe(() &#x3D;&gt; this.updateValue.bind(this), error &#x3D;&gt; this.hasError.bind(this));
+    this.streamSubscription &#x3D; this.dashboardService.streamsBy(
+      StepCounterComponent.serviceUUID,
+      StepCounterComponent.characteristicUUID)
+        .subscribe((value: { time: number, count: number }) &#x3D;&gt; {
+          this.updateValue(value);
+        }, error &#x3D;&gt; this.hasError(error));
   }
 
   requestValue() {
-    this.valuesSubscription &#x3D; this.service.value()
-      .subscribe(() &#x3D;&gt; null, error &#x3D;&gt; this.hasError.bind(this));
+    this.valuesSubscription &#x3D; this.dashboardService.valuesBy(
+      StepCounterComponent.serviceUUID,
+      StepCounterComponent.characteristicUUID)
+        .subscribe((value: { time: number, count: number }) &#x3D;&gt; {
+          this.updateValue(value);
+        }, error &#x3D;&gt; this.hasError(error));
   }
 
   updateValue(value: { time: number, count: number }) {
-    console.log(&#x27;Reading step counter %d&#x27;, value);
+    console.log(&#x27;Reading step counter %d&#x27;, value.count);
     this.value &#x3D; value.count;
   }
 
   disconnect() {
-    this.service.disconnectDevice();
-    this.valuesSubscription.unsubscribe();
+    this.dashboardService?.disconnectDevice();
+    this.valuesSubscription?.unsubscribe();
   }
 
   hasError(error: string) {
@@ -873,8 +923,8 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }
 

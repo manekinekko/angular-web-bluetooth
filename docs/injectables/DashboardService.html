@@ -1,0 +1,1008 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-web-bluetooth-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>DashboardService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/dashboard/dashboard.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ble">ble</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#config">config</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#console">console</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#device">device</a>
+                            </li>
+                            <li>
+                                <a href="#disconnectDevice">disconnectDevice</a>
+                            </li>
+                            <li>
+                                <a href="#getDecoder">getDecoder</a>
+                            </li>
+                            <li>
+                                <a href="#getServicePredicate">getServicePredicate</a>
+                            </li>
+                            <li>
+                                <a href="#streamsBy">streamsBy</a>
+                            </li>
+                            <li>
+                                <a href="#values">values</a>
+                            </li>
+                            <li>
+                                <a href="#valuesBy">valuesBy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(ble: <a href="../injectables/BluetoothCore.html">BluetoothCore</a>, console: <a href="../injectables/ConsoleLoggerService.html">ConsoleLoggerService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/dashboard/dashboard.service.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ble</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BluetoothCore.html" target="_self" >BluetoothCore</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>console</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConsoleLoggerService.html" target="_self" >ConsoleLoggerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="device"></a>
+                    <span class="name">
+                        <b>
+                            device
+                        </b>
+                        <a href="#device"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>device()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnectDevice"></a>
+                    <span class="name">
+                        <b>
+                            disconnectDevice
+                        </b>
+                        <a href="#disconnectDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disconnectDevice()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDecoder"></a>
+                    <span class="name">
+                        <b>
+                            getDecoder
+                        </b>
+                        <a href="#getDecoder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDecoder(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>service</td>
+                                    <td>
+                                            <code>BluetoothServiceUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>characteristic</td>
+                                    <td>
+                                            <code>BluetoothCharacteristicUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServicePredicate"></a>
+                    <span class="name">
+                        <b>
+                            getServicePredicate
+                        </b>
+                        <a href="#getServicePredicate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServicePredicate(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>service</td>
+                                    <td>
+                                            <code>BluetoothServiceUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>characteristic</td>
+                                    <td>
+                                            <code>BluetoothCharacteristicUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>(conf: any) &#x3D;&gt; boolean</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="streamsBy"></a>
+                    <span class="name">
+                        <b>
+                            streamsBy
+                        </b>
+                        <a href="#streamsBy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>streamsBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>service</td>
+                                    <td>
+                                            <code>BluetoothServiceUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>characteristic</td>
+                                    <td>
+                                            <code>BluetoothCharacteristicUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="values"></a>
+                    <span class="name">
+                        <b>
+                            values
+                        </b>
+                        <a href="#values"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>values()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valuesBy"></a>
+                    <span class="name">
+                        <b>
+                            valuesBy
+                        </b>
+                        <a href="#valuesBy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>valuesBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/dashboard/dashboard.service.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>service</td>
+                                    <td>
+                                            <code>BluetoothServiceUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>characteristic</td>
+                                    <td>
+                                            <code>BluetoothCharacteristicUUID</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ble"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            ble</b>
+                            <a href="#ble"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/BluetoothCore.html" target="_self" >BluetoothCore</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/dashboard/dashboard.service.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="config"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            config</b>
+                            <a href="#config"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ServiceOptions[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    // temperature
+    {
+      decoder: (value: DataView) &#x3D;&gt; {
+        const integer &#x3D; value.getInt8(0);
+        const decimal &#x3D; value.getUint8(1);
+        return integer + decimal / 100;
+      },
+      characteristic: &#x27;ef680201-9b35-4933-9b10-52ffa9740042&#x27;,
+      service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+    // step counter
+    {
+      decoder: (value: DataView) &#x3D;&gt; {
+        const count &#x3D; value.getUint32(0, true);
+        const time &#x3D; value.getUint32(4, true);
+        return {
+          count,
+          time
+        };
+      },
+      service: &#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;,
+      characteristic: &#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+
+    // humidity
+    {
+      decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+      service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;,
+      characteristic: &#x27;ef680203-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+
+    // battery level
+    {
+      decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+      service: &#x27;0000180f-0000-1000-8000-00805f9b34fb&#x27;,
+      characteristic: &#x27;battery_level&#x27;
+    }
+  ]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/dashboard/dashboard.service.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="console"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            console</b>
+                            <a href="#console"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ConsoleLoggerService.html" target="_self" >ConsoleLoggerService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/dashboard/dashboard.service.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { merge, of } from &#x27;rxjs&#x27;;
+import { filter, map, mergeMap } from &#x27;rxjs/operators&#x27;;
+import { BluetoothCore, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
+
+type ServiceOptions &#x3D; {
+  characteristic: string;
+  service: string;
+  decoder(value: DataView): number | { [key: string]: number };
+};
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class DashboardService {
+  // tslint:disable-next-line: variable-name
+  private config: ServiceOptions[] &#x3D; [
+    // temperature
+    {
+      decoder: (value: DataView) &#x3D;&gt; {
+        const integer &#x3D; value.getInt8(0);
+        const decimal &#x3D; value.getUint8(1);
+        return integer + decimal / 100;
+      },
+      characteristic: &#x27;ef680201-9b35-4933-9b10-52ffa9740042&#x27;,
+      service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+    // step counter
+    {
+      decoder: (value: DataView) &#x3D;&gt; {
+        const count &#x3D; value.getUint32(0, true);
+        const time &#x3D; value.getUint32(4, true);
+        return {
+          count,
+          time
+        };
+      },
+      service: &#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;,
+      characteristic: &#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+
+    // humidity
+    {
+      decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+      service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;,
+      characteristic: &#x27;ef680203-9b35-4933-9b10-52ffa9740042&#x27;
+    },
+
+    // battery level
+    {
+      decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+      service: &#x27;0000180f-0000-1000-8000-00805f9b34fb&#x27;,
+      characteristic: &#x27;battery_level&#x27;
+    }
+  ];
+
+  constructor(public ble: BluetoothCore, public console: ConsoleLoggerService) {
+    // this.config &#x3D; [
+    //   // temperature
+    //   {
+    //     decoder: (value: DataView) &#x3D;&gt; {
+    //       const integer &#x3D; value.getInt8(0);
+    //       const decimal &#x3D; value.getUint8(1);
+    //       return integer + decimal / 100;
+    //     },
+    //     characteristic: &#x27;ef680201-9b35-4933-9b10-52ffa9740042&#x27;,
+    //     service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;
+    //   },
+    //   // step counter
+    //   {
+    //     decoder: (value: DataView) &#x3D;&gt; {
+    //       const count &#x3D; value.getUint32(0, true);
+    //       const time &#x3D; value.getUint32(4, true);
+    //       return {
+    //         count,
+    //         time
+    //       };
+    //     },
+    //     service: &#x27;ef680400-9b35-4933-9b10-52ffa9740042&#x27;,
+    //     characteristic: &#x27;ef680405-9b35-4933-9b10-52ffa9740042&#x27;
+    //   },
+    //
+    //   // humidity
+    //   {
+    //     decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+    //     service: &#x27;ef680200-9b35-4933-9b10-52ffa9740042&#x27;,
+    //     characteristic: &#x27;ef680203-9b35-4933-9b10-52ffa9740042&#x27;
+    //   },
+    //
+    //   // battery level
+    //   {
+    //     decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
+    //     service: &#x27;0000180f-0000-1000-8000-00805f9b34fb&#x27;,
+    //     characteristic: &#x27;battery_level&#x27;
+    //   }
+    // ];
+  }
+
+  device() {
+    return this.ble.getDevice$();
+  }
+
+  streamsBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.ble.streamDetailedValues$()
+        .pipe(
+            filter(this.getServicePredicate(service, characteristic)),
+            map(({value}) &#x3D;&gt; this.getDecoder(service, characteristic)(value)),
+        );
+  }
+
+  values() {
+    this.ble.discover$({
+      acceptAllDevices: true,
+      // optionalServices: this.config.map(c &#x3D;&gt; c.service)
+    }).subscribe(() &#x3D;&gt; {
+      this.console.log(&#x27;[DashboardService::Values] Discovery process launched&#x27;);
+    });
+
+    const values &#x3D; this.config.map(c &#x3D;&gt; {
+      return of({
+        service: c.service,
+        characteristic: c.characteristic,
+        value: this.ble.getGATT$()
+          .pipe(
+            mergeMap((gatt: BluetoothRemoteGATTServer) &#x3D;&gt; this.ble.getPrimaryService$(gatt, c.service)),
+            mergeMap((gattService: BluetoothRemoteGATTService) &#x3D;&gt; this.ble.getCharacteristic$(gattService, c.characteristic)),
+            mergeMap((gattCharacteristic: BluetoothRemoteGATTCharacteristic) &#x3D;&gt; this.ble.readValue$(gattCharacteristic)),
+            map((dataView: DataView) &#x3D;&gt; c.decoder(dataView)),
+          )
+      });
+    });
+
+    return merge(...values);
+  }
+
+  valuesBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.values()
+      .pipe(
+        filter(this.getServicePredicate(service, characteristic)),
+        mergeMap(conf &#x3D;&gt; conf.value),
+      );
+  }
+
+  getDecoder(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.config.find(conf &#x3D;&gt; conf.service &#x3D;&#x3D;&#x3D; service &amp;&amp; conf.characteristic &#x3D;&#x3D;&#x3D; characteristic)?.decoder;
+  }
+
+  getServicePredicate(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return (conf) &#x3D;&gt; {
+      console.log(conf);
+      return conf.service &#x3D;&#x3D;&#x3D; service &amp;&amp; conf.characteristic &#x3D;&#x3D;&#x3D; characteristic;
+    };
+  }
+
+  disconnectDevice() {
+    this.ble.disconnectDevice();
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
