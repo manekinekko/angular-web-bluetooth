@@ -1,15 +1,15 @@
-import { ComponentFixture } from '@angular/core/testing';
+import { of, Subject } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { render, screen } from '@testing-library/angular';
 import { createMock } from '@testing-library/angular/jest-utils';
-import { of, Subject } from 'rxjs';
 import { BluetoothCore, ConsoleLoggerService, NoLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { DashboardService } from '../dashboard/dashboard.service';
-import { BatteryLevelComponent } from './battery-level.component';
 import { fakeDevice, fakeGATTServer } from '../fake.utils';
+import { BatteryLevelComponent } from './battery-level.component';
 
 
 describe('BatteryLevelComponent', () => {
@@ -18,7 +18,6 @@ describe('BatteryLevelComponent', () => {
 
 
   const fakeStreamDetailedValue = new Subject();
-  const fakeValue = new Subject();
   const fakeDeviceDisconnectFn = jest.fn();
 
   const fakeBluetoothCore = createMock(BluetoothCore);
@@ -31,7 +30,7 @@ describe('BatteryLevelComponent', () => {
   fakeBluetoothCore.streamDetailedValues$.mockImplementation(() => fakeStreamDetailedValue);
   fakeBluetoothCore.disconnectDevice.mockImplementation(() => fakeDeviceDisconnectFn());
 
-  const fakeDashboardService = new DashboardService(fakeBluetoothCore as BluetoothCore, new NoLoggerService());
+  const fakeDashboardService = new DashboardService(fakeBluetoothCore as BluetoothCore, createMock(MatSnackBar) , new NoLoggerService());
 
   beforeEach(async () => {
     const renderResult = await render(BatteryLevelComponent, {

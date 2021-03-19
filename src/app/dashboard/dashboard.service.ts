@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { merge, of } from 'rxjs';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EMPTY, empty, merge, of } from 'rxjs';
+import { catchError, filter, map, mergeMap } from 'rxjs/operators';
 import { BluetoothCore, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 
 type ServiceOptions = {
@@ -16,7 +17,10 @@ export class DashboardService {
   // tslint:disable-next-line: variable-name
   private config: ServiceOptions[];
 
-  constructor(public ble: BluetoothCore, public console: ConsoleLoggerService) {
+  constructor(
+    public ble: BluetoothCore,
+    public snackBar: MatSnackBar,
+    public console: ConsoleLoggerService) {
     this.config = [
       // temperature
       {
@@ -82,8 +86,16 @@ export class DashboardService {
         characteristic: c.characteristic,
         value: this.ble.getGATT$()
           .pipe(
-            mergeMap((gatt: BluetoothRemoteGATTServer) => this.ble.getPrimaryService$(gatt, c.service)),
-            mergeMap((gattService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(gattService, c.characteristic)),
+            mergeMap((gatt: BluetoothRemoteGATTServer) => this.ble.getPrimaryService$(gatt, c.service)
+              .pipe(catchError(error => {
+                this.hasError(error);
+                return EMPTY;
+              }))),
+            mergeMap((gattService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(gattService, c.characteristic)
+              .pipe(catchError(error => {
+                this.hasError(error);
+                return EMPTY;
+              }))),
             mergeMap((gattCharacteristic: BluetoothRemoteGATTCharacteristic) => this.ble.readValue$(gattCharacteristic)),
             map((dataView: DataView) => c.decoder(dataView)),
           )
@@ -113,5 +125,9 @@ export class DashboardService {
 
   disconnectDevice() {
     this.ble.disconnectDevice();
+  }
+
+  hasError(error: string) {
+    this.snackBar.open(error, 'Close');
   }
 }
