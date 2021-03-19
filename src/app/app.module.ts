@@ -36,7 +36,7 @@ const fakeBleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => {
 const PROVIDERS = [
   {
     provide: BluetoothCore,
-    useFactory: fakeBleCore, // bleCore or fakeBleCore
+    useFactory: bleCore, // bleCore or fakeBleCore
     deps: [BrowserWebBluetooth, ConsoleLoggerService]
   },
   DashboardService

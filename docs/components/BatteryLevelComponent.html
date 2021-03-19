@@ -116,7 +116,7 @@
   }
   mat-icon {
     position: absolute;
-    bottom: 255px;
+    bottom: 80px;
     font-size: 38px;
   }
   </code></td>
@@ -701,7 +701,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;battery_level&#x27;</code>
+                            <i>Default value : </i><code>&#x27;00002a19-0000-1000-8000-00805f9b34fb&#x27;</code>
                         </td>
                     </tr>
                         <tr>
@@ -1080,14 +1080,14 @@ import { DashboardService } from &#x27;../dashboard/dashboard.service&#x27;;
   }
   mat-icon {
     position: absolute;
-    bottom: 255px;
+    bottom: 80px;
     font-size: 38px;
   }
   &#x60;],
 })
 export class BatteryLevelComponent implements OnInit, OnDestroy {
   static serviceUUID: BluetoothServiceUUID &#x3D; &#x27;0000180f-0000-1000-8000-00805f9b34fb&#x27;;
-  static characteristicUUID: BluetoothCharacteristicUUID &#x3D; &#x27;battery_level&#x27;;
+  static characteristicUUID: BluetoothCharacteristicUUID &#x3D; &#x27;00002a19-0000-1000-8000-00805f9b34fb&#x27;;
 
   value &#x3D; null;
   mode &#x3D; &#x27;determinate&#x27;;
@@ -1191,7 +1191,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
   mat-icon {
     position: absolute;
-    bottom: 255px;
+    bottom: 80px;
     font-size: 38px;
   }
   
