@@ -1,20 +1,29 @@
-<mat-toolbar color="primary">
-  <img src="assets/angular-web-ble.png" />
-  <span>Angular Web BLE Demo</span>
-  <button mat-icon-button class="more-button" [matMenuTriggerFor]="globalMenu" aria-label="Toggle menu">
-    <mat-icon>more_vert</mat-icon>
+<!--<mat-toolbar color="primary">-->
+<!--  <img src="assets/angular-web-ble.png" />-->
+<!--  <span>Angular Web BLE Demo</span>-->
+<!--  <button mat-icon-button class="more-button" [matMenuTriggerFor]="globalMenu" aria-label="Toggle menu">-->
+<!--    <mat-icon>more_vert</mat-icon>-->
+<!--  </button>-->
+<!--  <mat-menu #globalMenu="matMenu" xPosition="before">-->
+<!--    <button mat-menu-item *ngIf="(device | async) === null" (click)="requestValue()">-->
+<!--      <mat-icon>bluetooth_searching</mat-icon>-->
+<!--      Connect-->
+<!--    </button>-->
+<!--    <button mat-menu-item *ngIf="(device | async)" (click)="disconnect()">-->
+<!--      <mat-icon>bluetooth_disabled</mat-icon>-->
+<!--      Disconnect-->
+<!--    </button>-->
+<!--  </mat-menu>-->
+<!--</mat-toolbar>-->
+
+<div class="actions">
+  <button mat-fab *ngIf="(device | async) === null" (click)="requestValue()">
+    <mat-icon>bluetooth</mat-icon>
   </button>
-  <mat-menu #globalMenu="matMenu" xPosition="before">
-    <button mat-menu-item *ngIf="(device | async) === null" (click)="requestValue()">
-      <mat-icon>bluetooth_searching</mat-icon>
-      Connect
-    </button>
-    <button mat-menu-item *ngIf="(device | async)" (click)="disconnect()">
-      <mat-icon>bluetooth_disabled</mat-icon>
-      Disconnect
-    </button>
-  </mat-menu>
-</mat-toolbar>
+  <button mat-fab color="primary" *ngIf="(device | async)" (click)="disconnect()">
+    <mat-icon>bluetooth_connected</mat-icon>
+  </button>
+</div>
 
 <div class="grid-container">
   <mat-grid-list cols="2" rows="4" rowHeight="320px">

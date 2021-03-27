@@ -18,6 +18,7 @@ import {
   ConsoleLoggerService,
   WebBluetoothModule
 } from '@manekinekko/angular-web-bluetooth';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardService } from './dashboard/dashboard.service';
 import { BatteryLevelComponent } from './thingy52/battery-level.component';
@@ -36,7 +37,7 @@ const fakeBleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => {
 const PROVIDERS = [
   {
     provide: BluetoothCore,
-    useFactory: bleCore, // bleCore or fakeBleCore
+    useFactory: fakeBleCore, // bleCore or fakeBleCore
     deps: [BrowserWebBluetooth, ConsoleLoggerService]
   },
   DashboardService
@@ -49,7 +50,7 @@ const PROVIDERS = [
     TemperatureComponent,
     HumidityComponent,
     StepCounterComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ const PROVIDERS = [
     WebBluetoothModule.forRoot({
       enableTracing: true
     }),
+    AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
