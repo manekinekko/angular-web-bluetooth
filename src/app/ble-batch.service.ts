@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EMPTY, empty, merge, of } from 'rxjs';
-import { catchError, filter, map, mergeMap } from 'rxjs/operators';
 import { BluetoothCore, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
+import { EMPTY, merge, of, Subscription } from 'rxjs';
+import { catchError, filter, map, mergeMap } from 'rxjs/operators';
 
 type ServiceOptions = {
   characteristic: string;
@@ -13,9 +13,9 @@ type ServiceOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
-  // tslint:disable-next-line: variable-name
+export class BleBatchService {
   private config: ServiceOptions[];
+  private discoverSubscription: Subscription;
 
   constructor(
     public ble: BluetoothCore,
@@ -73,7 +73,7 @@ export class DashboardService {
   }
 
   values() {
-    this.ble.discover$({
+    this.discoverSubscription = this.ble.discover$({
       acceptAllDevices: true,
       optionalServices: this.config.map(c => c.service)
     }).subscribe(() => {
@@ -125,6 +125,7 @@ export class DashboardService {
 
   disconnectDevice() {
     this.ble.disconnectDevice();
+    this.discoverSubscription?.unsubscribe();
   }
 
   hasError(error: string) {

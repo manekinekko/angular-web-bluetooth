@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { BleBatchService } from '../ble-batch.service';
 
 
 @Component({
@@ -60,7 +60,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    public dashboardService: DashboardService,
+    public dashboardService: BleBatchService,
     public snackBar: MatSnackBar,
     public console: ConsoleLoggerService) {}
 

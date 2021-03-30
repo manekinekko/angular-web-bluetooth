@@ -7,7 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { render, screen } from '@testing-library/angular';
 import { createMock } from '@testing-library/angular/jest-utils';
 import { BluetoothCore, ConsoleLoggerService, NoLoggerService } from '@manekinekko/angular-web-bluetooth';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { BleBatchService } from '../ble-batch.service';
 import { fakeDevice, fakeGATTServer } from '../fake.utils';
 import { BatteryLevelComponent } from './battery-level.component';
 
@@ -30,7 +30,7 @@ describe('BatteryLevelComponent', () => {
   fakeBluetoothCore.streamDetailedValues$.mockImplementation(() => fakeStreamDetailedValue);
   fakeBluetoothCore.disconnectDevice.mockImplementation(() => fakeDeviceDisconnectFn());
 
-  const fakeDashboardService = new DashboardService(fakeBluetoothCore as BluetoothCore, createMock(MatSnackBar) , new NoLoggerService());
+  const fakeBleService = new BleBatchService(fakeBluetoothCore as BluetoothCore, createMock(MatSnackBar) , new NoLoggerService());
 
   beforeEach(async () => {
     const renderResult = await render(BatteryLevelComponent, {
@@ -41,7 +41,7 @@ describe('BatteryLevelComponent', () => {
         NoopAnimationsModule,
       ],
       componentProviders: [
-        {provide: DashboardService, useValue: fakeDashboardService},
+        {provide: BleBatchService, useValue: fakeBleService},
         {provide: ConsoleLoggerService, useValue: new NoLoggerService()},
       ],
     });

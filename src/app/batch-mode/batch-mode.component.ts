@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { map, mergeAll } from 'rxjs/operators';
-import { DashboardService } from './dashboard.service';
+import { BleBatchService } from '../ble-batch.service';
 
 @Component({
-  selector: 'ble-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'ble-batch-mode',
+  templateUrl: './batch-mode.component.html',
+  styleUrls: ['./batch-mode.component.css']
 })
-export class DashboardComponent implements OnDestroy, OnInit {
+export class BatchModeComponent implements OnDestroy, OnInit {
   valuesSubscription: Subscription;
 
   get device() {
@@ -17,7 +17,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   constructor(
-    public readonly service: DashboardService,
+    public readonly service: BleBatchService,
     public snackBar: MatSnackBar
   ) { }
 

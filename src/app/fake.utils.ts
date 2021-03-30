@@ -16,12 +16,22 @@ const config = {
         const dataView = new DataView(new ArrayBuffer(8));
         dataView.setInt8(0, Math.floor(Math.random() * 100) + 10);
         return dataView;
+      },
+      initialValue: () => {
+        const dataView = new DataView(new ArrayBuffer(8));
+        dataView.setInt8(0, 15);
+        return dataView;
       }
     }, {
       uuid: 'ef680203-9b35-4933-9b10-52ffa9740042',
       randomValueFn: () => {
         const dataView = new DataView(new ArrayBuffer(8));
         dataView.setInt8(0, Math.floor(Math.random() * 100) + 10);
+        return dataView;
+      },
+      initialValue: () => {
+        const dataView = new DataView(new ArrayBuffer(8));
+        dataView.setInt8(0, 80);
         return dataView;
       }
     }]
@@ -35,6 +45,12 @@ const config = {
         dataView.setUint32(0, Math.floor(Math.random() * 100) + 10, true);
         dataView.setUint32(4, Math.floor(Math.random() * 100) + 10, true);
         return dataView;
+      },
+      initialValue: () => {
+        const dataView = new DataView(new ArrayBuffer(8));
+        dataView.setUint32(0, 80, true);
+        dataView.setUint32(4, 60, true);
+        return dataView;
       }
     }]
   },
@@ -45,6 +61,11 @@ const config = {
       randomValueFn: () => {
         const dataView = new DataView(new ArrayBuffer(8));
         dataView.setInt8(0, Math.floor(Math.random() * 100) + 10);
+        return dataView;
+      },
+      initialValue: () => {
+        const dataView = new DataView(new ArrayBuffer(8));
+        dataView.setInt8(0, 55);
         return dataView;
       }
     }]
@@ -60,7 +81,7 @@ const instances = Object.keys(config).map(serviceName => {
       [elem.uuid]: new FakeBluetoothRemoteGATTCharacteristic(
         elem.uuid,
         {notify: false} as BluetoothCharacteristicProperties,
-        elem.randomValueFn(),
+        elem.initialValue(),
         elem.randomValueFn
       )
     };
@@ -117,7 +138,9 @@ const start = async () => {
 
 export {
   start,
+  config,
   fakeBrowserWebBluetooth,
   fakeDevice,
   fakeGATTServer,
+  gattServices
 };

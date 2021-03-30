@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { BleBatchService } from '../ble-batch.service';
 
 
 @Component({
@@ -40,15 +40,15 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   value = 0;
 
   get device() {
-    return this.dashboardService.device();
+    return this.bleService.device();
   }
 
   constructor(
-    public dashboardService: DashboardService,
+    public bleService: BleBatchService,
     public snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.streamSubscription = this.dashboardService.streamsBy(
+    this.streamSubscription = this.bleService.streamsBy(
       StepCounterComponent.serviceUUID,
       StepCounterComponent.characteristicUUID)
         .subscribe((value: { time: number, count: number }) => {
@@ -57,7 +57,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.dashboardService.valuesBy(
+    this.valuesSubscription = this.bleService.valuesBy(
       StepCounterComponent.serviceUUID,
       StepCounterComponent.characteristicUUID)
         .subscribe((value: { time: number, count: number }) => {
@@ -71,7 +71,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   disconnect() {
-    this.dashboardService?.disconnectDevice();
+    this.bleService?.disconnectDevice();
     this.valuesSubscription?.unsubscribe();
   }
 

@@ -20,13 +20,15 @@ import {
 } from '@manekinekko/angular-web-bluetooth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardService } from './dashboard/dashboard.service';
+import { BatchModeComponent } from './batch-mode/batch-mode.component';
+import { BleBatchService } from './ble-batch.service';
+import { SimpleBatteryLevelComponent } from './simple-mode/simple-battery-level.component';
 import { BatteryLevelComponent } from './thingy52/battery-level.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HumidityComponent } from './thingy52/humidity.component';
 import { StepCounterComponent } from './thingy52/stepcounter.component';
 import { TemperatureComponent } from './thingy52/temperature.component';
 import { fakeBrowserWebBluetooth, start } from './fake.utils';
+import { SimpleModeComponent } from './simple-mode/simple-mode.component';
 
 const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
 const fakeBleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => {
@@ -37,10 +39,10 @@ const fakeBleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => {
 const PROVIDERS = [
   {
     provide: BluetoothCore,
-    useFactory: fakeBleCore, // bleCore or fakeBleCore
+    useFactory: bleCore, // bleCore or fakeBleCore
     deps: [BrowserWebBluetooth, ConsoleLoggerService]
   },
-  DashboardService
+  BleBatchService
 ];
 
 @NgModule({
@@ -50,7 +52,9 @@ const PROVIDERS = [
     TemperatureComponent,
     HumidityComponent,
     StepCounterComponent,
-    DashboardComponent,
+    BatchModeComponent,
+    SimpleModeComponent,
+    SimpleBatteryLevelComponent,
   ],
   imports: [
     BrowserModule,

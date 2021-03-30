@@ -2,13 +2,13 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { BleBatchService } from '../ble-batch.service';
 
 
 @Component({
   selector: 'ble-temperature',
   template: `
-    <canvas #chart width="549" height="180"></canvas>
+    <canvas #chart width="549" height="200"></canvas>
   `,
   styles: [`
   :host {
@@ -31,17 +31,17 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   chartRef: ElementRef<HTMLCanvasElement>;
 
   get device() {
-    return this.dashboardService.device();
+    return this.bleService.device();
   }
 
   constructor(
-    public dashboardService: DashboardService,
+    public bleService: BleBatchService,
     public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initChart();
 
-    this.streamSubscription = this.dashboardService.streamsBy(
+    this.streamSubscription = this.bleService.streamsBy(
       TemperatureComponent.serviceUUID,
       TemperatureComponent.characteristicUUID)
         .subscribe((value: number) => {
@@ -71,7 +71,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.dashboardService.valuesBy(
+    this.valuesSubscription = this.bleService.valuesBy(
       TemperatureComponent.serviceUUID,
       TemperatureComponent.characteristicUUID)
         .subscribe((value: number) => {
@@ -88,7 +88,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   disconnect() {
     this.series.clear();
     this.chart.stop();
-    this.dashboardService?.disconnectDevice();
+    this.bleService?.disconnectDevice();
     this.valuesSubscription?.unsubscribe();
   }
 

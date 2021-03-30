@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
       <img class="logo" src="assets/angular-web-ble.png" />
       <span>Angular Web BLE Demo</span>
       <nav class="nav">
-        <button mat-button>Simple mode</button>
-        <button mat-button>Batch mode</button>
+        <button mat-button routerLink="">Batch mode</button>
+        <button mat-button routerLink="/simple-mode">Simple mode</button>
       </nav>
     </mat-toolbar>
     <router-outlet></router-outlet>
@@ -19,10 +19,12 @@ import { Component } from '@angular/core';
       top: 0;
       z-index: 1;
     }
+
     .logo {
       width: 32px;
       margin: 0 10px;
     }
+
     .nav {
       display: flex;
       flex-wrap: wrap;
