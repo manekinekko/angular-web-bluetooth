@@ -9,6 +9,7 @@ import { BleBatchService } from '../ble-batch.service';
   selector: 'ble-humidity',
   template: `
     <canvas #chart width="549" height="200"></canvas>
+    <mat-icon *ngIf="error" [attr.aria-label]="error" [title]="error" color="warn" class="not-supported">bluetooth_disabled</mat-icon>
   `,
   styles: [`
   :host {
@@ -26,27 +27,36 @@ export class HumidityComponent implements OnInit, OnDestroy {
   chart: SmoothieChart;
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
+  errorSubscription: Subscription;
+  error: string;
 
   @ViewChild('chart', {static: true})
   chartRef: ElementRef<HTMLCanvasElement>;
 
   get device() {
-    return this.bleService.device();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public bleService: BleBatchService,
+    public dashboardService: BleBatchService,
     public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initChart();
 
-    this.streamSubscription = this.bleService.streamsBy(
+    this.streamSubscription = this.dashboardService.streamsBy(
       HumidityComponent.serviceUUID,
       HumidityComponent.characteristicUUID)
         .subscribe((value: number) => {
           this.updateValue(value);
         }, error => this.hasError(error));
+
+    this.errorSubscription = this.dashboardService.errorsBy(
+      HumidityComponent.serviceUUID,
+      HumidityComponent.characteristicUUID)
+      .subscribe((error) => {
+        this.error = error;
+      });
   }
 
   initChart() {
@@ -60,7 +70,7 @@ export class HumidityComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.bleService.valuesBy(
+    this.valuesSubscription = this.dashboardService.valuesBy(
       HumidityComponent.serviceUUID,
       HumidityComponent.characteristicUUID)
         .subscribe((value: number) => {
@@ -77,8 +87,9 @@ export class HumidityComponent implements OnInit, OnDestroy {
   disconnect() {
     this.series.clear();
     this.chart.stop();
-    this.bleService?.disconnectDevice();
+    this.dashboardService?.disconnectDevice();
     this.valuesSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 
   hasError(error: string) {
@@ -88,5 +99,6 @@ export class HumidityComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.valuesSubscription?.unsubscribe();
     this.streamSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 }

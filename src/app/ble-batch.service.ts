@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { BluetoothCore, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
-import { EMPTY, merge, of, Subscription } from 'rxjs';
-import { catchError, filter, map, mergeMap } from 'rxjs/operators';
+import { EMPTY, merge, of, Subject, Subscription } from 'rxjs';
+import { catchError, filter, map, mergeMap, tap } from 'rxjs/operators';
 
 type ServiceOptions = {
   characteristic: string;
@@ -16,10 +15,10 @@ type ServiceOptions = {
 export class BleBatchService {
   private config: ServiceOptions[];
   private discoverSubscription: Subscription;
+  private errorsSubject = new Subject<{ uuid: BluetoothServiceUUID, error: string }>();
 
   constructor(
     public ble: BluetoothCore,
-    public snackBar: MatSnackBar,
     public console: ConsoleLoggerService) {
     this.config = [
       // temperature
@@ -56,6 +55,12 @@ export class BleBatchService {
         decoder: (value: DataView) => value.getInt8(0),
         service: '0000180f-0000-1000-8000-00805f9b34fb', // battery_service
         characteristic: '00002a19-0000-1000-8000-00805f9b34fb' // battery_level
+      },
+      // Unsupported service for demo/test purpose
+      {
+        decoder: () => null,
+        service: '00002acd-0000-1000-8000-00805f9b34fb',
+        characteristic: '00002acb-0000-1000-8000-00805f9b34fb',
       }
     ];
   }
@@ -86,14 +91,17 @@ export class BleBatchService {
         characteristic: c.characteristic,
         value: this.ble.getGATT$()
           .pipe(
+            tap(() => {
+              this.resetError(c.service, c.characteristic);
+            }),
             mergeMap((gatt: BluetoothRemoteGATTServer) => this.ble.getPrimaryService$(gatt, c.service)
               .pipe(catchError(error => {
-                this.hasError(error);
+                this.errorsSubject.next({uuid: c.service, error});
                 return EMPTY;
               }))),
             mergeMap((gattService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(gattService, c.characteristic)
               .pipe(catchError(error => {
-                this.hasError(error);
+                this.errorsSubject.next({uuid: c.characteristic, error});
                 return EMPTY;
               }))),
             mergeMap((gattCharacteristic: BluetoothRemoteGATTCharacteristic) => this.ble.readValue$(gattCharacteristic)),
@@ -113,6 +121,19 @@ export class BleBatchService {
       );
   }
 
+  errorsBy(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    return this.errorsSubject
+      .pipe(
+        filter(next => [service, characteristic].includes(next.uuid)),
+        map(next => next.error),
+      );
+  }
+
+  resetError(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
+    this.errorsSubject.next({uuid: service, error: null});
+    this.errorsSubject.next({uuid: characteristic, error: null});
+  }
+
   getDecoder(service: BluetoothServiceUUID, characteristic: BluetoothCharacteristicUUID) {
     return this.config.find(conf => conf.service === service && conf.characteristic === characteristic)?.decoder;
   }
@@ -126,9 +147,5 @@ export class BleBatchService {
   disconnectDevice() {
     this.ble.disconnectDevice();
     this.discoverSubscription?.unsubscribe();
-  }
-
-  hasError(error: string) {
-    this.snackBar.open(error, 'Close');
   }
 }

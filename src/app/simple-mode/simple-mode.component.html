@@ -1,0 +1,33 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rows="3" rowHeight="320px">
+    <!-- battery -->
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Battery Level
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuBattery" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuBattery="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="!(battery.device | async)" (click)="battery.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(battery.device | async)" (click)="battery.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
+            </mat-menu>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="(battery.device | async) as device">{{ device.name }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-simple-battery-level #battery></ble-simple-battery-level>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

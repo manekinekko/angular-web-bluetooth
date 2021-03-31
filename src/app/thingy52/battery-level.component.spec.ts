@@ -30,7 +30,7 @@ describe('BatteryLevelComponent', () => {
   fakeBluetoothCore.streamDetailedValues$.mockImplementation(() => fakeStreamDetailedValue);
   fakeBluetoothCore.disconnectDevice.mockImplementation(() => fakeDeviceDisconnectFn());
 
-  const fakeBleService = new BleBatchService(fakeBluetoothCore as BluetoothCore, createMock(MatSnackBar) , new NoLoggerService());
+  const fakeBleService = new BleBatchService(fakeBluetoothCore as BluetoothCore, new NoLoggerService());
 
   beforeEach(async () => {
     const renderResult = await render(BatteryLevelComponent, {

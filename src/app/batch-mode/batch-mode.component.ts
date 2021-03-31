@@ -7,7 +7,13 @@ import { BleBatchService } from '../ble-batch.service';
 @Component({
   selector: 'ble-batch-mode',
   templateUrl: './batch-mode.component.html',
-  styleUrls: ['./batch-mode.component.css']
+  styles: [`
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 5px 20px;
+    }
+  `]
 })
 export class BatchModeComponent implements OnDestroy, OnInit {
   valuesSubscription: Subscription;

@@ -28,3 +28,9 @@ body {
 .dashboard-card-content {
   text-align: center;
 }
+
+.mat-icon.not-supported {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}

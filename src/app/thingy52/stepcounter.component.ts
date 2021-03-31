@@ -9,6 +9,7 @@ import { BleBatchService } from '../ble-batch.service';
   template: `
   <span>{{ value || "000" }}</span>
   <mat-icon>directions_walk</mat-icon>
+  <mat-icon *ngIf="error" [attr.aria-label]="error" [title]="error" color="warn" class="not-supported">bluetooth_disabled</mat-icon>
   `,
   styles: [`
   :host {
@@ -37,27 +38,36 @@ export class StepCounterComponent implements OnInit, OnDestroy {
 
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
+  errorSubscription: Subscription;
   value = 0;
+  error: string;
 
   get device() {
-    return this.bleService.device();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public bleService: BleBatchService,
+    public dashboardService: BleBatchService,
     public snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.streamSubscription = this.bleService.streamsBy(
+    this.streamSubscription = this.dashboardService.streamsBy(
       StepCounterComponent.serviceUUID,
       StepCounterComponent.characteristicUUID)
         .subscribe((value: { time: number, count: number }) => {
           this.updateValue(value);
         }, error => this.hasError(error));
+
+    this.errorSubscription = this.dashboardService.errorsBy(
+      StepCounterComponent.serviceUUID,
+      StepCounterComponent.characteristicUUID)
+      .subscribe((error) => {
+        this.error = error;
+      });
   }
 
   requestValue() {
-    this.valuesSubscription = this.bleService.valuesBy(
+    this.valuesSubscription = this.dashboardService.valuesBy(
       StepCounterComponent.serviceUUID,
       StepCounterComponent.characteristicUUID)
         .subscribe((value: { time: number, count: number }) => {
@@ -71,7 +81,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   disconnect() {
-    this.bleService?.disconnectDevice();
+    this.dashboardService?.disconnectDevice();
     this.valuesSubscription?.unsubscribe();
   }
 
@@ -82,6 +92,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.valuesSubscription?.unsubscribe();
     this.streamSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 }
 
