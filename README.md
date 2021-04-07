@@ -152,6 +152,79 @@ export class BatteryLevelService {
 }
 ```
 
+## 2.c) subscribe to multiple services/characteristics on the same device 
+
+While waiting for a more native implementation, you can perform the batch operations mode my calling `discover$()` only once and then merge all streamed services/characteristics using RxJS as a workaround:
+
+```javascript
+import { Injectable } from '@angular/core';
+import { EMPTY, merge, of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BleBatchService {
+  private config;
+
+  constructor(public ble: BluetoothCore) {
+    // 1) define supported services/characteristics that interest you 
+    this.config = [{
+      decoder: (value: DataView) => {...},
+      service: 'service 1',
+      characteristic: 'characteristic 2',
+    }, {
+      decoder: (value: DataView) => {...},
+      service: 'service 2',
+      characteristic: 'characteristic 2',
+    }, ...];
+  }
+  
+  values() {
+    // 2) call discover$ to trigger the discovery process
+    this.ble.discover$({
+      acceptAllDevices: true,
+      optionalServices: config.map(c => c.service)
+    }).subscribe(...);
+  
+    // 3) for every service/characteristic couple
+    const values = this.config.map(c => {
+      return of({
+        service: c.service,
+        characteristic: c.characteristic,
+        // 4) get GETT server
+        value: this.ble.getGATT$()
+          .pipe(
+            // 5) get the service from GATT server
+            mergeMap((gatt: BluetoothRemoteGATTServer) => this.ble.getPrimaryService$(gatt, c.service)
+              // 6) it's very important to catch every eventual service error to not cause the entire flow to fail
+              .pipe(catchError(error => {
+                // your custom service errors handling, see ble-batch.service.ts in the starter for an example
+                return EMPTY;
+              }))),
+            mergeMap((gattService: BluetoothRemoteGATTService) => this.ble.getCharacteristic$(gattService, c.characteristic)
+              // 7) same for eventual characteristic errors
+              .pipe(catchError(error => {
+                // your custom characteristic errors handling
+                return EMPTY;
+              }))),
+            // 7) read characteristic value
+            mergeMap((gattCharacteristic: BluetoothRemoteGATTCharacteristic) => this.ble.readValue$(gattCharacteristic)),
+            // 8) decode characteristic value
+            map((dataView: DataView) => c.decoder(dataView)),
+          )
+      });
+    });
+  
+    // 9) combine the result array of values streams as a single stream
+    return merge(...values);
+  }
+}
+```
+
+Please check the full implementation of `ble-batch.service.ts` [here](./src/app/ble-batch.service.ts) and also this demo component [batch-mode.component.ts](./src/app/batch-mode/batch-mode.component.ts) if you're looking for an example of how the service can be used.
+
 ## API documentation
 
 The API documentation can be found here:  https://manekinekko.github.io/angular-web-bluetooth/
