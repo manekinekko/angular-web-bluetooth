@@ -169,7 +169,7 @@ export class BleBatchService {
   private config;
 
   constructor(public ble: BluetoothCore) {
-    // 1) define supported services/characteristics that interest you 
+    // 1) define services/characteristics that you want to read data from 
     this.config = [{
       decoder: (value: DataView) => {...},
       service: 'service 1',
