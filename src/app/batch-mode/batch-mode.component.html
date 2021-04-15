@@ -1,0 +1,86 @@
+<div class="actions">
+  <button mat-fab *ngIf="!(device | async)" (click)="requestValue()">
+    <mat-icon>bluetooth</mat-icon>
+  </button>
+  <button mat-fab color="primary" *ngIf="device | async" (click)="disconnect()">
+    <mat-icon>bluetooth_connected</mat-icon>
+  </button>
+</div>
+
+<div class="grid-container">
+  <mat-grid-list cols="2" rows="3" rowHeight="320px">
+
+    <!-- battery -->
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Battery Level
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="device | async as device">{{ device.name }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-battery-level></ble-battery-level>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- step counter -->
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Step Counter
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="device | async as device">{{ device.name }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-stepcounter></ble-stepcounter>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- humidity -->
+
+    <mat-grid-tile colspan="2" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Humidity Level
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="device | async as device">{{ device.name }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-humidity></ble-humidity>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- temperature -->
+
+    <mat-grid-tile colspan="2" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Temperature
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span *ngIf="device | async as device">{{ device.name }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-temperature></ble-temperature>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

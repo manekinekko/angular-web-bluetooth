@@ -11,15 +11,39 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
+import { BrowserModule } from '@angular/platform-browser';
+import {
+  BluetoothCore,
+  BrowserWebBluetooth,
+  ConsoleLoggerService,
+  WebBluetoothModule
+} from '@manekinekko/angular-web-bluetooth';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BatchModeComponent } from './batch-mode/batch-mode.component';
+import { BleBatchService } from './ble-batch.service';
+import { SimpleBatteryLevelComponent } from './simple-mode/simple-battery-level.component';
 import { BatteryLevelComponent } from './thingy52/battery-level.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HumidityComponent } from './thingy52/humidity.component';
 import { StepCounterComponent } from './thingy52/stepcounter.component';
 import { TemperatureComponent } from './thingy52/temperature.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { fakeBrowserWebBluetooth, start } from './fake.utils';
+import { SimpleModeComponent } from './simple-mode/simple-mode.component';
+
+const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
+const fakeBleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => {
+  start().then();
+  return new BluetoothCore(fakeBrowserWebBluetooth as BrowserWebBluetooth, l);
+};
+
+const PROVIDERS = [
+  {
+    provide: BluetoothCore,
+    useFactory: bleCore, // bleCore or fakeBleCore
+    deps: [BrowserWebBluetooth, ConsoleLoggerService]
+  },
+  BleBatchService
+];
 
 @NgModule({
   declarations: [
@@ -28,7 +52,9 @@ import { BrowserModule } from '@angular/platform-browser';
     TemperatureComponent,
     HumidityComponent,
     StepCounterComponent,
-    DashboardComponent
+    BatchModeComponent,
+    SimpleModeComponent,
+    SimpleBatteryLevelComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +62,7 @@ import { BrowserModule } from '@angular/platform-browser';
     WebBluetoothModule.forRoot({
       enableTracing: true
     }),
+    AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -48,6 +75,7 @@ import { BrowserModule } from '@angular/platform-browser';
     MatCardModule,
     MatMenuModule
   ],
+  providers: PROVIDERS,
   bootstrap: [AppComponent]
 })
 export class AppModule {}

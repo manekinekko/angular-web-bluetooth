@@ -2,13 +2,16 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../out-tsc/spec",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
     "types": [
-      "jasmine",
-      "node"
+      "jest",
+      "node",
+      "web-bluetooth"
     ]
   },
   "files": [
-    "src/test.ts"
+    "test-setup.ts"
   ],
   "include": [
     "**/*.spec.ts",

@@ -1,29 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
+import { ConsoleLoggerService } from '@manekinekko/angular-web-bluetooth';
 import { Subscription } from 'rxjs';
-import { BleService } from '../ble.service';
-
-export const bleCore = (b: BrowserWebBluetooth, l: ConsoleLoggerService) => new BluetoothCore(b, l);
-export const bleService = (b: BluetoothCore) => new BleService(b);
-
-
-// make sure we get a singleton instance of each service
-const PROVIDERS = [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
+import { BleBatchService } from '../ble-batch.service';
 
 
 @Component({
   selector: 'ble-battery-level',
   template: `
-    <span>{{ value || "000" }}<sup>%</sup></span>
+    <span data-testid="value">{{ value || "000" }}<sup>%</sup></span>
     <mat-progress-spinner
         [color]="color"
         [mode]="mode"
@@ -32,6 +17,7 @@ const PROVIDERS = [{
         [value]="value || 100">
     </mat-progress-spinner>
     <mat-icon>battery_charging_full</mat-icon>
+    <mat-icon *ngIf="error" [attr.aria-label]="error" [title]="error" color="warn" class="not-supported">bluetooth_disabled</mat-icon>
   `,
   styles: [`
   :host {
@@ -53,45 +39,54 @@ const PROVIDERS = [{
   }
   mat-icon {
     position: absolute;
-    bottom: 255px;
+    bottom: 80px;
     font-size: 38px;
   }
   `],
-  providers: PROVIDERS
 })
 export class BatteryLevelComponent implements OnInit, OnDestroy {
+  static serviceUUID: BluetoothServiceUUID = '0000180f-0000-1000-8000-00805f9b34fb';
+  static characteristicUUID: BluetoothCharacteristicUUID = '00002a19-0000-1000-8000-00805f9b34fb';
+
   value = null;
   mode = 'determinate';
   color = 'primary';
+  error: string;
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
   deviceSubscription: Subscription;
+  errorSubscription: Subscription;
+
 
   get device() {
-    return this.service.getDevice();
+    return this.dashboardService.device();
   }
 
   constructor(
-    public service: BleService,
-    public snackBar: MatSnackBar) {
-
-    service.config({
-      decoder: (value: DataView) => value.getInt8(0),
-      service: 'battery_service',
-      characteristic: 'battery_level'
-    });
-  }
+    public dashboardService: BleBatchService,
+    public snackBar: MatSnackBar,
+    public console: ConsoleLoggerService) {}
 
   ngOnInit() {
     this.getDeviceStatus();
 
-    this.streamSubscription = this.service.stream()
-      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
+    this.streamSubscription = this.dashboardService.streamsBy(
+      BatteryLevelComponent.serviceUUID,
+      BatteryLevelComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
 
+    this.errorSubscription = this.dashboardService.errorsBy(
+      BatteryLevelComponent.serviceUUID,
+      BatteryLevelComponent.characteristicUUID)
+      .subscribe((error) => {
+        this.error = error;
+      });
   }
 
   getDeviceStatus() {
-    this.deviceSubscription = this.service.getDevice()
+    this.deviceSubscription = this.device
       .subscribe(device => {
         if (device) {
           this.color = 'warn';
@@ -107,20 +102,25 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   requestValue() {
-    this.valuesSubscription = this.service.value()
-      .subscribe(() => null, error => this.hasError(error));
+    this.valuesSubscription = this.dashboardService.valuesBy(
+      BatteryLevelComponent.serviceUUID,
+      BatteryLevelComponent.characteristicUUID)
+        .subscribe((value: number) => {
+          this.updateValue(value);
+        }, error => this.hasError(error));
   }
 
   updateValue(value: number) {
-    console.log('Reading battery level %d', value);
+    this.console.log('Reading battery level %d', value);
     this.value = value;
     this.mode = 'determinate';
   }
 
   disconnect() {
-    this.service.disconnectDevice();
-    this.deviceSubscription.unsubscribe();
-    this.valuesSubscription.unsubscribe();
+    this.dashboardService?.disconnectDevice();
+    this.deviceSubscription?.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 
   hasError(error: string) {
@@ -128,9 +128,10 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.deviceSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.deviceSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@manekinekko/angular-web-bluetooth",
-  "version": "9.1.0",
+  "version": "11.2.1",
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/manekinekko/angular-web-bluetooth",
   "bugs": "https://github.com/manekinekko/angular-web-bluetooth/issues",
-  "description": "A Web Bluetooth (Bluetooth Low Energy) module for angular (v2+)",
+  "description": "The missing Web Bluetooth module for Angular",
   "types": "./dist/manekinekko/angular-web-bluetooth/public_api.d.ts",
+  "readme": "https://github.com/manekinekko/angular-web-bluetooth/blob/main/README.md",
   "private": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "keywords": [
     "angular",
     "angular2",
@@ -42,8 +46,7 @@
     "sensortag"
   ],
   "peerDependencies": {
-    "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^11.0.0",
+    "@angular/core": "^11.0.0"
   }
 }

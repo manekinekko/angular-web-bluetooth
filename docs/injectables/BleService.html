@@ -268,8 +268,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/ble.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/ble.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -471,8 +471,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { BluetoothCore } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 
 type ServiceOptions &#x3D; {
     characteristic: string;
@@ -488,7 +488,7 @@ export class BleService {
     // tslint:disable-next-line: variable-name
     private _config: ServiceOptions;
 
-  constructor(public ble: BluetoothCore) { }
+  constructor(public ble: BluetoothCore) {}
 
   config(options: ServiceOptions) {
     this._config &#x3D; options;
@@ -509,7 +509,10 @@ export class BleService {
       .value$({
         service: this._config.service,
         characteristic: this._config.characteristic
-      });
+      })
+      .pipe(
+        map(this._config.decoder)
+      );
   }
 
   disconnectDevice() {

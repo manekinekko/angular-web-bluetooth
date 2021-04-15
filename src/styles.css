@@ -7,3 +7,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
     min-width: 800px;
 }
+
+
+.grid-container {
+  margin: 10px;
+}
+
+.dashboard-card {
+  position: absolute !important;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-card .mat-card-subtitle {
+  min-height: 20px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.mat-icon.not-supported {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}

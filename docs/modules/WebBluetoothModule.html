@@ -137,7 +137,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/core/ModuleWithProviders" target="_blank" >ModuleWithProviders</a></code>
+                        <b>Returns : </b>    <code>ModuleWithProviders&lt;WebBluetoothModule&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -183,7 +183,7 @@ export function makeMeTokenInjector() {
   imports: [CommonModule]
 })
 export class WebBluetoothModule {
-  static forRoot(options: AWBOptions &#x3D; {}): ModuleWithProviders {
+  static forRoot(options: AWBOptions &#x3D; {}): ModuleWithProviders&lt;WebBluetoothModule&gt; {
     return {
       ngModule: WebBluetoothModule,
       providers: [

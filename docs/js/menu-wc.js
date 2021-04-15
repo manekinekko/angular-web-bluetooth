@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' : 'data-target="#xs-components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' }>
+                                            'data-target="#components-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' : 'data-target="#xs-components-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' :
-                                            'id="xs-components-links-module-AppModule-015e1c640588bf6554ccc7bdbe1d5e2c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' :
+                                            'id="xs-components-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' }>
                                             <li class="link">
                                                 <a href="components/AppComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
@@ -93,6 +93,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                         </ul>
                                     </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' : 'data-target="#xs-injectables-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' :
+                                        'id="xs-injectables-links-module-AppModule-554eaf563f9dbdefae094062cf2646fa"' }>
+                                        <li class="link">
+                                            <a href="injectables/DashboardService.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>DashboardService</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                             <li class="link">
                                 <a href="modules/WebBluetoothModule.html" data-type="entity-link">WebBluetoothModule</a>
@@ -109,6 +124,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
                                 <a href="classes/AppPage.html" data-type="entity-link">AppPage</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothDevice.html" data-type="entity-link">FakeBluetoothDevice</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTCharacteristic.html" data-type="entity-link">FakeBluetoothRemoteGATTCharacteristic</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTServer.html" data-type="entity-link">FakeBluetoothRemoteGATTServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FakeBluetoothRemoteGATTService.html" data-type="entity-link">FakeBluetoothRemoteGATTService</a>
                             </li>
                         </ul>
                     </li>
@@ -131,6 +158,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ConsoleLoggerService.html" data-type="entity-link">ConsoleLoggerService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DashboardService.html" data-type="entity-link">DashboardService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/NoLoggerService.html" data-type="entity-link">NoLoggerService</a>

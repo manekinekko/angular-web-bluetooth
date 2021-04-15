@@ -42,7 +42,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -80,21 +79,11 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
-            ],
-            "scripts": []
+            "jestConfig": "jest.config.js",
+            "setupFilesAfterEnv": "<rootDir>/test-setup.ts",
+            "detect-open-handles": true
           }
         },
         "lint": {
@@ -131,7 +120,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.json",
             "project": "projects/manekinekko/angular-web-bluetooth/ng-package.json"
@@ -143,11 +132,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "projects/manekinekko/angular-web-bluetooth/src/test.ts",
-            "tsConfig": "projects/manekinekko/angular-web-bluetooth/tsconfig.spec.json",
-            "karmaConfig": "projects/manekinekko/angular-web-bluetooth/karma.conf.js"
+            "jestConfig": "projects/manekinekko/angular-web-bluetooth/jest.config.js",
+            "setupFilesAfterEnv": "./test-setup.ts"
           }
         },
         "lint": {
