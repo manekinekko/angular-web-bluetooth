@@ -245,7 +245,7 @@ Checkout the full [blog post on dev.to](https://dev.to/angular/the-web-bluetooth
 
 ## Have a PR?
 
-All contributions are welcome. Here are few [open issues](https://github.com/manekinekko/angular-web-bluetooth/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) that I need help with ;)
+All contributions are welcome. Here are few [open issues](https://github.com/manekinekko/angular-web-bluetooth/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) that we need help with ;)
 
 # License
 
