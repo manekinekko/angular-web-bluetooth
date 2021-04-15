@@ -241,7 +241,7 @@ npm start
 
 ## Blog post
 
-Checkout my full [blog post on dev.to](https://dev.to/angular/the-web-bluetooth-module-for-angular-314b) about how to use this package in your app.
+Checkout the full [blog post on dev.to](https://dev.to/angular/the-web-bluetooth-module-for-angular-314b) about how to use this package in your app.
 
 ## Have a PR?
 
