@@ -188,7 +188,7 @@ export class BleBatchService {
       optionalServices: config.map(c => c.service)
     }).subscribe(...);
   
-    // 3) for every service/characteristic couple
+    // 3) for every service or characteristic pair
     const values = this.config.map(c => {
       return of({
         service: c.service,
