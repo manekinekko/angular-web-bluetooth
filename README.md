@@ -154,7 +154,7 @@ export class BatteryLevelService {
 
 ## 2.c) subscribe to multiple services/characteristics on the same device 
 
-While waiting for a more native implementation, you can perform the batch operations mode my calling `discover$()` only once and then merge all streamed services/characteristics using RxJS as a workaround:
+You can perform the batch operations mode my calling `discover$()` only once and then merge all streamed services/characteristics using RxJS:
 
 ```javascript
 import { Injectable } from '@angular/core';
