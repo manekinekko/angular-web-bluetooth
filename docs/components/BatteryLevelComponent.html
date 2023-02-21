@@ -134,7 +134,7 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
 &lt;mat-progress-spinner
     [color]&#x3D;&quot;color&quot;
     [mode]&#x3D;&quot;mode&quot;
@@ -172,6 +172,10 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#color">color</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#console">console</a>
                             </li>
                             <li>
                                 <a href="#deviceSubscription">deviceSubscription</a>
@@ -261,7 +265,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(service: <a href="../injectables/BleService.html">BleService</a>, snackBar: MatSnackBar)</code>
+<code>constructor(service: <a href="../injectables/BleService.html">BleService</a>, snackBar: MatSnackBar, console: <a href="../injectables/ConsoleLoggerService.html">ConsoleLoggerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -300,6 +304,18 @@
                                                   
                                                         <td>
                                                                     <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>console</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConsoleLoggerService.html" target="_self" >ConsoleLoggerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -347,8 +363,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:127</a></div>
                 </td>
             </tr>
 
@@ -386,8 +402,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:100</a></div>
                 </td>
             </tr>
 
@@ -425,8 +441,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:133</a></div>
                 </td>
             </tr>
 
@@ -495,8 +511,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:137</a></div>
                 </td>
             </tr>
 
@@ -534,8 +550,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:90</a></div>
                 </td>
             </tr>
 
@@ -573,8 +589,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:116</a></div>
                 </td>
             </tr>
 
@@ -612,8 +628,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:121</a></div>
                 </td>
             </tr>
 
@@ -692,6 +708,34 @@
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/thingy52/battery-level.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="console"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            console</b>
+                            <a href="#console"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ConsoleLoggerService.html" target="_self" >ConsoleLoggerService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/thingy52/battery-level.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -957,7 +1001,7 @@ const PROVIDERS &#x3D; [{
 @Component({
   selector: &#x27;ble-battery-level&#x27;,
   template: &#x60;
-    &lt;span&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+    &lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
     &lt;mat-progress-spinner
         [color]&#x3D;&quot;color&quot;
         [mode]&#x3D;&quot;mode&quot;
@@ -1011,7 +1055,8 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   constructor(
     public service: BleService,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    public console: ConsoleLoggerService) {
 
     service.config({
       decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
@@ -1024,7 +1069,9 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.getDeviceStatus();
 
     this.streamSubscription &#x3D; this.service.stream()
-      .subscribe((value: number) &#x3D;&gt; this.updateValue(value), error &#x3D;&gt; this.hasError(error));
+      .subscribe((value: number) &#x3D;&gt; {
+        this.updateValue(value);
+      }, error &#x3D;&gt; this.hasError(error));
 
   }
 
@@ -1046,11 +1093,11 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription &#x3D; this.service.value()
-      .subscribe(() &#x3D;&gt; null, error &#x3D;&gt; this.hasError.bind(this));
+      .subscribe((value: number) &#x3D;&gt; this.updateValue(value), error &#x3D;&gt; this.hasError(error));
   }
 
   updateValue(value: number) {
-    console.log(&#x27;Reading battery level %d&#x27;, value);
+    this.console.log(&#x27;Reading battery level %d&#x27;, value);
     this.value &#x3D; value;
     this.mode &#x3D; &#x27;determinate&#x27;;
   }
@@ -1066,12 +1113,11 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.deviceSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription?.unsubscribe();
+    this.deviceSubscription?.unsubscribe();
+    this.streamSubscription?.unsubscribe();
   }
 }
-
 
 </code></pre>
     </div>
@@ -1134,7 +1180,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span>{{ value || "000" }}<sup>%</sup></span><mat-progress-spinner    [color]="color"    [mode]="mode"    diameter="250"    strokeWidth="2"    [value]="value || 100"></mat-progress-spinner><mat-icon>battery_charging_full</mat-icon></div>'
+        var COMPONENT_TEMPLATE = '<div><span data-testid="value">{{ value || "000" }}<sup>%</sup></span><mat-progress-spinner    [color]="color"    [mode]="mode"    diameter="250"    strokeWidth="2"    [value]="value || 100"></mat-progress-spinner><mat-icon>battery_charging_full</mat-icon></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BatteryLevelComponent'};

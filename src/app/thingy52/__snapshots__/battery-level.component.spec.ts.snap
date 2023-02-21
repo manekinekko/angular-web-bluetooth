@@ -2,7 +2,6 @@
 
 exports[`BatteryLevelComponent should create 1`] = `
 <ble-battery-level
-  __ngContext__={[Function LRootView]}
   color={[Function String]}
   console={[Function NoLoggerService]}
   mode={[Function String]}
@@ -42,7 +41,6 @@ exports[`BatteryLevelComponent should create 1`] = `
 
 exports[`BatteryLevelComponent should display device connected state 1`] = `
 <ble-battery-level
-  __ngContext__={[Function LRootView]}
   color={[Function String]}
   console={[Function NoLoggerService]}
   deviceSubscription={[Function Subscriber]}
@@ -74,13 +72,13 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
       style="width: 250px; height: 250px;"
       viewBox="0 0 242 242"
     >
+      
       <circle
         cx="50%"
         cy="50%"
         r="120"
         style="animation-name: mat-progress-spinner-stroke-rotate-250; stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%;"
       />
-      
       
     </svg>
   </mat-progress-spinner><mat-icon
