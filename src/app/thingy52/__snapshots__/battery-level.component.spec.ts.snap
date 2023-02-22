@@ -16,18 +16,49 @@ exports[`BatteryLevelComponent should create 1`] = `
       %
     </sup>
   </span><mat-progress-spinner
-    class="mat-progress-spinner mat-spinner mat-primary"
+    class="mat-mdc-progress-spinner mdc-circular-progress mat-primary"
     diameter="250"
     role="progressbar"
     strokewidth="2"
     tabindex="-1"
   >
-    <svg
+    <div
       aria-hidden="true"
-      focusable="false"
-      preserveAspectRatio="xMidYMid meet"
+      class="mdc-circular-progress__determinate-container"
     >
-    </svg>
+      <svg
+        class="mdc-circular-progress__determinate-circle-graphic"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          class="mdc-circular-progress__determinate-circle"
+          cx="50%"
+          cy="50%"
+        />
+      </svg>
+    </div>
+    <div
+      aria-hidden="true"
+      class="mdc-circular-progress__indeterminate-container"
+    >
+      <div
+        class="mdc-circular-progress__spinner-layer"
+      >
+        <div
+          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
+        >
+        </div>
+        <div
+          class="mdc-circular-progress__gap-patch"
+        >
+        </div>
+        <div
+          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
+        >
+        </div>
+      </div>
+    </div>
   </mat-progress-spinner><mat-icon
     aria-hidden="true"
     class="mat-icon notranslate"
@@ -58,7 +89,9 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
       %
     </sup>
   </span><mat-progress-spinner
-    class="mat-progress-spinner mat-spinner mat-warn mat-progress-spinner-indeterminate-animation _mat-animation-noopable"
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="mat-mdc-progress-spinner mdc-circular-progress mat-warn _mat-animation-noopable mdc-circular-progress--indeterminate"
     diameter="250"
     mode="indeterminate"
     role="progressbar"
@@ -66,20 +99,85 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
     style="width: 250px; height: 250px;"
     tabindex="-1"
   >
-    <svg
+    <div
       aria-hidden="true"
-      focusable="false"
-      preserveAspectRatio="xMidYMid meet"
-      style="width: 250px; height: 250px;"
-      viewBox="0 0 242 242"
+      class="mdc-circular-progress__determinate-container"
     >
-      <circle
-        cx="50%"
-        cy="50%"
-        r="120"
-        style="animation-name: mat-progress-spinner-stroke-rotate-250; stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%; transform-origin: 50% 50%;"
-      />
-    </svg>
+      <svg
+        class="mdc-circular-progress__determinate-circle-graphic"
+        focusable="false"
+        viewBox="0 0 242 242"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          class="mdc-circular-progress__determinate-circle"
+          cx="50%"
+          cy="50%"
+          r="120"
+          style="stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%;"
+        />
+      </svg>
+    </div>
+    <div
+      aria-hidden="true"
+      class="mdc-circular-progress__indeterminate-container"
+    >
+      <div
+        class="mdc-circular-progress__spinner-layer"
+      >
+        <div
+          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
+        >
+          <svg
+            class="mdc-circular-progress__indeterminate-circle-graphic"
+            focusable="false"
+            viewBox="0 0 242 242"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50%"
+              cy="50%"
+              r="120"
+              style="stroke-dasharray: 753.9822368615503px; stroke-dashoffset: 376.99111843077515px; stroke-width: 0.8%;"
+            />
+          </svg>
+        </div>
+        <div
+          class="mdc-circular-progress__gap-patch"
+        >
+          <svg
+            class="mdc-circular-progress__indeterminate-circle-graphic"
+            focusable="false"
+            viewBox="0 0 242 242"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50%"
+              cy="50%"
+              r="120"
+              style="stroke-dasharray: 753.9822368615503px; stroke-dashoffset: 376.99111843077515px; stroke-width: 0.8%;"
+            />
+          </svg>
+        </div>
+        <div
+          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
+        >
+          <svg
+            class="mdc-circular-progress__indeterminate-circle-graphic"
+            focusable="false"
+            viewBox="0 0 242 242"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50%"
+              cy="50%"
+              r="120"
+              style="stroke-dasharray: 753.9822368615503px; stroke-dashoffset: 376.99111843077515px; stroke-width: 0.8%;"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
   </mat-progress-spinner><mat-icon
     aria-hidden="true"
     class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
