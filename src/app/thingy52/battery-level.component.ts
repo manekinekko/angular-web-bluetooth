@@ -58,7 +58,6 @@ const PROVIDERS = [{
   mat-icon {
     position: absolute;
     bottom: 255px;
-    font-size: 38px;
   }
   `],
   providers: PROVIDERS

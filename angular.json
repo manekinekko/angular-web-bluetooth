@@ -133,7 +133,6 @@
       }
     }
   },
-  "defaultProject": "angular-web-bluetooth-starter",
   "cli": {
     "analytics": "6c503e91-213a-464d-801c-5af37e13087c"
   }

@@ -82,7 +82,7 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
     </svg>
   </mat-progress-spinner><mat-icon
     aria-hidden="true"
-    class="mat-icon notranslate material-icons mat-icon-no-color"
+    class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
     data-mat-icon-type="font"
     role="img"
   >
