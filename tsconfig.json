@@ -10,8 +10,10 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
-    "types": ["jest"],
+    "target": "ES2022",
+    "types": [
+      "jest"
+    ],
     "lib": [
       "es2018",
       "dom"
@@ -21,7 +23,8 @@
         "dist/manekinekko/angular-web-bluetooth/manekinekko-angular-web-bluetooth",
         "dist/manekinekko/angular-web-bluetooth"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
