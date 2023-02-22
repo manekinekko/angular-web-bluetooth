@@ -87,22 +87,8 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "jestConfig": "jest.config.js",
             "setupFilesAfterEnv": "<rootDir>/test-setup.ts",
-            "detect-open-handles": true
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "detectOpenHandles": true
           }
         },
         "e2e": {
@@ -140,20 +126,8 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "jestConfig": "projects/manekinekko/angular-web-bluetooth/jest.config.js",
-            "setupFilesAfterEnv": "./test-setup.ts"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/manekinekko/angular-web-bluetooth/tsconfig.lib.json",
-              "projects/manekinekko/angular-web-bluetooth/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "setupFilesAfterEnv": "./test-setup.ts",
+            "detectOpenHandles": true
           }
         }
       }
