@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { bufferCount, take } from 'rxjs/operators';
+import { bufferCount, skip, take } from 'rxjs/operators';
 import { BluetoothCore } from './bluetooth.service';
 import { ConsoleLoggerService, NoLoggerService } from './logger.service';
 import { BrowserWebBluetooth } from './platform/browser';
@@ -7,7 +7,7 @@ import {
   FakeBluetoothRemoteGATTCharacteristic,
   FakeBluetoothRemoteGATTServer,
   FakeBluetoothRemoteGATTService,
-  FakeBluetoothDevice
+  FakeBluetoothDevice,
 } from './test.utils';
 
 describe('BluetoothCore', () => {
@@ -17,31 +17,35 @@ describe('BluetoothCore', () => {
   const fakeDevice = new FakeBluetoothDevice('1', 'device 1');
   const fakeDataView = new DataView(new ArrayBuffer(8));
   fakeDataView.setInt8(0, 99);
-  const fakeCharacteristic = new FakeBluetoothRemoteGATTCharacteristic({notify: false} as BluetoothCharacteristicProperties, fakeDataView);
+  const fakeCharacteristic = new FakeBluetoothRemoteGATTCharacteristic(
+    { notify: false } as BluetoothCharacteristicProperties,
+    fakeDataView
+  );
   const fakeService = new FakeBluetoothRemoteGATTService(fakeDevice, {
-    battery_level: fakeCharacteristic
+    battery_level: fakeCharacteristic,
   });
   const fakeGATTServer = new FakeBluetoothRemoteGATTServer(fakeDevice, {
     battery_service: {
       service: fakeService,
-      primary: true
-    }
+      primary: true,
+    },
   });
 
   // Set navigator fake bluetooth test double
   Object.defineProperty(navigator, 'bluetooth', {
     value: {
-      requestDevice: (options: RequestDeviceOptions) => Promise.resolve(fakeDevice),
-    }
+      requestDevice: (options: RequestDeviceOptions) =>
+        Promise.resolve(fakeDevice),
+    },
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [
         BluetoothCore,
         BrowserWebBluetooth,
-        {provide: ConsoleLoggerService, useClass: NoLoggerService},
-      ]
+        { provide: ConsoleLoggerService, useClass: NoLoggerService },
+      ],
     });
 
     serviceUnderTest = TestBed.inject(BluetoothCore);
@@ -58,17 +62,21 @@ describe('BluetoothCore', () => {
     expect(device).toBe(fakeDevice);
   });
 
-  it('should emit discovered device', async (done) => {
-    // Kiss or use marble tests ?
+  it('should emit discovered device', (done) => {
     // async then
-    serviceUnderTest.getDevice$()
+    serviceUnderTest
+      .getDevice$()
       .pipe(take(1))
-      .subscribe(next => {
-        expect(next).toBe(fakeDevice);
-        done();
-      }, error => done(error));
+      .subscribe(
+        (next) => {
+          expect(next).toBe(fakeDevice);
+          done();
+        },
+        (error) => done(error)
+      );
+
     // when
-    await serviceUnderTest.discover();
+    serviceUnderTest.discover();
   });
 
   it('should connect device', async () => {
@@ -79,50 +87,63 @@ describe('BluetoothCore', () => {
     expect(gattServer).toBe(fakeGATTServer);
   });
 
-  it('should emit connected gatt server', async (done) => {
+  it('should emit connected gatt server', (done) => {
     // async then
-    serviceUnderTest.getGATT$()
+    serviceUnderTest
+      .getGATT$()
       .pipe(take(1))
-      .subscribe(next => {
-        expect(next).toBe(fakeGATTServer);
-        done();
-      }, error => done(error));
+      .subscribe(
+        (next) => {
+          expect(next).toBe(fakeGATTServer);
+          done();
+        },
+        (error) => done(error)
+      );
 
-    const device = await serviceUnderTest.discover();
-    await serviceUnderTest.connectDevice(device);
+    serviceUnderTest
+      .discover()
+      .then((device) => serviceUnderTest.connectDevice(device));
   });
 
-  it('should disconnect device', async (done) => {
-    // given
-    const device = await serviceUnderTest.discover();
-    const gattServer = await serviceUnderTest.connectDevice(device);
-    const gattServerDisconnectSpy = jest.spyOn(gattServer, 'disconnect');
-
+  it('should disconnect device', (done) => {
     // async then
-    serviceUnderTest.getDevice$()
-      .pipe(take(1))
-      .subscribe(next => {
-        expect(next).toBeNull();
-        expect(gattServerDisconnectSpy).toHaveBeenCalledTimes(1);
-        done();
-      }, error => done(error));
+    let gattServerDisconnectSpy;
+    serviceUnderTest
+      .getDevice$()
+      // skip the first emission which will be the fake device
+      // and take only the second one which will be null
+      .pipe(take(2), skip(1))
+      .subscribe(
+        (next) => {
+          expect(next).toBeNull();
+          expect(gattServerDisconnectSpy).toHaveBeenCalledTimes(1);
+          done();
+        },
+        (error) => done(error)
+      );
 
     // when
-    serviceUnderTest.disconnectDevice();
+    serviceUnderTest
+      .discover()
+      .then((device) => serviceUnderTest.connectDevice(device))
+      .then((gattServer) => {
+        gattServerDisconnectSpy = jest.spyOn(gattServer, 'disconnect');
+      })
+      .finally(() => serviceUnderTest.disconnectDevice());
   });
 
   it('should read provided service and characteristic', async () => {
     // when
     const value = await serviceUnderTest.value({
       service: 'battery_service',
-      characteristic: 'battery_level'
+      characteristic: 'battery_level',
     });
 
     // then
     expect(value.getUint8(0)).toEqual(99);
   });
 
-  it('should emit characteristic value changes', async (done) => {
+  it('should emit characteristic value changes', (done) => {
     // given
     const newDataView1 = new DataView(new ArrayBuffer(8));
     newDataView1.setInt8(0, 25);
@@ -130,23 +151,27 @@ describe('BluetoothCore', () => {
     const newDataView2 = new DataView(new ArrayBuffer(8));
     newDataView2.setInt8(0, 15);
 
-    // Kiss or use marble tests ? That's the question
     // async then
-    serviceUnderTest.streamValues$()
+    serviceUnderTest
+      .streamValues$()
       .pipe(bufferCount(2))
-      .subscribe((next: DataView[]) => {
-        expect(next.map(dv => dv.getUint8(0))).toEqual([25, 15]);
-        done();
-      }, error => done(error));
+      .subscribe(
+        (next: DataView[]) => {
+          expect(next.map((dv) => dv.getUint8(0))).toEqual([25, 15]);
+          done();
+        },
+        (error) => done(error)
+      );
 
     // when
-    await serviceUnderTest.value({
-      service: 'battery_service',
-      characteristic: 'battery_level'
-    });
-
-    fakeCharacteristic.changeValue(newDataView1);
-    fakeCharacteristic.changeValue(newDataView2);
+    serviceUnderTest
+      .value({
+        service: 'battery_service',
+        characteristic: 'battery_level',
+      })
+      .then(() => {
+        fakeCharacteristic.changeValue(newDataView1);
+        fakeCharacteristic.changeValue(newDataView2);
+      });
   });
-
 });

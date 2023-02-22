@@ -97,7 +97,7 @@ export class BluetoothCore {
    * @param Options such as filters and optional services
    * @return  The GATT server for the chosen device
    */
-  async discover(options: RequestDeviceOptions = {} as RequestDeviceOptions) {
+  async discover(options: RequestDeviceOptions = {} as RequestDeviceOptions): Promise<BluetoothDevice> {
     options.optionalServices = options.optionalServices || ['generic_access'];
 
     this.console.log('[BLE::Info] Requesting devices with options %o', options);

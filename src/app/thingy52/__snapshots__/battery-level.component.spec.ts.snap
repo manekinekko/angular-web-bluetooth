@@ -12,22 +12,21 @@ exports[`BatteryLevelComponent should create 1`] = `
   <span
     data-testid="value"
   >
-    
     <sup>
       %
     </sup>
   </span><mat-progress-spinner
-    class="mat-progress-spinner mat-primary"
+    class="mat-progress-spinner mat-spinner mat-primary"
     diameter="250"
     role="progressbar"
     strokewidth="2"
+    tabindex="-1"
   >
     <svg
+      aria-hidden="true"
       focusable="false"
       preserveAspectRatio="xMidYMid meet"
     >
-      
-      
     </svg>
   </mat-progress-spinner><mat-icon
     aria-hidden="true"
@@ -59,27 +58,27 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
       %
     </sup>
   </span><mat-progress-spinner
-    class="mat-progress-spinner mat-warn mat-progress-spinner-indeterminate-animation _mat-animation-noopable"
+    class="mat-progress-spinner mat-spinner mat-warn mat-progress-spinner-indeterminate-animation _mat-animation-noopable"
     diameter="250"
     mode="indeterminate"
     role="progressbar"
     strokewidth="2"
     style="width: 250px; height: 250px;"
+    tabindex="-1"
   >
     <svg
+      aria-hidden="true"
       focusable="false"
       preserveAspectRatio="xMidYMid meet"
       style="width: 250px; height: 250px;"
       viewBox="0 0 242 242"
     >
-      
       <circle
         cx="50%"
         cy="50%"
         r="120"
-        style="animation-name: mat-progress-spinner-stroke-rotate-250; stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%;"
+        style="animation-name: mat-progress-spinner-stroke-rotate-250; stroke-dasharray: 753.9822368615503px; stroke-width: 0.8%; transform-origin: 50% 50%;"
       />
-      
     </svg>
   </mat-progress-spinner><mat-icon
     aria-hidden="true"
