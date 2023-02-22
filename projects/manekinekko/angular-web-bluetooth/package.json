@@ -23,7 +23,7 @@
   "readme": "https://github.com/manekinekko/angular-web-bluetooth/blob/main/README.md",
   "private": false,
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "keywords": [
     "angular",
@@ -48,5 +48,6 @@
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
-  }
+  },
+  "sideEffects": false
 }

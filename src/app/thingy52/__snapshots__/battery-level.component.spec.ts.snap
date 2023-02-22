@@ -73,13 +73,13 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
 <ble-battery-level
   color={[Function String]}
   console={[Function NoLoggerService]}
-  deviceSubscription={[Function Subscriber]}
+  deviceSubscription={[Function SafeSubscriber]}
   mode={[Function String]}
   service={[Function BleService]}
   snackBar={[Function MatSnackBar]}
-  streamSubscription={[Function Subscriber]}
+  streamSubscription={[Function SafeSubscriber]}
   value="null"
-  valuesSubscription={[Function Subscriber]}
+  valuesSubscription={[Function SafeSubscriber]}
 >
   <span
     data-testid="value"
