@@ -40,7 +40,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
 
-  @ViewChild('chart', {static: true})
+  @ViewChild('chart', { static: true })
   chartRef: ElementRef<HTMLCanvasElement>;
 
   get device() {
@@ -67,7 +67,10 @@ export class TemperatureComponent implements OnInit, OnDestroy {
     this.initChart();
 
     this.streamSubscription = this.service.stream()
-      .subscribe( () => this.updateValue.bind(this), error => this.hasError.bind(this));
+      .subscribe({
+        next: (val: number) => this.updateValue(val),
+        error: (err) => this.hasError(err)
+      });
   }
 
   initChart() {
@@ -93,7 +96,7 @@ export class TemperatureComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe( () => null, error => this.hasError.bind(this));
+      .subscribe(() => null, error => this.hasError.bind(this));
   }
 
   updateValue(value: number) {

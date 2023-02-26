@@ -114,7 +114,10 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription = this.service.value()
-      .subscribe((value: number) => this.updateValue(value), error => this.hasError(error));
+      .subscribe({
+        next: (val: number) => this.updateValue(val),
+        error: (err) => this.hasError(err)
+      });
   }
 
   updateValue(value: number) {

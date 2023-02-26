@@ -39,10 +39,9 @@ const PROVIDERS = [{
     text-align: center;
   }
   mat-icon {
-    position: absolute;
-    bottom: 55px;
-    left: 258px;
-    font-size: 38px;
+    font-size: 11em;
+    width: 100%;
+    height: 100%;
   }`],
   providers: PROVIDERS
 })
@@ -74,7 +73,10 @@ export class StepCounterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.streamSubscription = this.service.stream()
-      .subscribe(() => this.updateValue.bind(this), error => this.hasError.bind(this));
+      .subscribe({
+        next: (val: { time: number, count: number }) => this.updateValue(val),
+        error: (err) => this.hasError(err)
+      });
   }
 
   requestValue() {
