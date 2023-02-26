@@ -1,6 +1,5 @@
 'use strict';
 
-
 customElements.define('compodoc-menu', class extends HTMLElement {
     constructor() {
         super();
@@ -44,6 +43,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <span class="icon ion-ios-list"></span>Dependencies
                                     </a>
                                 </li>
+                                <li class="link">
+                                    <a href="properties.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-apps"></span>Properties
+                                    </a>
+                                </li>
                     </ul>
                 </li>
                     <li class="chapter modules">
@@ -57,45 +61,39 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
-                                <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-ea7fb127cd7ac46c6d332b3622ba3eee"' : 'data-target="#xs-components-links-module-AppModule-ea7fb127cd7ac46c6d332b3622ba3eee"' }>
+                                            'data-target="#components-links-module-AppModule-43ea9432cf609f1e896a97e52027817df0b9ae5c9073fdc5cb1711147103148eb2b49f500cda70505033d4e1993a1415d7f3326a038500c51345d2fd90fb0b8e"' : 'data-target="#xs-components-links-module-AppModule-43ea9432cf609f1e896a97e52027817df0b9ae5c9073fdc5cb1711147103148eb2b49f500cda70505033d4e1993a1415d7f3326a038500c51345d2fd90fb0b8e"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-ea7fb127cd7ac46c6d332b3622ba3eee"' :
-                                            'id="xs-components-links-module-AppModule-ea7fb127cd7ac46c6d332b3622ba3eee"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-43ea9432cf609f1e896a97e52027817df0b9ae5c9073fdc5cb1711147103148eb2b49f500cda70505033d4e1993a1415d7f3326a038500c51345d2fd90fb0b8e"' :
+                                            'id="xs-components-links-module-AppModule-43ea9432cf609f1e896a97e52027817df0b9ae5c9073fdc5cb1711147103148eb2b49f500cda70505033d4e1993a1415d7f3326a038500c51345d2fd90fb0b8e"' }>
                                             <li class="link">
-                                                <a href="components/AppComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                                <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/BatteryLevelComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BatteryLevelComponent</a>
+                                                <a href="components/BatteryLevelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BatteryLevelComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/DashboardComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">DashboardComponent</a>
+                                                <a href="components/DashboardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DashboardComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/HumidityComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">HumidityComponent</a>
+                                                <a href="components/HumidityComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HumidityComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/StepCounterComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">StepCounterComponent</a>
+                                                <a href="components/StepCounterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StepCounterComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/TemperatureComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">TemperatureComponent</a>
+                                                <a href="components/TemperatureComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TemperatureComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/WebBluetoothModule.html" data-type="entity-link">WebBluetoothModule</a>
+                                <a href="modules/WebBluetoothModule.html" data-type="entity-link" >WebBluetoothModule</a>
                             </li>
                 </ul>
                 </li>
@@ -108,19 +106,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/AppPage.html" data-type="entity-link">AppPage</a>
+                                <a href="classes/AppPage.html" data-type="entity-link" >AppPage</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FakeBluetoothDevice.html" data-type="entity-link">FakeBluetoothDevice</a>
+                                <a href="classes/FakeBluetoothDevice.html" data-type="entity-link" >FakeBluetoothDevice</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FakeBluetoothRemoteGATTCharacteristic.html" data-type="entity-link">FakeBluetoothRemoteGATTCharacteristic</a>
+                                <a href="classes/FakeBluetoothRemoteGATTCharacteristic.html" data-type="entity-link" >FakeBluetoothRemoteGATTCharacteristic</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FakeBluetoothRemoteGATTServer.html" data-type="entity-link">FakeBluetoothRemoteGATTServer</a>
+                                <a href="classes/FakeBluetoothRemoteGATTServer.html" data-type="entity-link" >FakeBluetoothRemoteGATTServer</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FakeBluetoothRemoteGATTService.html" data-type="entity-link">FakeBluetoothRemoteGATTService</a>
+                                <a href="classes/FakeBluetoothRemoteGATTService.html" data-type="entity-link" >FakeBluetoothRemoteGATTService</a>
                             </li>
                         </ul>
                     </li>
@@ -133,22 +131,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
-                                    <a href="injectables/BleService.html" data-type="entity-link">BleService</a>
+                                    <a href="injectables/BleService.html" data-type="entity-link" >BleService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/BluetoothCore.html" data-type="entity-link">BluetoothCore</a>
+                                    <a href="injectables/BluetoothCore.html" data-type="entity-link" >BluetoothCore</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/BrowserWebBluetooth.html" data-type="entity-link">BrowserWebBluetooth</a>
+                                    <a href="injectables/BrowserWebBluetooth.html" data-type="entity-link" >BrowserWebBluetooth</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ConsoleLoggerService.html" data-type="entity-link">ConsoleLoggerService</a>
+                                    <a href="injectables/ConsoleLoggerService.html" data-type="entity-link" >ConsoleLoggerService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/NoLoggerService.html" data-type="entity-link">NoLoggerService</a>
+                                    <a href="injectables/NoLoggerService.html" data-type="entity-link" >NoLoggerService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ServerWebBluetooth.html" data-type="entity-link">ServerWebBluetooth</a>
+                                    <a href="injectables/ServerWebBluetooth.html" data-type="entity-link" >ServerWebBluetooth</a>
                                 </li>
                             </ul>
                         </li>
@@ -161,10 +159,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/AWBOptions.html" data-type="entity-link">AWBOptions</a>
+                                <a href="interfaces/AWBOptions.html" data-type="entity-link" >AWBOptions</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Logger.html" data-type="entity-link">Logger</a>
+                                <a href="interfaces/Logger.html" data-type="entity-link" >Logger</a>
                             </li>
                         </ul>
                     </li>
