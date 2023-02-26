@@ -99,5 +99,36 @@
       </mat-card>
     </mat-grid-tile>
 
+    <!-- stepper -->
+
+    <mat-grid-tile colspan="3" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Stepper
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menuStepper" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuStepper="matMenu" xPosition="before">
+              <button mat-menu-item *ngIf="(stepper.device | async) === null" (click)="stepper.requestValue()">
+                <mat-icon>bluetooth_searching</mat-icon>
+                Connect
+              </button>
+              <button mat-menu-item *ngIf="(stepper.device | async)" (click)="stepper.disconnect()">
+                <mat-icon>bluetooth_disabled</mat-icon>
+                Disconnect
+              </button>
+            </mat-menu>
+          </mat-card-title>
+          <mat-card-subtitle *ngIf="(stepper.device | async) as device">
+            {{ device.name }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ble-stepcounter #stepper></ble-stepcounter>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
   </mat-grid-list>
 </div>
