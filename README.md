@@ -2,7 +2,7 @@
   <img src="https://cloud.githubusercontent.com/assets/1699357/21510721/556f650c-cc97-11e6-8a69-ddd67eeeebb8.png" width="250" />
 </div>
 <h2 align="center">The missing Web Bluetooth module for Angular</h2>
-<p align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Node.js%20CI/badge.svg"/></p>
+<p align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Angular%20CI/badge.svg"/></p>
 
 ## Install
 
