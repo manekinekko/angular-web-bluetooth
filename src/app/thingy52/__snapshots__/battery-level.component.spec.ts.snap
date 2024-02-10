@@ -16,7 +16,7 @@ exports[`BatteryLevelComponent should create 1`] = `
       %
     </sup>
   </span><mat-progress-spinner
-    class="mat-mdc-progress-spinner mdc-circular-progress mat-primary"
+    class="mat-mdc-progress-spinner mdc-circular-progress"
     diameter="250"
     role="progressbar"
     strokewidth="2"
