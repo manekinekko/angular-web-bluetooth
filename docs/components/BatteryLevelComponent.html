@@ -364,8 +364,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:129</a></div>
                 </td>
             </tr>
 
@@ -438,8 +438,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:135</a></div>
                 </td>
             </tr>
 
@@ -507,8 +507,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:139</a></div>
                 </td>
             </tr>
 
@@ -618,8 +618,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:123</a></div>
                 </td>
             </tr>
 
@@ -1074,7 +1074,10 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription &#x3D; this.service.value()
-      .subscribe((value: number) &#x3D;&gt; this.updateValue(value), error &#x3D;&gt; this.hasError(error));
+      .subscribe({
+        next: (val: number) &#x3D;&gt; this.updateValue(val),
+        error: (err) &#x3D;&gt; this.hasError(err)
+      });
   }
 
   updateValue(value: number) {

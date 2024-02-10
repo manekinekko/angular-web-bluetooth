@@ -6,7 +6,7 @@ exports[`BatteryLevelComponent should create 1`] = `
   console={[Function NoLoggerService]}
   mode={[Function String]}
   service={[Function BleService]}
-  snackBar={[Function MatSnackBar]}
+  snackBar={[Function _MatSnackBar]}
   value="null"
 >
   <span
@@ -76,7 +76,7 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
   deviceSubscription={[Function SafeSubscriber]}
   mode={[Function String]}
   service={[Function BleService]}
-  snackBar={[Function MatSnackBar]}
+  snackBar={[Function _MatSnackBar]}
   streamSubscription={[Function SafeSubscriber]}
   value="null"
   valuesSubscription={[Function SafeSubscriber]}
@@ -96,7 +96,7 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
     mode="indeterminate"
     role="progressbar"
     strokewidth="2"
-    style="width: 250px; height: 250px;"
+    style="width: 250px; height: 250px; --mdc-circular-progress-size: 250px; --mdc-circular-progress-active-indicator-width: 250px;"
     tabindex="-1"
   >
     <div

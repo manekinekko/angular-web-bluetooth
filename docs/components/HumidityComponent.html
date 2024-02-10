@@ -894,7 +894,7 @@ export class HumidityComponent implements OnInit, OnDestroy {
   valuesSubscription: Subscription;
   streamSubscription: Subscription;
 
-  @ViewChild(&#x27;chart&#x27;, {static: true})
+  @ViewChild(&#x27;chart&#x27;, { static: true })
   chartRef: ElementRef&lt;HTMLCanvasElement&gt;;
 
   get device() {
@@ -916,10 +916,10 @@ export class HumidityComponent implements OnInit, OnDestroy {
     this.initChart();
 
     this.streamSubscription &#x3D; this.service.stream()
-    .subscribe(
-      () &#x3D;&gt; this.updateValue.bind(this),
-      () &#x3D;&gt; of(this.hasError.bind(this)),
-      );
+      .subscribe({
+        next: (val: number) &#x3D;&gt; this.updateValue(val),
+        error: (err) &#x3D;&gt; this.hasError(err)
+      });
   }
 
   initChart() {
@@ -934,10 +934,10 @@ export class HumidityComponent implements OnInit, OnDestroy {
 
   requestValue() {
     this.valuesSubscription &#x3D; this.service.value()
-    .subscribe(
-      () &#x3D;&gt; null,
-      () &#x3D;&gt; of(this.hasError.bind(this)),
-    );
+      .subscribe(
+        () &#x3D;&gt; null,
+        () &#x3D;&gt; of(this.hasError.bind(this)),
+      );
   }
 
 

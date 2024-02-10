@@ -4,5 +4,4 @@ module.exports = {
   displayName: "angular-web-bluetooth-starter",
   setupFilesAfterEnv: ["<rootDir>/test-setup.ts"],
   modulePathIgnorePatterns: ["dist/*"],
-  globalSetup: "jest-preset-angular/global-setup",
 };
