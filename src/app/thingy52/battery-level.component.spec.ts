@@ -32,7 +32,7 @@ describe('BatteryLevelComponent', () => {
     streamValues$() {
       return fakeStreamValue;
     },
-    value$(options) {
+    value$(options: any) {
       return fakeValueFn(options);
     },
     disconnectDevice() {
@@ -97,7 +97,7 @@ describe('BatteryLevelComponent', () => {
     const nativeElement: HTMLElement = fixture.nativeElement;
 
     expect(component.value).toEqual(99);
-    expect(nativeElement.querySelector('[data-testid="value"]').textContent).toEqual('99%');
+    expect(nativeElement.querySelector('[data-testid="value"]')!.textContent).toEqual('99%');
 
     // when
     // 2 nd value change
@@ -107,7 +107,7 @@ describe('BatteryLevelComponent', () => {
     // then
     fixture.detectChanges();
     expect(component.value).toEqual(100);
-    expect(nativeElement.querySelector('[data-testid="value"]').textContent).toEqual('100%');
+    expect(nativeElement.querySelector('[data-testid="value"]')!.textContent).toEqual('100%');
   });
 
   it('should disconnect', () => {

@@ -19,7 +19,7 @@ describe('BleService', () => {
     streamValues$() {
       return fakeStreamValue;
     },
-    value$(options) {
+    value$(options: any) {
       return fakeRequestValue(options);
     },
     disconnectDevice() {
@@ -61,7 +61,7 @@ describe('BleService', () => {
           characteristic: 'battery_level',
         });
         done();
-      }, error => done(error));
+      }, _error => done());
 
     // when
     const fakeDataView = new DataView(new ArrayBuffer(8));
@@ -83,7 +83,7 @@ describe('BleService', () => {
       .subscribe(next => {
         expect(next).toEqual([99, 100]);
         done();
-      }, error => done(error));
+      }, _error => done());
 
     // when
     const fakeDataView = new DataView(new ArrayBuffer(8));

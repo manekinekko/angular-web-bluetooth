@@ -114,4 +114,4 @@ export const TiTag = {
   }
 };
 
-export const TI_SENSORAG_SERVICES = Object.keys(TiTag).map(key => TiTag[key].SERVICE);
+export const TI_SENSORAG_SERVICES: string[] = Object.keys(TiTag).map((key: string) => (TiTag as any)[key].SERVICE);

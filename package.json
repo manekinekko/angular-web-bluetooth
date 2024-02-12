@@ -1,6 +1,6 @@
 {
   "name": "angular-web-bluetooth-starter",
-  "version": "17.0.0",
+  "version": "17.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -31,7 +31,6 @@
     "@angular/platform-browser": "^17.1.3",
     "@angular/platform-browser-dynamic": "^17.1.3",
     "@angular/router": "^17.1.3",
-    "@manekinekko/angular-web-bluetooth": "file:../../@manekinekko/angular-web-bluetooth/dist/manekinekko/angular-web-bluetooth",
     "@types/web-bluetooth": "0.0.6",
     "rxjs": "~7.8.0",
     "smoothie": "^1.35.0",
@@ -49,7 +48,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~5.1.4",
     "@types/jasminewd2": "~2.0.8",
-    "@types/jest": "^29.4.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
     "jasmine-core": "~5.1.2",
     "jasmine-spec-reporter": "~5.0.0",

@@ -4,9 +4,9 @@
  */
 
 export class FakeBluetoothDevice {
-  gatt: BluetoothRemoteGATTServer;
+  gatt: BluetoothRemoteGATTServer | null = null;
   private listeners: {
-    [key in 'gattserverdisconnected']: EventListener[]
+    [key: string]: EventListener[]
   } = {
     gattserverdisconnected: []
   };
@@ -23,12 +23,12 @@ export class FakeBluetoothDevice {
 
   disconnect() {
     const mockedEvent = {target: this} as unknown;
-    this.listeners.gattserverdisconnected.forEach(listener => listener(mockedEvent as Event));
+    this.listeners['gattserverdisconnected'].forEach(listener => listener(mockedEvent as Event));
   }
 
   clear() {
-    this.id = undefined;
-    this.name = undefined;
+    this.id = "";
+    this.name = "";
     this.listeners = {
       gattserverdisconnected: []
     };
@@ -38,7 +38,7 @@ export class FakeBluetoothDevice {
 export class FakeBluetoothRemoteGATTServer {
   connected = false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device: any, public services: { [key: string]: { service: any, primary: boolean } }) {
     device.gatt = this;
   }
 
@@ -58,7 +58,7 @@ export class FakeBluetoothRemoteGATTServer {
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
+  constructor(public device: any, public characteristics: any) {
     this.characteristics.service = this;
   }
 
@@ -68,11 +68,11 @@ export class FakeBluetoothRemoteGATTService {
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
-  value: DataView;
+  value: DataView | undefined;
   properties: BluetoothCharacteristicProperties;
-  private readonly initialValue: DataView;
+  private readonly initialValue: DataView | undefined;
   private listeners: {
-    [key in 'characteristicvaluechanged']: EventListener[]
+    [key: string]: EventListener[]
   } = {
     characteristicvaluechanged: []
   };
@@ -97,7 +97,7 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value = value;
     const mockedEvent = {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener => listener(mockedEvent as Event));
+    this.listeners['characteristicvaluechanged'].forEach(listener => listener(mockedEvent as Event));
   }
 
   clear() {

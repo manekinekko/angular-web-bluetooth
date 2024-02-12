@@ -29,7 +29,7 @@ export class BluetoothCore {
     this.gattServer = null;
   }
 
-  getDevice$(): Observable<BluetoothDevice> {
+  getDevice$(): Observable<BluetoothDevice | null> {
     return this.device$;
   }
 
