@@ -1,13 +1,13 @@
 {
   "name": "@manekinekko/angular-web-bluetooth",
-  "version": "16.0.0",
+  "version": "17.0.0",
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
     "email": "github@wassim.dev"
   },
   "engines": {
-    "node": ">= 5.4.1"
+    "node": ">= 18"
   },
   "contributors": [
     "urish"
@@ -46,8 +46,8 @@
     "sensortag"
   ],
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": "^17.1.0",
+    "@angular/core": "^17.1.0"
   },
   "sideEffects": false
 }

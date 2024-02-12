@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,29 +94,33 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   BatteryLevelComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -72,15 +134,16 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -104,46 +167,49 @@
             </tr>
 
 
+
+
             <tr>
                 <td class="col-md-3">styles</td>
                 <td class="col-md-9"><code>
-  :host {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    text-align: center;
-  }
-  span {
-    font-size: 5em;
-    position: absolute;
-    top: 222px;
-    width: 120px;
-    display: block;
-    text-align: center;
-  }
-  sup {
-    font-size: 24px;
-  }
-  mat-progress-spinner {
-    top: 90px;
-    left: 5px;
-  }
-  mat-icon {
-    position: absolute;
-    bottom: 255px;
-  }
-  </code></td>
+      :host {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+      }
+      span {
+        font-size: 5em;
+        position: absolute;
+        top: 222px;
+        width: 120px;
+        display: block;
+        text-align: center;
+      }
+      sup {
+        font-size: 24px;
+      }
+      mat-progress-spinner {
+        top: 90px;
+        left: 5px;
+      }
+      mat-icon {
+        position: absolute;
+        bottom: 255px;
+      }
+    </code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &#x27;000&#x27; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
 &lt;mat-progress-spinner
-    [color]&#x3D;&quot;color&quot;
-    [mode]&#x3D;&quot;mode&quot;
-    diameter&#x3D;&quot;250&quot;
-    strokeWidth&#x3D;&quot;2&quot;
-    [value]&#x3D;&quot;value || 100&quot;&gt;
+  [color]&#x3D;&quot;color&quot;
+  [mode]&#x3D;&quot;mode&quot;
+  diameter&#x3D;&quot;250&quot;
+  strokeWidth&#x3D;&quot;2&quot;
+  [value]&#x3D;&quot;value || 100&quot;
+&gt;
 &lt;/mat-progress-spinner&gt;
 &lt;mat-icon&gt;battery_charging_full&lt;/mat-icon&gt;
 </code></pre></td>
@@ -161,7 +227,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -262,7 +328,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -273,7 +339,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/thingy52/battery-level.component.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/thingy52/battery-level.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -339,7 +405,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -362,21 +428,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:129</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:162</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -399,21 +465,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:99</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:116</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -436,53 +502,51 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:135</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:168</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>error</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -505,21 +569,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:139</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:172</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -542,21 +606,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:89</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:99</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -579,21 +643,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:115</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:131</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -611,64 +675,62 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateValue(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>updateValue(value: number | literal type)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/app/thingy52/battery-level.component.ts:123</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/thingy52/battery-level.component.ts:144</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>number | literal type</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -697,7 +759,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/thingy52/battery-level.component.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/thingy52/battery-level.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -724,7 +786,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/thingy52/battery-level.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/thingy52/battery-level.component.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -744,13 +806,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Subscription</code>
+                        <i>Type : </i>    <code>Subscription | null</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/thingy52/battery-level.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/thingy52/battery-level.component.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -770,7 +837,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>ProgressSpinnerMode</code>
 
                     </td>
                 </tr>
@@ -781,7 +848,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/thingy52/battery-level.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/thingy52/battery-level.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -808,7 +875,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/thingy52/battery-level.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/thingy52/battery-level.component.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -835,7 +902,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/thingy52/battery-level.component.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/thingy52/battery-level.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -855,13 +922,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Subscription</code>
+                        <i>Type : </i>    <code>Subscription | null</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/thingy52/battery-level.component.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/thingy52/battery-level.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -881,18 +953,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>null</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
+                        <i>Default value : </i><code>0</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/thingy52/battery-level.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/thingy52/battery-level.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -912,13 +984,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Subscription</code>
+                        <i>Type : </i>    <code>Subscription | null</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/thingy52/battery-level.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/thingy52/battery-level.component.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -927,7 +1004,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -947,7 +1024,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/thingy52/battery-level.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/thingy52/battery-level.component.ts:83</a></div>
                                 </td>
                             </tr>
 
@@ -957,78 +1034,88 @@
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
-import { BluetoothCore, BrowserWebBluetooth, ConsoleLoggerService } from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
+import {
+  BluetoothCore,
+  BrowserWebBluetooth,
+  ConsoleLoggerService,
+} from &#x27;@manekinekko/angular-web-bluetooth&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 import { BleService } from &#x27;../ble.service&#x27;;
+import { ProgressSpinnerMode } from &#x27;@angular/material/progress-spinner&#x27;;
 
-export const bleCore &#x3D; (b: BrowserWebBluetooth, l: ConsoleLoggerService) &#x3D;&gt; new BluetoothCore(b, l);
+export const bleCore &#x3D; (b: BrowserWebBluetooth, l: ConsoleLoggerService) &#x3D;&gt;
+  new BluetoothCore(b, l);
 export const bleService &#x3D; (b: BluetoothCore) &#x3D;&gt; new BleService(b);
 
-
 // make sure we get a singleton instance of each service
-const PROVIDERS &#x3D; [{
-  provide: BluetoothCore,
-  useFactory: bleCore,
-  deps: [BrowserWebBluetooth, ConsoleLoggerService]
-}, {
-  provide: BleService,
-  useFactory: bleService,
-  deps: [BluetoothCore]
-}];
-
+const PROVIDERS &#x3D; [
+  {
+    provide: BluetoothCore,
+    useFactory: bleCore,
+    deps: [BrowserWebBluetooth, ConsoleLoggerService],
+  },
+  {
+    provide: BleService,
+    useFactory: bleService,
+    deps: [BluetoothCore],
+  },
+];
 
 @Component({
   selector: &#x27;ble-battery-level&#x27;,
   template: &#x60;
-    &lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &quot;000&quot; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
+    &lt;span data-testid&#x3D;&quot;value&quot;&gt;{{ value || &#x27;000&#x27; }}&lt;sup&gt;%&lt;/sup&gt;&lt;/span&gt;
     &lt;mat-progress-spinner
-        [color]&#x3D;&quot;color&quot;
-        [mode]&#x3D;&quot;mode&quot;
-        diameter&#x3D;&quot;250&quot;
-        strokeWidth&#x3D;&quot;2&quot;
-        [value]&#x3D;&quot;value || 100&quot;&gt;
+      [color]&#x3D;&quot;color&quot;
+      [mode]&#x3D;&quot;mode&quot;
+      diameter&#x3D;&quot;250&quot;
+      strokeWidth&#x3D;&quot;2&quot;
+      [value]&#x3D;&quot;value || 100&quot;
+    &gt;
     &lt;/mat-progress-spinner&gt;
     &lt;mat-icon&gt;battery_charging_full&lt;/mat-icon&gt;
   &#x60;,
-  styles: [&#x60;
-  :host {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    text-align: center;
-  }
-  span {
-    font-size: 5em;
-    position: absolute;
-    top: 222px;
-    width: 120px;
-    display: block;
-    text-align: center;
-  }
-  sup {
-    font-size: 24px;
-  }
-  mat-progress-spinner {
-    top: 90px;
-    left: 5px;
-  }
-  mat-icon {
-    position: absolute;
-    bottom: 255px;
-  }
-  &#x60;],
-  providers: PROVIDERS
+  styles: [
+    &#x60;
+      :host {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+      }
+      span {
+        font-size: 5em;
+        position: absolute;
+        top: 222px;
+        width: 120px;
+        display: block;
+        text-align: center;
+      }
+      sup {
+        font-size: 24px;
+      }
+      mat-progress-spinner {
+        top: 90px;
+        left: 5px;
+      }
+      mat-icon {
+        position: absolute;
+        bottom: 255px;
+      }
+    &#x60;,
+  ],
+  providers: PROVIDERS,
 })
 export class BatteryLevelComponent implements OnInit, OnDestroy {
-  value &#x3D; null;
-  mode &#x3D; &#x27;determinate&#x27;;
+  value &#x3D; 0;
+  mode: ProgressSpinnerMode &#x3D; &#x27;determinate&#x27;;
   color &#x3D; &#x27;primary&#x27;;
-  valuesSubscription: Subscription;
-  streamSubscription: Subscription;
-  deviceSubscription: Subscription;
+  valuesSubscription: Subscription | null &#x3D; null;
+  streamSubscription: Subscription | null &#x3D; null;
+  deviceSubscription: Subscription | null &#x3D; null;
 
   get device() {
     return this.service.getDevice();
@@ -1037,59 +1124,82 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
   constructor(
     public service: BleService,
     public snackBar: MatSnackBar,
-    public console: ConsoleLoggerService) {
-
+    public console: ConsoleLoggerService
+  ) {
     service.config({
       decoder: (value: DataView) &#x3D;&gt; value.getInt8(0),
       service: &#x27;battery_service&#x27;,
-      characteristic: &#x27;battery_level&#x27;
+      characteristic: &#x27;battery_level&#x27;,
     });
   }
 
   ngOnInit() {
     this.getDeviceStatus();
 
-    this.streamSubscription &#x3D; this.service.stream()
-      .subscribe((value: number) &#x3D;&gt; {
+    this.streamSubscription &#x3D; this.service.stream().subscribe(
+      (
+        value:
+          | number
+          | {
+              [key: string]: number;
+            }
+      ) &#x3D;&gt; {
         this.updateValue(value);
-      }, error &#x3D;&gt; this.hasError(error));
-
+      },
+      (error) &#x3D;&gt; this.hasError(error)
+    );
   }
 
   getDeviceStatus() {
-    this.deviceSubscription &#x3D; this.service.getDevice()
-      .subscribe(device &#x3D;&gt; {
-        if (device) {
-          this.color &#x3D; &#x27;warn&#x27;;
-          this.mode &#x3D; &#x27;indeterminate&#x27;;
-          this.value &#x3D; null;
-        } else {
-          // device not connected or disconnected
-          this.value &#x3D; null;
-          this.mode &#x3D; &#x27;determinate&#x27;;
-          this.color &#x3D; &#x27;primary&#x27;;
-        }
-      }, this.hasError.bind(this));
+    this.deviceSubscription &#x3D; this.service.getDevice().subscribe((device) &#x3D;&gt; {
+      if (device) {
+        this.color &#x3D; &#x27;warn&#x27;;
+        this.mode &#x3D; &#x27;indeterminate&#x27;;
+        this.value &#x3D; 0;
+      } else {
+        // device not connected or disconnected
+        this.value &#x3D; 0;
+        this.mode &#x3D; &#x27;determinate&#x27;;
+        this.color &#x3D; &#x27;primary&#x27;;
+      }
+    }, this.hasError.bind(this));
   }
 
   requestValue() {
-    this.valuesSubscription &#x3D; this.service.value()
-      .subscribe({
-        next: (val: number) &#x3D;&gt; this.updateValue(val),
-        error: (err) &#x3D;&gt; this.hasError(err)
-      });
+    this.valuesSubscription &#x3D; this.service.value().subscribe({
+      next: (
+        val:
+          | number
+          | {
+              [key: string]: number;
+            }
+      ) &#x3D;&gt; this.updateValue(val),
+      error: (err) &#x3D;&gt; this.hasError(err),
+    });
   }
 
-  updateValue(value: number) {
+  updateValue(
+    value:
+      | number
+      | {
+          [key: string]: number;
+        }
+  ) {
+
+    if (typeof value &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+      this.value &#x3D; value;
+    } else {
+      this.value &#x3D; value[&#x27;&#x27;];
+    }
+
     this.console.log(&#x27;Reading battery level %d&#x27;, value);
-    this.value &#x3D; value;
     this.mode &#x3D; &#x27;determinate&#x27;;
   }
 
   disconnect() {
     this.service.disconnectDevice();
-    this.deviceSubscription.unsubscribe();
-    this.valuesSubscription.unsubscribe();
+    this.deviceSubscription!.unsubscribe();
+    this.valuesSubscription!.unsubscribe();
   }
 
   hasError(error: string) {
@@ -1102,43 +1212,42 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
     this.streamSubscription?.unsubscribe();
   }
 }
-
 </code></pre>
     </div>
 
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
             <pre class="line-numbers"><code class="language-scss">
-  :host {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    text-align: center;
-  }
-  span {
-    font-size: 5em;
-    position: absolute;
-    top: 222px;
-    width: 120px;
-    display: block;
-    text-align: center;
-  }
-  sup {
-    font-size: 24px;
-  }
-  mat-progress-spinner {
-    top: 90px;
-    left: 5px;
-  }
-  mat-icon {
-    position: absolute;
-    bottom: 255px;
-  }
-  
+      :host {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+      }
+      span {
+        font-size: 5em;
+        position: absolute;
+        top: 222px;
+        width: 120px;
+        display: block;
+        text-align: center;
+      }
+      sup {
+        font-size: 24px;
+      }
+      mat-progress-spinner {
+        top: 90px;
+        left: 5px;
+      }
+      mat-icon {
+        position: absolute;
+        bottom: 255px;
+      }
+    
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1163,7 +1272,7 @@ export class BatteryLevelComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span data-testid="value">{{ value || "000" }}<sup>%</sup></span><mat-progress-spinner    [color]="color"    [mode]="mode"    diameter="250"    strokeWidth="2"    [value]="value || 100"></mat-progress-spinner><mat-icon>battery_charging_full</mat-icon></div>'
+        var COMPONENT_TEMPLATE = '<div><span data-testid="value">{{ value || \'000\' }}<sup>%</sup></span><mat-progress-spinner  [color]="color"  [mode]="mode"  diameter="250"  strokeWidth="2"  [value]="value || 100"></mat-progress-spinner><mat-icon>battery_charging_full</mat-icon></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ble-root'},{'name': 'BatteryLevelComponent', 'selector': 'ble-battery-level'},{'name': 'DashboardComponent', 'selector': 'ble-dashboard'},{'name': 'HumidityComponent', 'selector': 'ble-humidity'},{'name': 'StepCounterComponent', 'selector': 'ble-stepcounter'},{'name': 'TemperatureComponent', 'selector': 'ble-temperature'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BatteryLevelComponent'};

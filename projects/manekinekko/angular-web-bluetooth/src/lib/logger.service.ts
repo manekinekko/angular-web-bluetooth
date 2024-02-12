@@ -10,13 +10,13 @@ export interface Logger {
   providedIn: 'root'
 })
 export class ConsoleLoggerService implements Logger {
-  log(...args) {
+  log(...args: any[]) {
     console.log.apply(console, args);
   }
-  error(...args) {
+  error(...args: any[]) {
     console.error.apply(console, args);
   }
-  warn(...args) {
+  warn(...args: any[]) {
     console.warn.apply(console, args);
   }
 }
@@ -25,7 +25,7 @@ export class ConsoleLoggerService implements Logger {
   providedIn: 'root'
 })
 export class NoLoggerService implements Logger {
-  log(...args) {}
-  error(...args) {}
-  warn(...args) {}
+  log(...args: any[]) {}
+  error(...args: any[]) {}
+  warn(...args: any[]) {}
 }

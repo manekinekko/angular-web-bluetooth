@@ -35,13 +35,13 @@ const PROVIDERS = [{
   providers: PROVIDERS
 })
 export class HumidityComponent implements OnInit, OnDestroy {
-  series: TimeSeries;
-  chart: SmoothieChart;
-  valuesSubscription: Subscription;
-  streamSubscription: Subscription;
+  series: TimeSeries | null = null;
+  chart: SmoothieChart | null = null;
+  valuesSubscription: Subscription | null = null;
+  streamSubscription: Subscription | null = null;
 
   @ViewChild('chart', { static: true })
-  chartRef: ElementRef<HTMLCanvasElement>;
+  chartRef: ElementRef<HTMLCanvasElement> | null = null;
 
   get device() {
     return this.service.getDevice();
@@ -63,19 +63,19 @@ export class HumidityComponent implements OnInit, OnDestroy {
 
     this.streamSubscription = this.service.stream()
       .subscribe({
-        next: (val: number) => this.updateValue(val),
+        next: (val: number | { [key: string]: number; }) => this.updateValue(val),
         error: (err) => this.hasError(err)
       });
   }
 
   initChart() {
     this.series = new window.TimeSeries() as TimeSeries;
-    const canvas = this.chartRef.nativeElement;
+    const canvas = this.chartRef!.nativeElement;
     // tslint:disable-next-line: max-line-length
     this.chart = new window.SmoothieChart({ interpolation: 'step', grid: { fillStyle: '#ffffff', strokeStyle: 'rgba(119,119,119,0.18)', borderVisible: false }, labels: { fillStyle: '#000000', fontSize: 17 }, tooltip: true });
-    this.chart.addTimeSeries(this.series, { lineWidth: 1, strokeStyle: '#ff0000', fillStyle: 'rgba(255,161,161,0.30)' });
-    this.chart.streamTo(canvas);
-    this.chart.stop();
+    this.chart!.addTimeSeries(this.series, { lineWidth: 1, strokeStyle: '#ff0000', fillStyle: 'rgba(255,161,161,0.30)' });
+    this.chart!.streamTo(canvas);
+    this.chart!.stop();
   }
 
   requestValue() {
@@ -87,18 +87,22 @@ export class HumidityComponent implements OnInit, OnDestroy {
   }
 
 
-  updateValue(value: number) {
+  updateValue(value: number | { [key: string]: number; }) {
     console.log('Reading humidity %d', value);
-    this.series.append(Date.now(), value);
-    this.chart.start();
+
+    if (typeof value === 'number') {
+      this.series!.append(Date.now(), value);
+      this.chart!.start();
+    }
+
   }
 
 
   disconnect() {
     this.service.disconnectDevice();
-    this.series.clear();
-    this.chart.stop();
-    this.valuesSubscription.unsubscribe();
+    this.series!.clear();
+    this.chart!.stop();
+    this.valuesSubscription!.unsubscribe();
   }
 
   hasError(error: string) {
@@ -106,7 +110,7 @@ export class HumidityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription!.unsubscribe();
+    this.streamSubscription!.unsubscribe();
   }
 }

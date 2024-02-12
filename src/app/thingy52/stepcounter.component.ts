@@ -46,8 +46,8 @@ const PROVIDERS = [{
   providers: PROVIDERS
 })
 export class StepCounterComponent implements OnInit, OnDestroy {
-  valuesSubscription: Subscription;
-  streamSubscription: Subscription;
+  valuesSubscription: Subscription | null = null;
+  streamSubscription: Subscription | null = null;
   value = 0;
 
   get device() {
@@ -62,9 +62,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
       decoder: (value: DataView) => {
         const count = value.getUint32(0, true);
         const time = value.getUint32(4, true);
-        return {
-          count, time
-        };
+        return count;
       },
       service: 'ef680400-9b35-4933-9b10-52ffa9740042',
       characteristic: 'ef680405-9b35-4933-9b10-52ffa9740042'
@@ -74,7 +72,7 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.streamSubscription = this.service.stream()
       .subscribe({
-        next: (val: { time: number, count: number }) => this.updateValue(val),
+        next: (val: number) => this.updateValue(val),
         error: (err) => this.hasError(err)
       });
   }
@@ -84,14 +82,14 @@ export class StepCounterComponent implements OnInit, OnDestroy {
       .subscribe(() => null, error => this.hasError.bind(this));
   }
 
-  updateValue(value: { time: number, count: number }) {
+  updateValue(value: number) {
     console.log('Reading step counter %d', value);
-    this.value = value.count;
+    this.value = value;
   }
 
   disconnect() {
     this.service.disconnectDevice();
-    this.valuesSubscription.unsubscribe();
+    this.valuesSubscription!.unsubscribe();
   }
 
   hasError(error: string) {
@@ -99,8 +97,8 @@ export class StepCounterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.valuesSubscription.unsubscribe();
-    this.streamSubscription.unsubscribe();
+    this.valuesSubscription!.unsubscribe();
+    this.streamSubscription!.unsubscribe();
   }
 }
 

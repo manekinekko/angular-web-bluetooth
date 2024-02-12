@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 type ServiceOptions = {
     characteristic: string;
     service: string,
-    decoder(value: DataView): number | {[key: string]: number}
+    decoder(value: DataView): number
 };
 
 @Injectable({
@@ -14,7 +14,7 @@ type ServiceOptions = {
 export class BleService {
 
     // tslint:disable-next-line: variable-name
-    private _config: ServiceOptions;
+    private _config: ServiceOptions = {} as any;
 
   constructor(public ble: BluetoothCore) {}
 
@@ -28,6 +28,7 @@ export class BleService {
 
   stream() {
     return this.ble.streamValues$().pipe(
+      tap(value => console.log(value)),
       map(this._config.decoder)
     );
   }

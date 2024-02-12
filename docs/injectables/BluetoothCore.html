@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -40,21 +98,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >BluetoothCore</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >BluetoothCore</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -66,7 +130,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -198,7 +262,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -259,7 +323,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -270,7 +334,7 @@
                 <td class="col-md-4">
                     <a name="connectDevice"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>connectDevice</b></span>
                         <a href="#connectDevice"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -278,62 +342,60 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>connectDevice(device: BluetoothDevice)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>connectDevice(device: BluetoothDevice | null)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:151</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:151</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Connect to current device.</p>
+                        <div class="io-description"><p>Connect to current device.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>device</td>
-                                    <td>
-                                            <code>BluetoothDevice</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device</td>
+                                            <td>
+                                                        <code>BluetoothDevice | null</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emites the gatt server instance of the requested device</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emites the gatt server instance of the requested device</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -351,61 +413,59 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>connectDevice$(device: BluetoothDevice)</code>
+<code>connectDevice$(device: BluetoothDevice | null)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="176"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:176</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:180</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Connect to current device.</p>
+                        <div class="io-description"><p>Connect to current device.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>device</td>
-                                    <td>
-                                            <code>BluetoothDevice</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device</td>
+                                            <td>
+                                                        <code>BluetoothDevice | null</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emites the gatt server instance of the requested device</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emites the gatt server instance of the requested device</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -428,91 +488,89 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="323"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:323</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="327"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:327</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Disables the specified characteristic of a given service.</p>
+                        <div class="io-description"><p>Disables the specified characteristic of a given service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>service</td>
-                                    <td>
-                                            <code>BluetoothServiceUUID</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>BluetoothServiceUUID</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The parent service of the characteristic.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothCharacteristicUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The requested characteristic.</p>
+                                            <td>
+                                                    <p>The parent service of the characteristic.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>state</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothCharacteristicUUID</code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+                                            <td>
+                                                    <p>The requested characteristic.</p>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The primary service (useful for chaining).</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                    </div>
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The primary service (useful for chaining).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -535,23 +593,23 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:183</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:187</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Disconnect the current connected device</p>
+                        <div class="io-description"><p>Disconnect the current connected device</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -562,7 +620,7 @@
                 <td class="col-md-4">
                     <a name="discover"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>discover</b></span>
                         <a href="#discover"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -570,66 +628,64 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>discover(options: RequestDeviceOptions)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:100</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:100</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Run the discovery process.</p>
+                        <div class="io-description"><p>Run the discovery process.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Default value</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>RequestDeviceOptions</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>RequestDeviceOptions</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
-                                    <td>
-                                        <code>{} as RequestDeviceOptions</code>
-                                    </td>
+                                            <td>
+                                                    <code>{} as RequestDeviceOptions</code>
+                                            </td>
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;BluetoothDevice&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;BluetoothDevice | null&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The GATT server for the chosen device</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The GATT server for the chosen device</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -652,56 +708,54 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:142</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:142</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Run the discovery process.</p>
+                        <div class="io-description"><p>Run the discovery process.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>RequestDeviceOptions</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>RequestDeviceOptions</code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    Yes
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void | BluetoothRemoteGATTServer&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void | BluetoothRemoteGATTServer | null&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emites the value of the requested service read from the device</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emites the value of the requested service read from the device</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -724,91 +778,89 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="311"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:311</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:315</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Enables the specified characteristic of a given service.</p>
+                        <div class="io-description"><p>Enables the specified characteristic of a given service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>service</td>
-                                    <td>
-                                            <code>BluetoothServiceUUID</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>BluetoothServiceUUID</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The parent service of the characteristic.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothCharacteristicUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The requested characteristic</p>
+                                            <td>
+                                                    <p>The parent service of the characteristic.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>state</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothCharacteristicUUID</code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+                                            <td>
+                                                    <p>The requested characteristic</p>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The primary service (useful for chaining).</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                    </div>
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The primary service (useful for chaining).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -831,56 +883,54 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="413"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:413</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="428"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:428</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Sends random data (for testing purposes only).</p>
+                        <div class="io-description"><p>Sends random data (for testing purposes only).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>fakeValue</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fakeValue</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    Yes
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Random unsigned 8-bit integer values.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Random unsigned 8-bit integer values.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -891,7 +941,7 @@
                 <td class="col-md-4">
                     <a name="getCharacteristic"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>getCharacteristic</b></span>
                         <a href="#getCharacteristic"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -899,83 +949,81 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>getCharacteristic(primaryService: BluetoothRemoteGATTService, characteristic: BluetoothCharacteristicUUID)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="241"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:241</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:245</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Requests a characteristic from the primary service.</p>
+                        <div class="io-description"><p>Requests a characteristic from the primary service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>primaryService</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTService</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>primaryService</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTService</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The primary service.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothCharacteristicUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The characteristic&#39;s UUID.</p>
+                                            <td>
+                                                    <p>The primary service.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;BluetoothRemoteGATTCharacteristic | void&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothCharacteristicUUID</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The characteristic description (as a Promise).</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The characteristic&#39;s UUID.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;BluetoothRemoteGATTCharacteristic | null&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The characteristic description (as a Promise).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -998,77 +1046,75 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="275"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:275</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:281</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Requests a characteristic from the primary service.</p>
+                        <div class="io-description"><p>Requests a characteristic from the primary service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>primaryService</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTService</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>primaryService</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTService</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The primary service.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothCharacteristicUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The characteristic&#39;s UUID.</p>
+                                            <td>
+                                                    <p>The primary service.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;void | BluetoothRemoteGATTCharacteristic&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothCharacteristicUUID</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The characteristic description (as a Observable).</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The characteristic&#39;s UUID.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;null | BluetoothRemoteGATTCharacteristic&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The characteristic description (as a Observable).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1091,21 +1137,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:32</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:32</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothDevice&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothDevice&gt;</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1128,21 +1174,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:36</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:36</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTServer&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTServer&gt;</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1153,7 +1199,7 @@
                 <td class="col-md-4">
                     <a name="getPrimaryService"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>getPrimaryService</b></span>
                         <a href="#getPrimaryService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1161,83 +1207,81 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getPrimaryService(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPrimaryService(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:203</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:207</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Requests the primary service.</p>
+                        <div class="io-description"><p>Requests the primary service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>gatt</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTServer</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gatt</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTServer | null</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The BluetoothRemoteGATTServer sever</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>service</td>
-                                    <td>
-                                            <code>BluetoothServiceUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The UUID of the primary service</p>
+                                            <td>
+                                                    <p>The BluetoothRemoteGATTServer sever</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;BluetoothRemoteGATTService&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>BluetoothServiceUUID</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The remote service (as a Promise)</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The UUID of the primary service</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;BluetoothRemoteGATTService&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The remote service (as a Promise)</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1255,82 +1299,80 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID)</code>
+<code>getPrimaryService$(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:220</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:224</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Requests the primary service.</p>
+                        <div class="io-description"><p>Requests the primary service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>gatt</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTServer</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gatt</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTServer | null</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The BluetoothRemoteGATTServer sever</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>service</td>
-                                    <td>
-                                            <code>BluetoothServiceUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The UUID of the primary service</p>
+                                            <td>
+                                                    <p>The BluetoothRemoteGATTServer sever</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>BluetoothServiceUUID</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The remote service (as an observable).</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The UUID of the primary service</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The remote service (as an observable).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1353,77 +1395,75 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="392"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:392</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="408"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:408</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A utility method to convert LE to an unsigned 16-bit integer values.</p>
+                        <div class="io-description"><p>A utility method to convert LE to an unsigned 16-bit integer values.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The DataView binary data.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>byteOffset</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The offset, in byte, from the start of the view where to read the data.</p>
+                                            <td>
+                                                    <p>The DataView binary data.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>byteOffset</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An unsigned 16-bit integer number.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The offset, in byte, from the start of the view where to read the data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An unsigned 16-bit integer number.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1446,77 +1486,75 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="404"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:404</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="419"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:419</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A utility method to convert LE to an unsigned 8-bit integer values.</p>
+                        <div class="io-description"><p>A utility method to convert LE to an unsigned 8-bit integer values.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The DataView binary data.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>byteOffset</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The offset, in byte, from the start of the view where to read the data.</p>
+                                            <td>
+                                                    <p>The DataView binary data.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>byteOffset</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An unsigned 8-bit integer number.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The offset, in byte, from the start of the view where to read the data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An unsigned 8-bit integer number.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1539,61 +1577,59 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="375"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:375</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="385"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:385</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A stream of DataView values emitted by the specified characteristic.</p>
+                        <div class="io-description"><p>A stream of DataView values emitted by the specified characteristic.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTCharacteristic</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTCharacteristic</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The characteristic which value you want to observe</p>
+                                            <td>
+                                                    <p>The characteristic which value you want to observe</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The stream of DataView values.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The stream of DataView values.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1611,65 +1647,63 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onCharacteristicChanged(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+<code>onCharacteristicChanged(event: Event)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="333"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:333</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="337"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:337</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Dispatches new values emitted by a characteristic.</p>
+                        <div class="io-description"><p>Dispatches new values emitted by a characteristic.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>event</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>the distpatched event.</p>
+                                            <td>
+                                                    <p>the distpatched event.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1687,65 +1721,63 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onDeviceDisconnected(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+<code>onDeviceDisconnected(event: Event)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:129</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:129</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>This handler will trigger when the client disconnets from the server.</p>
+                        <div class="io-description"><p>This handler will trigger when the client disconnets from the server.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>event</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The onDeviceDisconnected event</p>
+                                            <td>
+                                                    <p>The onDeviceDisconnected event</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1768,61 +1800,59 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="346"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:346</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:350</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Reads a value from the characteristics, as a DataView.</p>
+                        <div class="io-description"><p>Reads a value from the characteristics, as a DataView.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTCharacteristic</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTCharacteristic</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The requested characteristic.</p>
+                                            <td>
+                                                    <p>The requested characteristic.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>the DataView value (as an Observable).</p>
+                        </div>
+                            <div class="io-description">
+                                <p>the DataView value (as an Observable).</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1845,93 +1875,91 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="292"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:292</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:298</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Sets the characteristic&#39;s state.</p>
+                        <div class="io-description"><p>Sets the characteristic&#39;s state.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>service</td>
-                                    <td>
-                                            <code>BluetoothServiceUUID</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>BluetoothServiceUUID</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The parent service of the characteristic.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothCharacteristicUUID</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The requested characteristic</p>
+                                            <td>
+                                                    <p>The parent service of the characteristic.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>state</td>
-                                    <td>
-                                            <code>ArrayBuffer</code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothCharacteristicUUID</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>An ArrayBuffer containing the value of the characteristic.</p>
+                                            <td>
+                                                    <p>The requested characteristic</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                        <code>ArrayBuffer</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The primary service (useful for chaining).</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>An ArrayBuffer containing the value of the characteristic.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;BluetoothRemoteGATTService&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The primary service (useful for chaining).</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1954,21 +1982,21 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:40</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:40</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;DataView&gt;</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1979,7 +2007,7 @@
                 <td class="col-md-4">
                     <a name="value"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>value</b></span>
                         <a href="#value"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1987,66 +2015,64 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>value(options: <a href="../undefineds/ReadValueOptions.html" target="_self">ReadValueOptions</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:48</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:48</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Run the discovery process and read the value form the provided service and characteristic</p>
+                        <div class="io-description"><p>Run the discovery process and read the value form the provided service and characteristic</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ReadValueOptions" target="_self" >ReadValueOptions</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ReadValueOptions" target="_self" >ReadValueOptions</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>the ReadValueOptions</p>
+                                            <td>
+                                                    <p>the ReadValueOptions</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2069,53 +2095,51 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:90</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:90</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#ReadValueOptions" target="_self" >ReadValueOptions</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ReadValueOptions" target="_self" >ReadValueOptions</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2133,88 +2157,86 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer | Uint8Array)</code>
+<code>writeValue$(characteristic: BluetoothRemoteGATTCharacteristic | null, value: ArrayBuffer | Uint8Array)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="363"
-                            class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:363</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="367"
+                                    class="link-to-prism">projects/manekinekko/angular-web-bluetooth/src/lib/bluetooth.service.ts:367</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Writes a value into the specified characteristic.</p>
+                        <div class="io-description"><p>Writes a value into the specified characteristic.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>characteristic</td>
-                                    <td>
-                                            <code>BluetoothRemoteGATTCharacteristic</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>characteristic</td>
+                                            <td>
+                                                        <code>BluetoothRemoteGATTCharacteristic | null</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The requested characteristic.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                            <code>ArrayBuffer | Uint8Array</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The value to be written (as an ArrayBuffer or Uint8Array).</p>
+                                            <td>
+                                                    <p>The requested characteristic.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>ArrayBuffer | Uint8Array</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>an void Observable.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The value to be written (as an ArrayBuffer or Uint8Array).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>an void Observable.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -2314,7 +2336,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>BluetoothRemoteGATTServer</code>
+                        <i>Type : </i>    <code>BluetoothRemoteGATTServer | null</code>
 
                     </td>
                 </tr>
@@ -2332,9 +2354,9 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventEmitter, Injectable } from &#x27;@angular/core&#x27;;
-import { from, fromEvent, Observable, throwError } from &#x27;rxjs&#x27;;
+import { EMPTY, from, fromEvent, Observable, of, throwError } from &#x27;rxjs&#x27;;
 import { filter, map, mergeMap, takeUntil } from &#x27;rxjs/operators&#x27;;
 import { ConsoleLoggerService } from &#x27;./logger.service&#x27;;
 import { BrowserWebBluetooth } from &#x27;./platform/browser&#x27;;
@@ -2353,7 +2375,7 @@ export class BluetoothCore {
   private device$: EventEmitter&lt;BluetoothDevice&gt;;
   private gatt$: EventEmitter&lt;BluetoothRemoteGATTServer&gt;;
   private characteristicValueChanges$: EventEmitter&lt;DataView&gt;;
-  private gattServer: BluetoothRemoteGATTServer;
+  private gattServer: BluetoothRemoteGATTServer | null;
 
   constructor(private readonly webBle: BrowserWebBluetooth, private readonly console: ConsoleLoggerService) {
 
@@ -2418,7 +2440,7 @@ export class BluetoothCore {
       return value;
     }
     catch (error) {
-      throw new Error(error);
+      throw new Error(error as any);
     }
   }
 
@@ -2432,7 +2454,7 @@ export class BluetoothCore {
    * @param Options such as filters and optional services
    * @return  The GATT server for the chosen device
    */
-  async discover(options: RequestDeviceOptions &#x3D; {} as RequestDeviceOptions): Promise&lt;BluetoothDevice&gt; {
+  async discover(options: RequestDeviceOptions &#x3D; {} as RequestDeviceOptions): Promise&lt;BluetoothDevice | null&gt; {
     options.optionalServices &#x3D; options.optionalServices || [&#x27;generic_access&#x27;];
 
     this.console.log(&#x27;[BLE::Info] Requesting devices with options %o&#x27;, options);
@@ -2465,7 +2487,7 @@ export class BluetoothCore {
     const disconnectedDevice &#x3D; event.target as BluetoothDevice;
     this.console.log(&#x27;[BLE::Info] disconnected device %o&#x27;, disconnectedDevice);
 
-    this.device$.emit(null);
+    this.device$.emit(undefined);
   }
 
   /**
@@ -2474,8 +2496,8 @@ export class BluetoothCore {
    * @param Options such as filters and optional services
    * @return  Emites the value of the requested service read from the device
    */
-  discover$(options?: RequestDeviceOptions): Observable&lt;void | BluetoothRemoteGATTServer&gt; {
-    return from(this.discover(options)).pipe(mergeMap((device: BluetoothDevice) &#x3D;&gt; this.connectDevice$(device)));
+  discover$(options?: RequestDeviceOptions): Observable&lt;void | BluetoothRemoteGATTServer | null&gt; {
+    return from(this.discover(options)).pipe(mergeMap((device: BluetoothDevice|null) &#x3D;&gt; this.connectDevice$(device)));
   }
 
   /**
@@ -2483,24 +2505,28 @@ export class BluetoothCore {
    *
    * @return  Emites the gatt server instance of the requested device
    */
-  async connectDevice(device: BluetoothDevice) {
-    if (device) {
-      this.console.log(&#x27;[BLE::Info] Connecting to Bluetooth Remote GATT Server of %o&#x27;, device);
+  async connectDevice(device: BluetoothDevice | null) {
 
-      try {
-        const gattServer &#x3D; await device.gatt.connect();
-        this.gattServer &#x3D; gattServer;
-        this.gatt$.emit(gattServer);
-        return gattServer;
-      } catch (error) {
-        // probably the user has canceled the discovery
-        Promise.reject(&#x60;${error.message}&#x60;);
-        this.gatt$.error(&#x60;${error.message}&#x60;);
-      }
-    } else {
+    if (device &#x3D;&#x3D;&#x3D; null || typeof device.gatt &#x3D;&#x3D;&#x3D; &quot;undefined&quot;) {
       this.console.error(&#x27;[BLE::Error] Was not able to connect to Bluetooth Remote GATT Server&#x27;);
       this.gatt$.error(null);
+      return null;
     }
+
+    this.console.log(&#x27;[BLE::Info] Connecting to Bluetooth Remote GATT Server of %o&#x27;, device);
+
+    try {
+      const gattServer &#x3D; await device.gatt.connect();
+      this.gattServer &#x3D; gattServer;
+      this.gatt$.emit(gattServer);
+      return gattServer;
+    } catch (error: any) {
+      // probably the user has canceled the discovery
+      Promise.reject(&#x60;${error.message}&#x60;);
+      this.gatt$.error(&#x60;${error.message}&#x60;);
+    }
+
+    return null;
   }
 
   /**
@@ -2508,7 +2534,7 @@ export class BluetoothCore {
    *
    * @return  Emites the gatt server instance of the requested device
    */
-  connectDevice$(device: BluetoothDevice) {
+  connectDevice$(device: BluetoothDevice | null) {
     return from(this.connectDevice(device));
   }
 
@@ -2535,12 +2561,12 @@ export class BluetoothCore {
    * @param service The UUID of the primary service
    * @return The remote service (as a Promise)
    */
-  async getPrimaryService(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Promise&lt;BluetoothRemoteGATTService&gt; {
+  async getPrimaryService(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID): Promise&lt;BluetoothRemoteGATTService&gt; {
     try {
-      const remoteService &#x3D; await gatt.getPrimaryService(service);
+      const remoteService &#x3D; await gatt!.getPrimaryService(service);
       return await Promise.resolve(remoteService);
     }
-    catch (error) {
+    catch (error: any) {
       return await Promise.reject(&#x60;${error.message} (${service})&#x60;);
     }
   }
@@ -2552,7 +2578,7 @@ export class BluetoothCore {
    * @param service The UUID of the primary service
    * @return The remote service (as an observable).
    */
-  getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable&lt;BluetoothRemoteGATTService&gt; {
+  getPrimaryService$(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID): Observable&lt;BluetoothRemoteGATTService&gt; {
     this.console.log(&#x27;[BLE::Info] Getting primary service &quot;%s&quot; (if available) of %o&#x27;, service, gatt);
 
 
@@ -2562,7 +2588,7 @@ export class BluetoothCore {
       );
     }
     else {
-      return throwError(new Error(&#x27;[BLE::Error] Was not able to connect to the Bluetooth Remote GATT Server&#x27;));
+      return throwError(() &#x3D;&gt; new Error(&#x27;[BLE::Error] Was not able to connect to the Bluetooth Remote GATT Server&#x27;));
     }
   }
 
@@ -2576,7 +2602,7 @@ export class BluetoothCore {
   async getCharacteristic(
     primaryService: BluetoothRemoteGATTService,
     characteristic: BluetoothCharacteristicUUID
-  ): Promise&lt;BluetoothRemoteGATTCharacteristic | void&gt; {
+  ): Promise&lt;BluetoothRemoteGATTCharacteristic | null&gt; {
     this.console.log(&#x27;[BLE::Info] Getting Characteristic &quot;%s&quot; of %o&#x27;, characteristic, primaryService);
 
     try {
@@ -2596,8 +2622,10 @@ export class BluetoothCore {
       return char;
     }
     catch (rejectionError) {
-      Promise.reject(&#x60;${rejectionError.message} (${characteristic})&#x60;);
+      Promise.reject(&#x60;${(rejectionError as any).message} (${characteristic})&#x60;);
     }
+
+    return null;
   }
 
   /**
@@ -2610,7 +2638,7 @@ export class BluetoothCore {
   getCharacteristic$(
     primaryService: BluetoothRemoteGATTService,
     characteristic: BluetoothCharacteristicUUID
-  ): Observable&lt;void | BluetoothRemoteGATTCharacteristic&gt; {
+  ): Observable&lt;null | BluetoothRemoteGATTCharacteristic&gt; {
     this.console.log(&#x27;[BLE::Info] Getting Characteristic &quot;%s&quot; of %o&#x27;, characteristic, primaryService);
 
     return from(this.getCharacteristic(primaryService, characteristic));
@@ -2628,10 +2656,8 @@ export class BluetoothCore {
     const primaryService &#x3D; this.getPrimaryService$(this.gattServer, service);
 
     primaryService
-      // tslint:disable-next-line: variable-name
       .pipe(mergeMap((_primaryService: BluetoothRemoteGATTService) &#x3D;&gt; this.getCharacteristic$(_primaryService, characteristic)))
-      // tslint:disable-next-line: no-shadowed-variable
-      .subscribe((characteristic: BluetoothRemoteGATTCharacteristic) &#x3D;&gt; this.writeValue$(characteristic, state));
+      .subscribe((characteristic: BluetoothRemoteGATTCharacteristic | null) &#x3D;&gt; this.writeValue$(characteristic, state));
 
     return primaryService;
   }
@@ -2695,7 +2721,13 @@ export class BluetoothCore {
    * @param value The value to be written (as an ArrayBuffer or Uint8Array).
    * @return an void Observable.
    */
-  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer | Uint8Array) {
+  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic | null, value: ArrayBuffer | Uint8Array) {
+
+    if (characteristic &#x3D;&#x3D;&#x3D; null) {
+      this.console.error(&#x27;[BLE::Error] Was not able to write characteristic&#x27;);
+      return null;
+    }
+
     this.console.log(&#x27;[BLE::Info] Writing Characteristic %o&#x27;, characteristic);
 
     return from(characteristic.writeValue(value).then(_ &#x3D;&gt; Promise.resolve(), (error: DOMException) &#x3D;&gt; Promise.reject(&#x60;${error.message}&#x60;)));
@@ -2708,6 +2740,12 @@ export class BluetoothCore {
    * @return The stream of DataView values.
    */
   observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable&lt;DataView&gt; {
+
+    if (characteristic &#x3D;&#x3D;&#x3D; null || typeof characteristic.service &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
+      this.console.error(&#x27;[BLE::Error] Was not able to read characteristic&#x27;);
+      return EMPTY;
+    }
+
     characteristic.startNotifications();
     const disconnected &#x3D; fromEvent(characteristic.service.device, &#x27;gattserverdisconnected&#x27;);
     return fromEvent(characteristic, &#x27;characteristicvaluechanged&#x27;)
@@ -2725,7 +2763,6 @@ export class BluetoothCore {
    * @return An unsigned 16-bit integer number.
    */
   littleEndianToUint16(data: any, byteOffset: number): number {
-    // tslint:disable-next-line:no-bitwise
     return (this.littleEndianToUint8(data, byteOffset + 1) &lt;&lt; 8) + this.littleEndianToUint8(data, byteOffset);
   }
 
@@ -2749,7 +2786,6 @@ export class BluetoothCore {
     if (fakeValue &#x3D;&#x3D;&#x3D; undefined) {
       fakeValue &#x3D; () &#x3D;&gt; {
         const dv &#x3D; new DataView(new ArrayBuffer(8));
-        // tslint:disable-next-line:no-bitwise
         dv.setUint8(0, (Math.random() * 110) | 0);
         return dv;
       };

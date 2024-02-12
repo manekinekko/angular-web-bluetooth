@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { from, fromEvent, Observable, throwError } from 'rxjs';
+import { EMPTY, from, fromEvent, Observable, of, throwError } from 'rxjs';
 import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
 import { ConsoleLoggerService } from './logger.service';
 import { BrowserWebBluetooth } from './platform/browser';
@@ -18,7 +18,7 @@ export class BluetoothCore {
   private device$: EventEmitter<BluetoothDevice>;
   private gatt$: EventEmitter<BluetoothRemoteGATTServer>;
   private characteristicValueChanges$: EventEmitter<DataView>;
-  private gattServer: BluetoothRemoteGATTServer;
+  private gattServer: BluetoothRemoteGATTServer | null;
 
   constructor(private readonly webBle: BrowserWebBluetooth, private readonly console: ConsoleLoggerService) {
 
@@ -83,7 +83,7 @@ export class BluetoothCore {
       return value;
     }
     catch (error) {
-      throw new Error(error);
+      throw new Error(error as any);
     }
   }
 
@@ -97,7 +97,7 @@ export class BluetoothCore {
    * @param Options such as filters and optional services
    * @return  The GATT server for the chosen device
    */
-  async discover(options: RequestDeviceOptions = {} as RequestDeviceOptions): Promise<BluetoothDevice> {
+  async discover(options: RequestDeviceOptions = {} as RequestDeviceOptions): Promise<BluetoothDevice | null> {
     options.optionalServices = options.optionalServices || ['generic_access'];
 
     this.console.log('[BLE::Info] Requesting devices with options %o', options);
@@ -130,7 +130,7 @@ export class BluetoothCore {
     const disconnectedDevice = event.target as BluetoothDevice;
     this.console.log('[BLE::Info] disconnected device %o', disconnectedDevice);
 
-    this.device$.emit(null);
+    this.device$.emit(undefined);
   }
 
   /**
@@ -139,8 +139,8 @@ export class BluetoothCore {
    * @param Options such as filters and optional services
    * @return  Emites the value of the requested service read from the device
    */
-  discover$(options?: RequestDeviceOptions): Observable<void | BluetoothRemoteGATTServer> {
-    return from(this.discover(options)).pipe(mergeMap((device: BluetoothDevice) => this.connectDevice$(device)));
+  discover$(options?: RequestDeviceOptions): Observable<void | BluetoothRemoteGATTServer | null> {
+    return from(this.discover(options)).pipe(mergeMap((device: BluetoothDevice|null) => this.connectDevice$(device)));
   }
 
   /**
@@ -148,24 +148,28 @@ export class BluetoothCore {
    *
    * @return  Emites the gatt server instance of the requested device
    */
-  async connectDevice(device: BluetoothDevice) {
-    if (device) {
-      this.console.log('[BLE::Info] Connecting to Bluetooth Remote GATT Server of %o', device);
+  async connectDevice(device: BluetoothDevice | null) {
 
-      try {
-        const gattServer = await device.gatt.connect();
-        this.gattServer = gattServer;
-        this.gatt$.emit(gattServer);
-        return gattServer;
-      } catch (error) {
-        // probably the user has canceled the discovery
-        Promise.reject(`${error.message}`);
-        this.gatt$.error(`${error.message}`);
-      }
-    } else {
+    if (device === null || typeof device.gatt === "undefined") {
       this.console.error('[BLE::Error] Was not able to connect to Bluetooth Remote GATT Server');
       this.gatt$.error(null);
+      return null;
     }
+
+    this.console.log('[BLE::Info] Connecting to Bluetooth Remote GATT Server of %o', device);
+
+    try {
+      const gattServer = await device.gatt.connect();
+      this.gattServer = gattServer;
+      this.gatt$.emit(gattServer);
+      return gattServer;
+    } catch (error: any) {
+      // probably the user has canceled the discovery
+      Promise.reject(`${error.message}`);
+      this.gatt$.error(`${error.message}`);
+    }
+
+    return null;
   }
 
   /**
@@ -173,7 +177,7 @@ export class BluetoothCore {
    *
    * @return  Emites the gatt server instance of the requested device
    */
-  connectDevice$(device: BluetoothDevice) {
+  connectDevice$(device: BluetoothDevice | null) {
     return from(this.connectDevice(device));
   }
 
@@ -200,12 +204,12 @@ export class BluetoothCore {
    * @param service The UUID of the primary service
    * @return The remote service (as a Promise)
    */
-  async getPrimaryService(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Promise<BluetoothRemoteGATTService> {
+  async getPrimaryService(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID): Promise<BluetoothRemoteGATTService> {
     try {
-      const remoteService = await gatt.getPrimaryService(service);
+      const remoteService = await gatt!.getPrimaryService(service);
       return await Promise.resolve(remoteService);
     }
-    catch (error) {
+    catch (error: any) {
       return await Promise.reject(`${error.message} (${service})`);
     }
   }
@@ -217,7 +221,7 @@ export class BluetoothCore {
    * @param service The UUID of the primary service
    * @return The remote service (as an observable).
    */
-  getPrimaryService$(gatt: BluetoothRemoteGATTServer, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
+  getPrimaryService$(gatt: BluetoothRemoteGATTServer | null, service: BluetoothServiceUUID): Observable<BluetoothRemoteGATTService> {
     this.console.log('[BLE::Info] Getting primary service "%s" (if available) of %o', service, gatt);
 
 
@@ -227,7 +231,7 @@ export class BluetoothCore {
       );
     }
     else {
-      return throwError(new Error('[BLE::Error] Was not able to connect to the Bluetooth Remote GATT Server'));
+      return throwError(() => new Error('[BLE::Error] Was not able to connect to the Bluetooth Remote GATT Server'));
     }
   }
 
@@ -241,7 +245,7 @@ export class BluetoothCore {
   async getCharacteristic(
     primaryService: BluetoothRemoteGATTService,
     characteristic: BluetoothCharacteristicUUID
-  ): Promise<BluetoothRemoteGATTCharacteristic | void> {
+  ): Promise<BluetoothRemoteGATTCharacteristic | null> {
     this.console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
 
     try {
@@ -261,8 +265,10 @@ export class BluetoothCore {
       return char;
     }
     catch (rejectionError) {
-      Promise.reject(`${rejectionError.message} (${characteristic})`);
+      Promise.reject(`${(rejectionError as any).message} (${characteristic})`);
     }
+
+    return null;
   }
 
   /**
@@ -275,7 +281,7 @@ export class BluetoothCore {
   getCharacteristic$(
     primaryService: BluetoothRemoteGATTService,
     characteristic: BluetoothCharacteristicUUID
-  ): Observable<void | BluetoothRemoteGATTCharacteristic> {
+  ): Observable<null | BluetoothRemoteGATTCharacteristic> {
     this.console.log('[BLE::Info] Getting Characteristic "%s" of %o', characteristic, primaryService);
 
     return from(this.getCharacteristic(primaryService, characteristic));
@@ -293,10 +299,8 @@ export class BluetoothCore {
     const primaryService = this.getPrimaryService$(this.gattServer, service);
 
     primaryService
-      // tslint:disable-next-line: variable-name
       .pipe(mergeMap((_primaryService: BluetoothRemoteGATTService) => this.getCharacteristic$(_primaryService, characteristic)))
-      // tslint:disable-next-line: no-shadowed-variable
-      .subscribe((characteristic: BluetoothRemoteGATTCharacteristic) => this.writeValue$(characteristic, state));
+      .subscribe((characteristic: BluetoothRemoteGATTCharacteristic | null) => this.writeValue$(characteristic, state));
 
     return primaryService;
   }
@@ -360,7 +364,13 @@ export class BluetoothCore {
    * @param value The value to be written (as an ArrayBuffer or Uint8Array).
    * @return an void Observable.
    */
-  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic, value: ArrayBuffer | Uint8Array) {
+  writeValue$(characteristic: BluetoothRemoteGATTCharacteristic | null, value: ArrayBuffer | Uint8Array) {
+
+    if (characteristic === null) {
+      this.console.error('[BLE::Error] Was not able to write characteristic');
+      return null;
+    }
+
     this.console.log('[BLE::Info] Writing Characteristic %o', characteristic);
 
     return from(characteristic.writeValue(value).then(_ => Promise.resolve(), (error: DOMException) => Promise.reject(`${error.message}`)));
@@ -373,6 +383,12 @@ export class BluetoothCore {
    * @return The stream of DataView values.
    */
   observeValue$(characteristic: BluetoothRemoteGATTCharacteristic): Observable<DataView> {
+
+    if (characteristic === null || typeof characteristic.service === 'undefined') {
+      this.console.error('[BLE::Error] Was not able to read characteristic');
+      return EMPTY;
+    }
+
     characteristic.startNotifications();
     const disconnected = fromEvent(characteristic.service.device, 'gattserverdisconnected');
     return fromEvent(characteristic, 'characteristicvaluechanged')
@@ -390,7 +406,6 @@ export class BluetoothCore {
    * @return An unsigned 16-bit integer number.
    */
   littleEndianToUint16(data: any, byteOffset: number): number {
-    // tslint:disable-next-line:no-bitwise
     return (this.littleEndianToUint8(data, byteOffset + 1) << 8) + this.littleEndianToUint8(data, byteOffset);
   }
 
@@ -414,7 +429,6 @@ export class BluetoothCore {
     if (fakeValue === undefined) {
       fakeValue = () => {
         const dv = new DataView(new ArrayBuffer(8));
-        // tslint:disable-next-line:no-bitwise
         dv.setUint8(0, (Math.random() * 110) | 0);
         return dv;
       };

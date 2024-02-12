@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="./styles/material.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -38,13 +96,13 @@
 <h2 align="center">The missing Web Bluetooth module for Angular</h2>
 <p align="center"><img src="https://github.com/manekinekko/angular-web-bluetooth/workflows/Angular%20CI/badge.svg"/></p>
 
-<h2 id="install">Install</h2>
-<div><pre class="line-numbers"><code class="language-none">npm install -S &#64;manekinekko/angular-web-bluetooth &#64;types/web-bluetooth</code></pre></div><blockquote>
+<h2>Install</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm install -S &#64;manekinekko/angular-web-bluetooth &#64;types/web-bluetooth</code></pre></div><blockquote>
 <p>Note: Make also sure the <code>@types/web-bluetooth</code> is installed correctly in your <code>node_modules</code>.</p>
 </blockquote>
-<h2 id="getting-started">Getting started</h2>
-<h2 id="1-import-the-webbluetoothmodule-module">1) import the <code>WebBluetoothModule</code> module</h2>
-<div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
+<h2>Getting started</h2>
+<h2>1) import the <code>WebBluetoothModule</code> module</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
 import { WebBluetoothModule } from &#39;&#64;manekinekko/angular-web-bluetooth&#39;;
 
 &#64;NgModule({
@@ -56,9 +114,9 @@ import { WebBluetoothModule } from &#39;&#64;manekinekko/angular-web-bluetooth&#
   ]
   //...
 })
-export class AppModule {}</code></pre></div><h2 id="2a-use-it-in-your-servicecomponent-the-easiest-way">2.a) use it in your service/component (the easiest way)</h2>
+export class AppModule {}</code></pre></div><h2>2.a) use it in your service/component (the easiest way)</h2>
 <p>Here is an annotated example using the <code>BluetoothCore</code> service:</p>
-<div><pre class="line-numbers"><code class="language-javascript">import { Injectable } from &#39;&#64;angular/core&#39;;
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">import { Injectable } from &#39;&#64;angular/core&#39;;
 import { BluetoothCore } from &#39;&#64;manekinekko/angular-web-bluetooth&#39;;
 import { map } from &#39;rxjs/operators&#39;;
 
@@ -96,9 +154,9 @@ export class BatteryLevelService {
       });
   }
 
-}</code></pre></div><h2 id="2b-use-it-in-your-servicecomponent-the-advanced-way">2.b) use it in your service/component (the advanced way)</h2>
+}</code></pre></div><h2>2.b) use it in your service/component (the advanced way)</h2>
 <p>Here is an annotated example using the <code>BluetoothCore</code> service:</p>
-<div><pre class="line-numbers"><code class="language-javascript">import { Injectable } from &#39;&#64;angular/core&#39;;
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">import { Injectable } from &#39;&#64;angular/core&#39;;
 import { map, mergeMap } from &#39;rxjs/operators&#39;;
 import { BluetoothCore } from &#39;&#64;manekinekko/angular-web-bluetooth&#39;;
 
@@ -163,17 +221,17 @@ export class BatteryLevelService {
           map((value: DataView) =&gt; value.getUint8(0))
         )
   }
-}</code></pre></div><h2 id="api-documentation">API documentation</h2>
+}</code></pre></div><h2>API documentation</h2>
 <p>The API documentation can be found here:  <a href="https://manekinekko.github.io/angular-web-bluetooth/">https://manekinekko.github.io/angular-web-bluetooth/</a></p>
-<h2 id="need-a-starter">Need a starter?</h2>
+<h2>Need a starter?</h2>
 <img src="src/assets/screenshot.png"/>
 
 <p>This project serves also as a starter. Run the following command:</p>
-<div><pre class="line-numbers"><code class="language-bash">npm start</code></pre></div><h2 id="blog-post">Blog post</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm start</code></pre></div><h2>Blog post</h2>
 <p>Checkout my full <a href="https://dev.to/angular/the-web-bluetooth-module-for-angular-314b">blog post on dev.to</a> about how to use this package in your app.</p>
-<h2 id="have-a-pr">Have a PR?</h2>
+<h2>Have a PR?</h2>
 <p>All contributions are welcome. Here are few <a href="https://github.com/manekinekko/angular-web-bluetooth/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22">open issues</a> that I need help with ;)</p>
-<h1 id="license">License</h1>
+<h1>License</h1>
 <p>The MIT License (MIT) Copyright (c) 2017 - Wassim CHEGHAM</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
