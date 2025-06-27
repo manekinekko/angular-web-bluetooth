@@ -14,7 +14,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -61,20 +61,13 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">angular-web-bluetooth-starter documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -83,7 +76,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -274,8 +267,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>BluetoothRemoteGATTServer</code>
+                        <i>Type : </i>    <code>BluetoothRemoteGATTServer | null</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
@@ -326,6 +324,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
@@ -540,9 +544,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class FakeBluetoothDevice {
-  gatt: BluetoothRemoteGATTServer;
+  gatt: BluetoothRemoteGATTServer | null &#x3D; null;
   private listeners: {
-    [key in &#x27;gattserverdisconnected&#x27;]: EventListener[]
+    [key: string]: EventListener[]
   } &#x3D; {
     gattserverdisconnected: []
   };
@@ -559,12 +563,12 @@
 
   disconnect() {
     const mockedEvent &#x3D; {target: this} as unknown;
-    this.listeners.gattserverdisconnected.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+    this.listeners[&#x27;gattserverdisconnected&#x27;].forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
   }
 
   clear() {
-    this.id &#x3D; undefined;
-    this.name &#x3D; undefined;
+    this.id &#x3D; &quot;&quot;;
+    this.name &#x3D; &quot;&quot;;
     this.listeners &#x3D; {
       gattserverdisconnected: []
     };
@@ -574,7 +578,7 @@
 export class FakeBluetoothRemoteGATTServer {
   connected &#x3D; false;
 
-  constructor(public device, public services: { [key: string]: { service, primary: boolean } }) {
+  constructor(public device: any, public services: { [key: string]: { service: any, primary: boolean } }) {
     device.gatt &#x3D; this;
   }
 
@@ -594,7 +598,7 @@ export class FakeBluetoothRemoteGATTServer {
 }
 
 export class FakeBluetoothRemoteGATTService {
-  constructor(public device, public characteristics) {
+  constructor(public device: any, public characteristics: any) {
     this.characteristics.service &#x3D; this;
   }
 
@@ -604,11 +608,11 @@ export class FakeBluetoothRemoteGATTService {
 }
 
 export class FakeBluetoothRemoteGATTCharacteristic {
-  value: DataView;
+  value: DataView | undefined;
   properties: BluetoothCharacteristicProperties;
-  private readonly initialValue: DataView;
+  private readonly initialValue: DataView | undefined;
   private listeners: {
-    [key in &#x27;characteristicvaluechanged&#x27;]: EventListener[]
+    [key: string]: EventListener[]
   } &#x3D; {
     characteristicvaluechanged: []
   };
@@ -633,7 +637,7 @@ export class FakeBluetoothRemoteGATTCharacteristic {
   changeValue(value: DataView) {
     this.value &#x3D; value;
     const mockedEvent &#x3D; {target: this} as unknown;
-    this.listeners.characteristicvaluechanged.forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
+    this.listeners[&#x27;characteristicvaluechanged&#x27;].forEach(listener &#x3D;&gt; listener(mockedEvent as Event));
   }
 
   clear() {
@@ -685,6 +689,19 @@ export class FakeBluetoothRemoteGATTCharacteristic {
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
 
@@ -696,7 +713,6 @@ export class FakeBluetoothRemoteGATTCharacteristic {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
