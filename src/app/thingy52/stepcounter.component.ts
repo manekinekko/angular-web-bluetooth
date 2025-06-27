@@ -20,12 +20,12 @@ const PROVIDERS = [{
 }];
 
 @Component({
-  selector: 'ble-stepcounter',
-  template: `
+    selector: 'ble-stepcounter',
+    template: `
   <span>{{ value || "000" }}</span>
   <mat-icon>directions_walk</mat-icon>
   `,
-  styles: [`
+    styles: [`
   :host {
     display: block;
   }
@@ -43,7 +43,8 @@ const PROVIDERS = [{
     width: 100%;
     height: 100%;
   }`],
-  providers: PROVIDERS
+    providers: PROVIDERS,
+    standalone: false
 })
 export class StepCounterComponent implements OnInit, OnDestroy {
   valuesSubscription: Subscription | null = null;

@@ -99,7 +99,7 @@ exports[`BatteryLevelComponent should display device connected state 1`] = `
     mode="indeterminate"
     role="progressbar"
     strokewidth="2"
-    style="width: 250px; height: 250px; --mdc-circular-progress-size: 250px; --mdc-circular-progress-active-indicator-width: 250px;"
+    style="width: 250px; height: 250px; --mat-progress-spinner-size: 250px; --mat-progress-spinner-active-indicator-width: 250px;"
     tabindex="-1"
   >
     <div
