@@ -1,13 +1,13 @@
 {
   "name": "@manekinekko/angular-web-bluetooth",
-  "version": "20.0.0",
+  "version": "17.1.0",
   "license": "MIT",
   "author": {
     "name": "Wassim Chegham",
     "email": "github@wassim.dev"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 22"
   },
   "contributors": [
     "urish"
