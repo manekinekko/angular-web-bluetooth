@@ -21,18 +21,19 @@ const PROVIDERS = [{
 }];
 
 @Component({
-  selector: 'ble-humidity',
-  template: `
+    selector: 'ble-humidity',
+    template: `
     <canvas #chart width="549" height="200"></canvas>
   `,
-  styles: [`
+    styles: [`
   :host {
     display: block;
   }
   canvas {
     margin-left: -16px;
   }`],
-  providers: PROVIDERS
+    providers: PROVIDERS,
+    standalone: false
 })
 export class HumidityComponent implements OnInit, OnDestroy {
   series: TimeSeries | null = null;

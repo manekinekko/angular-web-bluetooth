@@ -28,8 +28,8 @@ const PROVIDERS = [
 ];
 
 @Component({
-  selector: 'ble-battery-level',
-  template: `
+    selector: 'ble-battery-level',
+    template: `
     <span data-testid="value">{{ value || '000' }}<sup>%</sup></span>
     <mat-progress-spinner
       [color]="color"
@@ -41,8 +41,8 @@ const PROVIDERS = [
     </mat-progress-spinner>
     <mat-icon>battery_charging_full</mat-icon>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         display: flex;
         justify-content: center;
@@ -69,8 +69,9 @@ const PROVIDERS = [
         bottom: 255px;
       }
     `,
-  ],
-  providers: PROVIDERS,
+    ],
+    providers: PROVIDERS,
+    standalone: false
 })
 export class BatteryLevelComponent implements OnInit, OnDestroy {
   value = 0;

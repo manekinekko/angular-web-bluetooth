@@ -34,10 +34,10 @@ const PROVIDERS = [
 ];
 
 @Component({
-  selector: 'ble-temperature',
-  template: ` <canvas #chart width="549" height="180"></canvas> `,
-  styles: [
-    `
+    selector: 'ble-temperature',
+    template: ` <canvas #chart width="549" height="180"></canvas> `,
+    styles: [
+        `
       :host {
         display: block;
       }
@@ -45,8 +45,9 @@ const PROVIDERS = [
         margin-left: -16px;
       }
     `,
-  ],
-  providers: PROVIDERS,
+    ],
+    providers: PROVIDERS,
+    standalone: false
 })
 export class TemperatureComponent implements OnInit, OnDestroy {
   series: TimeSeries | null = null;
